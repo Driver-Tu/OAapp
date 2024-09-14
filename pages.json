@@ -6,8 +6,75 @@
 				"navigationBarTitleText": "登录页面",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/main/main",
+			"style" : 
+			{
+				"navigationBarTitleText" : "首页",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "green"
+			}
+		},
+		{
+			"path" : "pages/selfMessage/selfMessage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人中心",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "green"
+			}
+		},
+		{
+			"path" : "pages/punchIn/punchIn",
+			"style" : 
+			{
+				"navigationBarTitleText" : "打卡",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "green"
+			}
+		},
+		{
+			"path" : "pages/review/review",
+			"style" : 
+			{
+				"navigationBarTitleText" : "审批",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "green"
+			}
 		}
 	],
+	"tabBar": {
+			"color": "white",
+			"selectedColor": "#55ff7f",
+			"backgroundColor": "green",// 底部 tabBar 背景色
+			"borderStyle": "black",
+			"list": [{
+					"pagePath": "pages/main/main",
+					"text":"首页",
+					"iconPath": "static/kz.jpg",
+					"selectedIconPath": "static/kz.jpg"
+				},
+				{
+					"pagePath": "pages/review/review",
+					"text":"审批",
+					"iconPath": "static/sb.jpg",
+					"selectedIconPath": "static/sb.jpg"
+				},{
+					"pagePath": "pages/punchIn/punchIn",
+					"text":"打卡",
+					"iconPath": "static/dk.jpg",
+					"selectedIconPath": "static/kz.jpg"
+				},
+				{
+					"pagePath": "pages/selfMessage/selfMessage",
+					"text":"个人中心",
+					"iconPath": "static/house.jpg",
+					"selectedIconPath": "static/house.jpg"
+				}
+			]
+		}
+,
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

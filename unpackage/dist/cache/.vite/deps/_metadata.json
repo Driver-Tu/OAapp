@@ -1,19 +1,19 @@
 {
-  "hash": "4d504722",
-  "configHash": "d85cb1d4",
+  "hash": "8b46fc2d",
+  "configHash": "73933469",
   "lockfileHash": "f06a6d0b",
-  "browserHash": "1e26387f",
+  "browserHash": "ef71801c",
   "optimized": {
     "element-plus": {
       "src": "../../../../../node_modules/element-plus/es/index.mjs",
       "file": "element-plus.js",
-      "fileHash": "fb099bee",
+      "fileHash": "7289bbcd",
       "needsInterop": false
     },
     "axios": {
       "src": "../../../../../node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "375747c5",
+      "fileHash": "c3c67e72",
       "needsInterop": false
     }
   },

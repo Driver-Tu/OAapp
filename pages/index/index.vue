@@ -11,8 +11,7 @@
 							<view class="title">密码</view>
 							<input class="uni-input" v-model="loginAll.password" password type="text" placeholder="请输入您的密码" />
 						</view>
-						<button class="button-login" click="button-login" @click="login">登录</button>
-						<text>{{data}}</text>
+						<navigator url="/pages/main/main" open-type="switchTab"><button class="button-login" click="button-login" @click="login">登录</button></navigator>
 						</view>
 		</view>
 	</view>
@@ -23,16 +22,23 @@ import axios from 'axios';
 import { reactive, ref } from 'vue';
 
 	const loginAll=reactive({
-		empNum:"",
+		empNum:uni.getStorageSync("empNum"),
 		password:""
 	})
 	const data=ref("")
-const login=()=>{
-	axios.post("http://localhost:8088/user/login?empNum="+loginAll.empNum+"&password="+loginAll.password)
-	.then(function(res){
+let login=()=>{
+	let res=uni.request({
+		url:"http://192.168.0.196:8088/user/login?empNum="+loginAll.empNum+"&password="+loginAll.password,
+		method:'POST'
+	}).then(function (res){
 		console.log(res)
-		data.value=res.data.message
-	}).catch(function(error){
+	if(res.data.code==="200"){
+		uni.setStorageSync("empNum",loginAll.empNum)
+		uni.setStorageSync("satoken",res.data.data.tokenValue)
+	}else{
+		alert(res.data.message)
+	}})
+	.catch(function (error){
 		console.log(error)
 	})
 }
