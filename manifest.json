@@ -1,5 +1,5 @@
 {
-    "name" : "UOApp",
+    "name" : "智勤易报",
     "appid" : "__UNI__9571461",
     "description" : "",
     "versionName" : "1.0.0",
@@ -53,6 +53,15 @@
                 "androidStyle" : "common",
                 "android" : {
                     "hdpi" : ""
+                }
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "",
+                    "xxxhdpi" : ""
+                },
+                "ios" : {
+                    "appstore" : ""
                 }
             }
         }

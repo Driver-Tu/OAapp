@@ -11,35 +11,54 @@
 							<view class="title">密码</view>
 							<input class="uni-input" v-model="loginAll.password" password type="text" placeholder="请输入您的密码" />
 						</view>
-						<navigator url="/pages/main/main" open-type="switchTab"><button class="button-login" click="button-login" @click="login">登录</button></navigator>
+						<button class="button-login" click="button-login" @click="login">登录</button>
 						</view>
 		</view>
 	</view>
 </template>
 
 <script setup>
-import axios from 'axios';
 import { reactive, ref } from 'vue';
 
-	const loginAll=reactive({
+const loginAll=reactive({
 		empNum:uni.getStorageSync("empNum"),
 		password:""
-	})
-	const data=ref("")
-let login=()=>{
-	let res=uni.request({
+	});
+const data=ref("");
+const login=()=>{
+	uni.request({
 		url:"http://192.168.0.196:8088/user/login?empNum="+loginAll.empNum+"&password="+loginAll.password,
 		method:'POST'
 	}).then(function (res){
 		console.log(res)
 	if(res.data.code==="200"){
+		// 登录成功后设置登录状态
 		uni.setStorageSync("empNum",loginAll.empNum)
 		uni.setStorageSync("satoken",res.data.data.tokenValue)
+		uni.showToast({
+			title:"登陆成功",
+			icon:'success',
+			duration:2000,
+			mask:true,
+		})
+		uni.switchTab({
+			url:"/pages/main/main",
+		})
 	}else{
-		alert(res.data.message)
+		uni.showToast({
+			title:res.data.msg,
+			icon:'error',
+			duration:2000,
+			mask:true,
+		})
 	}})
 	.catch(function (error){
-		console.log(error)
+		uni.showToast({
+			title:"页面错误，请截图联系管理员!",
+			icon:'error',
+			duration:30000,
+			mask:true,
+		})
 	})
 }
 </script>

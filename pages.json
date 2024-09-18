@@ -13,7 +13,7 @@
 			{
 				"navigationBarTitleText" : "首页",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "green"
+				"navigationBarBackgroundColor": "#319549"
 			}
 		},
 		{
@@ -22,7 +22,7 @@
 			{
 				"navigationBarTitleText" : "个人中心",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "green"
+				"navigationBarBackgroundColor": "#319549"
 			}
 		},
 		{
@@ -31,7 +31,7 @@
 			{
 				"navigationBarTitleText" : "打卡",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "green"
+				"navigationBarBackgroundColor": "#319549"
 			}
 		},
 		{
@@ -40,14 +40,14 @@
 			{
 				"navigationBarTitleText" : "审批",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "green"
+				"navigationBarBackgroundColor": "#319549"
 			}
 		}
 	],
 	"tabBar": {
 			"color": "white",
 			"selectedColor": "#55ff7f",
-			"backgroundColor": "green",// 底部 tabBar 背景色
+			"backgroundColor": "#319549",// 底部 tabBar 背景色
 			"borderStyle": "black",
 			"list": [{
 					"pagePath": "pages/main/main",
@@ -76,10 +76,10 @@
 		}
 ,
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#319549",
+		"backgroundColor": "#319549"
 	},
 	"uniIdRouter": {}
 }

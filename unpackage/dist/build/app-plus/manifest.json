@@ -5,7 +5,7 @@
     "iPad"
   ],
   "id": "__UNI__9571461",
-  "name": "UOApp",
+  "name": "智勤易报",
   "version": {
     "name": "1.0.0",
     "code": "100"
@@ -34,7 +34,6 @@
     },
     "popGesture": "close",
     "launchwebview": {
-      "render": "always",
       "id": "1",
       "kernel": "WKWebview"
     },
@@ -46,6 +45,15 @@
         "androidStyle": "common",
         "android": {
           "hdpi": ""
+        }
+      },
+      "icons": {
+        "android": {
+          "hdpi": "",
+          "xxxhdpi": ""
+        },
+        "ios": {
+          "appstore": ""
         }
       },
       "google": {
@@ -82,13 +90,19 @@
     },
     "statusbar": {
       "immersed": "supportedDevice",
-      "style": "dark",
-      "background": "#F8F8F8"
+      "style": "light",
+      "background": "#319549"
     },
     "uniStatistics": {
       "enable": false
     },
     "allowsInlineMediaPlayback": true,
+    "safearea": {
+      "background": "#319549",
+      "bottom": {
+        "offset": "auto"
+      }
+    },
     "uni-app": {
       "control": "uni-v3",
       "vueVersion": "3",
@@ -102,6 +116,46 @@
       "webView": {
         "minUserAgentVersion": "49.0"
       }
+    },
+    "tabBar": {
+      "position": "bottom",
+      "color": "white",
+      "selectedColor": "#55ff7f",
+      "borderStyle": "rgba(0,0,0,0.4)",
+      "blurEffect": "none",
+      "fontSize": "10px",
+      "iconWidth": "24px",
+      "spacing": "3px",
+      "height": "50px",
+      "backgroundColor": "#319549",
+      "list": [
+        {
+          "pagePath": "pages/main/main",
+          "text": "首页",
+          "iconPath": "/static/kz.jpg",
+          "selectedIconPath": "/static/kz.jpg"
+        },
+        {
+          "pagePath": "pages/review/review",
+          "text": "审批",
+          "iconPath": "/static/sb.jpg",
+          "selectedIconPath": "/static/sb.jpg"
+        },
+        {
+          "pagePath": "pages/punchIn/punchIn",
+          "text": "打卡",
+          "iconPath": "/static/dk.jpg",
+          "selectedIconPath": "/static/kz.jpg"
+        },
+        {
+          "pagePath": "pages/selfMessage/selfMessage",
+          "text": "个人中心",
+          "iconPath": "/static/house.jpg",
+          "selectedIconPath": "/static/house.jpg"
+        }
+      ],
+      "selectedIndex": 0,
+      "shown": true
     }
   },
   "launch_path": "__uniappview.html"

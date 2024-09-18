@@ -1,7 +1,12 @@
 <script>
 	export default {
 		onLaunch: function() {
-			console.log('App Launch')
+			let token=uni.getStorageSync("satoken")
+			if(!token){
+				uni.navigateTo({
+					url:"/pages/index/index",
+				})
+			}
 		},
 		onShow: function() {
 			console.log('App Show')
