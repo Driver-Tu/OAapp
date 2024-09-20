@@ -1,19 +1,18 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "登录页面",
-				"navigationStyle": "custom"
-			}
-		},
-		{
 			"path" : "pages/main/main",
 			"style" : 
 			{
 				"navigationBarTitleText" : "首页",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#319549"
+				"navigationBarBackgroundColor": "#00aaff"
+			}
+		},{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "登录页面",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -22,16 +21,16 @@
 			{
 				"navigationBarTitleText" : "个人中心",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#319549"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		},
 		{
 			"path" : "pages/punchIn/punchIn",
 			"style" : 
 			{
-				"navigationBarTitleText" : "打卡",
+				"navigationBarTitleText" : "考勤打卡",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#319549"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		},
 		{
@@ -40,14 +39,21 @@
 			{
 				"navigationBarTitleText" : "审批",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#319549"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		}
-	],
+	,{
+    "path": "uni_modules/unicloud-city-select/pages/uni-city-list/uni-city-list",
+    "style": {
+        "enablePullDownRefresh": false,
+        "navigationBarTitleText": "城市选择"
+    }
+}
+],
 	"tabBar": {
 			"color": "white",
 			"selectedColor": "#55ff7f",
-			"backgroundColor": "#319549",// 底部 tabBar 背景色
+			"backgroundColor": "#00aaff",// 底部 tabBar 背景色
 			"borderStyle": "black",
 			"list": [{
 					"pagePath": "pages/main/main",
@@ -62,9 +68,9 @@
 					"selectedIconPath": "static/sb.jpg"
 				},{
 					"pagePath": "pages/punchIn/punchIn",
-					"text":"打卡",
+					"text":"考勤打卡",
 					"iconPath": "static/dk.jpg",
-					"selectedIconPath": "static/kz.jpg"
+					"selectedIconPath": "static/dk.jpg"
 				},
 				{
 					"pagePath": "pages/selfMessage/selfMessage",

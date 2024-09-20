@@ -17,6 +17,9 @@
     "url": ""
   },
   "permissions": {
+    "Maps": {
+      "coordType": "gcj02"
+    },
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -81,6 +84,13 @@
       },
       "plugins": {
         "ad": {},
+        "maps": {
+          "amap": {
+            "name": "amapfIPT4TQa",
+            "appkey_ios": "5aacf71ef02689821a51b9866e2151c2",
+            "appkey_android": "9f6337687d2bd4364b96a8353592b4cb"
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -98,7 +108,7 @@
     },
     "allowsInlineMediaPlayback": true,
     "safearea": {
-      "background": "#319549",
+      "background": "#00aaff",
       "bottom": {
         "offset": "auto"
       }
@@ -127,7 +137,7 @@
       "iconWidth": "24px",
       "spacing": "3px",
       "height": "50px",
-      "backgroundColor": "#319549",
+      "backgroundColor": "#00aaff",
       "list": [
         {
           "pagePath": "pages/main/main",
@@ -143,9 +153,9 @@
         },
         {
           "pagePath": "pages/punchIn/punchIn",
-          "text": "打卡",
+          "text": "考勤打卡",
           "iconPath": "/static/dk.jpg",
-          "selectedIconPath": "/static/kz.jpg"
+          "selectedIconPath": "/static/dk.jpg"
         },
         {
           "pagePath": "pages/selfMessage/selfMessage",
@@ -155,7 +165,11 @@
         }
       ],
       "selectedIndex": 0,
-      "shown": true
+      "shown": true,
+      "child": [
+        "lauchwebview"
+      ],
+      "selected": 0
     }
   },
   "launch_path": "__uniappview.html"
