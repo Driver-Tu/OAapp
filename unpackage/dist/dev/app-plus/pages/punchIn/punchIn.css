@@ -2,6 +2,11 @@
 .attendance-container{
 		text-align: center;
 }
+.attendance-title{
+		position: absolute;
+		bottom: 0;
+		color: #ff0000;
+}
 .attendance-button{
 		text-align: center;
 		display: inline-flex;
@@ -12,4 +17,7 @@
 		height: 15vh;
 		background-color: #00aaff;
 		color: #ffffff;
+}
+.abutton{
+		background-color: #dedede;
 }

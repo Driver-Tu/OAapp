@@ -88,7 +88,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     return $data.width ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -115,7 +115,7 @@ if (uni.restoreGlobal) {
       /* STYLE */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$8], ["__scopeId", "data-v-7a807eb7"], ["__file", "D:/HB/UOApp/uni_modules/uni-grid/components/uni-grid-item/uni-grid-item.vue"]]);
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$9], ["__scopeId", "data-v-7a807eb7"], ["__file", "D:/HB/UOApp/uni_modules/uni-grid/components/uni-grid-item/uni-grid-item.vue"]]);
   function formatAppLog(type, filename, ...args) {
     if (uni.__log__) {
       uni.__log__(type, filename, ...args);
@@ -196,7 +196,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-grid-wrap" }, [
       vue.createElementVNode("view", {
         id: $data.elId,
@@ -208,7 +208,7 @@ if (uni.restoreGlobal) {
       ], 14, ["id"])
     ]);
   }
-  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$7], ["__scopeId", "data-v-07acefee"], ["__file", "D:/HB/UOApp/uni_modules/uni-grid/components/uni-grid/uni-grid.vue"]]);
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$8], ["__scopeId", "data-v-07acefee"], ["__file", "D:/HB/UOApp/uni_modules/uni-grid/components/uni-grid/uni-grid.vue"]]);
   const _sfc_main$a = {
     name: "UniSection",
     emits: ["click"],
@@ -268,7 +268,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-section" }, [
       vue.createElementVNode("view", {
         class: "uni-section-header",
@@ -325,7 +325,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$6], ["__scopeId", "data-v-637fd36b"], ["__file", "D:/HB/UOApp/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
+  const __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$7], ["__scopeId", "data-v-637fd36b"], ["__file", "D:/HB/UOApp/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
   const _imports_0$1 = "/static/logo.png";
   const _sfc_main$9 = {
     components: {},
@@ -365,7 +365,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_grid_item = resolveEasycom(vue.resolveDynamicComponent("uni-grid-item"), __easycom_0$2);
     const _component_uni_grid = resolveEasycom(vue.resolveDynamicComponent("uni-grid"), __easycom_1);
     const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_2);
@@ -441,7 +441,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
     );
   }
-  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$5], ["__file", "D:/HB/UOApp/pages/main/main.vue"]]);
+  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$6], ["__file", "D:/HB/UOApp/pages/main/main.vue"]]);
   const fontData = [
     {
       "font_class": "arrow-down",
@@ -1146,7 +1146,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -1161,7 +1161,7 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$4], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/HB/UOApp/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$5], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/HB/UOApp/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
   const _sfc_main$7 = {
     __name: "index",
     setup(__props) {
@@ -1494,30 +1494,38 @@ if (uni.restoreGlobal) {
   };
   const PagesSelfMessageSelfMessage = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "D:/HB/UOApp/pages/selfMessage/selfMessage.vue"]]);
   const _sfc_main$5 = {
-    __name: "punchIn",
-    setup(__props) {
-      const longitude = vue.ref();
-      const latitude = vue.ref();
-      const address = vue.ref();
-      let getAddress = () => {
+    data() {
+      return {
+        longitude: null,
+        latitude: null,
+        address: null,
+        currentTimeDisplay: "",
+        clockInButton: true,
+        clockOutButton: false,
+        outCheckIn: false,
+        deviceIds: [
+          {
+            deviceId: "30:AE:A4:2C:5A:B5"
+          }
+        ]
+      };
+    },
+    methods: {
+      getAddress() {
         uni.getLocation(
           {
             type: "gcj02",
             geocode: true,
             isHighAccuracy: true,
             success: (res1) => {
-              formatAppLog("log", "at pages/punchIn/punchIn.vue:35", res1);
-              longitude.value = res1.longitude;
-              latitude.value = res1.latitude;
+              formatAppLog("log", "at pages/punchIn/punchIn.vue:68", res1);
+              this.longitude = res1.longitude;
+              this.latitude = res1.latitude;
               uni.chooseLocation({
                 success: (res2) => {
-                  formatAppLog("log", "at pages/punchIn/punchIn.vue:42", res2);
-                  const latitudeNew = res2.latitude;
-                  const longitudeNew = res2.longitude;
-                  formatAppLog("log", "at pages/punchIn/punchIn.vue:45", Math.abs(longitude.value - longitudeNew));
-                  formatAppLog("log", "at pages/punchIn/punchIn.vue:46", Math.abs(latitude.value - latitudeNew));
-                  if (Math.abs(longitude.value - longitudeNew) < 2e-4 && Math.abs(latitude.value - latitudeNew) < 2e-4) {
-                    address.value = res2.name;
+                  formatAppLog("log", "at pages/punchIn/punchIn.vue:75", res2);
+                  if (Math.abs(res1.longitude - res2.longitude) < 2e-4 && Math.abs(res1.latitude - res2.latitude) < 2e-4) {
+                    this.address = res2.name;
                     uni.showToast({
                       title: "定位成功",
                       icon: "success"
@@ -1533,98 +1541,138 @@ if (uni.restoreGlobal) {
             }
           }
         );
-      };
-      const currentTimeDisplay = vue.ref("");
-      const clockInButton = vue.ref(true);
-      const clockOutButton = vue.ref(false);
-      vue.ref("");
-      vue.ref("");
-      function updateTime() {
-        const now = /* @__PURE__ */ new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        currentTimeDisplay.value = `当前时间: ${now.toLocaleTimeString()}`;
-        if (hours >= 9 && minutes <= 0 || hours < 9) {
-          clockInButton.value = false;
+      },
+      updateTime() {
+        var now = /* @__PURE__ */ new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        this.currentTimeDisplay = `中国时间:${now.toLocaleTimeString()}`;
+        if (hours === 9 && minutes === 0 || hours < 9) {
+          this.clockInButton = false;
         } else {
-          clockInButton.value = true;
+          this.clockInButton = true;
         }
         if (hours >= 17 && minutes >= 30 || hours >= 18) {
-          clockOutButton.value = false;
+          this.clockOutButton = false;
         } else {
-          clockOutButton.value = true;
+          this.clockOutButton = true;
         }
-      }
-      updateTime();
-      setInterval(updateTime, 1e3);
-      const show = () => {
+      },
+      show() {
         uni.showToast({
           icon: "success",
           title: "打卡成功"
         });
-      };
-      return (_ctx, _cache) => {
-        return vue.openBlock(), vue.createElementBlock(
-          vue.Fragment,
-          null,
-          [
-            vue.createElementVNode("view", null, [
-              vue.createElementVNode(
-                "button",
-                {
-                  onClick: _cache[0] || (_cache[0] = (...args) => vue.unref(getAddress) && vue.unref(getAddress)(...args))
-                },
-                "打卡地址为：" + vue.toDisplayString(address.value),
-                1
-                /* TEXT */
-              )
-            ]),
-            vue.createElementVNode("view", null, [
-              vue.createElementVNode("view", { class: "page-body" }, [
-                vue.createElementVNode("view", { class: "page-section page-section-gap" }, [
-                  vue.createElementVNode("map", {
-                    style: { "width": "100%", "height": "30vh" },
-                    latitude: latitude.value,
-                    longitude: longitude.value,
-                    "show-location": true
-                  }, null, 8, ["latitude", "longitude"])
-                ])
-              ])
-            ]),
-            vue.createElementVNode("view", { class: "attendance-container" }, [
-              vue.createElementVNode("view", { class: "attendance-title" }, "上班打卡时间为早上九点之前"),
-              vue.createElementVNode("view", { class: "attendance-title" }, "下班打卡时间为下午五点半之后"),
-              vue.createElementVNode(
-                "view",
-                {
-                  class: "current-time",
-                  id: "currentTimeDisplay"
-                },
-                vue.toDisplayString(currentTimeDisplay.value),
-                1
-                /* TEXT */
-              ),
-              vue.createElementVNode("view", { class: "attendance-clock-in-out" }, [
-                vue.createElementVNode("button", {
-                  class: "attendance-button",
-                  disabled: clockInButton.value,
-                  onClick: _cache[1] || (_cache[1] = ($event) => show())
-                }, "打卡上班", 8, ["disabled"]),
-                vue.createElementVNode("button", {
-                  class: "attendance-button",
-                  disabled: clockOutButton.value,
-                  onClick: _cache[2] || (_cache[2] = ($event) => show())
-                }, "打卡下班", 8, ["disabled"])
-              ])
-            ])
-          ],
-          64
-          /* STABLE_FRAGMENT */
-        );
-      };
+      },
+      scanBluetooth() {
+        uni.openBluetoothAdapter({
+          success: () => {
+            uni.startBluetoothDevicesDiscovery({
+              success: (res) => {
+                formatAppLog("log", "at pages/punchIn/punchIn.vue:124", "开始扫描蓝牙设备" + res);
+                uni.onBluetoothDeviceFound((devices) => {
+                  formatAppLog("log", "at pages/punchIn/punchIn.vue:127", devices.devices[0].deviceId);
+                  this.deviceIds.map((deviceId) => {
+                    if (deviceId.deviceId === devices.devices[0].deviceId) {
+                      uni.stopBluetoothDevicesDiscovery({
+                        success: () => {
+                          formatAppLog("log", "at pages/punchIn/punchIn.vue:133", "蓝牙扫描已停止,已经扫到蓝牙:" + devices.devices[0].deviceId);
+                          uni.showToast({
+                            title: "成功连接蓝牙",
+                            icon: "success",
+                            duration: 1e3,
+                            success() {
+                              this.outCheckIn = true;
+                            }
+                          });
+                        },
+                        fail: () => {
+                          formatAppLog("error", "at pages/punchIn/punchIn.vue:144", "停止扫描失败");
+                          uni.showToast({
+                            title: "无法连接蓝牙",
+                            icon: "error"
+                          });
+                        }
+                      });
+                    }
+                  });
+                });
+              },
+              fail: (err) => {
+                formatAppLog("error", "at pages/punchIn/punchIn.vue:156", "开始扫描失败", err);
+                uni.closeBluetoothAdapter();
+              }
+            });
+          },
+          fail: (err) => {
+            formatAppLog("error", "at pages/punchIn/punchIn.vue:162", "开启蓝牙适配器失败", err);
+          }
+        });
+      }
+    },
+    //初始化挂载
+    created() {
+      setInterval(this.updateTime, 1e3);
+    },
+    onShow() {
+      this.scanBluetooth();
+    },
+    updated() {
+      this.updateTime();
     }
   };
-  const PagesPunchInPunchIn = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "D:/HB/UOApp/pages/punchIn/punchIn.vue"]]);
+  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", null, [
+          vue.createElementVNode("button", {
+            onClick: _cache[0] || (_cache[0] = (...args) => $options.getAddress && $options.getAddress(...args)),
+            class: "abutton"
+          }, "获取地址"),
+          vue.createElementVNode(
+            "button",
+            { class: "abutton" },
+            "地址:" + vue.toDisplayString($data.address),
+            1
+            /* TEXT */
+          )
+        ]),
+        vue.createElementVNode("view", { class: "attendance-container" }, [
+          vue.createElementVNode("view", null, [
+            vue.createElementVNode("view", { class: "attendance-title" }, "提示:上班打卡时间为早上九点之前,下班打卡时间为下午五点半之后"),
+            vue.createElementVNode(
+              "view",
+              {
+                class: "current-time",
+                id: "currentTimeDisplay",
+                style: { "color": "#48c5bd" }
+              },
+              vue.toDisplayString($data.currentTimeDisplay),
+              1
+              /* TEXT */
+            )
+          ]),
+          vue.createElementVNode("view", { class: "attendance-clock-in-out" }, [
+            vue.createElementVNode("button", {
+              class: "attendance-button",
+              disabled: $data.clockInButton,
+              onClick: _cache[1] || (_cache[1] = ($event) => $options.show())
+            }, "打卡上班", 8, ["disabled"]),
+            vue.createElementVNode("button", {
+              class: "attendance-button",
+              disabled: $data.clockOutButton,
+              onClick: _cache[2] || (_cache[2] = ($event) => $options.show())
+            }, "打卡下班", 8, ["disabled"])
+          ])
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesPunchInPunchIn = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__file", "D:/HB/UOApp/pages/punchIn/punchIn.vue"]]);
   const _sfc_main$4 = {
     data() {
       return {};

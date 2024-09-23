@@ -1,1 +1,1 @@
-.attendance-container{text-align:center}.attendance-button{display:inline;margin:20px;width:40vh;background-color:#0af;color:#fff}
+.attendance-container{text-align:center}.attendance-button{text-align:center;display:inline-flex;border-radius:100px;line-height:15vh;margin:10px;width:15vh;height:15vh;background-color:#0af;color:#fff}
