@@ -1,34 +1,70 @@
+<style lang="scss">
+.Layout{
+		width: 100vw;
+		border: 1px solid #b5b5b5;
+		border-radius: 15rpx;
+		box-shadow: 0 0 30rpx rgb(0, 0,0,0.35);
+		.row{
+			width: 100%;
+			height: 100%;
+				.text{
+					margin: 18rpx;
+					padding: 18rpx;
+					display: inline-block;
+					.item{
+						display:flex;
+						flex-direction: column;
+						 align-items: center;
+						image{
+							width: 166rpx;
+							box-shadow: 0 0 30rpx rgb(0, 0,0,0.05);
+						}
+						text{
+						}
+					}
+			}
+		}
+	}
+swiper {
+		height: 200px;
+		width: 100vw;
+		border: 1px solid #bcbcbc;
+		swiper-item{
+			width: 100%;
+			height: 100%;
+			image{
+				width: 100%;
+				height: 100%;
+			}
+		}
+		swiper-item:nth-child(2n){
+			background-color: #ff0000;
+		}
+	}
+</style>
+
+
 <template>
+	<swiper indicator-dots="true" autoplay="true" interval="2000" duration="1000" circular="true">
+		<swiper-item><image src="../../static/lb1.png"></image></swiper-item>
+		<swiper-item><image src="../../static/lb2.png"></image></swiper-item>
+		<swiper-item><image src="../../static/lb3.png"></image></swiper-item>
+	</swiper>
 	<view class="warp" style="margin:0px 0px 20px 0px ;">
-		<uni-section title="近期使用" type="line" padding>
-			<uni-grid :column="2" :highlight="true" @change="change">
-				<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
-					<view class="grid-item-box" style="background-color: #fff;">
-						<image src="../../static/logo.png" style="width: 100%;height: 75%;"></image>
-						<button style="width: 100%;height: 25%;" @click="">{{item.text}}</button>
-					</view>
-				</uni-grid-item>
-			</uni-grid>
+		<uni-section title="最近常用" type="line">
+			<view class="Layout">
+				<view class="row" >
+						<view class="text" v-for="item in list"  @click="changePage(item.url)">
+							<view class="item">
+								<image :src="item.url" mode="widthFix"></image>
+								<text>{{item.text}}</text>
+							</view>
+						</view>
+				</view>
+			</view>
 		</uni-section>
 	</view>
-<!-- 	<view>
-		<uni-section title="基础样式" type="line" padding>
-			<uni-grid :column="4" :highlight="true" @change="change">
-				<uni-grid-item v-for="(item, index) in 4" :index="index" :key="index">
-					<view class="grid-item-box" style="background-color: #fff;">
-						
-					</view>
-				</uni-grid-item>
-			</uni-grid>
-			<uni-grid :column="4" :highlight="true" @change="change">
-				<uni-grid-item v-for="(item, index) in 4" :index="index" :key="index">
-					<view class="grid-item-box" style="background-color: #fff;">
-						
-					</view>
-				</uni-grid-item>
-			</uni-grid>
-		</uni-section>
-	</view> -->
+	
 </template>
 
 
@@ -38,14 +74,16 @@
 		data() {
 			return {
 				list: [{
-						url: '/static/dk.png',
+						url: '/static/main/mrdk.png',
 						text: '每日打卡',
-						badge: '0'
+						badge: '0',
+						URL:"/pages/punchIn/punchIn"
 					},
 					{
-						url: '/static/c2.png',
+						url: '/static/main/gzsp.jpg',
 						text: '工作审批',
-						badge: '1'
+						badge: '1',
+						URL:"/pages/review/review"
 					}
 				],
 				//后续用作审批流程
@@ -53,91 +91,27 @@
 			}
 		},
 		methods: {
-			change(e) {
-				let {index} = e.detail;
-				this.list[index].badge && this.list[index].badge++;
-				uni.showToast({
-					title: this.list[index].text,
-					icon: 'none',
+			changePage(str1,str2){
+				uni.navigateTo({
+					url:str1,
 					success() {
-						uni.switchTab({
-							url:"/pages/punchIn/punchIn"
-						});
+						uni.navigateTo({
+							url:str1
+						})
+						},
+					fail() {
+						uni.showToast({
+							icon:'error',
+							title:str2+"待开发!",
+							duration:1000
+						})
 					}
-				});
-			},
-			chagePage(e){
-				
+				})
 			}
 		}
 	}
 </script>
 
 
-<style lang="scss">
-	.image {
-		width: 25px;
-		height: 25px;
-	}
-
-	.text {
-		font-size: 14px;
-		margin-top: 5px;
-	}
-
-	.example-body {
-		/* #ifndef APP-NVUE */
-		// display: block;
-		/* #endif */
-	}
-
-	.grid-dynamic-box {
-		margin-bottom: 15px;
-	}
-
-	.grid-item-box {
-		flex: 1;
-		// position: relative;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		
-	}
-
-	.grid-item-box-row {
-		flex: 1;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		
-	}
-
-	.grid-dot {
-		position: absolute;
-		top: 5px;
-		right: 15px;
-	}
-
-	.swiper {
-		height: 420px;
-	}
-
-	@media screen and (min-width: 768px) and (max-width: 1425px) {
-		.swiper {
-			height: 630px;
-		}
-	}
-
-	@media screen and (min-width: 1425px) {
-		.swiper {
-			height: 830px;
-		}
-	}
-
-</style>
 
 

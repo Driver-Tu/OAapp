@@ -10,7 +10,7 @@
     "name": "1.0.0",
     "code": "100"
   },
-  "description": "",
+  "description": "只为更智能化的办公",
   "developer": {
     "name": "",
     "email": "",
@@ -20,6 +20,7 @@
     "Maps": {
       "coordType": "gcj02"
     },
+    "Bluetooth": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -45,10 +46,13 @@
     "compilerVersion": 3,
     "distribute": {
       "splashscreen": {
-        "androidStyle": "common",
+        "androidStyle": "default",
         "android": {
-          "hdpi": ""
-        }
+          "hdpi": "C:/Users/admin/Desktop/logo.png",
+          "xxhdpi": "C:/Users/admin/Desktop/logo.png",
+          "xhdpi": "C:/Users/admin/Desktop/logo.png"
+        },
+        "useOriginalMsgbox": false
       },
       "icons": {
         "android": {
@@ -142,26 +146,26 @@
         {
           "pagePath": "pages/main/main",
           "text": "首页",
-          "iconPath": "/static/kz.jpg",
-          "selectedIconPath": "/static/kz.jpg"
+          "iconPath": "/static/house.png",
+          "selectedIconPath": "/static/house.png"
         },
         {
           "pagePath": "pages/review/review",
           "text": "审批",
-          "iconPath": "/static/sb.jpg",
-          "selectedIconPath": "/static/sb.jpg"
+          "iconPath": "/static/sp.png",
+          "selectedIconPath": "/static/sp.png"
         },
         {
           "pagePath": "pages/punchIn/punchIn",
           "text": "考勤打卡",
-          "iconPath": "/static/dk.jpg",
-          "selectedIconPath": "/static/dk.jpg"
+          "iconPath": "/static/dk.png",
+          "selectedIconPath": "/static/dk.png"
         },
         {
           "pagePath": "pages/selfMessage/selfMessage",
           "text": "个人中心",
-          "iconPath": "/static/house.jpg",
-          "selectedIconPath": "/static/house.jpg"
+          "iconPath": "/static/grzx.png",
+          "selectedIconPath": "/static/grzx.png"
         }
       ],
       "selectedIndex": 0,
@@ -172,5 +176,6 @@
       "selected": 0
     }
   },
+  "locale": "auto",
   "launch_path": "__uniappview.html"
 }

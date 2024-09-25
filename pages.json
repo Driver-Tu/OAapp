@@ -58,25 +58,25 @@
 			"list": [{
 					"pagePath": "pages/main/main",
 					"text":"首页",
-					"iconPath": "static/kz.jpg",
-					"selectedIconPath": "static/kz.jpg"
+					"iconPath": "static/house.png",
+					"selectedIconPath": "static/house.png"
 				},
 				{
 					"pagePath": "pages/review/review",
 					"text":"审批",
-					"iconPath": "static/sb.jpg",
-					"selectedIconPath": "static/sb.jpg"
+					"iconPath": "static/sp.png",
+					"selectedIconPath": "static/sp.png"
 				},{
 					"pagePath": "pages/punchIn/punchIn",
 					"text":"考勤打卡",
-					"iconPath": "static/dk.jpg",
-					"selectedIconPath": "static/dk.jpg"
+					"iconPath": "static/dk.png",
+					"selectedIconPath": "static/dk.png"
 				},
 				{
 					"pagePath": "pages/selfMessage/selfMessage",
 					"text":"个人中心",
-					"iconPath": "static/house.jpg",
-					"selectedIconPath": "static/house.jpg"
+					"iconPath": "static/grzx.png",
+					"selectedIconPath": "static/grzx.png"
 				}
 			]
 		}

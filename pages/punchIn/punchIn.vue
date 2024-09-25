@@ -25,8 +25,8 @@
 </style>
 <template>
 	<view>
-		<button @click="getAddress" class="abutton">获取地址</button>
-		<button class="abutton">地址:{{address}}</button>
+		<button @click="getAddress" class="abutton" :disabled="outCheckIn">获取地址</button>
+		<button class="abutton" :disabled="outCheckIn">地址:{{address}}</button>
 		</view>
 		<view class="attendance-container">
 		  <view>
@@ -49,7 +49,7 @@ export default{
 			currentTimeDisplay:"",
 			clockInButton:true,
 			clockOutButton:false,
-			outCheckIn:false,
+			outCheckIn:true,
 			deviceIds: [
 				{
 					deviceId:"30:AE:A4:2C:5A:B5"
@@ -57,7 +57,6 @@ export default{
 					]
 		}
 	},
-	
 	methods:{
 		getAddress(){
 			uni.getLocation({
@@ -124,7 +123,6 @@ export default{
 						console.log('开始扫描蓝牙设备'+res);
 					  // 监听找到蓝牙设备事件
 					  uni.onBluetoothDeviceFound(devices => {
-						  console.log(devices.devices[0].deviceId)
 					    this.deviceIds.map(deviceId=>{
 							if(deviceId.deviceId===devices.devices[0].deviceId){
 							// 找到设备后停止扫描
@@ -135,8 +133,8 @@ export default{
 									  	title:"成功连接蓝牙",
 										icon:'success',
 										duration:1000,
-										success() {
-											this.outCheckIn=true
+										success:()=>{
+											this.outCheckIn=false
 										}
 									  })
 									  },
