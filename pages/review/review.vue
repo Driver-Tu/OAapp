@@ -35,7 +35,7 @@
 						 align-items: center;
 						image{
 							width: 80rpx;
-							border-radius: 100rpx;
+							border-radius: 50rpx;
 							box-shadow: 0 0 30rpx rgb(0, 0,0,0.05);
 						}
 						text{

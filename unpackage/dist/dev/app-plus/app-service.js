@@ -38,7 +38,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$a = {
+  const _sfc_main$b = {
     name: "UniSection",
     emits: ["click"],
     props: {
@@ -97,7 +97,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-section" }, [
       vue.createElementVNode("view", {
         class: "uni-section-header",
@@ -154,7 +154,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$8], ["__scopeId", "data-v-637fd36b"], ["__file", "D:/HB/UOApp/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$9], ["__scopeId", "data-v-637fd36b"], ["__file", "D:/HB/UOApp/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
   function formatAppLog(type, filename, ...args) {
     if (uni.__log__) {
       uni.__log__(type, filename, ...args);
@@ -168,7 +168,7 @@ if (uni.restoreGlobal) {
   const _imports_0$1 = "/static/lb1.png";
   const _imports_1 = "/static/lb2.png";
   const _imports_2 = "/static/lb3.png";
-  const _sfc_main$9 = {
+  const _sfc_main$a = {
     components: {},
     data() {
       return {
@@ -210,7 +210,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_1);
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
@@ -282,7 +282,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$7], ["__file", "D:/HB/UOApp/pages/main/main.vue"]]);
+  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$8], ["__file", "D:/HB/UOApp/pages/main/main.vue"]]);
   const fontData = [
     {
       "font_class": "arrow-down",
@@ -933,7 +933,7 @@ if (uni.restoreGlobal) {
     const reg = /^[0-9]*$/g;
     return typeof val === "number" || reg.test(val) ? val + "px" : val;
   };
-  const _sfc_main$8 = {
+  const _sfc_main$9 = {
     name: "UniIcons",
     emits: ["click"],
     props: {
@@ -987,7 +987,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -1002,8 +1002,8 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$6], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/HB/UOApp/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
-  const _sfc_main$7 = {
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$7], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/HB/UOApp/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const _sfc_main$8 = {
     __name: "index",
     setup(__props) {
       const loginAll = vue.reactive({
@@ -1141,7 +1141,28 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "D:/HB/UOApp/pages/index/index.vue"]]);
+  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__file", "D:/HB/UOApp/pages/index/index.vue"]]);
+  const _sfc_main$7 = {};
+  function _sfc_render$6(_ctx, _cache) {
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", { class: "search" }, [
+          vue.createElementVNode("input", { placeholder: "请输入" }),
+          vue.createElementVNode("button", { plain: "true" }, "搜索")
+        ]),
+        vue.createElementVNode("view", { class: "Layout" }, [
+          vue.createElementVNode("view", { class: "row" }, [
+            vue.createElementVNode("view", { class: "item" })
+          ])
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesSelfMessagePunchMessage = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "D:/HB/UOApp/pages/selfMessage/punchMessage.vue"]]);
   const _imports_0 = "/static/selfImage/self.png";
   const _sfc_main$6 = {
     data() {
@@ -1162,7 +1183,7 @@ if (uni.restoreGlobal) {
           {
             type: "calendar",
             text: "打卡信息",
-            url: "",
+            url: "/pages/selfMessage/punchMessage",
             right: "right"
           },
           {
@@ -1962,6 +1983,14 @@ if (uni.restoreGlobal) {
       }
     },
     {
+      path: "pages/selfMessage/punchMessage",
+      style: {
+        navigationBarTitleText: "个人打卡信息",
+        navigationBarTextStyle: "white",
+        navigationBarBackgroundColor: "#00aaff"
+      }
+    },
+    {
       path: "pages/selfMessage/selfMessage",
       style: {
         navigationBarTitleText: "个人中心",
@@ -2327,7 +2356,7 @@ if (uni.restoreGlobal) {
   function I(e2) {
     return e2 && "string" == typeof e2 ? JSON.parse(e2) : e2;
   }
-  const S = true, b = "app", A = I(define_process_env_UNI_SECURE_NETWORK_CONFIG_default), C = b, P = I('{\n    "address": [\n        "127.0.0.1",\n        "192.168.64.1",\n        "192.168.200.1",\n        "192.168.0.196",\n        "172.25.80.1"\n    ],\n    "debugPort": 9001,\n    "initialLaunchType": "local",\n    "servePort": 7001,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/工具/HB/HBuilderX.4.24.2024072208/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), T = I('[{"provider":"aliyun","spaceName":"oaapp","spaceId":"mp-b8e53f5e-c503-4780-9859-ec2675b3d8cd","clientSecret":"ZfuXHdXTBw0sCP1CERJicQ==","endpoint":"https://api.next.bspapp.com"}]') || [];
+  const S = true, b = "app", A = I(define_process_env_UNI_SECURE_NETWORK_CONFIG_default), C = b, P = I('{\n    "address": [\n        "127.0.0.1",\n        "192.168.64.1",\n        "192.168.200.1",\n        "192.168.0.196",\n        "172.22.128.1"\n    ],\n    "debugPort": 9000,\n    "initialLaunchType": "local",\n    "servePort": 7000,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/工具/HB/HBuilderX.4.24.2024072208/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), T = I('[{"provider":"aliyun","spaceName":"oaapp","spaceId":"mp-b8e53f5e-c503-4780-9859-ec2675b3d8cd","clientSecret":"ZfuXHdXTBw0sCP1CERJicQ==","endpoint":"https://api.next.bspapp.com"}]') || [];
   let O = "";
   try {
     O = "__UNI__9571461";
@@ -5309,6 +5338,7 @@ ${i3}
   const UniModulesUnicloudCitySelectPagesUniCityListUniCityList = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__scopeId", "data-v-d1d7c0fd"], ["__file", "D:/HB/UOApp/uni_modules/unicloud-city-select/pages/uni-city-list/uni-city-list.vue"]]);
   __definePage("pages/main/main", PagesMainMain);
   __definePage("pages/index/index", PagesIndexIndex);
+  __definePage("pages/selfMessage/punchMessage", PagesSelfMessagePunchMessage);
   __definePage("pages/selfMessage/selfMessage", PagesSelfMessageSelfMessage);
   __definePage("pages/punchIn/punchIn", PagesPunchInPunchIn);
   __definePage("pages/review/review", PagesReviewReview);

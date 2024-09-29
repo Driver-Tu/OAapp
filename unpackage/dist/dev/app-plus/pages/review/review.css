@@ -671,6 +671,6 @@ uni-swiper uni-swiper-item uni-text {
 }
 .Layout .row .text .item uni-image {
   width: 2.5rem;
-  border-radius: 3.125rem;
+  border-radius: 1.5625rem;
   box-shadow: 0 0 0.9375rem rgba(0, 0, 0, 0.05);
 }

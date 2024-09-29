@@ -14,6 +14,19 @@
 				"navigationBarTitleText": "登录页面",
 				"navigationStyle": "custom"
 			}
+		},{
+			"path": "pages/selfMessage/punchMessage",
+			"style": {
+				"navigationBarTitleText": "个人打卡信息",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#00aaff"
+			}
+		},{
+			"path": "pages/selfMessage/self",
+			"style": {
+				"navigationBarffffffTitleText": "个人详细信息",
+				"navigationStyle": "custom"
+			}
 		},
 		{
 			"path" : "pages/selfMessage/selfMessage",

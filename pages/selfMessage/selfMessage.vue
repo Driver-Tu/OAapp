@@ -111,7 +111,7 @@ export default{
 				{
 					type:"auth-filled",
 					text:"个人信息",
-					url:"",
+					url:"/pages/selfMessage/self",
 					right:"right"
 				},{
 					type:"cloud-upload-filled",
@@ -121,7 +121,7 @@ export default{
 				},{
 					type:"calendar",
 					text:"打卡信息",
-					url:"",
+					url:"/pages/selfMessage/punchMessage",
 					right:"right"
 				},
 				{
@@ -214,7 +214,7 @@ export default{
 					}else{
 						uni.showToast({
 							icon:'success',
-							title:"成功跳转",
+							title:str2,
 							duration:1000
 						})
 					}
@@ -247,12 +247,6 @@ export default{
 					this.userMessage.empNum=res.data.data.empNum
 					var date =new Date(res.data.data.ctTime)
 					this.userMessage.ctTime=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()
-					uni.showToast({
-						title:res.data.msg,
-						icon:'fail',
-						duration:1000,
-						mask:true
-					})
 					}else{
 						uni.showToast({
 							title:res.data.msg,
