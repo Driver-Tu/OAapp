@@ -54,7 +54,7 @@ swiper {
 		<uni-section title="最近常用" type="line">
 			<view class="Layout">
 				<view class="row" >
-						<view class="text" v-for="item in list"  @click="changePage(item.url)">
+						<view class="text" v-for="item in list"  @click="changePage(item.URL,item.text)">
 							<view class="item">
 								<image :src="item.url" mode="widthFix"></image>
 								<text>{{item.text}}</text>
@@ -92,11 +92,13 @@ swiper {
 		},
 		methods: {
 			changePage(str1,str2){
-				uni.navigateTo({
+				uni.switchTab({
 					url:str1,
 					success() {
-						uni.navigateTo({
-							url:str1
+						uni.showToast({
+							icon:'success',
+							title:str2,
+							duration:1000
 						})
 						},
 					fail() {

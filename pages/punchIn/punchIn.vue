@@ -11,11 +11,10 @@
 	.attendance-button{
 		text-align: center;
 		display: inline-flex;
-		border-radius: 100px;
-		line-height: 15vh;
+		border-radius:100%;
 		margin: 10px;
-		width: 15vh;
-		height: 15vh;
+		
+		padding:88rpx 66rpx;
 		background-color: #00aaff;
 		color: #ffffff;
 	}
@@ -25,8 +24,7 @@
 </style>
 <template>
 	<view>
-		<button @click="getAddress" class="abutton" :disabled="outCheckIn">获取地址</button>
-		<button class="abutton" :disabled="outCheckIn">地址:{{address}}</button>
+		<button @click="getAddress" class="abutton" :disabled="outCheckIn">定位{{address}}</button>
 		</view>
 		<view class="attendance-container">
 		  <view>

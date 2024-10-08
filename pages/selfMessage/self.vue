@@ -1,5 +1,6 @@
 <style lang="scss">
 	.on{
+		margin-top: 50rpx;
 		width: 100vw;
 		display: flex;
 		left: 0;
@@ -45,7 +46,7 @@
 				width: 110rpx;
 				height: 110rpx;
 				display: inline-block;
-				margin-left: 300rpx;
+				margin-left: 320rpx;
 				image{
 					width: 120rpx;
 					height: 120rpx;
@@ -60,13 +61,22 @@
 				   .left{
 					   font-size: 30rpx;
 				   }
-				   .right{
+				   .right2{
+					   
 					   color: #959595;
 					   font-size: 21rpx;
 				   }
 			   }
 		   }
 		}
+	}
+	.uni-drawer{
+	text{
+		padding: 20rpx;
+	}	
+	input{
+		padding: 20rpx;
+	}
 	}
 </style>
 
@@ -86,7 +96,7 @@
 		<view class="row" >
 			<view class="item">
 				<view class="left">
-					<text style="font-weight: bold;">{{userMessage.userName}}</text>
+					<text style="font-weight: bold;">{{userMessage.userName}} {{userMessage.sex}}</text>
 					<text style="font-size: 28rpx; color: #00b959;">{{userMessage.roleName}}</text>
 					<text style="font-size: 20rpx; color: #b5b5b5;">工号:{{userMessage.empNum}}</text>
 				</view>
@@ -101,19 +111,23 @@
 					</view>
 					<view class="message">
 						<view class="left">部门名称</view>
-						<view class="right">{{userMessage.departmentName}}</view>
+						<view class="right2">{{userMessage.departmentName}}</view>
 					</view>
 					<view class="message">
 						<view class="left">电子邮箱</view>
-						<view class="right">{{userMessage.email}}</view>
+						<view class="right2">{{userMessage.email}}</view>
 					</view>
 					<view class="message">
 						<view class="left">联系方式</view>
-						<view class="right">{{userMessage.telephone}}</view>
+						<view class="right2">{{userMessage.telephone}}</view>
 					</view>
 					<view class="message">
 						<view class="left">入职时间</view>
-						<view class="right">{{userMessage.ctTime}}</view>
+						<view class="right2">{{userMessage.ctTime}}</view>
+					</view>
+					<view class="message">
+						<view class="left">出生日期</view>
+						<view class="right2">{{userMessage.birth}}</view>
 					</view>
 			</view>
 			<view class="item">
@@ -127,26 +141,44 @@
 			</view>
 		</view>
 	</view>
-	<view>
+	<view class="uni-drawer">
 		<uni-drawer ref="showRight" mode="right" :mask-click="false">
 					<scroll-view style="height: 100%;" scroll-y="true">
-						<button @click="closeDrawer" type="primary" style="background-color: #ff0000; width: 30vw; margin:10rpx;">关闭修改</button>
+						<button @click="closeDrawer" type="primary" style="background-color: #ff0000; width: 30vw; margin:10rpx; margin-top: 50rpx;">关闭修改</button>
 						<text style="margin: 5rpx;padding: 5rpx;">修改姓名</text>
-						<input placeholder="请输入" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
-						<text style="margin: 5rpx;padding: 5rpx;">修改部门</text>
-						<input placeholder="请输入" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
+						<input placeholder="请输入" v-model="userInfo.userName" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
+						<text style="margin: 5rpx;padding: 5rpx;">修改手机号</text>
+						<input placeholder="请输入" v-model="userInfo.telephone" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
 						<text style="margin: 5rpx;padding: 5rpx;">修改邮箱</text>
-						<input placeholder="请输入" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
-					<button @click="closeDrawer" type="primary" style="background-color: #00aaff; width: 30vw; margin:10rpx;">提交修改</button>
+						<input placeholder="请输入" v-model="userInfo.email" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
+					<button @click="updateSelfMessage" type="primary" style="background-color: #00aaff; width: 30vw; margin:10rpx;position: absolute; bottom: 0;">提交修改</button>
 					</scroll-view>
 				</uni-drawer>
 	</view>
 </template>
 
 <script>
+	function validateInput(inputValue) {
+	    // 手机号正则表达式
+	    const phoneRegex = /^1[3-9]\d{9}$/;
+	    // QQ邮箱正则表达式
+	    const qqEmailRegex = /^[1-9]\d{4,11}@qq\.com$/;
+	
+	    // 判断是否为手机号
+	    if (phoneRegex.test(inputValue.telephone)&&qqEmailRegex.test(inputValue.email)) {
+	        return true;
+	    }
+		    // 如果都不是，则返回错误信息
+	    return "输入的格式不正确，请输入正确的手机号或QQ邮箱";
+	}
 	export default{
 		data(){
 			return{
+				userInfo:{
+					telephone:null,
+					email:null,
+					userName:null
+				},
 				userMessage:{
 					departmentName:"",
 					userName:null,
@@ -156,7 +188,9 @@
 					telephone:null,
 					email:null,
 					status:null,
-					ctTime:null
+					ctTime:null,
+					sex:null,
+					birth:null
 				}
 			}
 		},
@@ -175,7 +209,7 @@
 			,
 			getSelfMessage(){
 				if(uni.getStorageSync("satoken")){
-					uni.request({
+					uni.request({ 
 						url:"http://192.168.0.196:8088/user/info",
 						method:'GET',
 						header:{
@@ -193,6 +227,8 @@
 						this.userMessage.roleName=res.data.data.roleName
 						var date =new Date(res.data.data.ctTime)
 						this.userMessage.ctTime=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()
+						this.userMessage.sex=res.data.data.sex==="1"?"男":"女"
+						this.userMessage.birth=res.data.data.birth
 						}else{
 							uni.showToast({
 								title:res.data.msg,
@@ -218,6 +254,30 @@
 					uni.navigateTo({
 						url:"/pages/index/index"
 					})
+				}
+			},
+			updateSelfMessage(){
+				if(validateInput(this.userInfo)){
+					uni.request({
+						url:"http://192.168.0.196:8088/user/updateUserInfo",
+						method:'POST',
+						header:{
+							"satoken":uni.getStorageSync("satoken")
+						},
+						data:this.userInfo,
+						success:(res)=> {
+							uni.showToast({
+								icon:'success',
+								title:res.data.msg,
+								duration:1000
+							})
+						},
+						fail: (error) => {
+							console.log(error)
+						}
+					})
+				}else{
+					validateInput(this.userInfo)
 				}
 			},
 		},

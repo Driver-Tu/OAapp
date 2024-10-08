@@ -112,7 +112,7 @@
     },
     "allowsInlineMediaPlayback": true,
     "safearea": {
-      "background": "#00aaff",
+      "background": "#ffcd05",
       "bottom": {
         "offset": "auto"
       }
@@ -134,14 +134,14 @@
     "tabBar": {
       "position": "bottom",
       "color": "white",
-      "selectedColor": "#55ff7f",
+      "selectedColor": "#000000",
       "borderStyle": "rgba(0,0,0,0.4)",
       "blurEffect": "none",
       "fontSize": "10px",
       "iconWidth": "24px",
       "spacing": "3px",
       "height": "50px",
-      "backgroundColor": "#00aaff",
+      "backgroundColor": "#ffcd05",
       "list": [
         {
           "pagePath": "pages/main/main",

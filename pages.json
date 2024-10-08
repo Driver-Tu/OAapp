@@ -6,7 +6,7 @@
 			{
 				"navigationBarTitleText" : "首页",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarBackgroundColor": "#ffcd05"
 			}
 		},{
 			"path": "pages/index/index",
@@ -15,11 +15,19 @@
 				"navigationStyle": "custom"
 			}
 		},{
+			"path": "pages/review/reviewDetail",
+			"style": {
+				"navigationBarTitleText": "审批数据",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#ffcd05",
+				"enablePullDownRefresh": true
+			}
+		},{
 			"path": "pages/selfMessage/punchMessage",
 			"style": {
 				"navigationBarTitleText": "个人打卡信息",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarBackgroundColor": "#ffcd05"
 			}
 		},{
 			"path": "pages/selfMessage/self",
@@ -34,7 +42,7 @@
 			{
 				"navigationBarTitleText" : "个人中心",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarBackgroundColor": "#ffcd05"
 			}
 		},
 		{
@@ -43,7 +51,7 @@
 			{
 				"navigationBarTitleText" : "考勤打卡",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarBackgroundColor": "#ffcd05"
 			}
 		},
 		{
@@ -52,7 +60,7 @@
 			{
 				"navigationBarTitleText" : "审批",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarBackgroundColor": "#ffcd05"
 			}
 		}
 	,{
@@ -65,8 +73,8 @@
 ],
 	"tabBar": {
 			"color": "white",
-			"selectedColor": "#55ff7f",
-			"backgroundColor": "#00aaff",// 底部 tabBar 背景色
+			"selectedColor": "#000000",
+			"backgroundColor": "#ffcd05",// 底部 tabBar 背景色
 			"borderStyle": "black",
 			"list": [{
 					"pagePath": "pages/main/main",

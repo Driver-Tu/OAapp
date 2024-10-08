@@ -10,11 +10,10 @@
 .attendance-button{
 		text-align: center;
 		display: inline-flex;
-		border-radius: 100px;
-		line-height: 15vh;
+		border-radius:100%;
 		margin: 10px;
-		width: 15vh;
-		height: 15vh;
+		
+		padding:2.75rem 2.0625rem;
 		background-color: #00aaff;
 		color: #ffffff;
 }

@@ -126,8 +126,8 @@ export default{
 				},
 				{
 					type:"upload-filled",
-					text:"流程审批",
-					url:"",
+					text:"审批数据",
+					url:"/pages/review/reviewDetail",
 					right:"right"
 				},{
 					type:"paperclip",

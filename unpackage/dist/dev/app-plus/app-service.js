@@ -11,19 +11,19 @@ if (typeof Promise !== "undefined" && !Promise.prototype.finally) {
 }
 ;
 if (typeof uni !== "undefined" && uni && uni.requireGlobal) {
-  const global = uni.requireGlobal();
-  ArrayBuffer = global.ArrayBuffer;
-  Int8Array = global.Int8Array;
-  Uint8Array = global.Uint8Array;
-  Uint8ClampedArray = global.Uint8ClampedArray;
-  Int16Array = global.Int16Array;
-  Uint16Array = global.Uint16Array;
-  Int32Array = global.Int32Array;
-  Uint32Array = global.Uint32Array;
-  Float32Array = global.Float32Array;
-  Float64Array = global.Float64Array;
-  BigInt64Array = global.BigInt64Array;
-  BigUint64Array = global.BigUint64Array;
+  const global2 = uni.requireGlobal();
+  ArrayBuffer = global2.ArrayBuffer;
+  Int8Array = global2.Int8Array;
+  Uint8Array = global2.Uint8Array;
+  Uint8ClampedArray = global2.Uint8ClampedArray;
+  Int16Array = global2.Int16Array;
+  Uint16Array = global2.Uint16Array;
+  Int32Array = global2.Int32Array;
+  Uint32Array = global2.Uint32Array;
+  Float32Array = global2.Float32Array;
+  Float64Array = global2.Float64Array;
+  BigInt64Array = global2.BigInt64Array;
+  BigUint64Array = global2.BigUint64Array;
 }
 ;
 if (uni.restoreGlobal) {
@@ -38,7 +38,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$b = {
+  const _sfc_main$i = {
     name: "UniSection",
     emits: ["click"],
     props: {
@@ -97,7 +97,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-section" }, [
       vue.createElementVNode("view", {
         class: "uni-section-header",
@@ -154,7 +154,7 @@ if (uni.restoreGlobal) {
       )
     ]);
   }
-  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$9], ["__scopeId", "data-v-637fd36b"], ["__file", "D:/HB/UOApp/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
+  const __easycom_1$3 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$g], ["__scopeId", "data-v-637fd36b"], ["__file", "D:/HB/UOApp/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
   function formatAppLog(type, filename, ...args) {
     if (uni.__log__) {
       uni.__log__(type, filename, ...args);
@@ -168,7 +168,7 @@ if (uni.restoreGlobal) {
   const _imports_0$1 = "/static/lb1.png";
   const _imports_1 = "/static/lb2.png";
   const _imports_2 = "/static/lb3.png";
-  const _sfc_main$a = {
+  const _sfc_main$h = {
     components: {},
     data() {
       return {
@@ -192,11 +192,13 @@ if (uni.restoreGlobal) {
     },
     methods: {
       changePage(str1, str2) {
-        uni.navigateTo({
+        uni.switchTab({
           url: str1,
           success() {
-            uni.navigateTo({
-              url: str1
+            uni.showToast({
+              icon: "success",
+              title: str2,
+              duration: 1e3
             });
           },
           fail() {
@@ -210,8 +212,8 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_1);
+  function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_1$3);
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
@@ -250,7 +252,7 @@ if (uni.restoreGlobal) {
                     vue.renderList($data.list, (item) => {
                       return vue.openBlock(), vue.createElementBlock("view", {
                         class: "text",
-                        onClick: ($event) => $options.changePage(item.url)
+                        onClick: ($event) => $options.changePage(item.URL, item.text)
                       }, [
                         vue.createElementVNode("view", { class: "item" }, [
                           vue.createElementVNode("image", {
@@ -282,7 +284,7 @@ if (uni.restoreGlobal) {
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$8], ["__file", "D:/HB/UOApp/pages/main/main.vue"]]);
+  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$f], ["__file", "D:/HB/UOApp/pages/main/main.vue"]]);
   const fontData = [
     {
       "font_class": "arrow-down",
@@ -933,7 +935,7 @@ if (uni.restoreGlobal) {
     const reg = /^[0-9]*$/g;
     return typeof val === "number" || reg.test(val) ? val + "px" : val;
   };
-  const _sfc_main$9 = {
+  const _sfc_main$g = {
     name: "UniIcons",
     emits: ["click"],
     props: {
@@ -987,7 +989,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -1002,8 +1004,8 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$7], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/HB/UOApp/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
-  const _sfc_main$8 = {
+  const __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$e], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/HB/UOApp/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const _sfc_main$f = {
     __name: "index",
     setup(__props) {
       const loginAll = vue.reactive({
@@ -1049,7 +1051,7 @@ if (uni.restoreGlobal) {
         });
       };
       return (_ctx, _cache) => {
-        const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
+        const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
         return vue.openBlock(), vue.createElementBlock(
           vue.Fragment,
           null,
@@ -1141,838 +1143,113 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__file", "D:/HB/UOApp/pages/index/index.vue"]]);
-  const _sfc_main$7 = {};
-  function _sfc_render$6(_ctx, _cache) {
-    return vue.openBlock(), vue.createElementBlock(
-      vue.Fragment,
-      null,
-      [
-        vue.createElementVNode("view", { class: "search" }, [
-          vue.createElementVNode("input", { placeholder: "请输入" }),
-          vue.createElementVNode("button", { plain: "true" }, "搜索")
-        ]),
-        vue.createElementVNode("view", { class: "Layout" }, [
-          vue.createElementVNode("view", { class: "row" }, [
-            vue.createElementVNode("view", { class: "item" })
-          ])
-        ])
-      ],
-      64
-      /* STABLE_FRAGMENT */
-    );
-  }
-  const PagesSelfMessagePunchMessage = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "D:/HB/UOApp/pages/selfMessage/punchMessage.vue"]]);
-  const _imports_0 = "/static/selfImage/self.png";
-  const _sfc_main$6 = {
-    data() {
-      return {
-        list1: [
-          {
-            type: "auth-filled",
-            text: "个人信息",
-            url: "",
-            right: "right"
-          },
-          {
-            type: "cloud-upload-filled",
-            text: "个人日志",
-            url: "",
-            right: "right"
-          },
-          {
-            type: "calendar",
-            text: "打卡信息",
-            url: "/pages/selfMessage/punchMessage",
-            right: "right"
-          },
-          {
-            type: "upload-filled",
-            text: "流程审批",
-            url: "",
-            right: "right"
-          },
-          {
-            type: "paperclip",
-            text: "工作记录",
-            url: "",
-            right: "right"
-          }
-        ],
-        list3: [
-          {
-            type: "close",
-            text: "应用bug汇报",
-            url: "",
-            right: "paperplane"
-          },
-          {
-            type: "home",
-            text: "退出登录",
-            url: "/pages/index/index",
-            right: "paperplane-filled"
-          }
-        ],
-        userMessage: {
-          userName: "",
-          departmentName: "",
-          userName: null,
-          departmentName: null,
-          empNum: null,
-          telephone: null,
-          email: null,
-          status: null,
-          ctTime: null
-        }
-      };
-    },
-    onShow() {
-      this.getSelfMessage();
-    },
-    methods: {
-      changePage(str1, str2) {
-        uni.navigateTo({
-          url: str1,
-          success() {
-            if (str2 === "退出登录") {
-              uni.request({
-                url: "http://192.168.0.196:8088/user/logout",
-                header: {
-                  "satoken": uni.getStorageSync("satoken")
-                },
-                method: "GET",
-                success: (res) => {
-                  if (res.data.code === "200") {
-                    uni.setStorageSync("satoken", "");
-                    uni.showToast({
-                      title: "退出成功",
-                      icon: "success",
-                      duration: 1e3,
-                      mask: true
-                    });
-                  } else {
-                    uni.showToast({
-                      title: res.data.msg,
-                      icon: "error",
-                      duration: 1e3,
-                      mask: true
-                    });
-                    formatAppLog("log", "at pages/selfMessage/selfMessage.vue:196", uni.getStorageSync("satoken"));
-                  }
-                },
-                fail: (error) => {
-                  formatAppLog("log", "at pages/selfMessage/selfMessage.vue:200", error);
-                  uni.showToast({
-                    title: "页面错误!!!",
-                    icon: "error",
-                    duration: 5e3,
-                    mask: true
-                  });
-                }
-              });
-              uni.showToast({
-                icon: "success",
-                title: "退出成功",
-                duration: 1e3
-              });
-            } else {
-              uni.showToast({
-                icon: "success",
-                title: "成功跳转",
-                duration: 1e3
-              });
-            }
-          },
-          fail() {
-            uni.showToast({
-              icon: "fail",
-              title: "页面待开发!",
-              duration: 1e3
-            });
-          }
-        });
+  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__file", "D:/HB/UOApp/pages/index/index.vue"]]);
+  const _sfc_main$e = {
+    name: "UniSegmentedControl",
+    emits: ["clickItem"],
+    props: {
+      current: {
+        type: Number,
+        default: 0
       },
-      getSelfMessage() {
-        if (uni.getStorageSync("satoken")) {
-          uni.request({
-            url: "http://192.168.0.196:8088/user/info",
-            method: "GET",
-            header: {
-              "satoken": uni.getStorageSync("satoken")
-            },
-            success: (res) => {
-              formatAppLog("log", "at pages/selfMessage/selfMessage.vue:240", res);
-              if (res.data.code === "200") {
-                this.userMessage.userName = res.data.data.userName;
-                this.userMessage.departmentName = res.data.data.departmentName;
-                this.userMessage.email = res.data.data.email;
-                this.userMessage.telephone = res.data.data.telephone;
-                this.userMessage.status = res.data.data.status;
-                this.userMessage.empNum = res.data.data.empNum;
-                var date = new Date(res.data.data.ctTime);
-                this.userMessage.ctTime = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay();
-                uni.showToast({
-                  title: res.data.msg,
-                  icon: "fail",
-                  duration: 1e3,
-                  mask: true
-                });
-              } else {
-                uni.showToast({
-                  title: res.data.msg,
-                  icon: "fail",
-                  duration: 1e3,
-                  mask: true
-                });
-              }
-            },
-            fail: (error) => {
-              uni.showToast({
-                title: "页面错误!!!",
-                icon: "error",
-                duration: 5e3,
-                mask: true
-              }), uni.navigateTo({
-                url: "/pages/index/index"
-              });
-            }
-          });
-        } else {
-          uni.navigateTo({
-            url: "/pages/index/index"
-          });
-        }
-      }
-    }
-  };
-  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
-    return vue.openBlock(), vue.createElementBlock(
-      vue.Fragment,
-      null,
-      [
-        vue.createElementVNode("view", { class: "userLayout" }, [
-          vue.createElementVNode("view", { class: "userInfo" }, [
-            vue.createElementVNode("view", { class: "avatar" }, [
-              vue.createElementVNode("image", {
-                class: "image",
-                src: _imports_0
-              })
-            ]),
-            vue.createElementVNode(
-              "view",
-              { class: "empNum" },
-              vue.toDisplayString($data.userMessage.empNum),
-              1
-              /* TEXT */
-            ),
-            vue.createElementVNode(
-              "view",
-              { class: "telephone" },
-              vue.toDisplayString($data.userMessage.userName),
-              1
-              /* TEXT */
-            )
-          ])
-        ]),
-        vue.createElementVNode("view", { class: "section" }, [
-          vue.createElementVNode("view", { class: "list" }, [
-            (vue.openBlock(true), vue.createElementBlock(
-              vue.Fragment,
-              null,
-              vue.renderList($data.list1, (item) => {
-                return vue.openBlock(), vue.createElementBlock("view", {
-                  class: "row",
-                  onClick: ($event) => $options.changePage(item.url, item.text)
-                }, [
-                  vue.createElementVNode("view", { class: "left" }, [
-                    vue.createVNode(_component_uni_icons, {
-                      type: item.type,
-                      size: "20"
-                    }, null, 8, ["type"]),
-                    vue.createElementVNode(
-                      "view",
-                      { class: "text" },
-                      vue.toDisplayString(item.text),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
-                  vue.createElementVNode("view", { class: "right" }, [
-                    vue.createElementVNode("view", { class: "text" }),
-                    vue.createVNode(_component_uni_icons, {
-                      type: item.right,
-                      size: "20"
-                    }, null, 8, ["type"])
-                  ])
-                ], 8, ["onClick"]);
-              }),
-              256
-              /* UNKEYED_FRAGMENT */
-            ))
-          ])
-        ]),
-        vue.createElementVNode("view", { class: "section" }, [
-          vue.createElementVNode("view", { class: "list" }, [
-            (vue.openBlock(true), vue.createElementBlock(
-              vue.Fragment,
-              null,
-              vue.renderList($data.list3, (item) => {
-                return vue.openBlock(), vue.createElementBlock("view", {
-                  class: "row",
-                  onClick: ($event) => $options.changePage(item.url, item.text)
-                }, [
-                  vue.createElementVNode("view", { class: "left" }, [
-                    vue.createVNode(_component_uni_icons, {
-                      type: item.type,
-                      size: "20"
-                    }, null, 8, ["type"]),
-                    vue.createElementVNode(
-                      "view",
-                      { class: "text" },
-                      vue.toDisplayString(item.text),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
-                  vue.createElementVNode("view", { class: "right" }, [
-                    vue.createElementVNode("view", { class: "text" }),
-                    vue.createVNode(_component_uni_icons, {
-                      type: item.right,
-                      size: "20"
-                    }, null, 8, ["type"])
-                  ])
-                ], 8, ["onClick"]);
-              }),
-              256
-              /* UNKEYED_FRAGMENT */
-            ))
-          ])
-        ])
-      ],
-      64
-      /* STABLE_FRAGMENT */
-    );
-  }
-  const PagesSelfMessageSelfMessage = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__file", "D:/HB/UOApp/pages/selfMessage/selfMessage.vue"]]);
-  const _sfc_main$5 = {
-    data() {
-      return {
-        longitude: null,
-        latitude: null,
-        address: null,
-        currentTimeDisplay: "",
-        clockInButton: true,
-        clockOutButton: false,
-        outCheckIn: true,
-        deviceIds: [
-          {
-            deviceId: "30:AE:A4:2C:5A:B5"
-          }
-        ]
-      };
-    },
-    methods: {
-      getAddress() {
-        uni.getLocation(
-          {
-            type: "gcj02",
-            geocode: true,
-            isHighAccuracy: true,
-            success: (res1) => {
-              formatAppLog("log", "at pages/punchIn/punchIn.vue:67", res1);
-              this.longitude = res1.longitude;
-              this.latitude = res1.latitude;
-              uni.chooseLocation({
-                success: (res2) => {
-                  formatAppLog("log", "at pages/punchIn/punchIn.vue:74", res2);
-                  if (Math.abs(res1.longitude - res2.longitude) < 2e-4 && Math.abs(res1.latitude - res2.latitude) < 2e-4) {
-                    this.address = res2.name;
-                    uni.showToast({
-                      title: "定位成功",
-                      icon: "success"
-                    });
-                  } else {
-                    uni.showToast({
-                      title: "定位失败",
-                      icon: "error"
-                    });
-                  }
-                }
-              });
-            }
-          }
-        );
-      },
-      updateTime() {
-        var now = /* @__PURE__ */ new Date();
-        var hours = now.getHours();
-        var minutes = now.getMinutes();
-        this.currentTimeDisplay = `中国时间:${now.toLocaleTimeString()}`;
-        if (hours === 9 && minutes === 0 || hours < 9) {
-          this.clockInButton = false;
-        } else {
-          this.clockInButton = true;
-        }
-        if (hours >= 17 && minutes >= 30 || hours >= 18) {
-          this.clockOutButton = false;
-        } else {
-          this.clockOutButton = true;
+      values: {
+        type: Array,
+        default() {
+          return [];
         }
       },
-      show() {
-        uni.showToast({
-          icon: "success",
-          title: "打卡成功"
-        });
+      activeColor: {
+        type: String,
+        default: "#2979FF"
       },
-      scanBluetooth() {
-        uni.openBluetoothAdapter({
-          success: () => {
-            uni.startBluetoothDevicesDiscovery({
-              success: (res) => {
-                formatAppLog("log", "at pages/punchIn/punchIn.vue:123", "开始扫描蓝牙设备" + res);
-                uni.onBluetoothDeviceFound((devices) => {
-                  this.deviceIds.map((deviceId) => {
-                    if (deviceId.deviceId === devices.devices[0].deviceId) {
-                      uni.stopBluetoothDevicesDiscovery({
-                        success: () => {
-                          formatAppLog("log", "at pages/punchIn/punchIn.vue:131", "蓝牙扫描已停止,已经扫到蓝牙:" + devices.devices[0].deviceId);
-                          uni.showToast({
-                            title: "成功连接蓝牙",
-                            icon: "success",
-                            duration: 1e3,
-                            success: () => {
-                              this.outCheckIn = false;
-                            }
-                          });
-                        },
-                        fail: () => {
-                          formatAppLog("error", "at pages/punchIn/punchIn.vue:142", "停止扫描失败");
-                          uni.showToast({
-                            title: "无法连接蓝牙",
-                            icon: "error"
-                          });
-                        }
-                      });
-                    }
-                  });
-                });
-              },
-              fail: (err) => {
-                formatAppLog("error", "at pages/punchIn/punchIn.vue:154", "开始扫描失败", err);
-                uni.closeBluetoothAdapter();
-              }
-            });
-          },
-          fail: (err) => {
-            formatAppLog("error", "at pages/punchIn/punchIn.vue:160", "开启蓝牙适配器失败", err);
-          }
-        });
+      inActiveColor: {
+        type: String,
+        default: "transparent"
+      },
+      styleType: {
+        type: String,
+        default: "button"
       }
     },
-    //初始化挂载
+    data() {
+      return {
+        currentIndex: 0
+      };
+    },
+    watch: {
+      current(val) {
+        if (val !== this.currentIndex) {
+          this.currentIndex = val;
+        }
+      }
+    },
+    computed: {},
     created() {
-      setInterval(this.updateTime, 1e3);
-    },
-    onShow() {
-      this.scanBluetooth();
-    },
-    updated() {
-      this.updateTime();
-    }
-  };
-  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock(
-      vue.Fragment,
-      null,
-      [
-        vue.createElementVNode("view", null, [
-          vue.createElementVNode("button", {
-            onClick: _cache[0] || (_cache[0] = (...args) => $options.getAddress && $options.getAddress(...args)),
-            class: "abutton",
-            disabled: $data.outCheckIn
-          }, "获取地址", 8, ["disabled"]),
-          vue.createElementVNode("button", {
-            class: "abutton",
-            disabled: $data.outCheckIn
-          }, "地址:" + vue.toDisplayString($data.address), 9, ["disabled"])
-        ]),
-        vue.createElementVNode("view", { class: "attendance-container" }, [
-          vue.createElementVNode("view", null, [
-            vue.createElementVNode("view", { class: "attendance-title" }, "提示:上班打卡时间为早上九点之前,下班打卡时间为下午五点半之后"),
-            vue.createElementVNode(
-              "view",
-              {
-                class: "current-time",
-                id: "currentTimeDisplay",
-                style: { "color": "#48c5bd" }
-              },
-              vue.toDisplayString($data.currentTimeDisplay),
-              1
-              /* TEXT */
-            )
-          ]),
-          vue.createElementVNode("view", { class: "attendance-clock-in-out" }, [
-            vue.createElementVNode("button", {
-              class: "attendance-button",
-              disabled: $data.clockInButton,
-              onClick: _cache[1] || (_cache[1] = ($event) => $options.show())
-            }, "打卡上班", 8, ["disabled"]),
-            vue.createElementVNode("button", {
-              class: "attendance-button",
-              disabled: $data.clockOutButton,
-              onClick: _cache[2] || (_cache[2] = ($event) => $options.show())
-            }, "打卡下班", 8, ["disabled"])
-          ])
-        ])
-      ],
-      64
-      /* STABLE_FRAGMENT */
-    );
-  }
-  const PagesPunchInPunchIn = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__file", "D:/HB/UOApp/pages/punchIn/punchIn.vue"]]);
-  const _sfc_main$4 = {
-    components: {},
-    data() {
-      return {
-        list: [
-          {
-            text: "1、确定审批类型!"
-          },
-          {
-            text: "2、查看提交结果!"
-          },
-          {
-            text: "3、静候审批结束!"
-          },
-          {
-            text: "祝大家工作顺利!"
-          }
-        ],
-        approlist1: [
-          {
-            text: "请假",
-            url: "",
-            src: "../../static/iconReview/qj.jpg"
-          },
-          {
-            text: "报销",
-            url: "",
-            src: "../../static/iconReview/bx.jpg"
-          },
-          {
-            text: "出差",
-            url: "",
-            src: "../../static/iconReview/cc.jpg"
-          },
-          {
-            text: "加班",
-            url: "",
-            src: "../../static/iconReview/jb.jpg"
-          },
-          {
-            text: "补签",
-            url: "",
-            src: "../../static/iconReview/bq.jpg"
-          }
-        ],
-        approlist2: [
-          {
-            text: "入职",
-            url: "",
-            src: "../../static/iconReview/rz.jpg"
-          },
-          {
-            text: "培训",
-            url: "",
-            src: "../../static/iconReview/px.jpg"
-          },
-          {
-            text: "薪资调整",
-            url: "",
-            src: "../../static/iconReview/xztz.jpg"
-          },
-          {
-            text: "离职",
-            url: "",
-            src: "../../static/iconReview/lz.jpg"
-          }
-        ],
-        approlist3: [
-          {
-            text: "采购",
-            url: "",
-            src: "../../static/iconReview/cg.jpg"
-          },
-          {
-            text: "用车",
-            url: "",
-            src: "../../static/iconReview/yc.jpg"
-          },
-          {
-            text: "预算",
-            url: "",
-            src: "../../static/iconReview/ys.jpg"
-          },
-          {
-            text: "招聘",
-            url: "",
-            src: "../../static/iconReview/zp.jpg"
-          },
-          {
-            text: "设备维修",
-            url: "",
-            src: "../../static/iconReview/sbwx.jpg"
-          }
-        ],
-        approlist4: [
-          {
-            text: "合同签署",
-            url: "",
-            src: "../../static/iconReview/htqs.jpg"
-          },
-          {
-            text: "项目立项",
-            url: "",
-            src: "../../static/iconReview/xmlx.jpg"
-          }
-        ]
-      };
+      this.currentIndex = this.current;
     },
     methods: {
-      changePage(str1, str2) {
-        uni.navigateTo({
-          url: str1,
-          success() {
-            uni.navigateTo({
-              url: str1
-            });
-          },
-          fail() {
-            uni.showToast({
-              icon: "error",
-              title: str2 + "待开发!",
-              duration: 1e3
-            });
-          }
-        });
+      _onClick(index) {
+        if (this.currentIndex !== index) {
+          this.currentIndex = index;
+          this.$emit("clickItem", {
+            currentIndex: index
+          });
+        }
       }
     }
   };
-  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_1);
+  function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
-      vue.Fragment,
-      null,
+      "view",
+      {
+        class: vue.normalizeClass([[$props.styleType === "text" ? "segmented-control--text" : "segmented-control--button"], "segmented-control"]),
+        style: vue.normalizeStyle({ borderColor: $props.styleType === "text" ? "" : $props.activeColor })
+      },
       [
-        vue.createElementVNode("swiper", {
-          autoplay: "true",
-          interval: "2000",
-          duration: "500",
-          circular: "true",
-          vertical: "true"
-        }, [
-          (vue.openBlock(true), vue.createElementBlock(
-            vue.Fragment,
-            null,
-            vue.renderList($data.list, (item) => {
-              return vue.openBlock(), vue.createElementBlock("swiper-item", null, [
-                vue.createVNode(_component_uni_icons, {
-                  type: "chatboxes",
-                  size: "30"
-                }),
+        (vue.openBlock(true), vue.createElementBlock(
+          vue.Fragment,
+          null,
+          vue.renderList($props.values, (item, index) => {
+            return vue.openBlock(), vue.createElementBlock("view", {
+              class: vue.normalizeClass([[
+                $props.styleType === "text" ? "" : "segmented-control__item--button",
+                index === 0 && $props.styleType === "button" ? "segmented-control__item--button--first" : "",
+                index === $props.values.length - 1 && $props.styleType === "button" ? "segmented-control__item--button--last" : ""
+              ], "segmented-control__item"]),
+              key: index,
+              style: vue.normalizeStyle({ backgroundColor: index === $data.currentIndex && $props.styleType === "button" ? $props.activeColor : $props.styleType === "button" ? $props.inActiveColor : "transparent", borderColor: index === $data.currentIndex && $props.styleType === "text" || $props.styleType === "button" ? $props.activeColor : $props.inActiveColor }),
+              onClick: ($event) => $options._onClick(index)
+            }, [
+              vue.createElementVNode("view", null, [
                 vue.createElementVNode(
                   "text",
-                  null,
-                  "提示:" + vue.toDisplayString(item.text),
-                  1
-                  /* TEXT */
+                  {
+                    style: vue.normalizeStyle({ color: index === $data.currentIndex ? $props.styleType === "text" ? $props.activeColor : "#fff" : $props.styleType === "text" ? "#000" : $props.activeColor }),
+                    class: vue.normalizeClass(["segmented-control__text", $props.styleType === "text" && index === $data.currentIndex ? "segmented-control__item--text" : ""])
+                  },
+                  vue.toDisplayString(item),
+                  7
+                  /* TEXT, CLASS, STYLE */
                 )
-              ]);
-            }),
-            256
-            /* UNKEYED_FRAGMENT */
-          ))
-        ]),
-        vue.createVNode(_component_uni_section, {
-          title: "个人",
-          subTitle: "个人审批",
-          type: "line",
-          style: { "background-color": "#dfdfdf" }
-        }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("view", { class: "Layout" }, [
-              vue.createElementVNode("view", { class: "row" }, [
-                (vue.openBlock(true), vue.createElementBlock(
-                  vue.Fragment,
-                  null,
-                  vue.renderList($data.approlist1, (item) => {
-                    return vue.openBlock(), vue.createElementBlock("view", {
-                      class: "text",
-                      onClick: ($event) => $options.changePage(item.url, item.text)
-                    }, [
-                      vue.createElementVNode("view", { class: "item" }, [
-                        vue.createElementVNode("image", {
-                          src: item.src,
-                          mode: "widthFix"
-                        }, null, 8, ["src"]),
-                        vue.createElementVNode(
-                          "text",
-                          null,
-                          vue.toDisplayString(item.text),
-                          1
-                          /* TEXT */
-                        )
-                      ])
-                    ], 8, ["onClick"]);
-                  }),
-                  256
-                  /* UNKEYED_FRAGMENT */
-                ))
               ])
-            ])
-          ]),
-          _: 1
-          /* STABLE */
-        }),
-        vue.createVNode(_component_uni_section, {
-          title: "职位",
-          subTitle: "入职和离职",
-          type: "line",
-          style: { "background-color": "#ffffff" }
-        }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("view", { class: "Layout" }, [
-              vue.createElementVNode("view", { class: "row" }, [
-                (vue.openBlock(true), vue.createElementBlock(
-                  vue.Fragment,
-                  null,
-                  vue.renderList($data.approlist2, (item) => {
-                    return vue.openBlock(), vue.createElementBlock("view", {
-                      class: "text",
-                      onClick: ($event) => $options.changePage(item.url, item.text)
-                    }, [
-                      vue.createElementVNode("view", { class: "item" }, [
-                        vue.createElementVNode("image", {
-                          src: item.src,
-                          mode: "widthFix"
-                        }, null, 8, ["src"]),
-                        vue.createElementVNode(
-                          "text",
-                          null,
-                          vue.toDisplayString(item.text),
-                          1
-                          /* TEXT */
-                        )
-                      ])
-                    ], 8, ["onClick"]);
-                  }),
-                  256
-                  /* UNKEYED_FRAGMENT */
-                ))
-              ])
-            ])
-          ]),
-          _: 1
-          /* STABLE */
-        }),
-        vue.createVNode(_component_uni_section, {
-          title: "公共",
-          subTitle: "公司工作中的需求",
-          type: "line",
-          style: { "background-color": "#dfdfdf" }
-        }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("view", { class: "Layout" }, [
-              vue.createElementVNode("view", { class: "row" }, [
-                (vue.openBlock(true), vue.createElementBlock(
-                  vue.Fragment,
-                  null,
-                  vue.renderList($data.approlist3, (item) => {
-                    return vue.openBlock(), vue.createElementBlock("view", {
-                      class: "text",
-                      onClick: ($event) => $options.changePage(item.url, item.text)
-                    }, [
-                      vue.createElementVNode("view", { class: "item" }, [
-                        vue.createElementVNode("image", {
-                          src: item.src,
-                          mode: "widthFix"
-                        }, null, 8, ["src"]),
-                        vue.createElementVNode(
-                          "text",
-                          null,
-                          vue.toDisplayString(item.text),
-                          1
-                          /* TEXT */
-                        )
-                      ])
-                    ], 8, ["onClick"]);
-                  }),
-                  256
-                  /* UNKEYED_FRAGMENT */
-                ))
-              ])
-            ])
-          ]),
-          _: 1
-          /* STABLE */
-        }),
-        vue.createVNode(_component_uni_section, {
-          title: "合同",
-          subTitle: "公司项目的立案和员工合同的签署",
-          type: "line",
-          style: { "background-color": "#ffffff" }
-        }, {
-          default: vue.withCtx(() => [
-            vue.createElementVNode("view", { class: "Layout" }, [
-              vue.createElementVNode("view", { class: "row" }, [
-                (vue.openBlock(true), vue.createElementBlock(
-                  vue.Fragment,
-                  null,
-                  vue.renderList($data.approlist4, (item) => {
-                    return vue.openBlock(), vue.createElementBlock("view", {
-                      class: "text",
-                      onClick: ($event) => $options.changePage(item.url, item.text)
-                    }, [
-                      vue.createElementVNode("view", { class: "item" }, [
-                        vue.createElementVNode("image", {
-                          src: item.src,
-                          mode: "widthFix"
-                        }, null, 8, ["src"]),
-                        vue.createElementVNode(
-                          "text",
-                          null,
-                          vue.toDisplayString(item.text),
-                          1
-                          /* TEXT */
-                        )
-                      ])
-                    ], 8, ["onClick"]);
-                  }),
-                  256
-                  /* UNKEYED_FRAGMENT */
-                ))
-              ])
-            ])
-          ]),
-          _: 1
-          /* STABLE */
-        })
+            ], 14, ["onClick"]);
+          }),
+          128
+          /* KEYED_FRAGMENT */
+        ))
       ],
-      64
-      /* STABLE_FRAGMENT */
+      6
+      /* CLASS, STYLE */
     );
   }
-  const PagesReviewReview = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "D:/HB/UOApp/pages/review/review.vue"]]);
+  const __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$d], ["__scopeId", "data-v-86aa1171"], ["__file", "D:/HB/UOApp/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue"]]);
   const pages = [
     {
       path: "pages/main/main",
       style: {
         navigationBarTitleText: "首页",
         navigationBarTextStyle: "white",
-        navigationBarBackgroundColor: "#00aaff"
+        navigationBarBackgroundColor: "#ffcd05"
       }
     },
     {
@@ -1983,11 +1260,27 @@ if (uni.restoreGlobal) {
       }
     },
     {
+      path: "pages/review/reviewDetail",
+      style: {
+        navigationBarTitleText: "审批数据",
+        navigationBarTextStyle: "white",
+        navigationBarBackgroundColor: "#ffcd05",
+        enablePullDownRefresh: true
+      }
+    },
+    {
       path: "pages/selfMessage/punchMessage",
       style: {
         navigationBarTitleText: "个人打卡信息",
         navigationBarTextStyle: "white",
-        navigationBarBackgroundColor: "#00aaff"
+        navigationBarBackgroundColor: "#ffcd05"
+      }
+    },
+    {
+      path: "pages/selfMessage/self",
+      style: {
+        navigationBarffffffTitleText: "个人详细信息",
+        navigationStyle: "custom"
       }
     },
     {
@@ -1995,7 +1288,7 @@ if (uni.restoreGlobal) {
       style: {
         navigationBarTitleText: "个人中心",
         navigationBarTextStyle: "white",
-        navigationBarBackgroundColor: "#00aaff"
+        navigationBarBackgroundColor: "#ffcd05"
       }
     },
     {
@@ -2003,7 +1296,7 @@ if (uni.restoreGlobal) {
       style: {
         navigationBarTitleText: "考勤打卡",
         navigationBarTextStyle: "white",
-        navigationBarBackgroundColor: "#00aaff"
+        navigationBarBackgroundColor: "#ffcd05"
       }
     },
     {
@@ -2011,7 +1304,7 @@ if (uni.restoreGlobal) {
       style: {
         navigationBarTitleText: "审批",
         navigationBarTextStyle: "white",
-        navigationBarBackgroundColor: "#00aaff"
+        navigationBarBackgroundColor: "#ffcd05"
       }
     },
     {
@@ -2024,8 +1317,8 @@ if (uni.restoreGlobal) {
   ];
   const tabBar = {
     color: "white",
-    selectedColor: "#55ff7f",
-    backgroundColor: "#00aaff",
+    selectedColor: "#000000",
+    backgroundColor: "#ffcd05",
     borderStyle: "black",
     list: [
       {
@@ -2068,7 +1361,7 @@ if (uni.restoreGlobal) {
     uniIdRouter
   };
   var define_process_env_UNI_SECURE_NETWORK_CONFIG_default = [];
-  function t(e2) {
+  function t$2(e2) {
     return e2 && e2.__esModule && Object.prototype.hasOwnProperty.call(e2, "default") ? e2.default : e2;
   }
   function n(e2, t2, n2) {
@@ -2356,7 +1649,7 @@ if (uni.restoreGlobal) {
   function I(e2) {
     return e2 && "string" == typeof e2 ? JSON.parse(e2) : e2;
   }
-  const S = true, b = "app", A = I(define_process_env_UNI_SECURE_NETWORK_CONFIG_default), C = b, P = I('{\n    "address": [\n        "127.0.0.1",\n        "192.168.64.1",\n        "192.168.200.1",\n        "192.168.0.196",\n        "172.22.128.1"\n    ],\n    "debugPort": 9000,\n    "initialLaunchType": "local",\n    "servePort": 7000,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/工具/HB/HBuilderX.4.24.2024072208/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), T = I('[{"provider":"aliyun","spaceName":"oaapp","spaceId":"mp-b8e53f5e-c503-4780-9859-ec2675b3d8cd","clientSecret":"ZfuXHdXTBw0sCP1CERJicQ==","endpoint":"https://api.next.bspapp.com"}]') || [];
+  const S = true, b = "app", A = I(define_process_env_UNI_SECURE_NETWORK_CONFIG_default), C = b, P = I('{\n    "address": [\n        "127.0.0.1",\n        "192.168.64.1",\n        "192.168.200.1",\n        "192.168.0.196",\n        "172.22.128.1"\n    ],\n    "debugPort": 9001,\n    "initialLaunchType": "local",\n    "servePort": 7001,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/工具/HB/HBuilderX.4.24.2024072208/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), T = I('[{"provider":"aliyun","spaceName":"oaapp","spaceId":"mp-b8e53f5e-c503-4780-9859-ec2675b3d8cd","clientSecret":"ZfuXHdXTBw0sCP1CERJicQ==","endpoint":"https://api.next.bspapp.com"}]') || [];
   let O = "";
   try {
     O = "__UNI__9571461";
@@ -4378,7 +3671,7 @@ ${i3}
         }(t3), t3);
       };
     };
-  }), Ls = t(Es);
+  }), Ls = t$2(Es);
   const Rs = "manual";
   function Us(e2) {
     return { props: { localdata: { type: Array, default: () => [] }, options: { type: [Object, Array], default: () => ({}) }, spaceInfo: { type: Object, default: () => ({}) }, collection: { type: [String, Array], default: "" }, action: { type: String, default: "" }, field: { type: String, default: "" }, orderby: { type: String, default: "" }, where: { type: [String, Object], default: "" }, pageData: { type: String, default: "add" }, pageCurrent: { type: Number, default: 1 }, pageSize: { type: Number, default: 20 }, getcount: { type: [Boolean, String], default: false }, gettree: { type: [Boolean, String], default: false }, gettreepath: { type: [Boolean, String], default: false }, startwith: { type: String, default: "" }, limitlevel: { type: Number, default: 10 }, groupby: { type: String, default: "" }, groupField: { type: String, default: "" }, distinct: { type: [Boolean, String], default: false }, foreignKey: { type: String, default: "" }, loadtime: { type: String, default: "auto" }, manual: { type: Boolean, default: false } }, data: () => ({ mixinDatacomLoading: false, mixinDatacomHasMore: false, mixinDatacomResData: [], mixinDatacomErrorMessage: "", mixinDatacomPage: {}, mixinDatacomError: null }), created() {
@@ -4790,6 +4083,4277 @@ ${i3}
     } }), Cs(Js), Js.addInterceptor = N, Js.removeInterceptor = D, Js.interceptObject = F;
   })();
   var Vs = Js;
+  const _sfc_main$d = {
+    name: "uni-data-select",
+    mixins: [Vs.mixinDatacom || {}],
+    props: {
+      localdata: {
+        type: Array,
+        default() {
+          return [];
+        }
+      },
+      value: {
+        type: [String, Number],
+        default: ""
+      },
+      modelValue: {
+        type: [String, Number],
+        default: ""
+      },
+      label: {
+        type: String,
+        default: ""
+      },
+      placeholder: {
+        type: String,
+        default: "请选择"
+      },
+      emptyTips: {
+        type: String,
+        default: "无选项"
+      },
+      clear: {
+        type: Boolean,
+        default: true
+      },
+      defItem: {
+        type: Number,
+        default: 0
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      // 格式化输出 用法 field="_id as value, version as text, uni_platform as label" format="{label} - {text}"
+      format: {
+        type: String,
+        default: ""
+      },
+      placement: {
+        type: String,
+        default: "bottom"
+      }
+    },
+    data() {
+      return {
+        showSelector: false,
+        current: "",
+        mixinDatacomResData: [],
+        apps: [],
+        channels: [],
+        cacheKey: "uni-data-select-lastSelectedValue"
+      };
+    },
+    created() {
+      this.debounceGet = this.debounce(() => {
+        this.query();
+      }, 300);
+      if (this.collection && !this.localdata.length) {
+        this.debounceGet();
+      }
+    },
+    computed: {
+      typePlaceholder() {
+        const text = {
+          "opendb-stat-app-versions": "版本",
+          "opendb-app-channels": "渠道",
+          "opendb-app-list": "应用"
+        };
+        const common = this.placeholder;
+        const placeholder = text[this.collection];
+        return placeholder ? common + placeholder : common;
+      },
+      valueCom() {
+        return this.modelValue;
+      },
+      textShow() {
+        let text = this.current;
+        if (text.length > 10) {
+          return text.slice(0, 25) + "...";
+        }
+        return text;
+      },
+      getOffsetByPlacement() {
+        switch (this.placement) {
+          case "top":
+            return "bottom:calc(100% + 12px);";
+          case "bottom":
+            return "top:calc(100% + 12px);";
+        }
+      }
+    },
+    watch: {
+      localdata: {
+        immediate: true,
+        handler(val, old) {
+          if (Array.isArray(val) && old !== val) {
+            this.mixinDatacomResData = val;
+          }
+        }
+      },
+      valueCom(val, old) {
+        this.initDefVal();
+      },
+      mixinDatacomResData: {
+        immediate: true,
+        handler(val) {
+          if (val.length) {
+            this.initDefVal();
+          }
+        }
+      }
+    },
+    methods: {
+      debounce(fn, time = 100) {
+        let timer = null;
+        return function(...args) {
+          if (timer)
+            clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn.apply(this, args);
+          }, time);
+        };
+      },
+      // 执行数据库查询
+      query() {
+        this.mixinDatacomEasyGet();
+      },
+      // 监听查询条件变更事件
+      onMixinDatacomPropsChange() {
+        if (this.collection) {
+          this.debounceGet();
+        }
+      },
+      initDefVal() {
+        let defValue = "";
+        if ((this.valueCom || this.valueCom === 0) && !this.isDisabled(this.valueCom)) {
+          defValue = this.valueCom;
+        } else {
+          let strogeValue;
+          if (this.collection) {
+            strogeValue = this.getCache();
+          }
+          if (strogeValue || strogeValue === 0) {
+            defValue = strogeValue;
+          } else {
+            let defItem = "";
+            if (this.defItem > 0 && this.defItem <= this.mixinDatacomResData.length) {
+              defItem = this.mixinDatacomResData[this.defItem - 1].value;
+            }
+            defValue = defItem;
+          }
+          if (defValue || defValue === 0) {
+            this.emit(defValue);
+          }
+        }
+        const def = this.mixinDatacomResData.find((item) => item.value === defValue);
+        this.current = def ? this.formatItemName(def) : "";
+      },
+      /**
+       * @param {[String, Number]} value
+       * 判断用户给的 value 是否同时为禁用状态
+       */
+      isDisabled(value) {
+        let isDisabled = false;
+        this.mixinDatacomResData.forEach((item) => {
+          if (item.value === value) {
+            isDisabled = item.disable;
+          }
+        });
+        return isDisabled;
+      },
+      clearVal() {
+        this.emit("");
+        if (this.collection) {
+          this.removeCache();
+        }
+      },
+      change(item) {
+        if (!item.disable) {
+          this.showSelector = false;
+          this.current = this.formatItemName(item);
+          this.emit(item.value);
+        }
+      },
+      emit(val) {
+        this.$emit("input", val);
+        this.$emit("update:modelValue", val);
+        this.$emit("change", val);
+        if (this.collection) {
+          this.setCache(val);
+        }
+      },
+      toggleSelector() {
+        if (this.disabled) {
+          return;
+        }
+        this.showSelector = !this.showSelector;
+      },
+      formatItemName(item) {
+        let {
+          text,
+          value,
+          channel_code
+        } = item;
+        channel_code = channel_code ? `(${channel_code})` : "";
+        if (this.format) {
+          let str = "";
+          str = this.format;
+          for (let key in item) {
+            str = str.replace(new RegExp(`{${key}}`, "g"), item[key]);
+          }
+          return str;
+        } else {
+          return this.collection.indexOf("app-list") > 0 ? `${text}(${value})` : text ? text : `未命名${channel_code}`;
+        }
+      },
+      // 获取当前加载的数据
+      getLoadData() {
+        return this.mixinDatacomResData;
+      },
+      // 获取当前缓存key
+      getCurrentCacheKey() {
+        return this.collection;
+      },
+      // 获取缓存
+      getCache(name = this.getCurrentCacheKey()) {
+        let cacheData = uni.getStorageSync(this.cacheKey) || {};
+        return cacheData[name];
+      },
+      // 设置缓存
+      setCache(value, name = this.getCurrentCacheKey()) {
+        let cacheData = uni.getStorageSync(this.cacheKey) || {};
+        cacheData[name] = value;
+        uni.setStorageSync(this.cacheKey, cacheData);
+      },
+      // 删除缓存
+      removeCache(name = this.getCurrentCacheKey()) {
+        let cacheData = uni.getStorageSync(this.cacheKey) || {};
+        delete cacheData[name];
+        uni.setStorageSync(this.cacheKey, cacheData);
+      }
+    }
+  };
+  function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    return vue.openBlock(), vue.createElementBlock("view", { class: "uni-stat__select" }, [
+      $props.label ? (vue.openBlock(), vue.createElementBlock(
+        "span",
+        {
+          key: 0,
+          class: "uni-label-text hide-on-phone"
+        },
+        vue.toDisplayString($props.label + "："),
+        1
+        /* TEXT */
+      )) : vue.createCommentVNode("v-if", true),
+      vue.createElementVNode(
+        "view",
+        {
+          class: vue.normalizeClass(["uni-stat-box", { "uni-stat__actived": $data.current }])
+        },
+        [
+          vue.createElementVNode(
+            "view",
+            {
+              class: vue.normalizeClass(["uni-select", { "uni-select--disabled": $props.disabled }])
+            },
+            [
+              vue.createElementVNode("view", {
+                class: "uni-select__input-box",
+                onClick: _cache[1] || (_cache[1] = (...args) => $options.toggleSelector && $options.toggleSelector(...args))
+              }, [
+                $data.current ? (vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    key: 0,
+                    class: "uni-select__input-text"
+                  },
+                  vue.toDisplayString($options.textShow),
+                  1
+                  /* TEXT */
+                )) : (vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    key: 1,
+                    class: "uni-select__input-text uni-select__input-placeholder"
+                  },
+                  vue.toDisplayString($options.typePlaceholder),
+                  1
+                  /* TEXT */
+                )),
+                $data.current && $props.clear && !$props.disabled ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 2,
+                  onClick: _cache[0] || (_cache[0] = vue.withModifiers((...args) => $options.clearVal && $options.clearVal(...args), ["stop"]))
+                }, [
+                  vue.createVNode(_component_uni_icons, {
+                    type: "clear",
+                    color: "#c0c4cc",
+                    size: "24"
+                  })
+                ])) : (vue.openBlock(), vue.createElementBlock("view", { key: 3 }, [
+                  vue.createVNode(_component_uni_icons, {
+                    type: $data.showSelector ? "top" : "bottom",
+                    size: "14",
+                    color: "#999"
+                  }, null, 8, ["type"])
+                ]))
+              ]),
+              $data.showSelector ? (vue.openBlock(), vue.createElementBlock("view", {
+                key: 0,
+                class: "uni-select--mask",
+                onClick: _cache[2] || (_cache[2] = (...args) => $options.toggleSelector && $options.toggleSelector(...args))
+              })) : vue.createCommentVNode("v-if", true),
+              $data.showSelector ? (vue.openBlock(), vue.createElementBlock(
+                "view",
+                {
+                  key: 1,
+                  class: "uni-select__selector",
+                  style: vue.normalizeStyle($options.getOffsetByPlacement)
+                },
+                [
+                  vue.createElementVNode(
+                    "view",
+                    {
+                      class: vue.normalizeClass($props.placement == "bottom" ? "uni-popper__arrow_bottom" : "uni-popper__arrow_top")
+                    },
+                    null,
+                    2
+                    /* CLASS */
+                  ),
+                  vue.createElementVNode("scroll-view", {
+                    "scroll-y": "true",
+                    class: "uni-select__selector-scroll"
+                  }, [
+                    $data.mixinDatacomResData.length === 0 ? (vue.openBlock(), vue.createElementBlock("view", {
+                      key: 0,
+                      class: "uni-select__selector-empty"
+                    }, [
+                      vue.createElementVNode(
+                        "text",
+                        null,
+                        vue.toDisplayString($props.emptyTips),
+                        1
+                        /* TEXT */
+                      )
+                    ])) : (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      { key: 1 },
+                      vue.renderList($data.mixinDatacomResData, (item, index) => {
+                        return vue.openBlock(), vue.createElementBlock("view", {
+                          class: "uni-select__selector-item",
+                          key: index,
+                          onClick: ($event) => $options.change(item)
+                        }, [
+                          vue.createElementVNode(
+                            "text",
+                            {
+                              class: vue.normalizeClass({ "uni-select__selector__disabled": item.disable })
+                            },
+                            vue.toDisplayString($options.formatItemName(item)),
+                            3
+                            /* TEXT, CLASS */
+                          )
+                        ], 8, ["onClick"]);
+                      }),
+                      128
+                      /* KEYED_FRAGMENT */
+                    ))
+                  ])
+                ],
+                4
+                /* STYLE */
+              )) : vue.createCommentVNode("v-if", true)
+            ],
+            2
+            /* CLASS */
+          )
+        ],
+        2
+        /* CLASS */
+      )
+    ]);
+  }
+  const __easycom_1$2 = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$c], ["__scopeId", "data-v-ddf9e0a2"], ["__file", "D:/HB/UOApp/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue"]]);
+  const _sfc_main$c = {
+    data() {
+      return {
+        items: ["已完成", "未完成", "申请成功", "申请失败"],
+        styleType: "text",
+        activeColor: "#00b100",
+        reviewData: [],
+        data: {
+          pageNum: 1,
+          pageSize: 30,
+          data: {
+            type: "",
+            status: ""
+          },
+          params: {
+            userName: "",
+            departmentName: ""
+          }
+        },
+        value: null,
+        range: [
+          {
+            value: 0,
+            text: "请假"
+          },
+          {
+            value: 1,
+            text: "报销"
+          },
+          {
+            value: 2,
+            text: "出差"
+          },
+          {
+            value: 3,
+            text: "加班"
+          },
+          {
+            value: 4,
+            text: "补签"
+          },
+          {
+            value: 5,
+            text: "入职"
+          },
+          {
+            value: 6,
+            text: "培训"
+          },
+          {
+            value: 7,
+            text: "薪资调整"
+          },
+          {
+            value: 8,
+            text: "离职"
+          },
+          {
+            value: 9,
+            text: "采购"
+          },
+          {
+            value: 10,
+            text: "用车"
+          },
+          {
+            value: 11,
+            text: "预算"
+          },
+          {
+            value: 12,
+            text: "招聘"
+          },
+          {
+            value: 13,
+            text: "设备维修"
+          },
+          {
+            value: 14,
+            text: "合同签署"
+          },
+          {
+            value: 15,
+            text: "项目立项"
+          }
+        ]
+      };
+    },
+    onPullDownRefresh() {
+      this.data.data.type = "";
+      this.data.data.status = "";
+      this.value = null;
+      this.getReviewDatas();
+      setTimeout(function() {
+        uni.stopPullDownRefresh();
+      }, 1e3);
+    },
+    methods: {
+      change(e2) {
+        this.data.data.type = this.range[e2].text;
+        this.getReviewDatas();
+      },
+      chengeStatus(e2) {
+        this.data.data.status = this.items[e2.currentIndex];
+        this.getReviewDatas();
+      },
+      getReviewDatas() {
+        uni.request({
+          url: "http://192.168.0.196:8088/approvalForms/getSelfApprovalForms",
+          method: "POST",
+          data: this.data,
+          header: {
+            "satoken": uni.getStorageSync("satoken")
+          },
+          success: (res) => {
+            this.reviewData = res.data.data.records.map((record) => {
+              const time = new Date(record.applicationDate);
+              if (record) {
+                return {
+                  "formId": record.formId,
+                  "applicantId": record.applicantId,
+                  "attendanceId": record.attendanceId,
+                  "fromName": record.fromName,
+                  "applicationDate": time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日" + time.getHours() + "时" + time.getMinutes() + "m" + time.getSeconds() + "s",
+                  "status": record.status,
+                  "type": record.type,
+                  "description": record.description,
+                  "departmentName": record.departmentName,
+                  "userName": record.userName
+                };
+              }
+            });
+          },
+          fail: (error) => {
+            formatAppLog("log", "at pages/review/reviewDetail.vue:223", error);
+          }
+        });
+      }
+    },
+    onShow() {
+      this.getReviewDatas();
+    }
+  };
+  function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_segmented_control = resolveEasycom(vue.resolveDynamicComponent("uni-segmented-control"), __easycom_0$1);
+    const _component_uni_data_select = resolveEasycom(vue.resolveDynamicComponent("uni-data-select"), __easycom_1$2);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_1$3);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", { class: "layout" }, [
+          vue.createElementVNode("view", { class: "row" }, [
+            vue.createVNode(_component_uni_segmented_control, {
+              current: 0,
+              values: $data.items,
+              "style-type": $data.styleType,
+              "active-color": $data.activeColor,
+              onClickItem: $options.chengeStatus
+            }, null, 8, ["values", "style-type", "active-color", "onClickItem"])
+          ])
+        ]),
+        vue.createVNode(_component_uni_section, {
+          title: "选择审批类型",
+          type: "line"
+        }, {
+          default: vue.withCtx(() => [
+            vue.createVNode(_component_uni_data_select, {
+              modelValue: $data.value,
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $data.value = $event),
+              localdata: $data.range,
+              onChange: $options.change
+            }, null, 8, ["modelValue", "localdata", "onChange"])
+          ]),
+          _: 1
+          /* STABLE */
+        }),
+        vue.createElementVNode("view", { class: "message" }, [
+          vue.createElementVNode("scroll-view", {
+            class: "row",
+            "scroll-y": true
+          }, [
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($data.reviewData, (item) => {
+                return vue.openBlock(), vue.createElementBlock("view", { class: "item" }, [
+                  vue.createElementVNode("view", { class: "left" }, [
+                    vue.createElementVNode("view", null, [
+                      vue.createElementVNode(
+                        "text",
+                        { style: { "font-weight": "700", "font-size": "50rpx" } },
+                        vue.toDisplayString(item.type),
+                        1
+                        /* TEXT */
+                      ),
+                      vue.createElementVNode(
+                        "text",
+                        { style: { "width": "300rpx", "margin-left": "50rpx", "text-align": "right", "font-size": "26rpx", "color": "#9e9e9e" } },
+                        vue.toDisplayString(item.applicationDate),
+                        1
+                        /* TEXT */
+                      ),
+                      vue.createVNode(_component_uni_icons, {
+                        type: "right",
+                        size: "40rpx"
+                      })
+                    ]),
+                    vue.createElementVNode("view", null, [
+                      vue.createElementVNode(
+                        "text",
+                        null,
+                        "简介：" + vue.toDisplayString(item.fromName),
+                        1
+                        /* TEXT */
+                      )
+                    ]),
+                    vue.createElementVNode("view", null, [
+                      vue.createTextVNode("详细说明： "),
+                      vue.createElementVNode("scroll-view", {
+                        "scroll-y": true,
+                        style: { "height": "20vh" }
+                      }, [
+                        vue.createElementVNode("view", null, [
+                          vue.createElementVNode(
+                            "text",
+                            null,
+                            vue.toDisplayString(item.description),
+                            1
+                            /* TEXT */
+                          )
+                        ])
+                      ])
+                    ]),
+                    vue.createElementVNode("view", null, [
+                      item.status === "已完成" || item.status === "申请完成" ? (vue.openBlock(), vue.createElementBlock(
+                        "text",
+                        {
+                          key: 0,
+                          ref_for: true,
+                          ref: "status",
+                          style: { "font-size": "40rpx", "color": "#00b500" }
+                        },
+                        vue.toDisplayString(item.status),
+                        513
+                        /* TEXT, NEED_PATCH */
+                      )) : vue.createCommentVNode("v-if", true)
+                    ]),
+                    vue.createElementVNode("view", null, [
+                      item.status === "未完成" || item.status === "申请失败" ? (vue.openBlock(), vue.createElementBlock(
+                        "text",
+                        {
+                          key: 0,
+                          ref_for: true,
+                          ref: "status",
+                          style: { "font-size": "40rpx", "color": "#ff0000" }
+                        },
+                        vue.toDisplayString(item.status),
+                        513
+                        /* TEXT, NEED_PATCH */
+                      )) : vue.createCommentVNode("v-if", true)
+                    ])
+                  ])
+                ]);
+              }),
+              256
+              /* UNKEYED_FRAGMENT */
+            ))
+          ])
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesReviewReviewDetail = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$b], ["__file", "D:/HB/UOApp/pages/review/reviewDetail.vue"]]);
+  var calendar = {
+    /**
+        * 农历1900-2100的润大小信息表
+        * @Array Of Property
+        * @return Hex
+        */
+    lunarInfo: [
+      19416,
+      19168,
+      42352,
+      21717,
+      53856,
+      55632,
+      91476,
+      22176,
+      39632,
+      21970,
+      // 1900-1909
+      19168,
+      42422,
+      42192,
+      53840,
+      119381,
+      46400,
+      54944,
+      44450,
+      38320,
+      84343,
+      // 1910-1919
+      18800,
+      42160,
+      46261,
+      27216,
+      27968,
+      109396,
+      11104,
+      38256,
+      21234,
+      18800,
+      // 1920-1929
+      25958,
+      54432,
+      59984,
+      28309,
+      23248,
+      11104,
+      100067,
+      37600,
+      116951,
+      51536,
+      // 1930-1939
+      54432,
+      120998,
+      46416,
+      22176,
+      107956,
+      9680,
+      37584,
+      53938,
+      43344,
+      46423,
+      // 1940-1949
+      27808,
+      46416,
+      86869,
+      19872,
+      42416,
+      83315,
+      21168,
+      43432,
+      59728,
+      27296,
+      // 1950-1959
+      44710,
+      43856,
+      19296,
+      43748,
+      42352,
+      21088,
+      62051,
+      55632,
+      23383,
+      22176,
+      // 1960-1969
+      38608,
+      19925,
+      19152,
+      42192,
+      54484,
+      53840,
+      54616,
+      46400,
+      46752,
+      103846,
+      // 1970-1979
+      38320,
+      18864,
+      43380,
+      42160,
+      45690,
+      27216,
+      27968,
+      44870,
+      43872,
+      38256,
+      // 1980-1989
+      19189,
+      18800,
+      25776,
+      29859,
+      59984,
+      27480,
+      23232,
+      43872,
+      38613,
+      37600,
+      // 1990-1999
+      51552,
+      55636,
+      54432,
+      55888,
+      30034,
+      22176,
+      43959,
+      9680,
+      37584,
+      51893,
+      // 2000-2009
+      43344,
+      46240,
+      47780,
+      44368,
+      21977,
+      19360,
+      42416,
+      86390,
+      21168,
+      43312,
+      // 2010-2019
+      31060,
+      27296,
+      44368,
+      23378,
+      19296,
+      42726,
+      42208,
+      53856,
+      60005,
+      54576,
+      // 2020-2029
+      23200,
+      30371,
+      38608,
+      19195,
+      19152,
+      42192,
+      118966,
+      53840,
+      54560,
+      56645,
+      // 2030-2039
+      46496,
+      22224,
+      21938,
+      18864,
+      42359,
+      42160,
+      43600,
+      111189,
+      27936,
+      44448,
+      // 2040-2049
+      /** Add By JJonline@JJonline.Cn**/
+      84835,
+      37744,
+      18936,
+      18800,
+      25776,
+      92326,
+      59984,
+      27424,
+      108228,
+      43744,
+      // 2050-2059
+      41696,
+      53987,
+      51552,
+      54615,
+      54432,
+      55888,
+      23893,
+      22176,
+      42704,
+      21972,
+      // 2060-2069
+      21200,
+      43448,
+      43344,
+      46240,
+      46758,
+      44368,
+      21920,
+      43940,
+      42416,
+      21168,
+      // 2070-2079
+      45683,
+      26928,
+      29495,
+      27296,
+      44368,
+      84821,
+      19296,
+      42352,
+      21732,
+      53600,
+      // 2080-2089
+      59752,
+      54560,
+      55968,
+      92838,
+      22224,
+      19168,
+      43476,
+      41680,
+      53584,
+      62034,
+      // 2090-2099
+      54560
+    ],
+    // 2100
+    /**
+        * 公历每个月份的天数普通表
+        * @Array Of Property
+        * @return Number
+        */
+    solarMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    /**
+        * 天干地支之天干速查表
+        * @Array Of Property trans["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
+        * @return Cn string
+        */
+    Gan: ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"],
+    /**
+        * 天干地支之地支速查表
+        * @Array Of Property
+        * @trans["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
+        * @return Cn string
+        */
+    Zhi: ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+    /**
+        * 天干地支之地支速查表<=>生肖
+        * @Array Of Property
+        * @trans["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
+        * @return Cn string
+        */
+    Animals: ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"],
+    /**
+        * 24节气速查表
+        * @Array Of Property
+        * @trans["小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至"]
+        * @return Cn string
+        */
+    solarTerm: ["小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"],
+    /**
+        * 1900-2100各年的24节气日期速查表
+        * @Array Of Property
+        * @return 0x string For splice
+        */
+    sTermInfo: [
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c3598082c95f8c965cc920f",
+      "97bd0b06bdb0722c965ce1cfcc920f",
+      "b027097bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd0b06bdb0722c965ce1cfcc920f",
+      "b027097bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd0b06bdb0722c965ce1cfcc920f",
+      "b027097bd097c36b0b6fc9274c91aa",
+      "9778397bd19801ec9210c965cc920e",
+      "97b6b97bd19801ec95f8c965cc920f",
+      "97bd09801d98082c95f8e1cfcc920f",
+      "97bd097bd097c36b0b6fc9210c8dc2",
+      "9778397bd197c36c9210c9274c91aa",
+      "97b6b97bd19801ec95f8c965cc920e",
+      "97bd09801d98082c95f8e1cfcc920f",
+      "97bd097bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c91aa",
+      "97b6b97bd19801ec95f8c965cc920e",
+      "97bcf97c3598082c95f8e1cfcc920f",
+      "97bd097bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c3598082c95f8c965cc920f",
+      "97bd097bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c3598082c95f8c965cc920f",
+      "97bd097bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd097bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd097bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd097bd07f595b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9210c8dc2",
+      "9778397bd19801ec9210c9274c920e",
+      "97b6b97bd19801ec95f8c965cc920f",
+      "97bd07f5307f595b0b0bc920fb0722",
+      "7f0e397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c920e",
+      "97b6b97bd19801ec95f8c965cc920f",
+      "97bd07f5307f595b0b0bc920fb0722",
+      "7f0e397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bd07f1487f595b0b0bc920fb0722",
+      "7f0e397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf7f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf7f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf7f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf7f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c9274c920e",
+      "97bcf7f0e47f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9210c91aa",
+      "97b6b97bd197c36c9210c9274c920e",
+      "97bcf7f0e47f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c920e",
+      "97b6b7f0e47f531b0723b0b6fb0722",
+      "7f0e37f5307f595b0b0bc920fb0722",
+      "7f0e397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36b0b70c9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e37f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc9210c8dc2",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0787b0721",
+      "7f0e27f0e47f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9210c91aa",
+      "97b6b7f0e47f149b0723b0787b0721",
+      "7f0e27f0e47f531b0723b0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9210c8dc2",
+      "977837f0e37f149b0723b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e37f5307f595b0b0bc920fb0722",
+      "7f0e397bd097c35b0b6fc9210c8dc2",
+      "977837f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e37f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc9210c8dc2",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f149b0723b0787b0721",
+      "7f0e27f0e47f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "977837f0e37f14998082b0723b06bd",
+      "7f07e7f0e37f149b0723b0787b0721",
+      "7f0e27f0e47f531b0723b0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "977837f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e37f1487f595b0b0bb0b6fb0722",
+      "7f0e37f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e37f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e37f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e37f14898082b072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e37f14898082b072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e366aa89801eb072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f149b0723b0787b0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e366aa89801eb072297c35",
+      "7ec967f0e37f14998082b0723b06bd",
+      "7f07e7f0e47f149b0723b0787b0721",
+      "7f0e27f0e47f531b0723b0b6fb0722",
+      "7f0e37f0e366aa89801eb072297c35",
+      "7ec967f0e37f14998082b0723b06bd",
+      "7f07e7f0e37f14998083b0787b0721",
+      "7f0e27f0e47f531b0723b0b6fb0722",
+      "7f0e37f0e366aa89801eb072297c35",
+      "7ec967f0e37f14898082b0723b02d5",
+      "7f07e7f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e36665b66aa89801e9808297c35",
+      "665f67f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e36665b66a449801e9808297c35",
+      "665f67f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e36665b66a449801e9808297c35",
+      "665f67f0e37f14898082b072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e26665b66a449801e9808297c35",
+      "665f67f0e37f1489801eb072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722"
+    ],
+    /**
+        * 数字转中文速查表
+        * @Array Of Property
+        * @trans ['日','一','二','三','四','五','六','七','八','九','十']
+        * @return Cn string
+        */
+    nStr1: ["日", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"],
+    /**
+        * 日期转农历称呼速查表
+        * @Array Of Property
+        * @trans ['初','十','廿','卅']
+        * @return Cn string
+        */
+    nStr2: ["初", "十", "廿", "卅"],
+    /**
+        * 月份转农历称呼速查表
+        * @Array Of Property
+        * @trans ['正','一','二','三','四','五','六','七','八','九','十','冬','腊']
+        * @return Cn string
+        */
+    nStr3: ["正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬", "腊"],
+    /**
+        * 返回农历y年一整年的总天数
+        * @param lunar Year
+        * @return Number
+        * @eg:var count = calendar.lYearDays(1987) ;//count=387
+        */
+    lYearDays: function(y2) {
+      var i2;
+      var sum = 348;
+      for (i2 = 32768; i2 > 8; i2 >>= 1) {
+        sum += this.lunarInfo[y2 - 1900] & i2 ? 1 : 0;
+      }
+      return sum + this.leapDays(y2);
+    },
+    /**
+        * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
+        * @param lunar Year
+        * @return Number (0-12)
+        * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
+        */
+    leapMonth: function(y2) {
+      return this.lunarInfo[y2 - 1900] & 15;
+    },
+    /**
+        * 返回农历y年闰月的天数 若该年没有闰月则返回0
+        * @param lunar Year
+        * @return Number (0、29、30)
+        * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
+        */
+    leapDays: function(y2) {
+      if (this.leapMonth(y2)) {
+        return this.lunarInfo[y2 - 1900] & 65536 ? 30 : 29;
+      }
+      return 0;
+    },
+    /**
+        * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
+        * @param lunar Year
+        * @return Number (-1、29、30)
+        * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
+        */
+    monthDays: function(y2, m2) {
+      if (m2 > 12 || m2 < 1) {
+        return -1;
+      }
+      return this.lunarInfo[y2 - 1900] & 65536 >> m2 ? 30 : 29;
+    },
+    /**
+        * 返回公历(!)y年m月的天数
+        * @param solar Year
+        * @return Number (-1、28、29、30、31)
+        * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
+        */
+    solarDays: function(y2, m2) {
+      if (m2 > 12 || m2 < 1) {
+        return -1;
+      }
+      var ms2 = m2 - 1;
+      if (ms2 == 1) {
+        return y2 % 4 == 0 && y2 % 100 != 0 || y2 % 400 == 0 ? 29 : 28;
+      } else {
+        return this.solarMonth[ms2];
+      }
+    },
+    /**
+       * 农历年份转换为干支纪年
+       * @param  lYear 农历年的年份数
+       * @return Cn string
+       */
+    toGanZhiYear: function(lYear) {
+      var ganKey = (lYear - 3) % 10;
+      var zhiKey = (lYear - 3) % 12;
+      if (ganKey == 0)
+        ganKey = 10;
+      if (zhiKey == 0)
+        zhiKey = 12;
+      return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1];
+    },
+    /**
+       * 公历月、日判断所属星座
+       * @param  cMonth [description]
+       * @param  cDay [description]
+       * @return Cn string
+       */
+    toAstro: function(cMonth, cDay) {
+      var s2 = "魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
+      var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
+      return s2.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "座";
+    },
+    /**
+        * 传入offset偏移量返回干支
+        * @param offset 相对甲子的偏移量
+        * @return Cn string
+        */
+    toGanZhi: function(offset) {
+      return this.Gan[offset % 10] + this.Zhi[offset % 12];
+    },
+    /**
+        * 传入公历(!)y年获得该年第n个节气的公历日期
+        * @param y公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起
+        * @return day Number
+        * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
+        */
+    getTerm: function(y2, n2) {
+      if (y2 < 1900 || y2 > 2100) {
+        return -1;
+      }
+      if (n2 < 1 || n2 > 24) {
+        return -1;
+      }
+      var _table = this.sTermInfo[y2 - 1900];
+      var _info = [
+        parseInt("0x" + _table.substr(0, 5)).toString(),
+        parseInt("0x" + _table.substr(5, 5)).toString(),
+        parseInt("0x" + _table.substr(10, 5)).toString(),
+        parseInt("0x" + _table.substr(15, 5)).toString(),
+        parseInt("0x" + _table.substr(20, 5)).toString(),
+        parseInt("0x" + _table.substr(25, 5)).toString()
+      ];
+      var _calday = [
+        _info[0].substr(0, 1),
+        _info[0].substr(1, 2),
+        _info[0].substr(3, 1),
+        _info[0].substr(4, 2),
+        _info[1].substr(0, 1),
+        _info[1].substr(1, 2),
+        _info[1].substr(3, 1),
+        _info[1].substr(4, 2),
+        _info[2].substr(0, 1),
+        _info[2].substr(1, 2),
+        _info[2].substr(3, 1),
+        _info[2].substr(4, 2),
+        _info[3].substr(0, 1),
+        _info[3].substr(1, 2),
+        _info[3].substr(3, 1),
+        _info[3].substr(4, 2),
+        _info[4].substr(0, 1),
+        _info[4].substr(1, 2),
+        _info[4].substr(3, 1),
+        _info[4].substr(4, 2),
+        _info[5].substr(0, 1),
+        _info[5].substr(1, 2),
+        _info[5].substr(3, 1),
+        _info[5].substr(4, 2)
+      ];
+      return parseInt(_calday[n2 - 1]);
+    },
+    /**
+        * 传入农历数字月份返回汉语通俗表示法
+        * @param lunar month
+        * @return Cn string
+        * @eg:var cnMonth = calendar.toChinaMonth(12) ;//cnMonth='腊月'
+        */
+    toChinaMonth: function(m2) {
+      if (m2 > 12 || m2 < 1) {
+        return -1;
+      }
+      var s2 = this.nStr3[m2 - 1];
+      s2 += "月";
+      return s2;
+    },
+    /**
+        * 传入农历日期数字返回汉字表示法
+        * @param lunar day
+        * @return Cn string
+        * @eg:var cnDay = calendar.toChinaDay(21) ;//cnMonth='廿一'
+        */
+    toChinaDay: function(d2) {
+      var s2;
+      switch (d2) {
+        case 10:
+          s2 = "初十";
+          break;
+        case 20:
+          s2 = "二十";
+          break;
+        case 30:
+          s2 = "三十";
+          break;
+        default:
+          s2 = this.nStr2[Math.floor(d2 / 10)];
+          s2 += this.nStr1[d2 % 10];
+      }
+      return s2;
+    },
+    /**
+        * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
+        * @param y year
+        * @return Cn string
+        * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
+        */
+    getAnimal: function(y2) {
+      return this.Animals[(y2 - 4) % 12];
+    },
+    /**
+        * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
+        * @param y  solar year
+        * @param m  solar month
+        * @param d  solar day
+        * @return JSON object
+        * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:379',calendar.solar2lunar(1987,11,01));
+        */
+    solar2lunar: function(y2, m2, d2) {
+      if (y2 < 1900 || y2 > 2100) {
+        return -1;
+      }
+      if (y2 == 1900 && m2 == 1 && d2 < 31) {
+        return -1;
+      }
+      if (!y2) {
+        var objDate = /* @__PURE__ */ new Date();
+      } else {
+        var objDate = new Date(y2, parseInt(m2) - 1, d2);
+      }
+      var i2;
+      var leap = 0;
+      var temp = 0;
+      var y2 = objDate.getFullYear();
+      var m2 = objDate.getMonth() + 1;
+      var d2 = objDate.getDate();
+      var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 864e5;
+      for (i2 = 1900; i2 < 2101 && offset > 0; i2++) {
+        temp = this.lYearDays(i2);
+        offset -= temp;
+      }
+      if (offset < 0) {
+        offset += temp;
+        i2--;
+      }
+      var isTodayObj = /* @__PURE__ */ new Date();
+      var isToday = false;
+      if (isTodayObj.getFullYear() == y2 && isTodayObj.getMonth() + 1 == m2 && isTodayObj.getDate() == d2) {
+        isToday = true;
+      }
+      var nWeek = objDate.getDay();
+      var cWeek = this.nStr1[nWeek];
+      if (nWeek == 0) {
+        nWeek = 7;
+      }
+      var year = i2;
+      var leap = this.leapMonth(i2);
+      var isLeap = false;
+      for (i2 = 1; i2 < 13 && offset > 0; i2++) {
+        if (leap > 0 && i2 == leap + 1 && isLeap == false) {
+          --i2;
+          isLeap = true;
+          temp = this.leapDays(year);
+        } else {
+          temp = this.monthDays(year, i2);
+        }
+        if (isLeap == true && i2 == leap + 1) {
+          isLeap = false;
+        }
+        offset -= temp;
+      }
+      if (offset == 0 && leap > 0 && i2 == leap + 1) {
+        if (isLeap) {
+          isLeap = false;
+        } else {
+          isLeap = true;
+          --i2;
+        }
+      }
+      if (offset < 0) {
+        offset += temp;
+        --i2;
+      }
+      var month = i2;
+      var day = offset + 1;
+      var sm = m2 - 1;
+      var gzY = this.toGanZhiYear(year);
+      var firstNode = this.getTerm(y2, m2 * 2 - 1);
+      var secondNode = this.getTerm(y2, m2 * 2);
+      var gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 11);
+      if (d2 >= firstNode) {
+        gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 12);
+      }
+      var isTerm = false;
+      var Term = null;
+      if (firstNode == d2) {
+        isTerm = true;
+        Term = this.solarTerm[m2 * 2 - 2];
+      }
+      if (secondNode == d2) {
+        isTerm = true;
+        Term = this.solarTerm[m2 * 2 - 1];
+      }
+      var dayCyclical = Date.UTC(y2, sm, 1, 0, 0, 0, 0) / 864e5 + 25567 + 10;
+      var gzD = this.toGanZhi(dayCyclical + d2 - 1);
+      var astro = this.toAstro(m2, d2);
+      return { "lYear": year, "lMonth": month, "lDay": day, "Animal": this.getAnimal(year), "IMonthCn": (isLeap ? "闰" : "") + this.toChinaMonth(month), "IDayCn": this.toChinaDay(day), "cYear": y2, "cMonth": m2, "cDay": d2, "gzYear": gzY, "gzMonth": gzM, "gzDay": gzD, "isToday": isToday, "isLeap": isLeap, "nWeek": nWeek, "ncWeek": "星期" + cWeek, "isTerm": isTerm, "Term": Term, "astro": astro };
+    },
+    /**
+        * 传入农历年月日以及传入的月份是否闰月获得详细的公历、农历object信息 <=>JSON
+        * @param y  lunar year
+        * @param m  lunar month
+        * @param d  lunar day
+        * @param isLeapMonth  lunar month is leap or not.[如果是农历闰月第四个参数赋值true即可]
+        * @return JSON object
+        * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:498',calendar.lunar2solar(1987,9,10));
+        */
+    lunar2solar: function(y2, m2, d2, isLeapMonth) {
+      var isLeapMonth = !!isLeapMonth;
+      var leapMonth = this.leapMonth(y2);
+      this.leapDays(y2);
+      if (isLeapMonth && leapMonth != m2) {
+        return -1;
+      }
+      if (y2 == 2100 && m2 == 12 && d2 > 1 || y2 == 1900 && m2 == 1 && d2 < 31) {
+        return -1;
+      }
+      var day = this.monthDays(y2, m2);
+      var _day = day;
+      if (isLeapMonth) {
+        _day = this.leapDays(y2, m2);
+      }
+      if (y2 < 1900 || y2 > 2100 || d2 > _day) {
+        return -1;
+      }
+      var offset = 0;
+      for (var i2 = 1900; i2 < y2; i2++) {
+        offset += this.lYearDays(i2);
+      }
+      var leap = 0;
+      var isAdd = false;
+      for (var i2 = 1; i2 < m2; i2++) {
+        leap = this.leapMonth(y2);
+        if (!isAdd) {
+          if (leap <= i2 && leap > 0) {
+            offset += this.leapDays(y2);
+            isAdd = true;
+          }
+        }
+        offset += this.monthDays(y2, i2);
+      }
+      if (isLeapMonth) {
+        offset += day;
+      }
+      var stmap = Date.UTC(1900, 1, 30, 0, 0, 0);
+      var calObj = new Date((offset + d2 - 31) * 864e5 + stmap);
+      var cY = calObj.getUTCFullYear();
+      var cM = calObj.getUTCMonth() + 1;
+      var cD = calObj.getUTCDate();
+      return this.solar2lunar(cY, cM, cD);
+    }
+  };
+  class Calendar {
+    constructor({
+      date,
+      selected,
+      startDate,
+      endDate,
+      range
+    } = {}) {
+      this.date = this.getDate(/* @__PURE__ */ new Date());
+      this.selected = selected || [];
+      this.startDate = startDate;
+      this.endDate = endDate;
+      this.range = range;
+      this.cleanMultipleStatus();
+      this.weeks = {};
+    }
+    /**
+     * 设置日期
+     * @param {Object} date
+     */
+    setDate(date) {
+      this.selectDate = this.getDate(date);
+      this._getWeek(this.selectDate.fullDate);
+    }
+    /**
+     * 清理多选状态
+     */
+    cleanMultipleStatus() {
+      this.multipleStatus = {
+        before: "",
+        after: "",
+        data: []
+      };
+    }
+    /**
+     * 重置开始日期
+     */
+    resetSatrtDate(startDate) {
+      this.startDate = startDate;
+    }
+    /**
+     * 重置结束日期
+     */
+    resetEndDate(endDate) {
+      this.endDate = endDate;
+    }
+    /**
+     * 获取任意时间
+     */
+    getDate(date, AddDayCount = 0, str = "day") {
+      if (!date) {
+        date = /* @__PURE__ */ new Date();
+      }
+      if (typeof date !== "object") {
+        date = date.replace(/-/g, "/");
+      }
+      const dd = new Date(date);
+      switch (str) {
+        case "day":
+          dd.setDate(dd.getDate() + AddDayCount);
+          break;
+        case "month":
+          if (dd.getDate() === 31 && AddDayCount > 0) {
+            dd.setDate(dd.getDate() + AddDayCount);
+          } else {
+            const preMonth = dd.getMonth();
+            dd.setMonth(preMonth + AddDayCount);
+            const nextMonth = dd.getMonth();
+            if (AddDayCount < 0 && preMonth !== 0 && nextMonth - preMonth > AddDayCount) {
+              dd.setMonth(nextMonth + (nextMonth - preMonth + AddDayCount));
+            }
+            if (AddDayCount > 0 && nextMonth - preMonth > AddDayCount) {
+              dd.setMonth(nextMonth - (nextMonth - preMonth - AddDayCount));
+            }
+          }
+          break;
+        case "year":
+          dd.setFullYear(dd.getFullYear() + AddDayCount);
+          break;
+      }
+      const y2 = dd.getFullYear();
+      const m2 = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
+      const d2 = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
+      return {
+        fullDate: y2 + "-" + m2 + "-" + d2,
+        year: y2,
+        month: m2,
+        date: d2,
+        day: dd.getDay()
+      };
+    }
+    /**
+     * 获取上月剩余天数
+     */
+    _getLastMonthDays(firstDay, full) {
+      let dateArr = [];
+      for (let i2 = firstDay; i2 > 0; i2--) {
+        const beforeDate = new Date(full.year, full.month - 1, -i2 + 1).getDate();
+        dateArr.push({
+          date: beforeDate,
+          month: full.month - 1,
+          lunar: this.getlunar(full.year, full.month - 1, beforeDate),
+          disable: true
+        });
+      }
+      return dateArr;
+    }
+    /**
+     * 获取本月天数
+     */
+    _currentMonthDys(dateData, full) {
+      let dateArr = [];
+      let fullDate = this.date.fullDate;
+      for (let i2 = 1; i2 <= dateData; i2++) {
+        let nowDate = full.year + "-" + (full.month < 10 ? full.month : full.month) + "-" + (i2 < 10 ? "0" + i2 : i2);
+        let isDay = fullDate === nowDate;
+        let info = this.selected && this.selected.find((item) => {
+          if (this.dateEqual(nowDate, item.date)) {
+            return item;
+          }
+        });
+        let disableBefore = true;
+        let disableAfter = true;
+        if (this.startDate) {
+          disableBefore = this.dateCompare(this.startDate, nowDate);
+        }
+        if (this.endDate) {
+          disableAfter = this.dateCompare(nowDate, this.endDate);
+        }
+        let multiples = this.multipleStatus.data;
+        let checked = false;
+        let multiplesStatus = -1;
+        if (this.range) {
+          if (multiples) {
+            multiplesStatus = multiples.findIndex((item) => {
+              return this.dateEqual(item, nowDate);
+            });
+          }
+          if (multiplesStatus !== -1) {
+            checked = true;
+          }
+        }
+        let data = {
+          fullDate: nowDate,
+          year: full.year,
+          date: i2,
+          multiple: this.range ? checked : false,
+          beforeMultiple: this.dateEqual(this.multipleStatus.before, nowDate),
+          afterMultiple: this.dateEqual(this.multipleStatus.after, nowDate),
+          month: full.month,
+          lunar: this.getlunar(full.year, full.month, i2),
+          disable: !(disableBefore && disableAfter),
+          isDay
+        };
+        if (info) {
+          data.extraInfo = info;
+        }
+        dateArr.push(data);
+      }
+      return dateArr;
+    }
+    /**
+     * 获取下月天数
+     */
+    _getNextMonthDays(surplus, full) {
+      let dateArr = [];
+      for (let i2 = 1; i2 < surplus + 1; i2++) {
+        dateArr.push({
+          date: i2,
+          month: Number(full.month) + 1,
+          lunar: this.getlunar(full.year, Number(full.month) + 1, i2),
+          disable: true
+        });
+      }
+      return dateArr;
+    }
+    /**
+     * 获取当前日期详情
+     * @param {Object} date
+     */
+    getInfo(date) {
+      if (!date) {
+        date = /* @__PURE__ */ new Date();
+      }
+      const dateInfo = this.canlender.find((item) => item.fullDate === this.getDate(date).fullDate);
+      return dateInfo;
+    }
+    /**
+     * 比较时间大小
+     */
+    dateCompare(startDate, endDate) {
+      startDate = new Date(startDate.replace("-", "/").replace("-", "/"));
+      endDate = new Date(endDate.replace("-", "/").replace("-", "/"));
+      if (startDate <= endDate) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    /**
+     * 比较时间是否相等
+     */
+    dateEqual(before, after) {
+      before = new Date(before.replace("-", "/").replace("-", "/"));
+      after = new Date(after.replace("-", "/").replace("-", "/"));
+      if (before.getTime() - after.getTime() === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    /**
+     * 获取日期范围内所有日期
+     * @param {Object} begin
+     * @param {Object} end
+     */
+    geDateAll(begin, end) {
+      var arr = [];
+      var ab = begin.split("-");
+      var ae2 = end.split("-");
+      var db2 = /* @__PURE__ */ new Date();
+      db2.setFullYear(ab[0], ab[1] - 1, ab[2]);
+      var de2 = /* @__PURE__ */ new Date();
+      de2.setFullYear(ae2[0], ae2[1] - 1, ae2[2]);
+      var unixDb = db2.getTime() - 24 * 60 * 60 * 1e3;
+      var unixDe = de2.getTime() - 24 * 60 * 60 * 1e3;
+      for (var k = unixDb; k <= unixDe; ) {
+        k = k + 24 * 60 * 60 * 1e3;
+        arr.push(this.getDate(new Date(parseInt(k))).fullDate);
+      }
+      return arr;
+    }
+    /**
+     * 计算阴历日期显示
+     */
+    getlunar(year, month, date) {
+      return calendar.solar2lunar(year, month, date);
+    }
+    /**
+     * 设置打点
+     */
+    setSelectInfo(data, value) {
+      this.selected = value;
+      this._getWeek(data);
+    }
+    /**
+     *  获取多选状态
+     */
+    setMultiple(fullDate) {
+      let {
+        before,
+        after
+      } = this.multipleStatus;
+      if (!this.range)
+        return;
+      if (before && after) {
+        this.multipleStatus.before = fullDate;
+        this.multipleStatus.after = "";
+        this.multipleStatus.data = [];
+      } else {
+        if (!before) {
+          this.multipleStatus.before = fullDate;
+        } else {
+          this.multipleStatus.after = fullDate;
+          if (this.dateCompare(this.multipleStatus.before, this.multipleStatus.after)) {
+            this.multipleStatus.data = this.geDateAll(this.multipleStatus.before, this.multipleStatus.after);
+          } else {
+            this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus.before);
+          }
+        }
+      }
+      this._getWeek(fullDate);
+    }
+    /**
+     * 获取每周数据
+     * @param {Object} dateData
+     */
+    _getWeek(dateData) {
+      const {
+        year,
+        month
+      } = this.getDate(dateData);
+      let firstDay = new Date(year, month - 1, 1).getDay();
+      let currentDay = new Date(year, month, 0).getDate();
+      let dates = {
+        lastMonthDays: this._getLastMonthDays(firstDay, this.getDate(dateData)),
+        // 上个月末尾几天
+        currentMonthDys: this._currentMonthDys(currentDay, this.getDate(dateData)),
+        // 本月天数
+        nextMonthDays: [],
+        // 下个月开始几天
+        weeks: []
+      };
+      let canlender = [];
+      const surplus = 42 - (dates.lastMonthDays.length + dates.currentMonthDys.length);
+      dates.nextMonthDays = this._getNextMonthDays(surplus, this.getDate(dateData));
+      canlender = canlender.concat(dates.lastMonthDays, dates.currentMonthDys, dates.nextMonthDays);
+      let weeks = {};
+      for (let i2 = 0; i2 < canlender.length; i2++) {
+        if (i2 % 7 === 0) {
+          weeks[parseInt(i2 / 7)] = new Array(7);
+        }
+        weeks[parseInt(i2 / 7)][i2 % 7] = canlender[i2];
+      }
+      this.canlender = canlender;
+      this.weeks = weeks;
+    }
+    //静态方法
+    // static init(date) {
+    // 	if (!this.instance) {
+    // 		this.instance = new Calendar(date);
+    // 	}
+    // 	return this.instance;
+    // }
+  }
+  const isObject = (val) => val !== null && typeof val === "object";
+  const defaultDelimiters = ["{", "}"];
+  class BaseFormatter {
+    constructor() {
+      this._caches = /* @__PURE__ */ Object.create(null);
+    }
+    interpolate(message, values, delimiters = defaultDelimiters) {
+      if (!values) {
+        return [message];
+      }
+      let tokens = this._caches[message];
+      if (!tokens) {
+        tokens = parse(message, delimiters);
+        this._caches[message] = tokens;
+      }
+      return compile(tokens, values);
+    }
+  }
+  const RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+  const RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+  function parse(format, [startDelimiter, endDelimiter]) {
+    const tokens = [];
+    let position = 0;
+    let text = "";
+    while (position < format.length) {
+      let char = format[position++];
+      if (char === startDelimiter) {
+        if (text) {
+          tokens.push({ type: "text", value: text });
+        }
+        text = "";
+        let sub = "";
+        char = format[position++];
+        while (char !== void 0 && char !== endDelimiter) {
+          sub += char;
+          char = format[position++];
+        }
+        const isClosed = char === endDelimiter;
+        const type = RE_TOKEN_LIST_VALUE.test(sub) ? "list" : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? "named" : "unknown";
+        tokens.push({ value: sub, type });
+      } else {
+        text += char;
+      }
+    }
+    text && tokens.push({ type: "text", value: text });
+    return tokens;
+  }
+  function compile(tokens, values) {
+    const compiled = [];
+    let index = 0;
+    const mode = Array.isArray(values) ? "list" : isObject(values) ? "named" : "unknown";
+    if (mode === "unknown") {
+      return compiled;
+    }
+    while (index < tokens.length) {
+      const token = tokens[index];
+      switch (token.type) {
+        case "text":
+          compiled.push(token.value);
+          break;
+        case "list":
+          compiled.push(values[parseInt(token.value, 10)]);
+          break;
+        case "named":
+          if (mode === "named") {
+            compiled.push(values[token.value]);
+          } else {
+            {
+              console.warn(`Type of token '${token.type}' and format of value '${mode}' don't match!`);
+            }
+          }
+          break;
+        case "unknown":
+          {
+            console.warn(`Detect 'unknown' type of token!`);
+          }
+          break;
+      }
+      index++;
+    }
+    return compiled;
+  }
+  const LOCALE_ZH_HANS = "zh-Hans";
+  const LOCALE_ZH_HANT = "zh-Hant";
+  const LOCALE_EN = "en";
+  const LOCALE_FR = "fr";
+  const LOCALE_ES = "es";
+  const hasOwnProperty = Object.prototype.hasOwnProperty;
+  const hasOwn = (val, key) => hasOwnProperty.call(val, key);
+  const defaultFormatter = new BaseFormatter();
+  function include(str, parts) {
+    return !!parts.find((part) => str.indexOf(part) !== -1);
+  }
+  function startsWith(str, parts) {
+    return parts.find((part) => str.indexOf(part) === 0);
+  }
+  function normalizeLocale(locale, messages) {
+    if (!locale) {
+      return;
+    }
+    locale = locale.trim().replace(/_/g, "-");
+    if (messages && messages[locale]) {
+      return locale;
+    }
+    locale = locale.toLowerCase();
+    if (locale === "chinese") {
+      return LOCALE_ZH_HANS;
+    }
+    if (locale.indexOf("zh") === 0) {
+      if (locale.indexOf("-hans") > -1) {
+        return LOCALE_ZH_HANS;
+      }
+      if (locale.indexOf("-hant") > -1) {
+        return LOCALE_ZH_HANT;
+      }
+      if (include(locale, ["-tw", "-hk", "-mo", "-cht"])) {
+        return LOCALE_ZH_HANT;
+      }
+      return LOCALE_ZH_HANS;
+    }
+    let locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
+    if (messages && Object.keys(messages).length > 0) {
+      locales = Object.keys(messages);
+    }
+    const lang = startsWith(locale, locales);
+    if (lang) {
+      return lang;
+    }
+  }
+  class I18n {
+    constructor({ locale, fallbackLocale, messages, watcher, formater: formater2 }) {
+      this.locale = LOCALE_EN;
+      this.fallbackLocale = LOCALE_EN;
+      this.message = {};
+      this.messages = {};
+      this.watchers = [];
+      if (fallbackLocale) {
+        this.fallbackLocale = fallbackLocale;
+      }
+      this.formater = formater2 || defaultFormatter;
+      this.messages = messages || {};
+      this.setLocale(locale || LOCALE_EN);
+      if (watcher) {
+        this.watchLocale(watcher);
+      }
+    }
+    setLocale(locale) {
+      const oldLocale = this.locale;
+      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
+      if (!this.messages[this.locale]) {
+        this.messages[this.locale] = {};
+      }
+      this.message = this.messages[this.locale];
+      if (oldLocale !== this.locale) {
+        this.watchers.forEach((watcher) => {
+          watcher(this.locale, oldLocale);
+        });
+      }
+    }
+    getLocale() {
+      return this.locale;
+    }
+    watchLocale(fn) {
+      const index = this.watchers.push(fn) - 1;
+      return () => {
+        this.watchers.splice(index, 1);
+      };
+    }
+    add(locale, message, override = true) {
+      const curMessages = this.messages[locale];
+      if (curMessages) {
+        if (override) {
+          Object.assign(curMessages, message);
+        } else {
+          Object.keys(message).forEach((key) => {
+            if (!hasOwn(curMessages, key)) {
+              curMessages[key] = message[key];
+            }
+          });
+        }
+      } else {
+        this.messages[locale] = message;
+      }
+    }
+    f(message, values, delimiters) {
+      return this.formater.interpolate(message, values, delimiters).join("");
+    }
+    t(key, locale, values) {
+      let message = this.message;
+      if (typeof locale === "string") {
+        locale = normalizeLocale(locale, this.messages);
+        locale && (message = this.messages[locale]);
+      } else {
+        values = locale;
+      }
+      if (!hasOwn(message, key)) {
+        console.warn(`Cannot translate the value of keypath ${key}. Use the value of keypath as default.`);
+        return key;
+      }
+      return this.formater.interpolate(message[key], values).join("");
+    }
+  }
+  function watchAppLocale(appVm, i18n) {
+    if (appVm.$watchLocale) {
+      appVm.$watchLocale((newLocale) => {
+        i18n.setLocale(newLocale);
+      });
+    } else {
+      appVm.$watch(() => appVm.$locale, (newLocale) => {
+        i18n.setLocale(newLocale);
+      });
+    }
+  }
+  function getDefaultLocale() {
+    if (typeof uni !== "undefined" && uni.getLocale) {
+      return uni.getLocale();
+    }
+    if (typeof global !== "undefined" && global.getLocale) {
+      return global.getLocale();
+    }
+    return LOCALE_EN;
+  }
+  function initVueI18n(locale, messages = {}, fallbackLocale, watcher) {
+    if (typeof locale !== "string") {
+      const options = [
+        messages,
+        locale
+      ];
+      locale = options[0];
+      messages = options[1];
+    }
+    if (typeof locale !== "string") {
+      locale = getDefaultLocale();
+    }
+    if (typeof fallbackLocale !== "string") {
+      fallbackLocale = typeof __uniConfig !== "undefined" && __uniConfig.fallbackLocale || LOCALE_EN;
+    }
+    const i18n = new I18n({
+      locale,
+      fallbackLocale,
+      messages,
+      watcher
+    });
+    let t2 = (key, values) => {
+      if (typeof getApp !== "function") {
+        t2 = function(key2, values2) {
+          return i18n.t(key2, values2);
+        };
+      } else {
+        let isWatchedAppLocale = false;
+        t2 = function(key2, values2) {
+          const appVm = getApp().$vm;
+          if (appVm) {
+            appVm.$locale;
+            if (!isWatchedAppLocale) {
+              isWatchedAppLocale = true;
+              watchAppLocale(appVm, i18n);
+            }
+          }
+          return i18n.t(key2, values2);
+        };
+      }
+      return t2(key, values);
+    };
+    return {
+      i18n,
+      f(message, values, delimiters) {
+        return i18n.f(message, values, delimiters);
+      },
+      t(key, values) {
+        return t2(key, values);
+      },
+      add(locale2, message, override = true) {
+        return i18n.add(locale2, message, override);
+      },
+      watch(fn) {
+        return i18n.watchLocale(fn);
+      },
+      getLocale() {
+        return i18n.getLocale();
+      },
+      setLocale(newLocale) {
+        return i18n.setLocale(newLocale);
+      }
+    };
+  }
+  const en = {
+    "uni-calender.ok": "ok",
+    "uni-calender.cancel": "cancel",
+    "uni-calender.today": "today",
+    "uni-calender.MON": "MON",
+    "uni-calender.TUE": "TUE",
+    "uni-calender.WED": "WED",
+    "uni-calender.THU": "THU",
+    "uni-calender.FRI": "FRI",
+    "uni-calender.SAT": "SAT",
+    "uni-calender.SUN": "SUN"
+  };
+  const zhHans = {
+    "uni-calender.ok": "确定",
+    "uni-calender.cancel": "取消",
+    "uni-calender.today": "今日",
+    "uni-calender.SUN": "日",
+    "uni-calender.MON": "一",
+    "uni-calender.TUE": "二",
+    "uni-calender.WED": "三",
+    "uni-calender.THU": "四",
+    "uni-calender.FRI": "五",
+    "uni-calender.SAT": "六"
+  };
+  const zhHant = {
+    "uni-calender.ok": "確定",
+    "uni-calender.cancel": "取消",
+    "uni-calender.today": "今日",
+    "uni-calender.SUN": "日",
+    "uni-calender.MON": "一",
+    "uni-calender.TUE": "二",
+    "uni-calender.WED": "三",
+    "uni-calender.THU": "四",
+    "uni-calender.FRI": "五",
+    "uni-calender.SAT": "六"
+  };
+  const i18nMessages = {
+    en,
+    "zh-Hans": zhHans,
+    "zh-Hant": zhHant
+  };
+  const { t: t$1 } = initVueI18n(i18nMessages);
+  const _sfc_main$b = {
+    emits: ["change"],
+    props: {
+      weeks: {
+        type: Object,
+        default() {
+          return {};
+        }
+      },
+      calendar: {
+        type: Object,
+        default: () => {
+          return {};
+        }
+      },
+      selected: {
+        type: Array,
+        default: () => {
+          return [];
+        }
+      },
+      lunar: {
+        type: Boolean,
+        default: false
+      }
+    },
+    computed: {
+      todayText() {
+        return t$1("uni-calender.today");
+      }
+    },
+    methods: {
+      choiceDate(weeks) {
+        this.$emit("change", weeks);
+      }
+    }
+  };
+  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        class: vue.normalizeClass(["uni-calendar-item__weeks-box", {
+          "uni-calendar-item--disable": $props.weeks.disable,
+          "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+          "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+          "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+          "uni-calendar-item--multiple": $props.weeks.multiple,
+          "uni-calendar-item--after-checked": $props.weeks.afterMultiple
+        }]),
+        onClick: _cache[0] || (_cache[0] = ($event) => $options.choiceDate($props.weeks))
+      },
+      [
+        vue.createElementVNode("view", { class: "uni-calendar-item__weeks-box-item" }, [
+          $props.selected && $props.weeks.extraInfo ? (vue.openBlock(), vue.createElementBlock("text", {
+            key: 0,
+            class: "uni-calendar-item__weeks-box-circle"
+          })) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode(
+            "text",
+            {
+              class: vue.normalizeClass(["uni-calendar-item__weeks-box-text", {
+                "uni-calendar-item--isDay-text": $props.weeks.isDay,
+                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+                "uni-calendar-item--multiple": $props.weeks.multiple,
+                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
+                "uni-calendar-item--disable": $props.weeks.disable
+              }])
+            },
+            vue.toDisplayString($props.weeks.date),
+            3
+            /* TEXT, CLASS */
+          ),
+          !$props.lunar && !$props.weeks.extraInfo && $props.weeks.isDay ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 1,
+              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
+                "uni-calendar-item--isDay-text": $props.weeks.isDay,
+                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+                "uni-calendar-item--multiple": $props.weeks.multiple,
+                "uni-calendar-item--after-checked": $props.weeks.afterMultiple
+              }])
+            },
+            vue.toDisplayString($options.todayText),
+            3
+            /* TEXT, CLASS */
+          )) : vue.createCommentVNode("v-if", true),
+          $props.lunar && !$props.weeks.extraInfo ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 2,
+              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
+                "uni-calendar-item--isDay-text": $props.weeks.isDay,
+                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+                "uni-calendar-item--multiple": $props.weeks.multiple,
+                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
+                "uni-calendar-item--disable": $props.weeks.disable
+              }])
+            },
+            vue.toDisplayString($props.weeks.isDay ? $options.todayText : $props.weeks.lunar.IDayCn === "初一" ? $props.weeks.lunar.IMonthCn : $props.weeks.lunar.IDayCn),
+            3
+            /* TEXT, CLASS */
+          )) : vue.createCommentVNode("v-if", true),
+          $props.weeks.extraInfo && $props.weeks.extraInfo.info ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 3,
+              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
+                "uni-calendar-item--extra": $props.weeks.extraInfo.info,
+                "uni-calendar-item--isDay-text": $props.weeks.isDay,
+                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+                "uni-calendar-item--multiple": $props.weeks.multiple,
+                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
+                "uni-calendar-item--disable": $props.weeks.disable
+              }])
+            },
+            vue.toDisplayString($props.weeks.extraInfo.info),
+            3
+            /* TEXT, CLASS */
+          )) : vue.createCommentVNode("v-if", true)
+        ])
+      ],
+      2
+      /* CLASS */
+    );
+  }
+  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$a], ["__scopeId", "data-v-65626c58"], ["__file", "D:/HB/UOApp/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
+  const { t } = initVueI18n(i18nMessages);
+  const _sfc_main$a = {
+    components: {
+      CalendarItem
+    },
+    emits: ["close", "confirm", "change", "monthSwitch"],
+    props: {
+      date: {
+        type: String,
+        default: ""
+      },
+      selected: {
+        type: Array,
+        default() {
+          return [];
+        }
+      },
+      lunar: {
+        type: Boolean,
+        default: false
+      },
+      startDate: {
+        type: String,
+        default: ""
+      },
+      endDate: {
+        type: String,
+        default: ""
+      },
+      range: {
+        type: Boolean,
+        default: false
+      },
+      insert: {
+        type: Boolean,
+        default: true
+      },
+      showMonth: {
+        type: Boolean,
+        default: true
+      },
+      clearDate: {
+        type: Boolean,
+        default: true
+      }
+    },
+    data() {
+      return {
+        show: false,
+        weeks: [],
+        calendar: {},
+        nowDate: "",
+        aniMaskShow: false
+      };
+    },
+    computed: {
+      /**
+       * for i18n
+       */
+      okText() {
+        return t("uni-calender.ok");
+      },
+      cancelText() {
+        return t("uni-calender.cancel");
+      },
+      todayText() {
+        return t("uni-calender.today");
+      },
+      monText() {
+        return t("uni-calender.MON");
+      },
+      TUEText() {
+        return t("uni-calender.TUE");
+      },
+      WEDText() {
+        return t("uni-calender.WED");
+      },
+      THUText() {
+        return t("uni-calender.THU");
+      },
+      FRIText() {
+        return t("uni-calender.FRI");
+      },
+      SATText() {
+        return t("uni-calender.SAT");
+      },
+      SUNText() {
+        return t("uni-calender.SUN");
+      }
+    },
+    watch: {
+      date(newVal) {
+        this.init(newVal);
+      },
+      startDate(val) {
+        this.cale.resetSatrtDate(val);
+        this.cale.setDate(this.nowDate.fullDate);
+        this.weeks = this.cale.weeks;
+      },
+      endDate(val) {
+        this.cale.resetEndDate(val);
+        this.cale.setDate(this.nowDate.fullDate);
+        this.weeks = this.cale.weeks;
+      },
+      selected(newVal) {
+        this.cale.setSelectInfo(this.nowDate.fullDate, newVal);
+        this.weeks = this.cale.weeks;
+      }
+    },
+    created() {
+      this.cale = new Calendar({
+        selected: this.selected,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        range: this.range
+      });
+      this.init(this.date);
+    },
+    methods: {
+      // 取消穿透
+      clean() {
+      },
+      bindDateChange(e2) {
+        const value = e2.detail.value + "-1";
+        this.setDate(value);
+        const { year, month } = this.cale.getDate(value);
+        this.$emit("monthSwitch", {
+          year,
+          month
+        });
+      },
+      /**
+       * 初始化日期显示
+       * @param {Object} date
+       */
+      init(date) {
+        this.cale.setDate(date);
+        this.weeks = this.cale.weeks;
+        this.nowDate = this.calendar = this.cale.getInfo(date);
+      },
+      /**
+       * 打开日历弹窗
+       */
+      open() {
+        if (this.clearDate && !this.insert) {
+          this.cale.cleanMultipleStatus();
+          this.init(this.date);
+        }
+        this.show = true;
+        this.$nextTick(() => {
+          setTimeout(() => {
+            this.aniMaskShow = true;
+          }, 50);
+        });
+      },
+      /**
+       * 关闭日历弹窗
+       */
+      close() {
+        this.aniMaskShow = false;
+        this.$nextTick(() => {
+          setTimeout(() => {
+            this.show = false;
+            this.$emit("close");
+          }, 300);
+        });
+      },
+      /**
+       * 确认按钮
+       */
+      confirm() {
+        this.setEmit("confirm");
+        this.close();
+      },
+      /**
+       * 变化触发
+       */
+      change() {
+        if (!this.insert)
+          return;
+        this.setEmit("change");
+      },
+      /**
+       * 选择月份触发
+       */
+      monthSwitch() {
+        let {
+          year,
+          month
+        } = this.nowDate;
+        this.$emit("monthSwitch", {
+          year,
+          month: Number(month)
+        });
+      },
+      /**
+       * 派发事件
+       * @param {Object} name
+       */
+      setEmit(name) {
+        let {
+          year,
+          month,
+          date,
+          fullDate,
+          lunar,
+          extraInfo
+        } = this.calendar;
+        this.$emit(name, {
+          range: this.cale.multipleStatus,
+          year,
+          month,
+          date,
+          fulldate: fullDate,
+          lunar,
+          extraInfo: extraInfo || {}
+        });
+      },
+      /**
+       * 选择天触发
+       * @param {Object} weeks
+       */
+      choiceDate(weeks) {
+        if (weeks.disable)
+          return;
+        this.calendar = weeks;
+        this.cale.setMultiple(this.calendar.fullDate);
+        this.weeks = this.cale.weeks;
+        this.change();
+      },
+      /**
+       * 回到今天
+       */
+      backToday() {
+        const nowYearMonth = `${this.nowDate.year}-${this.nowDate.month}`;
+        const date = this.cale.getDate(/* @__PURE__ */ new Date());
+        const todayYearMonth = `${date.year}-${date.month}`;
+        this.init(date.fullDate);
+        if (nowYearMonth !== todayYearMonth) {
+          this.monthSwitch();
+        }
+        this.change();
+      },
+      /**
+       * 上个月
+       */
+      pre() {
+        const preDate = this.cale.getDate(this.nowDate.fullDate, -1, "month").fullDate;
+        this.setDate(preDate);
+        this.monthSwitch();
+      },
+      /**
+       * 下个月
+       */
+      next() {
+        const nextDate = this.cale.getDate(this.nowDate.fullDate, 1, "month").fullDate;
+        this.setDate(nextDate);
+        this.monthSwitch();
+      },
+      /**
+       * 设置日期
+       * @param {Object} date
+       */
+      setDate(date) {
+        this.cale.setDate(date);
+        this.weeks = this.cale.weeks;
+        this.nowDate = this.cale.getInfo(date);
+      }
+    }
+  };
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_calendar_item = vue.resolveComponent("calendar-item");
+    return vue.openBlock(), vue.createElementBlock("view", { class: "uni-calendar" }, [
+      !$props.insert && $data.show ? (vue.openBlock(), vue.createElementBlock(
+        "view",
+        {
+          key: 0,
+          class: vue.normalizeClass(["uni-calendar__mask", { "uni-calendar--mask-show": $data.aniMaskShow }]),
+          onClick: _cache[0] || (_cache[0] = (...args) => $options.clean && $options.clean(...args))
+        },
+        null,
+        2
+        /* CLASS */
+      )) : vue.createCommentVNode("v-if", true),
+      $props.insert || $data.show ? (vue.openBlock(), vue.createElementBlock(
+        "view",
+        {
+          key: 1,
+          class: vue.normalizeClass(["uni-calendar__content", { "uni-calendar--fixed": !$props.insert, "uni-calendar--ani-show": $data.aniMaskShow }])
+        },
+        [
+          !$props.insert ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 0,
+            class: "uni-calendar__header uni-calendar--fixed-top"
+          }, [
+            vue.createElementVNode("view", {
+              class: "uni-calendar__header-btn-box",
+              onClick: _cache[1] || (_cache[1] = (...args) => $options.close && $options.close(...args))
+            }, [
+              vue.createElementVNode(
+                "text",
+                { class: "uni-calendar__header-text uni-calendar--fixed-width" },
+                vue.toDisplayString($options.cancelText),
+                1
+                /* TEXT */
+              )
+            ]),
+            vue.createElementVNode("view", {
+              class: "uni-calendar__header-btn-box",
+              onClick: _cache[2] || (_cache[2] = (...args) => $options.confirm && $options.confirm(...args))
+            }, [
+              vue.createElementVNode(
+                "text",
+                { class: "uni-calendar__header-text uni-calendar--fixed-width" },
+                vue.toDisplayString($options.okText),
+                1
+                /* TEXT */
+              )
+            ])
+          ])) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("view", { class: "uni-calendar__header" }, [
+            vue.createElementVNode("view", {
+              class: "uni-calendar__header-btn-box",
+              onClick: _cache[3] || (_cache[3] = vue.withModifiers((...args) => $options.pre && $options.pre(...args), ["stop"]))
+            }, [
+              vue.createElementVNode("view", { class: "uni-calendar__header-btn uni-calendar--left" })
+            ]),
+            vue.createElementVNode("picker", {
+              mode: "date",
+              value: $props.date,
+              fields: "month",
+              onChange: _cache[4] || (_cache[4] = (...args) => $options.bindDateChange && $options.bindDateChange(...args))
+            }, [
+              vue.createElementVNode(
+                "text",
+                { class: "uni-calendar__header-text" },
+                vue.toDisplayString(($data.nowDate.year || "") + " / " + ($data.nowDate.month || "")),
+                1
+                /* TEXT */
+              )
+            ], 40, ["value"]),
+            vue.createElementVNode("view", {
+              class: "uni-calendar__header-btn-box",
+              onClick: _cache[5] || (_cache[5] = vue.withModifiers((...args) => $options.next && $options.next(...args), ["stop"]))
+            }, [
+              vue.createElementVNode("view", { class: "uni-calendar__header-btn uni-calendar--right" })
+            ]),
+            vue.createElementVNode(
+              "text",
+              {
+                class: "uni-calendar__backtoday",
+                onClick: _cache[6] || (_cache[6] = (...args) => $options.backToday && $options.backToday(...args))
+              },
+              vue.toDisplayString($options.todayText),
+              1
+              /* TEXT */
+            )
+          ]),
+          vue.createElementVNode("view", { class: "uni-calendar__box" }, [
+            $props.showMonth ? (vue.openBlock(), vue.createElementBlock("view", {
+              key: 0,
+              class: "uni-calendar__box-bg"
+            }, [
+              vue.createElementVNode(
+                "text",
+                { class: "uni-calendar__box-bg-text" },
+                vue.toDisplayString($data.nowDate.month),
+                1
+                /* TEXT */
+              )
+            ])) : vue.createCommentVNode("v-if", true),
+            vue.createElementVNode("view", { class: "uni-calendar__weeks" }, [
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.SUNText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.monText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.TUEText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.WEDText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.THUText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.FRIText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.SATText),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ]),
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($data.weeks, (item, weekIndex) => {
+                return vue.openBlock(), vue.createElementBlock("view", {
+                  class: "uni-calendar__weeks",
+                  key: weekIndex
+                }, [
+                  (vue.openBlock(true), vue.createElementBlock(
+                    vue.Fragment,
+                    null,
+                    vue.renderList(item, (weeks, weeksIndex) => {
+                      return vue.openBlock(), vue.createElementBlock("view", {
+                        class: "uni-calendar__weeks-item",
+                        key: weeksIndex
+                      }, [
+                        vue.createVNode(_component_calendar_item, {
+                          class: "uni-calendar-item--hook",
+                          weeks,
+                          calendar: $data.calendar,
+                          selected: $props.selected,
+                          lunar: $props.lunar,
+                          onChange: $options.choiceDate
+                        }, null, 8, ["weeks", "calendar", "selected", "lunar", "onChange"])
+                      ]);
+                    }),
+                    128
+                    /* KEYED_FRAGMENT */
+                  ))
+                ]);
+              }),
+              128
+              /* KEYED_FRAGMENT */
+            ))
+          ])
+        ],
+        2
+        /* CLASS */
+      )) : vue.createCommentVNode("v-if", true)
+    ]);
+  }
+  const __easycom_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$9], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/HB/UOApp/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
+  const _sfc_main$9 = {
+    components: {},
+    data() {
+      return {
+        data: {
+          pageNum: 1,
+          pageSize: 200,
+          data: {
+            status: "",
+            type: "",
+            date: ""
+          }
+        },
+        showCalendar: false,
+        info: {
+          selected: [],
+          message: [],
+          fullDate: ""
+        },
+        timeNow: "",
+        timeSelectNow: ""
+      };
+    },
+    created() {
+      setInterval(this.getTime, 1e3);
+    },
+    onReady() {
+    },
+    onShow() {
+      this.getData();
+    },
+    methods: {
+      isToday(dateString) {
+        const date = new Date(dateString);
+        const today = /* @__PURE__ */ new Date();
+        return date.toDateString() === today.toDateString();
+      },
+      isTomorrow(date) {
+        const today = /* @__PURE__ */ new Date();
+        today.setHours(0, 0, 0, 0);
+        today.setDate(today.getDate() + 1);
+        const inputDate = new Date(date);
+        return inputDate > today;
+      },
+      changePage() {
+        uni.switchTab({
+          url: "/pages/review/review",
+          success() {
+            uni.showToast({
+              mask: true,
+              title: "成功跳转",
+              icon: "success",
+              duration: 1e3
+            });
+          }
+        });
+      },
+      getTime() {
+        const date = /* @__PURE__ */ new Date();
+        this.timeNow = date;
+      },
+      changePage2() {
+        uni.switchTab({
+          url: "/pages/punchIn/punchIn",
+          success() {
+            uni.showToast({
+              mask: true,
+              title: "请打卡",
+              icon: "success",
+              duration: 1e3
+            });
+          }
+        });
+      },
+      change(e2) {
+        this.data.data.date = e2.fulldate;
+        this.timeSelectNow = e2.fulldate;
+        uni.request(
+          {
+            url: "http://localhost:8088/attendance/getSelfAttendance",
+            data: this.data,
+            method: "POST",
+            header: {
+              "satoken": uni.getStorageSync("satoken")
+            },
+            success: (res) => {
+              this.info.message = res.data.data.records.map((record) => {
+                if (record) {
+                  formatAppLog("log", "at pages/selfMessage/punchMessage.vue:165", record);
+                  const timeIn = new Date(record.timeIn);
+                  const timeOut = new Date(record.timeOut);
+                  const address = record.address;
+                  return {
+                    "address": address,
+                    "timeIn": timeIn.getHours() + ":" + timeIn.getMinutes() + ":" + timeIn.getSeconds(),
+                    "timeOut": timeOut.getHours() + ":" + timeOut.getMinutes() + ":" + timeIn.getSeconds()
+                  };
+                }
+              });
+            },
+            fail: (error) => {
+              formatAppLog("log", "at pages/selfMessage/punchMessage.vue:178", error);
+            }
+          }
+        );
+      },
+      getData() {
+        uni.request({
+          url: "http://localhost:8088/attendance/getSelfAttendance",
+          data: this.data,
+          method: "POST",
+          header: {
+            "satoken": uni.getStorageSync("satoken")
+          },
+          success: (res) => {
+            if (res.data.data.records !== void 0) {
+              this.info.selected = res.data.data.records;
+              this.info.selected = this.info.selected.map((record) => {
+                return {
+                  "date": record.date,
+                  "info": record.status
+                };
+              });
+            }
+          },
+          fail: (error) => {
+            formatAppLog("log", "at pages/selfMessage/punchMessage.vue:203", error);
+          }
+        });
+      }
+    }
+  };
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_1$3);
+    const _component_uni_calendar = resolveEasycom(vue.resolveDynamicComponent("uni-calendar"), __easycom_1$1);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createVNode(_component_uni_section, {
+          title: "打卡情况",
+          type: "line",
+          style: { "background-color": "#d0d0d0" }
+        }),
+        vue.createElementVNode("view", null, [
+          vue.createCommentVNode(" 插入模式 "),
+          vue.createVNode(_component_uni_calendar, {
+            class: "date",
+            selected: $data.info.selected,
+            showMonth: true,
+            lunar: true,
+            onChange: $options.change
+          }, null, 8, ["selected", "onChange"])
+        ]),
+        vue.createVNode(_component_uni_section, {
+          title: "详细信息",
+          type: "line",
+          style: { "background-color": "#d0d0d0" }
+        }),
+        vue.createElementVNode("view", { class: "layout" }, [
+          vue.createElementVNode(
+            "text",
+            { class: "day" },
+            vue.toDisplayString($data.timeSelectNow),
+            1
+            /* TEXT */
+          ),
+          $data.info.message.length !== 0 ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 0,
+              class: "layText"
+            },
+            "上班 " + vue.toDisplayString($data.info.message[0].timeIn),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length !== 0 ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 1,
+            class: "address"
+          }, [
+            vue.createVNode(_component_uni_icons, {
+              type: "location",
+              size: "16px",
+              style: { "margin-right": "16rpx" }
+            }),
+            vue.createElementVNode(
+              "text",
+              {
+                class: "Text",
+                style: { "font-size": "16px", "color": "#909090" }
+              },
+              vue.toDisplayString($data.info.message[0].address),
+              1
+              /* TEXT */
+            )
+          ])) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length !== 0 ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 2,
+              class: "layText"
+            },
+            "下班 " + vue.toDisplayString($data.info.message[0].timeOut),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length !== 0 ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 3,
+            class: "address"
+          }, [
+            vue.createVNode(_component_uni_icons, {
+              type: "location",
+              size: "16px",
+              style: { "margin-right": "16rpx" }
+            }),
+            vue.createElementVNode(
+              "text",
+              {
+                class: "Text",
+                style: { "font-size": "16px", "color": "#909090" }
+              },
+              vue.toDisplayString($data.info.message[0].address),
+              1
+              /* TEXT */
+            )
+          ])) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length === 0 && $options.isToday($data.data.data.date) === false && $options.isTomorrow($data.data.data.date) === false ? (vue.openBlock(), vue.createElementBlock("text", {
+            key: 4,
+            class: "layText",
+            style: { "color": "#ff0000" }
+          }, "该日未打卡，请点击下方补签按钮，提交补签审批!")) : vue.createCommentVNode("v-if", true),
+          $options.isToday($data.data.data.date) ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 5,
+              class: "timeNow",
+              style: { "display": "block" }
+            },
+            "当前时间:" + vue.toDisplayString($data.timeNow),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          $options.isTomorrow($data.data.data.date) ? (vue.openBlock(), vue.createElementBlock("text", {
+            key: 6,
+            class: "layText"
+          }, "还未到打卡时间，请改日再来")) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length === 0 && $options.isToday($data.data.data.date) === false && $options.isTomorrow($data.data.data.date) === false ? (vue.openBlock(), vue.createElementBlock("button", {
+            key: 7,
+            onClick: _cache[0] || (_cache[0] = (...args) => $options.changePage && $options.changePage(...args))
+          }, "补签")) : vue.createCommentVNode("v-if", true),
+          $options.isToday($data.data.data.date) ? (vue.openBlock(), vue.createElementBlock("button", {
+            key: 8,
+            onClick: _cache[1] || (_cache[1] = (...args) => $options.changePage2 && $options.changePage2(...args)),
+            style: { "background-color": "#00aaff" }
+          }, "打卡")) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("navigator", { url: "" }, [
+            vue.createTextVNode(" 异常汇报"),
+            vue.createVNode(_component_uni_icons, {
+              type: "link",
+              size: "26rpx",
+              style: { "color": "#00aa00" }
+            })
+          ])
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesSelfMessagePunchMessage = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$8], ["__file", "D:/HB/UOApp/pages/selfMessage/punchMessage.vue"]]);
+  const _sfc_main$8 = {
+    name: "UniDrawer",
+    components: {},
+    emits: ["change"],
+    props: {
+      /**
+       * 显示模式（左、右），只在初始化生效
+       */
+      mode: {
+        type: String,
+        default: ""
+      },
+      /**
+       * 蒙层显示状态
+       */
+      mask: {
+        type: Boolean,
+        default: true
+      },
+      /**
+       * 遮罩是否可点击关闭
+       */
+      maskClick: {
+        type: Boolean,
+        default: true
+      },
+      /**
+       * 抽屉宽度
+       */
+      width: {
+        type: Number,
+        default: 220
+      }
+    },
+    data() {
+      return {
+        visibleSync: false,
+        showDrawer: false,
+        rightMode: false,
+        watchTimer: null,
+        drawerWidth: 220
+      };
+    },
+    created() {
+      this.drawerWidth = this.width;
+      this.rightMode = this.mode === "right";
+    },
+    methods: {
+      clear() {
+      },
+      close(type) {
+        if (type === "mask" && !this.maskClick || !this.visibleSync)
+          return;
+        this._change("showDrawer", "visibleSync", false);
+      },
+      open() {
+        if (this.visibleSync)
+          return;
+        this._change("visibleSync", "showDrawer", true);
+      },
+      _change(param1, param2, status) {
+        this[param1] = status;
+        if (this.watchTimer) {
+          clearTimeout(this.watchTimer);
+        }
+        this.watchTimer = setTimeout(() => {
+          this[param2] = status;
+          this.$emit("change", status);
+        }, status ? 50 : 300);
+      }
+    }
+  };
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+    return $data.visibleSync ? (vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        key: 0,
+        class: vue.normalizeClass([{ "uni-drawer--visible": $data.showDrawer }, "uni-drawer"]),
+        onTouchmove: _cache[1] || (_cache[1] = vue.withModifiers((...args) => $options.clear && $options.clear(...args), ["stop", "prevent"]))
+      },
+      [
+        vue.createElementVNode(
+          "view",
+          {
+            class: vue.normalizeClass(["uni-drawer__mask", { "uni-drawer__mask--visible": $data.showDrawer && $props.mask }]),
+            onClick: _cache[0] || (_cache[0] = ($event) => $options.close("mask"))
+          },
+          null,
+          2
+          /* CLASS */
+        ),
+        vue.createElementVNode(
+          "view",
+          {
+            class: vue.normalizeClass(["uni-drawer__content", { "uni-drawer--right": $data.rightMode, "uni-drawer--left": !$data.rightMode, "uni-drawer__content--visible": $data.showDrawer }]),
+            style: vue.normalizeStyle({ width: $data.drawerWidth + "px" })
+          },
+          [
+            vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
+          ],
+          6
+          /* CLASS, STYLE */
+        )
+      ],
+      34
+      /* CLASS, NEED_HYDRATION */
+    )) : vue.createCommentVNode("v-if", true);
+  }
+  const __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__scopeId", "data-v-f7c32d22"], ["__file", "D:/HB/UOApp/uni_modules/uni-drawer/components/uni-drawer/uni-drawer.vue"]]);
+  const _imports_0 = "/static/selfImage/self.png";
+  function validateInput(inputValue) {
+    const phoneRegex = /^1[3-9]\d{9}$/;
+    const qqEmailRegex = /^[1-9]\d{4,11}@qq\.com$/;
+    if (phoneRegex.test(inputValue.telephone) && qqEmailRegex.test(inputValue.email)) {
+      return true;
+    }
+    return "输入的格式不正确，请输入正确的手机号或QQ邮箱";
+  }
+  const _sfc_main$7 = {
+    data() {
+      return {
+        userInfo: {
+          telephone: null,
+          email: null,
+          userName: null
+        },
+        userMessage: {
+          departmentName: "",
+          userName: null,
+          departmentName: null,
+          empNum: null,
+          roleName: null,
+          telephone: null,
+          email: null,
+          status: null,
+          ctTime: null,
+          sex: null,
+          birth: null
+        }
+      };
+    },
+    methods: {
+      showDrawer() {
+        this.$refs.showRight.open();
+      },
+      closeDrawer() {
+        this.$refs.showRight.close();
+      },
+      changePage1() {
+        uni.switchTab({
+          url: "/pages/selfMessage/selfMessage"
+        });
+      },
+      getSelfMessage() {
+        if (uni.getStorageSync("satoken")) {
+          uni.request({
+            url: "http://192.168.0.196:8088/user/info",
+            method: "GET",
+            header: {
+              "satoken": uni.getStorageSync("satoken")
+            },
+            success: (res) => {
+              formatAppLog("log", "at pages/selfMessage/self.vue:219", res);
+              if (res.data.code === "200") {
+                this.userMessage.userName = res.data.data.userName;
+                this.userMessage.departmentName = res.data.data.departmentName;
+                this.userMessage.email = res.data.data.email;
+                this.userMessage.telephone = res.data.data.telephone;
+                this.userMessage.status = res.data.data.status === 1 ? "在线" : "请假";
+                this.userMessage.empNum = res.data.data.empNum;
+                this.userMessage.roleName = res.data.data.roleName;
+                var date = new Date(res.data.data.ctTime);
+                this.userMessage.ctTime = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay();
+                this.userMessage.sex = res.data.data.sex === "1" ? "男" : "女";
+                this.userMessage.birth = res.data.data.birth;
+              } else {
+                uni.showToast({
+                  title: res.data.msg,
+                  icon: "fail",
+                  duration: 1e3,
+                  mask: true
+                });
+              }
+            },
+            fail: (error) => {
+              uni.showToast({
+                title: "页面错误!!!",
+                icon: "error",
+                duration: 5e3,
+                mask: true
+              }), uni.navigateTo({
+                url: "/pages/index/index"
+              });
+            }
+          });
+        } else {
+          uni.navigateTo({
+            url: "/pages/index/index"
+          });
+        }
+      },
+      updateSelfMessage() {
+        if (validateInput(this.userInfo)) {
+          uni.request({
+            url: "http://192.168.0.196:8088/user/updateUserInfo",
+            method: "POST",
+            header: {
+              "satoken": uni.getStorageSync("satoken")
+            },
+            data: this.userInfo,
+            success: (res) => {
+              uni.showToast({
+                icon: "success",
+                title: res.data.msg,
+                duration: 1e3
+              });
+            },
+            fail: (error) => {
+              formatAppLog("log", "at pages/selfMessage/self.vue:276", error);
+            }
+          });
+        } else {
+          validateInput(this.userInfo);
+        }
+      }
+    },
+    onShow() {
+      this.getSelfMessage();
+    }
+  };
+  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    const _component_uni_drawer = resolveEasycom(vue.resolveDynamicComponent("uni-drawer"), __easycom_1);
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", { class: "on" }, [
+          vue.createElementVNode("view", {
+            class: "left",
+            onClick: _cache[0] || (_cache[0] = (...args) => $options.changePage1 && $options.changePage1(...args))
+          }, [
+            vue.createVNode(_component_uni_icons, {
+              type: "arrow-left",
+              size: "36"
+            })
+          ]),
+          vue.createElementVNode("view", { class: "center" }, " 个人信息 "),
+          vue.createElementVNode("view", { class: "right" }, [
+            vue.createElementVNode("text", {
+              onClick: _cache[1] || (_cache[1] = (...args) => $options.showDrawer && $options.showDrawer(...args)),
+              type: "primary"
+            }, "编辑")
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "layout" }, [
+          vue.createElementVNode("view", { class: "row" }, [
+            vue.createElementVNode("view", { class: "item" }, [
+              vue.createElementVNode("view", { class: "left" }, [
+                vue.createElementVNode(
+                  "text",
+                  { style: { "font-weight": "bold" } },
+                  vue.toDisplayString($data.userMessage.userName) + " " + vue.toDisplayString($data.userMessage.sex),
+                  1
+                  /* TEXT */
+                ),
+                vue.createElementVNode(
+                  "text",
+                  { style: { "font-size": "28rpx", "color": "#00b959" } },
+                  vue.toDisplayString($data.userMessage.roleName),
+                  1
+                  /* TEXT */
+                ),
+                vue.createElementVNode(
+                  "text",
+                  { style: { "font-size": "20rpx", "color": "#b5b5b5" } },
+                  "工号:" + vue.toDisplayString($data.userMessage.empNum),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "right" }, [
+                vue.createElementVNode("image", { src: _imports_0 })
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "item" }, [
+              vue.createElementVNode("view", { class: "message" }, [
+                vue.createElementVNode("view", { style: { "font-weight": "bold" } }, "基本信息"),
+                vue.createElementVNode("view", { style: { "font-size": "20rpx", "color": "#b5b5b5" } }, "记录该员工基本信息")
+              ]),
+              vue.createElementVNode("view", { class: "message" }, [
+                vue.createElementVNode("view", { class: "left" }, "部门名称"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "right2" },
+                  vue.toDisplayString($data.userMessage.departmentName),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "message" }, [
+                vue.createElementVNode("view", { class: "left" }, "电子邮箱"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "right2" },
+                  vue.toDisplayString($data.userMessage.email),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "message" }, [
+                vue.createElementVNode("view", { class: "left" }, "联系方式"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "right2" },
+                  vue.toDisplayString($data.userMessage.telephone),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "message" }, [
+                vue.createElementVNode("view", { class: "left" }, "入职时间"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "right2" },
+                  vue.toDisplayString($data.userMessage.ctTime),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "message" }, [
+                vue.createElementVNode("view", { class: "left" }, "出生日期"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "right2" },
+                  vue.toDisplayString($data.userMessage.birth),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "item" }, [
+              vue.createElementVNode("view", { class: "message" }, [
+                vue.createElementVNode("view", { style: { "font-weight": "bold" } }, "状态"),
+                vue.createElementVNode("view", { style: { "font-size": "20rpx", "color": "#b5b5b5" } }, "记录该员工状态信息")
+              ]),
+              vue.createElementVNode("view", { class: "message" }, [
+                vue.createElementVNode(
+                  "view",
+                  {
+                    class: "left",
+                    style: { "background-color": "#00ff00", "border": "#001100 1px solid", "padding": "8rpx", "color": "aliceblue" }
+                  },
+                  vue.toDisplayString($data.userMessage.status),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ])
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "uni-drawer" }, [
+          vue.createVNode(
+            _component_uni_drawer,
+            {
+              ref: "showRight",
+              mode: "right",
+              "mask-click": false
+            },
+            {
+              default: vue.withCtx(() => [
+                vue.createElementVNode("scroll-view", {
+                  style: { "height": "100%" },
+                  "scroll-y": "true"
+                }, [
+                  vue.createElementVNode("button", {
+                    onClick: _cache[2] || (_cache[2] = (...args) => $options.closeDrawer && $options.closeDrawer(...args)),
+                    type: "primary",
+                    style: { "background-color": "#ff0000", "width": "30vw", "margin": "10rpx", "margin-top": "50rpx" }
+                  }, "关闭修改"),
+                  vue.createElementVNode("text", { style: { "margin": "5rpx", "padding": "5rpx" } }, "修改姓名"),
+                  vue.withDirectives(vue.createElementVNode(
+                    "input",
+                    {
+                      placeholder: "请输入",
+                      "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => $data.userInfo.userName = $event),
+                      style: { "border-bottom": "1px solid #001100", "margin": "5rpx", "padding": "5rpx" }
+                    },
+                    null,
+                    512
+                    /* NEED_PATCH */
+                  ), [
+                    [vue.vModelText, $data.userInfo.userName]
+                  ]),
+                  vue.createElementVNode("text", { style: { "margin": "5rpx", "padding": "5rpx" } }, "修改手机号"),
+                  vue.withDirectives(vue.createElementVNode(
+                    "input",
+                    {
+                      placeholder: "请输入",
+                      "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => $data.userInfo.telephone = $event),
+                      style: { "border-bottom": "1px solid #001100", "margin": "5rpx", "padding": "5rpx" }
+                    },
+                    null,
+                    512
+                    /* NEED_PATCH */
+                  ), [
+                    [vue.vModelText, $data.userInfo.telephone]
+                  ]),
+                  vue.createElementVNode("text", { style: { "margin": "5rpx", "padding": "5rpx" } }, "修改邮箱"),
+                  vue.withDirectives(vue.createElementVNode(
+                    "input",
+                    {
+                      placeholder: "请输入",
+                      "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => $data.userInfo.email = $event),
+                      style: { "border-bottom": "1px solid #001100", "margin": "5rpx", "padding": "5rpx" }
+                    },
+                    null,
+                    512
+                    /* NEED_PATCH */
+                  ), [
+                    [vue.vModelText, $data.userInfo.email]
+                  ]),
+                  vue.createElementVNode("button", {
+                    onClick: _cache[6] || (_cache[6] = (...args) => $options.updateSelfMessage && $options.updateSelfMessage(...args)),
+                    type: "primary",
+                    style: { "background-color": "#00aaff", "width": "30vw", "margin": "10rpx", "position": "absolute", "bottom": "0" }
+                  }, "提交修改")
+                ])
+              ]),
+              _: 1
+              /* STABLE */
+            },
+            512
+            /* NEED_PATCH */
+          )
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesSelfMessageSelf = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "D:/HB/UOApp/pages/selfMessage/self.vue"]]);
+  const _sfc_main$6 = {
+    data() {
+      return {
+        list1: [
+          {
+            type: "auth-filled",
+            text: "个人信息",
+            url: "/pages/selfMessage/self",
+            right: "right"
+          },
+          {
+            type: "cloud-upload-filled",
+            text: "个人日志",
+            url: "",
+            right: "right"
+          },
+          {
+            type: "calendar",
+            text: "打卡信息",
+            url: "/pages/selfMessage/punchMessage",
+            right: "right"
+          },
+          {
+            type: "upload-filled",
+            text: "审批数据",
+            url: "/pages/review/reviewDetail",
+            right: "right"
+          },
+          {
+            type: "paperclip",
+            text: "工作记录",
+            url: "",
+            right: "right"
+          }
+        ],
+        list3: [
+          {
+            type: "close",
+            text: "应用bug汇报",
+            url: "",
+            right: "paperplane"
+          },
+          {
+            type: "home",
+            text: "退出登录",
+            url: "/pages/index/index",
+            right: "paperplane-filled"
+          }
+        ],
+        userMessage: {
+          userName: "",
+          departmentName: "",
+          userName: null,
+          departmentName: null,
+          empNum: null,
+          telephone: null,
+          email: null,
+          status: null,
+          ctTime: null
+        }
+      };
+    },
+    onShow() {
+      this.getSelfMessage();
+    },
+    methods: {
+      changePage(str1, str2) {
+        uni.navigateTo({
+          url: str1,
+          success() {
+            if (str2 === "退出登录") {
+              uni.request({
+                url: "http://192.168.0.196:8088/user/logout",
+                header: {
+                  "satoken": uni.getStorageSync("satoken")
+                },
+                method: "GET",
+                success: (res) => {
+                  if (res.data.code === "200") {
+                    uni.setStorageSync("satoken", "");
+                    uni.showToast({
+                      title: "退出成功",
+                      icon: "success",
+                      duration: 1e3,
+                      mask: true
+                    });
+                  } else {
+                    uni.showToast({
+                      title: res.data.msg,
+                      icon: "error",
+                      duration: 1e3,
+                      mask: true
+                    });
+                    formatAppLog("log", "at pages/selfMessage/selfMessage.vue:196", uni.getStorageSync("satoken"));
+                  }
+                },
+                fail: (error) => {
+                  formatAppLog("log", "at pages/selfMessage/selfMessage.vue:200", error);
+                  uni.showToast({
+                    title: "页面错误!!!",
+                    icon: "error",
+                    duration: 5e3,
+                    mask: true
+                  });
+                }
+              });
+              uni.showToast({
+                icon: "success",
+                title: "退出成功",
+                duration: 1e3
+              });
+            } else {
+              uni.showToast({
+                icon: "success",
+                title: str2,
+                duration: 1e3
+              });
+            }
+          },
+          fail() {
+            uni.showToast({
+              icon: "fail",
+              title: "页面待开发!",
+              duration: 1e3
+            });
+          }
+        });
+      },
+      getSelfMessage() {
+        if (uni.getStorageSync("satoken")) {
+          uni.request({
+            url: "http://192.168.0.196:8088/user/info",
+            method: "GET",
+            header: {
+              "satoken": uni.getStorageSync("satoken")
+            },
+            success: (res) => {
+              formatAppLog("log", "at pages/selfMessage/selfMessage.vue:240", res);
+              if (res.data.code === "200") {
+                this.userMessage.userName = res.data.data.userName;
+                this.userMessage.departmentName = res.data.data.departmentName;
+                this.userMessage.email = res.data.data.email;
+                this.userMessage.telephone = res.data.data.telephone;
+                this.userMessage.status = res.data.data.status;
+                this.userMessage.empNum = res.data.data.empNum;
+                var date = new Date(res.data.data.ctTime);
+                this.userMessage.ctTime = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay();
+              } else {
+                uni.showToast({
+                  title: res.data.msg,
+                  icon: "fail",
+                  duration: 1e3,
+                  mask: true
+                });
+              }
+            },
+            fail: (error) => {
+              uni.showToast({
+                title: "页面错误!!!",
+                icon: "error",
+                duration: 5e3,
+                mask: true
+              }), uni.navigateTo({
+                url: "/pages/index/index"
+              });
+            }
+          });
+        } else {
+          uni.navigateTo({
+            url: "/pages/index/index"
+          });
+        }
+      }
+    }
+  };
+  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", { class: "userLayout" }, [
+          vue.createElementVNode("view", { class: "userInfo" }, [
+            vue.createElementVNode("view", { class: "avatar" }, [
+              vue.createElementVNode("image", {
+                class: "image",
+                src: _imports_0
+              })
+            ]),
+            vue.createElementVNode(
+              "view",
+              { class: "empNum" },
+              vue.toDisplayString($data.userMessage.empNum),
+              1
+              /* TEXT */
+            ),
+            vue.createElementVNode(
+              "view",
+              { class: "telephone" },
+              vue.toDisplayString($data.userMessage.userName),
+              1
+              /* TEXT */
+            )
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "section" }, [
+          vue.createElementVNode("view", { class: "list" }, [
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($data.list1, (item) => {
+                return vue.openBlock(), vue.createElementBlock("view", {
+                  class: "row",
+                  onClick: ($event) => $options.changePage(item.url, item.text)
+                }, [
+                  vue.createElementVNode("view", { class: "left" }, [
+                    vue.createVNode(_component_uni_icons, {
+                      type: item.type,
+                      size: "20"
+                    }, null, 8, ["type"]),
+                    vue.createElementVNode(
+                      "view",
+                      { class: "text" },
+                      vue.toDisplayString(item.text),
+                      1
+                      /* TEXT */
+                    )
+                  ]),
+                  vue.createElementVNode("view", { class: "right" }, [
+                    vue.createElementVNode("view", { class: "text" }),
+                    vue.createVNode(_component_uni_icons, {
+                      type: item.right,
+                      size: "20"
+                    }, null, 8, ["type"])
+                  ])
+                ], 8, ["onClick"]);
+              }),
+              256
+              /* UNKEYED_FRAGMENT */
+            ))
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "section" }, [
+          vue.createElementVNode("view", { class: "list" }, [
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($data.list3, (item) => {
+                return vue.openBlock(), vue.createElementBlock("view", {
+                  class: "row",
+                  onClick: ($event) => $options.changePage(item.url, item.text)
+                }, [
+                  vue.createElementVNode("view", { class: "left" }, [
+                    vue.createVNode(_component_uni_icons, {
+                      type: item.type,
+                      size: "20"
+                    }, null, 8, ["type"]),
+                    vue.createElementVNode(
+                      "view",
+                      { class: "text" },
+                      vue.toDisplayString(item.text),
+                      1
+                      /* TEXT */
+                    )
+                  ]),
+                  vue.createElementVNode("view", { class: "right" }, [
+                    vue.createElementVNode("view", { class: "text" }),
+                    vue.createVNode(_component_uni_icons, {
+                      type: item.right,
+                      size: "20"
+                    }, null, 8, ["type"])
+                  ])
+                ], 8, ["onClick"]);
+              }),
+              256
+              /* UNKEYED_FRAGMENT */
+            ))
+          ])
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesSelfMessageSelfMessage = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__file", "D:/HB/UOApp/pages/selfMessage/selfMessage.vue"]]);
+  const _sfc_main$5 = {
+    data() {
+      return {
+        longitude: null,
+        latitude: null,
+        address: null,
+        currentTimeDisplay: "",
+        clockInButton: true,
+        clockOutButton: false,
+        outCheckIn: true,
+        deviceIds: [
+          {
+            deviceId: "30:AE:A4:2C:5A:B5"
+          }
+        ]
+      };
+    },
+    methods: {
+      getAddress() {
+        uni.getLocation(
+          {
+            type: "gcj02",
+            geocode: true,
+            isHighAccuracy: true,
+            success: (res1) => {
+              formatAppLog("log", "at pages/punchIn/punchIn.vue:65", res1);
+              this.longitude = res1.longitude;
+              this.latitude = res1.latitude;
+              uni.chooseLocation({
+                success: (res2) => {
+                  formatAppLog("log", "at pages/punchIn/punchIn.vue:72", res2);
+                  if (Math.abs(res1.longitude - res2.longitude) < 2e-4 && Math.abs(res1.latitude - res2.latitude) < 2e-4) {
+                    this.address = res2.name;
+                    uni.showToast({
+                      title: "定位成功",
+                      icon: "success"
+                    });
+                  } else {
+                    uni.showToast({
+                      title: "定位失败",
+                      icon: "error"
+                    });
+                  }
+                }
+              });
+            }
+          }
+        );
+      },
+      updateTime() {
+        var now = /* @__PURE__ */ new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        this.currentTimeDisplay = `中国时间:${now.toLocaleTimeString()}`;
+        if (hours === 9 && minutes === 0 || hours < 9) {
+          this.clockInButton = false;
+        } else {
+          this.clockInButton = true;
+        }
+        if (hours >= 17 && minutes >= 30 || hours >= 18) {
+          this.clockOutButton = false;
+        } else {
+          this.clockOutButton = true;
+        }
+      },
+      show() {
+        uni.showToast({
+          icon: "success",
+          title: "打卡成功"
+        });
+      },
+      scanBluetooth() {
+        uni.openBluetoothAdapter({
+          success: () => {
+            uni.startBluetoothDevicesDiscovery({
+              success: (res) => {
+                formatAppLog("log", "at pages/punchIn/punchIn.vue:121", "开始扫描蓝牙设备" + res);
+                uni.onBluetoothDeviceFound((devices) => {
+                  this.deviceIds.map((deviceId) => {
+                    if (deviceId.deviceId === devices.devices[0].deviceId) {
+                      uni.stopBluetoothDevicesDiscovery({
+                        success: () => {
+                          formatAppLog("log", "at pages/punchIn/punchIn.vue:129", "蓝牙扫描已停止,已经扫到蓝牙:" + devices.devices[0].deviceId);
+                          uni.showToast({
+                            title: "成功连接蓝牙",
+                            icon: "success",
+                            duration: 1e3,
+                            success: () => {
+                              this.outCheckIn = false;
+                            }
+                          });
+                        },
+                        fail: () => {
+                          formatAppLog("error", "at pages/punchIn/punchIn.vue:140", "停止扫描失败");
+                          uni.showToast({
+                            title: "无法连接蓝牙",
+                            icon: "error"
+                          });
+                        }
+                      });
+                    }
+                  });
+                });
+              },
+              fail: (err) => {
+                formatAppLog("error", "at pages/punchIn/punchIn.vue:152", "开始扫描失败", err);
+                uni.closeBluetoothAdapter();
+              }
+            });
+          },
+          fail: (err) => {
+            formatAppLog("error", "at pages/punchIn/punchIn.vue:158", "开启蓝牙适配器失败", err);
+          }
+        });
+      }
+    },
+    //初始化挂载
+    created() {
+      setInterval(this.updateTime, 1e3);
+    },
+    onShow() {
+      this.scanBluetooth();
+    },
+    updated() {
+      this.updateTime();
+    }
+  };
+  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("view", null, [
+          vue.createElementVNode("button", {
+            onClick: _cache[0] || (_cache[0] = (...args) => $options.getAddress && $options.getAddress(...args)),
+            class: "abutton",
+            disabled: $data.outCheckIn
+          }, "定位" + vue.toDisplayString($data.address), 9, ["disabled"])
+        ]),
+        vue.createElementVNode("view", { class: "attendance-container" }, [
+          vue.createElementVNode("view", null, [
+            vue.createElementVNode("view", { class: "attendance-title" }, "提示:上班打卡时间为早上九点之前,下班打卡时间为下午五点半之后"),
+            vue.createElementVNode(
+              "view",
+              {
+                class: "current-time",
+                id: "currentTimeDisplay",
+                style: { "color": "#48c5bd" }
+              },
+              vue.toDisplayString($data.currentTimeDisplay),
+              1
+              /* TEXT */
+            )
+          ]),
+          vue.createElementVNode("view", { class: "attendance-clock-in-out" }, [
+            vue.createElementVNode("button", {
+              class: "attendance-button",
+              disabled: $data.clockInButton,
+              onClick: _cache[1] || (_cache[1] = ($event) => $options.show())
+            }, "打卡上班", 8, ["disabled"]),
+            vue.createElementVNode("button", {
+              class: "attendance-button",
+              disabled: $data.clockOutButton,
+              onClick: _cache[2] || (_cache[2] = ($event) => $options.show())
+            }, "打卡下班", 8, ["disabled"])
+          ])
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesPunchInPunchIn = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__file", "D:/HB/UOApp/pages/punchIn/punchIn.vue"]]);
+  const _sfc_main$4 = {
+    components: {},
+    data() {
+      return {
+        list: [
+          {
+            text: "1、确定审批类型!"
+          },
+          {
+            text: "2、查看提交结果!"
+          },
+          {
+            text: "3、静候审批结束!"
+          },
+          {
+            text: "祝大家工作顺利!"
+          }
+        ],
+        approlist1: [
+          {
+            text: "请假",
+            url: "",
+            src: "../../static/iconReview/qj.jpg"
+          },
+          {
+            text: "报销",
+            url: "",
+            src: "../../static/iconReview/bx.jpg"
+          },
+          {
+            text: "出差",
+            url: "",
+            src: "../../static/iconReview/cc.jpg"
+          },
+          {
+            text: "加班",
+            url: "",
+            src: "../../static/iconReview/jb.jpg"
+          },
+          {
+            text: "补签",
+            url: "",
+            src: "../../static/iconReview/bq.jpg"
+          }
+        ],
+        approlist2: [
+          {
+            text: "入职",
+            url: "",
+            src: "../../static/iconReview/rz.jpg"
+          },
+          {
+            text: "培训",
+            url: "",
+            src: "../../static/iconReview/px.jpg"
+          },
+          {
+            text: "薪资调整",
+            url: "",
+            src: "../../static/iconReview/xztz.jpg"
+          },
+          {
+            text: "离职",
+            url: "",
+            src: "../../static/iconReview/lz.jpg"
+          }
+        ],
+        approlist3: [
+          {
+            text: "采购",
+            url: "",
+            src: "../../static/iconReview/cg.jpg"
+          },
+          {
+            text: "用车",
+            url: "",
+            src: "../../static/iconReview/yc.jpg"
+          },
+          {
+            text: "预算",
+            url: "",
+            src: "../../static/iconReview/ys.jpg"
+          },
+          {
+            text: "招聘",
+            url: "",
+            src: "../../static/iconReview/zp.jpg"
+          },
+          {
+            text: "设备维修",
+            url: "",
+            src: "../../static/iconReview/sbwx.jpg"
+          }
+        ],
+        approlist4: [
+          {
+            text: "合同签署",
+            url: "",
+            src: "../../static/iconReview/htqs.jpg"
+          },
+          {
+            text: "项目立项",
+            url: "",
+            src: "../../static/iconReview/xmlx.jpg"
+          }
+        ]
+      };
+    },
+    methods: {
+      changePage(str1, str2) {
+        uni.navigateTo({
+          url: str1,
+          success() {
+            uni.navigateTo({
+              url: str1
+            });
+          },
+          fail() {
+            uni.showToast({
+              icon: "error",
+              title: str2 + "待开发!",
+              duration: 1e3
+            });
+          }
+        });
+      }
+    }
+  };
+  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_1$3);
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createElementVNode("swiper", {
+          autoplay: "true",
+          interval: "2000",
+          duration: "500",
+          circular: "true",
+          vertical: "true"
+        }, [
+          (vue.openBlock(true), vue.createElementBlock(
+            vue.Fragment,
+            null,
+            vue.renderList($data.list, (item) => {
+              return vue.openBlock(), vue.createElementBlock("swiper-item", null, [
+                vue.createVNode(_component_uni_icons, {
+                  type: "chatboxes",
+                  size: "30"
+                }),
+                vue.createElementVNode(
+                  "text",
+                  null,
+                  "提示:" + vue.toDisplayString(item.text),
+                  1
+                  /* TEXT */
+                )
+              ]);
+            }),
+            256
+            /* UNKEYED_FRAGMENT */
+          ))
+        ]),
+        vue.createVNode(_component_uni_section, {
+          title: "个人",
+          subTitle: "个人审批",
+          type: "line",
+          style: { "background-color": "#dfdfdf" }
+        }, {
+          default: vue.withCtx(() => [
+            vue.createElementVNode("view", { class: "Layout" }, [
+              vue.createElementVNode("view", { class: "row" }, [
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList($data.approlist1, (item) => {
+                    return vue.openBlock(), vue.createElementBlock("view", {
+                      class: "text",
+                      onClick: ($event) => $options.changePage(item.url, item.text)
+                    }, [
+                      vue.createElementVNode("view", { class: "item" }, [
+                        vue.createElementVNode("image", {
+                          src: item.src,
+                          mode: "widthFix"
+                        }, null, 8, ["src"]),
+                        vue.createElementVNode(
+                          "text",
+                          null,
+                          vue.toDisplayString(item.text),
+                          1
+                          /* TEXT */
+                        )
+                      ])
+                    ], 8, ["onClick"]);
+                  }),
+                  256
+                  /* UNKEYED_FRAGMENT */
+                ))
+              ])
+            ])
+          ]),
+          _: 1
+          /* STABLE */
+        }),
+        vue.createVNode(_component_uni_section, {
+          title: "职位",
+          subTitle: "入职和离职",
+          type: "line",
+          style: { "background-color": "#ffffff" }
+        }, {
+          default: vue.withCtx(() => [
+            vue.createElementVNode("view", { class: "Layout" }, [
+              vue.createElementVNode("view", { class: "row" }, [
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList($data.approlist2, (item) => {
+                    return vue.openBlock(), vue.createElementBlock("view", {
+                      class: "text",
+                      onClick: ($event) => $options.changePage(item.url, item.text)
+                    }, [
+                      vue.createElementVNode("view", { class: "item" }, [
+                        vue.createElementVNode("image", {
+                          src: item.src,
+                          mode: "widthFix"
+                        }, null, 8, ["src"]),
+                        vue.createElementVNode(
+                          "text",
+                          null,
+                          vue.toDisplayString(item.text),
+                          1
+                          /* TEXT */
+                        )
+                      ])
+                    ], 8, ["onClick"]);
+                  }),
+                  256
+                  /* UNKEYED_FRAGMENT */
+                ))
+              ])
+            ])
+          ]),
+          _: 1
+          /* STABLE */
+        }),
+        vue.createVNode(_component_uni_section, {
+          title: "公共",
+          subTitle: "公司工作中的需求",
+          type: "line",
+          style: { "background-color": "#dfdfdf" }
+        }, {
+          default: vue.withCtx(() => [
+            vue.createElementVNode("view", { class: "Layout" }, [
+              vue.createElementVNode("view", { class: "row" }, [
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList($data.approlist3, (item) => {
+                    return vue.openBlock(), vue.createElementBlock("view", {
+                      class: "text",
+                      onClick: ($event) => $options.changePage(item.url, item.text)
+                    }, [
+                      vue.createElementVNode("view", { class: "item" }, [
+                        vue.createElementVNode("image", {
+                          src: item.src,
+                          mode: "widthFix"
+                        }, null, 8, ["src"]),
+                        vue.createElementVNode(
+                          "text",
+                          null,
+                          vue.toDisplayString(item.text),
+                          1
+                          /* TEXT */
+                        )
+                      ])
+                    ], 8, ["onClick"]);
+                  }),
+                  256
+                  /* UNKEYED_FRAGMENT */
+                ))
+              ])
+            ])
+          ]),
+          _: 1
+          /* STABLE */
+        }),
+        vue.createVNode(_component_uni_section, {
+          title: "合同",
+          subTitle: "公司项目的立案和员工合同的签署",
+          type: "line",
+          style: { "background-color": "#ffffff" }
+        }, {
+          default: vue.withCtx(() => [
+            vue.createElementVNode("view", { class: "Layout" }, [
+              vue.createElementVNode("view", { class: "row" }, [
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList($data.approlist4, (item) => {
+                    return vue.openBlock(), vue.createElementBlock("view", {
+                      class: "text",
+                      onClick: ($event) => $options.changePage(item.url, item.text)
+                    }, [
+                      vue.createElementVNode("view", { class: "item" }, [
+                        vue.createElementVNode("image", {
+                          src: item.src,
+                          mode: "widthFix"
+                        }, null, 8, ["src"]),
+                        vue.createElementVNode(
+                          "text",
+                          null,
+                          vue.toDisplayString(item.text),
+                          1
+                          /* TEXT */
+                        )
+                      ])
+                    ], 8, ["onClick"]);
+                  }),
+                  256
+                  /* UNKEYED_FRAGMENT */
+                ))
+              ])
+            ])
+          ]),
+          _: 1
+          /* STABLE */
+        })
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesReviewReview = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__file", "D:/HB/UOApp/pages/review/review.vue"]]);
   const _sfc_main$3 = {
     name: "UniIndexedList",
     emits: ["itemClick"],
@@ -4823,7 +8387,7 @@ ${i3}
     }
   };
   function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$2);
     return vue.openBlock(), vue.createElementBlock("view", null, [
       $props.loaded || $props.list.itemIndex < 15 ? (vue.openBlock(), vue.createElementBlock("view", {
         key: 0,
@@ -5338,7 +8902,9 @@ ${i3}
   const UniModulesUnicloudCitySelectPagesUniCityListUniCityList = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__scopeId", "data-v-d1d7c0fd"], ["__file", "D:/HB/UOApp/uni_modules/unicloud-city-select/pages/uni-city-list/uni-city-list.vue"]]);
   __definePage("pages/main/main", PagesMainMain);
   __definePage("pages/index/index", PagesIndexIndex);
+  __definePage("pages/review/reviewDetail", PagesReviewReviewDetail);
   __definePage("pages/selfMessage/punchMessage", PagesSelfMessagePunchMessage);
+  __definePage("pages/selfMessage/self", PagesSelfMessageSelf);
   __definePage("pages/selfMessage/selfMessage", PagesSelfMessageSelfMessage);
   __definePage("pages/punchIn/punchIn", PagesPunchInPunchIn);
   __definePage("pages/review/review", PagesReviewReview);
