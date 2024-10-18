@@ -28,7 +28,7 @@
 swiper {
 		height: 200px;
 		width: 100vw;
-		border: 1px solid #bcbcbc;
+		border: 1px solid #e2e2e2;
 		swiper-item{
 			width: 100%;
 			height: 100%;
@@ -50,8 +50,8 @@ swiper {
 		<swiper-item><image src="../../static/lb2.png"></image></swiper-item>
 		<swiper-item><image src="../../static/lb3.png"></image></swiper-item>
 	</swiper>
-	<view class="warp" style="margin:0px 0px 20px 0px ;">
-		<uni-section title="最近常用" type="line">
+	<view class="warp" style="margin:0px 0px 20px 0px;">
+		<uni-section title="最近常用"  type="line">
 			<view class="Layout">
 				<view class="row" >
 						<view class="text" v-for="item in list"  @click="changePage(item.URL,item.text)">
@@ -64,7 +64,6 @@ swiper {
 			</view>
 		</uni-section>
 	</view>
-	
 </template>
 
 
@@ -84,6 +83,11 @@ swiper {
 						text: '工作审批',
 						badge: '1',
 						URL:"/pages/review/review"
+					},{
+						url: '/static/main/rz.png',
+						text: '日志记录',
+						badge: '2',
+						URL:"/pages/logDay/logDay"
 					}
 				],
 				//后续用作审批流程
@@ -92,7 +96,7 @@ swiper {
 		},
 		methods: {
 			changePage(str1,str2){
-				uni.switchTab({
+				uni.reLaunch({
 					url:str1,
 					success() {
 						uni.showToast({
@@ -102,10 +106,22 @@ swiper {
 						})
 						},
 					fail() {
-						uni.showToast({
-							icon:'error',
-							title:str2+"待开发!",
-							duration:1000
+						uni.navigateTo({
+							url:str1,
+							success() {
+								uni.showToast({
+									icon:'success',
+									title:str2,
+									duration:1000
+								})
+							},
+							fail() {
+								uni.showToast({
+									icon:'error',
+									title:str2+"待开发",
+									duration:1000
+								})
+							}
 						})
 					}
 				})

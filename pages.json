@@ -62,6 +62,20 @@
 				"navigationBarTextStyle": "white",
 				"navigationBarBackgroundColor": "#ffcd05"
 			}
+		},{
+			"path": "pages/review/askForLeave",
+			"style": {
+				"navigationBarTitleText": "请假",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#ffcd05"
+			}
+		},{
+			"path": "pages/review/businessReview",
+			"style": {
+				"navigationBarTitleText": "出差",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#ffcd05"
+			}
 		}
 	,{
     "path": "uni_modules/unicloud-city-select/pages/uni-city-list/uni-city-list",
@@ -69,6 +83,41 @@
         "enablePullDownRefresh": false,
         "navigationBarTitleText": "城市选择"
     }
+},
+{
+	"path" : "pages/logDay/logDay",
+	"style" : 
+	{
+		"navigationBarTitleText" : "日志",
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#ffcd05"
+	}
+},
+{
+	"path" : "component/mineList/mine-empty/mine-empty",
+	"style" : 
+	{
+		"navigationBarTitleText" : "自定义空页面",
+		"navigationStyle": "custom"
+	}
+},
+{
+	"path" : "pages/logDay/InsertReport",
+	"style" : 
+	{
+		"navigationBarTitleText" : "新增报告",
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#ffcd05"
+	}
+},
+{
+	"path" : "pages/logDay/SelectReport",
+	"style" : 
+	{
+		"navigationBarTitleText" : "看日志",
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#ffcd05"
+	}
 }
 ],
 	"tabBar": {

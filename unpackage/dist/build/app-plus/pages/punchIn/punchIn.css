@@ -1,1 +1,1 @@
-.attendance-container{text-align:center}.attendance-title{position:absolute;bottom:0;color:red}.attendance-button{text-align:center;display:inline-flex;border-radius:100px;line-height:15vh;margin:10px;width:15vh;height:15vh;background-color:#0af;color:#fff}.abutton{background-color:#dedede}
+.attendance-container{text-align:center}.attendance-title{position:absolute;bottom:0;color:red}.attendance-button{text-align:center;display:inline-flex;border-radius:100%;margin:10px;padding:2.75rem 2.0625rem;background-color:#0af;color:#fff}.abutton{background-color:#dedede}

@@ -52,9 +52,9 @@
 			<text>提示:{{item.text}}</text>
 		</swiper-item>
 	</swiper>
-	<uni-section title="个人" subTitle="个人审批" type="line" style="background-color: #dfdfdf;">
+	<uni-section title="个人" title-font-size="40rpx" subTitle="个人审批" type="line" style="background-color: #eaeaea;">
 		<view class="Layout">
-			<view class="row" >
+			<view class="row">
 					<view class="text" v-for="item in approlist1"  @click="changePage(item.url,item.text)">
 						<view class="item">
 							<image :src="item.src" mode="widthFix"></image>
@@ -65,7 +65,7 @@
 		</view>
 	</uni-section>
 
-	<uni-section title="职位" subTitle="入职和离职" type="line" style="background-color: #ffffff;">
+	<uni-section title="职位" title-font-size="40rpx" subTitle="入职和离职" type="line" style="background-color: #ffffff;">
 		<view class="Layout">
 			<view class="row">
 					<view class="text" v-for="item in approlist2"  @click="changePage(item.url,item.text)">
@@ -77,7 +77,7 @@
 			</view>
 		</view>
 	</uni-section>
-	<uni-section title="公共" subTitle="公司工作中的需求" type="line" style="background-color: #dfdfdf;">
+	<uni-section title="公共" title-font-size="40rpx" subTitle="公司工作中的需求" type="line" style="background-color: #eaeaea;">
 		<view class="Layout">
 			<view class="row">
 					<view class="text" v-for="item in approlist3"  @click="changePage(item.url,item.text)">
@@ -89,7 +89,7 @@
 			</view>
 		</view>
 	</uni-section>
-	<uni-section title="合同" subTitle="公司项目的立案和员工合同的签署" type="line" style="background-color: #ffffff;">
+	<uni-section title="合同" title-font-size="40rpx" subTitle="公司项目的立案和员工合同的签署" type="line" style="background-color: #ffffff;">
 		<view class="Layout">
 			<view class="row">
 					<view class="text" v-for="item in approlist4"  @click="changePage(item.url,item.text)">
@@ -122,7 +122,7 @@
 				approlist1:[
 					{
 						text:"请假",
-						url:"",
+						url:"/pages/review/askForLeave",
 						src:"../../static/iconReview/qj.jpg"
 					},
 					{
@@ -132,7 +132,7 @@
 					},
 					{
 						text:"出差",
-						url:"",
+						url:"/pages/review/businessReview",
 						src:"../../static/iconReview/cc.jpg"
 					},
 					{
@@ -213,8 +213,10 @@
 				uni.navigateTo({
 					url:str1,
 					success() {
-						uni.navigateTo({
-							url:str1
+						uni.showToast({
+							icon:'success',
+							title:str2+"申请!",
+							duration:1000
 						})
 						},
 					fail() {

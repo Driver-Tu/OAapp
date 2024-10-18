@@ -57,7 +57,7 @@
 	</uni-section>
 	<view class="message">
 		<scroll-view class="row" :scroll-y="true">
-			<view class="item" v-for="item in reviewData">
+			<view  class="item" v-if="reviewData.length!==0" v-for="item in reviewData">
 				<view class="left">
 					<view>
 						<text style="font-weight: 700; font-size:50rpx">{{item.type}}</text>
@@ -66,26 +66,59 @@
 						<uni-icons type="right" size="40rpx"></uni-icons>
 					</view>
 					<view><text>简介：{{item.fromName}}</text></view>
-					<view>详细说明：
-						<scroll-view :scroll-y="true" style="height: 20vh;">
+					<view>
+						<text style="font-weight: 700;">详细说明：</text>
+						<scroll-view :scroll-y="true" style="max-height: 15vh;min-height: 5vh;">
 							<view>
 								<text>{{item.description}}</text>
 							</view>
 						</scroll-view>
 					</view>
-
-					<view><text v-if="item.status==='已完成'||item.status==='申请完成'" ref="status"
+					<view v-if="item.type==='请假'">
+						<view>请假时间：{{changeDate(item.map.leave.startTime)}}</view>
+						<view>结束时间：{{changeDate(item.map.leave.endTime)}}</view>
+					</view>
+					<view v-if="item.type==='出差'">
+						<view>地点：{{item.map.business.address}}</view>
+						<view>出差时间：{{changeDate(item.map.business.startTime)}}</view>
+						<view>结束时间：{{changeDate(item.map.business.endTime)}}</view>
+					</view>
+					<view v-if="item.type==='入职'"></view>
+					<view v-if="item.type==='离职'"></view>
+					<view v-if="item.type==='报销'"></view>
+					<view v-if="item.type==='采购'"></view>
+					<view v-if="item.type==='用车'"></view>
+					<view v-if="item.type==='加班'"></view>
+					<view v-if="item.type==='补签'"></view>
+					<view v-if="item.type==='培训'"></view>
+					<view v-if="item.type==='薪资调整'"></view>
+					<view v-if="item.type==='预算'"></view>
+					<view v-if="item.type==='招聘'"></view>
+					<view v-if="item.type==='设备维修'"></view>
+					<view v-if="item.type==='合同签署'"></view>
+					<view v-if="item.type==='项目立项'"></view>
+					<view style="display: inline-block;width: 20%;"><text v-if="item.status==='已完成'||item.status==='申请完成'" ref="status"
 							style="font-size: 40rpx; color: #00b500;">{{item.status}}</text></view>
-					<view><text v-if="item.status==='未完成'||item.status==='申请失败'" ref="status"
+					<view style="display: inline-block;"><text v-if="item.status==='未完成'||item.status==='申请失败'" ref="status"
 							style="font-size: 40rpx; color: #ff0000;">{{item.status}}</text></view>
+							<view style="display: inline-block;width: 70%; text-align: right;">
+								<uni-icons type="upload-filled" style="color: #ff0000;font-size: 20rpx;" @click="update(item)">修改</uni-icons>
+							</view>
 				</view>
+			</view>
+			<view class="null" v-if="reviewData.length===0">
+				<mineEmpty></mineEmpty>
 			</view>
 		</scroll-view>
 	</view>
 
 </template>
 <script>
+	import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 	export default {
+		components:{
+			mineEmpty
+		},
 		data() {
 			return {
 				items: ['已完成', '未完成', '申请成功', "申请失败"],
@@ -107,67 +140,83 @@
 				value: null,
 				range: [{
 						value: 0,
-						text: "请假"
+						text: "请假",
+						urlEnd:"askForLeave"
 					},
 					{
 						value: 1,
-						text: "报销"
+						text: "报销",
+						urlEnd:""
 					},
 					{
 						value: 2,
-						text: "出差"
+						text: "出差",
+						urlEnd:"businessReview"
 					},
 					{
 						value: 3,
-						text: "加班"
+						text: "加班",
+						urlEnd:""
 					},
 					{
 						value: 4,
-						text: "补签"
+						text: "补签",
+						urlEnd:""
 					},
 					{
 						value: 5,
-						text: "入职"
+						text: "入职",
+						urlEnd:""
 					},
 					{
 						value: 6,
-						text: "培训"
+						text: "培训",
+						urlEnd:""
 					},
 					{
 						value: 7,
-						text: "薪资调整"
+						text: "薪资调整",
+						urlEnd:""
 					},
 					{
 						value: 8,
-						text: "离职"
+						text: "离职",
+						urlEnd:""
 					},
 					{
 						value: 9,
-						text: "采购"
+						text: "采购",
+						urlEnd:""
 					},
 					{
 						value: 10,
-						text: "用车"
+						text: "用车",
+						urlEnd:""
 					},
 					{
 						value: 11,
-						text: "预算"
+						text: "预算",
+						urlEnd:""
 					},
 					{
 						value: 12,
-						text: "招聘"
+						text: "招聘",
+						urlEnd:""
 					},
 					{
 						value: 13,
-						text: "设备维修"
+						text: "设备维修",
+						urlEnd:""
 					},
 					{
 						value: 14,
-						text: "合同签署"
+						text: "合同签署",
+						urlEnd:""
 					},
 					{
 						value: 15,
-						text: "项目立项"
+						text: "项目立项",
+						urlEnd:""
 					},
 				],
 			};
@@ -182,16 +231,61 @@
 				}, 1000);
 			},
 		methods: {
+			changeWeb(subUrl,type){
+				uni.navigateTo({
+					url:"/pages/review/"+subUrl,
+					success() {
+						uni.showToast({
+							icon:'success',
+							title:"请修改"+type,
+							duration:1000
+						})
+					},
+					fail() {
+						uni.showToast({
+							icon:'error',
+							title:"页面错误",
+							duration:1000
+						})
+					}
+				});
+			},
+			update(item){
+				console.log(item)
+				uni.setStorageSync("formId",item.formId)
+				console.log(item.type)
+				this.range.forEach(items=>{
+					if(items.text===item.type){
+						this.changeWeb(items.urlEnd,items.text)
+					}else{
+						uni.showToast({
+							icon:'error',
+							title:"页面还未设计",
+							duration:1000
+						})
+					}
+				})
+			},
+			changeDate(e){
+				const time=new Date(e)
+				const newDate=time.getFullYear() + "年" + (time.getMonth() +1) + "月" + time.getDate() + "日" + time.getHours() + "时";
+				return newDate;
+			},
 			change(e) {
-				this.data.data.type = this.range[e].text
-				this.getReviewDatas()
+				if(this.range[e]){
+					this.data.data.type = this.range[e].text
+					this.getReviewDatas()
+				}else{
+					this.data.data.type=null
+					this.getReviewDatas()
+				}
 			},
 			chengeStatus(e) {
 				this.data.data.status = this.items[e.currentIndex]
 				this.getReviewDatas()
 			},
-			getReviewDatas() {
-				uni.request({
+			async getReviewDatas() {
+				await uni.request({
 					url: "http://192.168.0.196:8088/approvalForms/getSelfApprovalForms",
 					method: 'POST',
 					data: this.data,
@@ -214,7 +308,8 @@
 									"type": record.type,
 									"description": record.description,
 									"departmentName": record.departmentName,
-									"userName": record.userName
+									"userName": record.userName,
+									"map":record.map
 								};
 							}
 						});

@@ -1,6 +1,7 @@
 <style lang="scss">
 .userLayout{
-	background-color: #d0d0d0;
+	background-color: #ececec;
+	width: 100vw;
 	.userInfo{
 		display: flex;
 		justify-content: center;
@@ -116,7 +117,7 @@ export default{
 				},{
 					type:"cloud-upload-filled",
 					text:"个人日志",
-					url:"",
+					url:"/pages/logDay/logDay",
 					right:"right"
 				},{
 					type:"calendar",
