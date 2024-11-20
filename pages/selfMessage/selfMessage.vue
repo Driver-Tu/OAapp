@@ -68,7 +68,7 @@
 	<view class="userLayout">
 		<view class="userInfo">
 			<view class="avatar">
-				<image class="image" src="../../static/selfImage/self.png"></image>
+				<image class="image" :src="userMessage.avtor"></image>
 			</view>
 			<view class="empNum">{{userMessage.empNum}}</view>
 			<view class="telephone">{{userMessage.userName}}</view>
@@ -159,14 +159,39 @@ export default{
 				telephone:null,
 				email:null,
 				status:null,
-				ctTime:null
+				ctTime:null,
+				avtor:null
 			},
 		}
 	},
 	onShow() {
-		this.getSelfMessage()
+		this.isLogin()
 	},
 	methods:{
+		isLogin(){
+			uni.request({
+				url:"http://192.168.0.196:8088/user/isLogin",
+				header:{
+					'satoken':uni.getStorageSync("satoken")
+				},
+				success:(res)=> {
+					if(res.data.code==="200"){
+						this.getSelfMessage()
+					}else{
+						uni.showModal({
+							content:"登录已失效",
+							title:"提示",
+							success() {
+								uni.redirectTo({
+									url:'/pages/index/index'
+								})
+							}
+						})
+						
+					}
+				}
+			})
+		},
 		changePage(str1,str2){
 			uni.navigateTo({
 				url:str1,
@@ -194,7 +219,6 @@ export default{
 										duration:1000,
 										mask:true,
 									})
-									console.log(uni.getStorageSync("satoken"))
 								}
 							},
 							fail:(error)=>{
@@ -202,7 +226,7 @@ export default{
 								uni.showToast({
 									title:"页面错误!!!",
 									icon:'error',
-									duration:5000,
+									duration:1000,
 									mask:true,
 								})
 							}
@@ -238,7 +262,6 @@ export default{
 						"satoken":uni.getStorageSync("satoken")
 					},
 					success:(res)=>{
-					console.log(res)
 					if(res.data.code==="200"){
 					this.userMessage.userName=res.data.data.userName
 					this.userMessage.departmentName=res.data.data.departmentName
@@ -247,6 +270,7 @@ export default{
 					this.userMessage.status=res.data.data.status
 					this.userMessage.empNum=res.data.data.empNum
 					var date =new Date(res.data.data.ctTime)
+					this.userMessage.avtor=res.data.data.userImage
 					this.userMessage.ctTime=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()
 					}else{
 						uni.showToast({

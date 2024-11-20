@@ -9,16 +9,20 @@ const props = defineProps({
 const tempUrl = ref(null);
 
 onBeforeMount(async () => {
-  const response = await uni.request({
+ tempUrl.value = await uni.request({
   	url:"http://localhost:8088/report/file/getData?objectName="+props.src,
 	method:"GET",
 	headers: {
 	  satoken: props.token,
 	},
-	responseType:"blob"
+	responseType:"blob",
+	success: (res) => {
+		tempUrl.value=res.data
+	},
+	fail: (error) => {
+	}
   });
   // 通过 axios 请求获取到的图片数据的 Blob 转换为一个临时的 URL
-  tempUrl.value = URL.createObjectURL(response.data);
 });
 </script>
 

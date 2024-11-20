@@ -6,7 +6,7 @@
 			{
 				"navigationBarTitleText" : "首页",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#ffcd05"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		},{
 			"path": "pages/index/index",
@@ -19,7 +19,7 @@
 			"style": {
 				"navigationBarTitleText": "审批数据",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#ffcd05",
+				"navigationBarBackgroundColor": "#00aaff",
 				"enablePullDownRefresh": true
 			}
 		},{
@@ -27,7 +27,7 @@
 			"style": {
 				"navigationBarTitleText": "个人打卡信息",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#ffcd05"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		},{
 			"path": "pages/selfMessage/self",
@@ -42,7 +42,16 @@
 			{
 				"navigationBarTitleText" : "个人中心",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#ffcd05"
+				"navigationBarBackgroundColor": "#00aaff"
+			}
+		},
+		{
+			"path" : "pages/selfMessage/updateSelf/updateSelf",
+			"style" : 
+			{
+				"navigationBarTitleText" : "修改个人信息",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		},
 		{
@@ -51,7 +60,7 @@
 			{
 				"navigationBarTitleText" : "考勤打卡",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#ffcd05"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		},
 		{
@@ -60,21 +69,21 @@
 			{
 				"navigationBarTitleText" : "审批",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#ffcd05"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		},{
 			"path": "pages/review/askForLeave",
 			"style": {
 				"navigationBarTitleText": "请假",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#ffcd05"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		},{
 			"path": "pages/review/businessReview",
 			"style": {
 				"navigationBarTitleText": "出差",
 				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#ffcd05"
+				"navigationBarBackgroundColor": "#00aaff"
 			}
 		}
 	,{
@@ -90,7 +99,7 @@
 	{
 		"navigationBarTitleText" : "日志",
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#ffcd05"
+		"navigationBarBackgroundColor": "#00aaff"
 	}
 },
 {
@@ -107,7 +116,7 @@
 	{
 		"navigationBarTitleText" : "新增报告",
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#ffcd05"
+		"navigationBarBackgroundColor": "#00aaff"
 	}
 },
 {
@@ -115,15 +124,31 @@
 	"style" : 
 	{
 		"navigationBarTitleText" : "看日志",
+		"enablePullDownRefresh": true,
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#ffcd05"
+		"navigationBarBackgroundColor": "#00aaff"
+	}
+},{
+	"path" : "pages/logDay/reportDetail",
+	"style" : 
+	{
+		"navigationBarTitleText" : "日志详情",
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#00aaff"
+	}
+},
+{
+	"path" : "pages/mailToUserByQQ/mailToUserByQQ",
+	"style" : 
+	{
+		"navigationBarTitleText" : ""
 	}
 }
 ],
 	"tabBar": {
 			"color": "white",
 			"selectedColor": "#000000",
-			"backgroundColor": "#ffcd05",// 底部 tabBar 背景色
+			"backgroundColor": "#00aaff",// 底部 tabBar 背景色
 			"borderStyle": "black",
 			"list": [{
 					"pagePath": "pages/main/main",
@@ -154,8 +179,8 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#319549",
-		"backgroundColor": "#319549"
+		"navigationBarBackgroundColor": "#00aaff",
+		"backgroundColor": "#00aaff"
 	},
 	"uniIdRouter": {}
 }

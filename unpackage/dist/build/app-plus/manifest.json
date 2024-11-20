@@ -22,6 +22,7 @@
     },
     "Bluetooth": {},
     "Camera": {},
+    "VideoPlayer": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -49,11 +50,12 @@
       "splashscreen": {
         "androidStyle": "default",
         "android": {
-          "hdpi": "C:/Users/admin/Desktop/logo.png",
-          "xxhdpi": "C:/Users/admin/Desktop/logo.png",
-          "xhdpi": "C:/Users/admin/Desktop/logo.png"
+          "hdpi": "static/main/jm.png",
+          "xxhdpi": "static/main/jm.png",
+          "xhdpi": "static/main/jm.png"
         },
-        "useOriginalMsgbox": false
+        "useOriginalMsgbox": false,
+        "iosStyle": "common"
       },
       "icons": {
         "android": {

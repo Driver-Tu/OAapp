@@ -894,7 +894,7 @@
 /* 文章场景相关 */
 .layout {
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
 }
 .layout .layText {
   font-size: 1.125rem;
@@ -923,6 +923,6 @@
   margin-left: 1.875rem;
 }
 .day {
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: bold;
 }

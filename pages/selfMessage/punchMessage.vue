@@ -189,7 +189,7 @@
 				this.timeSelectNow = e.fulldate
 				this.finalResult = null
 				uni.request({
-					url: "http://localhost:8088/attendance/getSelfAttendance",
+					url: "http://192.168.0.196:8088/attendance/getSelfAttendance",
 					data: this.data,
 					method: 'POST',
 					header: {
@@ -248,7 +248,7 @@
 			},
 			getData() {
 				uni.request({
-					url: "http://localhost:8088/attendance/getSelfAttendance",
+					url: "http://192.168.0.196:8088/attendance/getSelfAttendance",
 					data: this.data,
 					method: 'POST',
 					header: {

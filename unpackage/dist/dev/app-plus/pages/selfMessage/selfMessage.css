@@ -556,7 +556,8 @@
 /* 透明度 */
 /* 文章场景相关 */
 .userLayout {
-  background-color: #d0d0d0;
+  background-color: #ececec;
+  width: 100vw;
 }
 .userLayout .userInfo {
   display: flex;

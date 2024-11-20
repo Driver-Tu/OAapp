@@ -20,7 +20,10 @@
         "modules" : {
             "Maps" : {},
             "Bluetooth" : {},
-            "Camera" : {}
+            "Camera" : {},
+            "VideoPlayer" : {},
+            "Push" : {},
+            "Barcode" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -58,16 +61,32 @@
                         "appkey_ios" : "5aacf71ef02689821a51b9866e2151c2",
                         "appkey_android" : "9f6337687d2bd4364b96a8353592b4cb"
                     }
+                },
+                "push" : {
+                    "unipush" : {
+                        "version" : "2",
+                        "offline" : false,
+                        "icons" : {
+                            "small" : {
+                                "ldpi" : "static/logo.png",
+                                "mdpi" : "static/logo.png",
+                                "hdpi" : "static/logo.png",
+                                "xhdpi" : "static/logo.png",
+                                "xxhdpi" : "static/logo.png"
+                            }
+                        }
+                    }
                 }
             },
             "splashscreen" : {
                 "androidStyle" : "default",
                 "android" : {
-                    "hdpi" : "C:/Users/admin/Desktop/logo.png",
-                    "xxhdpi" : "C:/Users/admin/Desktop/logo.png",
-                    "xhdpi" : "C:/Users/admin/Desktop/logo.png"
+                    "hdpi" : "static/main/jm.png",
+                    "xxhdpi" : "static/main/jm.png",
+                    "xhdpi" : "static/main/jm.png"
                 },
-                "useOriginalMsgbox" : false
+                "useOriginalMsgbox" : false,
+                "iosStyle" : "common"
             },
             "icons" : {
                 "android" : {

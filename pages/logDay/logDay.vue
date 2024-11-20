@@ -40,6 +40,7 @@
 		data() {
 			return {
 				items: [{
+					num:0,
 					title: "日报",
 					subtitle: "按照需求编写日志",
 					extra: "日志记录",
@@ -47,6 +48,7 @@
 					URL:"/pages/logDay/InsertReport",
 					url:"/pages/logDay/SelectReport"
 				}, {
+					num:1,
 					title: "周报",
 					subtitle: "按照需求编写周志",
 					extra: "周志记录",
@@ -54,6 +56,7 @@
 					URL:"/pages/logDay/InsertReport",
 					url:"/pages/logDay/SelectReport"
 				}, {
+					num:2,
 					title: "月报",
 					subtitle: "按照需求编写月报",
 					extra: "月报记录",
@@ -69,7 +72,6 @@
 					url:item.URL,
 					success: (res) => {
 						//写入类型携带
-						uni.setStorageSync("type",item.title)
 						uni.showToast({
 							duration:1000,
 							title:"新增"+item.title,
@@ -87,10 +89,9 @@
 			},
 			changeSelectPage(item){
 				uni.navigateTo({
-					url:item.url,
+					url:item.url+"?item="+encodeURIComponent(JSON.stringify(item)),
 					success: (res) => {
 						//写入类型携带
-						uni.setStorageSync("types",item.title)
 						uni.showToast({
 							duration:1000,
 							title:"查看"+item.title,

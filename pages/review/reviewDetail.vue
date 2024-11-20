@@ -62,47 +62,24 @@
 					<view>
 						<text style="font-weight: 700; font-size:50rpx">{{item.type}}</text>
 						<text
-							style="width: 300rpx;margin-left:50rpx ;text-align: right;font-size: 26rpx; color: #9e9e9e;">{{item.applicationDate}}</text>
-						<uni-icons type="right" size="40rpx"></uni-icons>
+							style="width: 300rpx;margin-left:50rpx ;text-align: right;font-size: 26rpx; color: #9e9e9e;">{{item.applicationDate}}
+							</text>
 					</view>
 					<view><text>简介：{{item.fromName}}</text></view>
 					<view>
 						<text style="font-weight: 700;">详细说明：</text>
-						<scroll-view :scroll-y="true" style="max-height: 15vh;min-height: 5vh;">
+						<scroll-view :scroll-y="true" style="max-height: 5vh;min-height: 2vh;">
 							<view>
 								<text>{{item.description}}</text>
 							</view>
 						</scroll-view>
 					</view>
-					<view v-if="item.type==='请假'">
-						<view>请假时间：{{changeDate(item.map.leave.startTime)}}</view>
-						<view>结束时间：{{changeDate(item.map.leave.endTime)}}</view>
-					</view>
-					<view v-if="item.type==='出差'">
-						<view>地点：{{item.map.business.address}}</view>
-						<view>出差时间：{{changeDate(item.map.business.startTime)}}</view>
-						<view>结束时间：{{changeDate(item.map.business.endTime)}}</view>
-					</view>
-					<view v-if="item.type==='入职'"></view>
-					<view v-if="item.type==='离职'"></view>
-					<view v-if="item.type==='报销'"></view>
-					<view v-if="item.type==='采购'"></view>
-					<view v-if="item.type==='用车'"></view>
-					<view v-if="item.type==='加班'"></view>
-					<view v-if="item.type==='补签'"></view>
-					<view v-if="item.type==='培训'"></view>
-					<view v-if="item.type==='薪资调整'"></view>
-					<view v-if="item.type==='预算'"></view>
-					<view v-if="item.type==='招聘'"></view>
-					<view v-if="item.type==='设备维修'"></view>
-					<view v-if="item.type==='合同签署'"></view>
-					<view v-if="item.type==='项目立项'"></view>
-					<view style="display: inline-block;width: 20%;"><text v-if="item.status==='已完成'||item.status==='申请完成'" ref="status"
+					<view style="display: inline-block;"><text v-if="item.status==='已完成'||item.status==='申请完成'" ref="status"
 							style="font-size: 40rpx; color: #00b500;">{{item.status}}</text></view>
 					<view style="display: inline-block;"><text v-if="item.status==='未完成'||item.status==='申请失败'" ref="status"
 							style="font-size: 40rpx; color: #ff0000;">{{item.status}}</text></view>
 							<view style="display: inline-block;width: 70%; text-align: right;">
-								<uni-icons type="upload-filled" style="color: #ff0000;font-size: 20rpx;" @click="update(item)">修改</uni-icons>
+								<uni-icons type="more-filled" style="color: #00aaff;font-size: 20rpx;" @click="update(item)">更多</uni-icons>
 							</view>
 				</view>
 			</view>
@@ -129,12 +106,8 @@
 					pageNum: 1,
 					pageSize: 30,
 					data: {
-						type: "",
-						status: ""
-					},
-					params: {
-						userName: "",
-						departmentName: ""
+						type: null,
+						status: "已完成"
 					}
 				},
 				value: null,
@@ -253,7 +226,6 @@
 			update(item){
 				console.log(item)
 				uni.setStorageSync("formId",item.formId)
-				console.log(item.type)
 				this.range.forEach(items=>{
 					if(items.text===item.type){
 						this.changeWeb(items.urlEnd,items.text)
@@ -274,14 +246,17 @@
 			change(e) {
 				if(this.range[e]){
 					this.data.data.type = this.range[e].text
+					console.log(this.data)
 					this.getReviewDatas()
 				}else{
 					this.data.data.type=null
+					console.log(this.data)
 					this.getReviewDatas()
 				}
 			},
 			chengeStatus(e) {
 				this.data.data.status = this.items[e.currentIndex]
+				console.log(this.data)
 				this.getReviewDatas()
 			},
 			async getReviewDatas() {
@@ -293,6 +268,7 @@
 						"satoken": uni.getStorageSync("satoken")
 					},
 					success: (res) => {
+						console.log(res)
 						this.reviewData = res.data.data.records.map(record => {
 							const time = new Date(record.applicationDate)
 							if (record) { // 确保record存在

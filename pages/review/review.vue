@@ -46,12 +46,7 @@
 	}
 </style>
 <template>
-	<swiper  autoplay="true" interval="2000" duration="500" circular="true" vertical="true">
-		<swiper-item v-for="item in list">
-			<uni-icons type="chatboxes" size="30"></uni-icons>
-			<text>提示:{{item.text}}</text>
-		</swiper-item>
-	</swiper>
+	<uni-notice-bar show-icon scrollable text="1、确定审批类型! 2、提交审批表单! 3、静候审批结果! 祝大家工作顺利!" />
 	<uni-section title="个人" title-font-size="40rpx" subTitle="个人审批" type="line" style="background-color: #eaeaea;">
 		<view class="Layout">
 			<view class="row">
@@ -108,17 +103,7 @@
 		components: {},
 		data() {
 			return {
-				list:[
-					{
-					text:"1、确定审批类型!"	
-					},{
-					text:"2、查看提交结果!"
-					},{
-					text:"3、静候审批结束!"
-					},{
-					text:"祝大家工作顺利!"
-					}
-				],
+				
 				approlist1:[
 					{
 						text:"请假",
@@ -208,7 +193,34 @@
 				
 			}
 		},
+		onShow() {
+			this.isLogin()
+		},
 		methods: {
+			isLogin(){
+				uni.request({
+					url:"http://192.168.0.196:8088/user/isLogin",
+					header:{
+						'satoken':uni.getStorageSync("satoken")
+					},
+					success:(res)=> {
+						if(res.data.code==="200"){
+							
+						}else{
+							uni.showModal({
+								content:"登录已失效",
+								title:"提示",
+								success() {
+									uni.redirectTo({
+										url:'/pages/index/index'
+									})
+								}
+							})
+							
+						}
+					}
+				})
+			},
 			changePage(str1,str2){
 				uni.navigateTo({
 					url:str1,

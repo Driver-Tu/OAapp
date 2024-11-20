@@ -41,7 +41,7 @@ const loginAll=reactive({
 const data=ref("");
 const login=()=>{
 	uni.request({
-		url:"http://192.168.0.196:8088/user/login?empNum="+loginAll.empNum+"&password="+loginAll.password,
+		url:"http://192.168.0.196:8088/user/login?empNum="+loginAll.empNum+"&password="+loginAll.password+"&device=app",
 		method:'POST',
 		success: (res) => {
 			if(res.data.code==="200"){
@@ -59,11 +59,9 @@ const login=()=>{
 					url:"/pages/main/main",
 				})
 			}else{
-				uni.showToast({
-					title:res.data.msg,
-					icon:'error',
-					duration:1000,
-					mask:true,
+				uni.showModal({
+					title:"警告",
+					content:res.data.msg
 				})
 			}
 		},
@@ -113,6 +111,6 @@ const login=()=>{
 	  height: 100%;
 	  margin: 0;
 	  padding: 0;
-	  background-color: #dadcd1;
+	  background-color: #fdfff3;
 	}
 </style>

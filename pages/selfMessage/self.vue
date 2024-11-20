@@ -54,29 +54,24 @@
 				}
 			   }
 			   .message{
+				   
 				   padding: 10rpx;
 				   view{
 					   padding: 3rpx;
 				   }
 				   .left{
+					   margin:0px 20rpx;
 					   font-size: 30rpx;
+					   font-weight: 600;
 				   }
 				   .right2{
-					   
-					   color: #959595;
+					   margin:10rpx 40rpx;
+					   color: #636363;
 					   font-size: 21rpx;
 				   }
 			   }
 		   }
 		}
-	}
-	.uni-drawer{
-	text{
-		padding: 20rpx;
-	}	
-	input{
-		padding: 20rpx;
-	}
 	}
 </style>
 
@@ -94,20 +89,20 @@
 	</view>
 	<view class="layout">
 		<view class="row" >
-			<view class="item">
+			<view class="item" style="background-color: #fffabc;">
 				<view class="left">
 					<text style="font-weight: bold;">{{userMessage.userName}} {{userMessage.sex}}</text>
 					<text style="font-size: 28rpx; color: #00b959;">{{userMessage.roleName}}</text>
 					<text style="font-size: 20rpx; color: #b5b5b5;">工号:{{userMessage.empNum}}</text>
 				</view>
 				<view class="right">
-					<image src="/static/selfImage/self.png"></image>
+					<image :src="userMessage.userImage" @click="imagePreview(userMessage.userImage)"></image>
 				</view>
 			</view>
-			<view class="item">
+			<view class="item" style="background-color: #aaffff;">
 				<view class="message">
 						<view style="font-weight: bold;">基本信息</view>
-						<view style="font-size: 20rpx; color: #b5b5b5;">记录该员工基本信息</view>
+						<view style="font-size: 20rpx; color: #636363;">提示：记录该员工基本信息</view>
 					</view>
 					<view class="message">
 						<view class="left">部门名称</view>
@@ -130,30 +125,16 @@
 						<view class="right2">{{userMessage.birth}}</view>
 					</view>
 			</view>
-			<view class="item">
+			<view class="item" style="background-color: #a6ffca;">
 					<view class="message">
 							<view style="font-weight: bold;">状态</view>
-							<view style="font-size: 20rpx; color: #b5b5b5;">记录该员工状态信息</view>
+							<view style="font-size: 20rpx; color: #636363;">记录该员工状态信息</view>
 					</view>
 					<view class="message">
 						<view class="left" style="background-color: #00ff00;border: #001100 1px solid;padding: 8rpx;color: aliceblue;">{{userMessage.status}}</view>
 					</view>
 			</view>
 		</view>
-	</view>
-	<view class="uni-drawer">
-		<uni-drawer ref="showRight" mode="right" :mask-click="false">
-					<scroll-view style="height: 100%;" scroll-y="true">
-						<button @click="closeDrawer" type="primary" style="background-color: #ff0000; width: 30vw; margin:10rpx; margin-top: 50rpx;">关闭修改</button>
-						<text style="margin: 5rpx;padding: 5rpx;">修改姓名</text>
-						<input placeholder="请输入" v-model="userInfo.userName" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
-						<text style="margin: 5rpx;padding: 5rpx;">修改手机号</text>
-						<input placeholder="请输入" v-model="userInfo.telephone" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
-						<text style="margin: 5rpx;padding: 5rpx;">修改邮箱</text>
-						<input placeholder="请输入" v-model="userInfo.email" style="border-bottom: 1px solid #001100;margin: 5rpx;padding: 5rpx;"></input>
-					<button @click="updateSelfMessage" type="primary" style="background-color: #00aaff; width: 30vw; margin:10rpx;position: absolute; bottom: 0;">提交修改</button>
-					</scroll-view>
-				</uni-drawer>
 	</view>
 </template>
 
@@ -174,14 +155,10 @@
 	export default{
 		data(){
 			return{
-				userInfo:{
-					telephone:null,
-					email:null,
-					userName:null
-				},
 				userMessage:{
-					departmentName:"",
+					departmentName:null,
 					userName:null,
+					userImage:null,
 					departmentName:null,
 					empNum:null,
 					roleName:null,
@@ -195,11 +172,18 @@
 			}
 		},
 		methods:{
+			updateImage(){
+				
+			},
+			imagePreview(i) {
+				uni.previewImage({
+					urls: [i]
+				})
+			},
 			showDrawer() {
-							this.$refs.showRight.open();
-						},
-			closeDrawer() {
-							this.$refs.showRight.close();
+							uni.navigateTo({
+								url:"/pages/selfMessage/updateSelf/updateSelf"
+							});
 						},
 			changePage1(){
 				uni.switchTab({
@@ -216,7 +200,6 @@
 							"satoken":uni.getStorageSync("satoken")
 						},
 						success:(res)=>{
-						console.log(res)
 						if(res.data.code==="200"){
 						this.userMessage.userName=res.data.data.userName
 						this.userMessage.departmentName=res.data.data.departmentName
@@ -225,10 +208,13 @@
 						this.userMessage.status=res.data.data.status===1?"在线":"请假"
 						this.userMessage.empNum=res.data.data.empNum
 						this.userMessage.roleName=res.data.data.roleName
+						var currentDate=new Date();
 						var date =new Date(res.data.data.ctTime)
-						this.userMessage.ctTime=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()
+						const timeDifference=Math.abs(date-currentDate)
+						this.userMessage.ctTime=Math.ceil(timeDifference/(1000*60*60*24))+"天"
 						this.userMessage.sex=res.data.data.sex==="1"?"男":"女"
 						this.userMessage.birth=res.data.data.birth
+						this.userMessage.userImage=res.data.data.userImage
 						}else{
 							uni.showToast({
 								title:res.data.msg,
@@ -256,30 +242,7 @@
 					})
 				}
 			},
-			updateSelfMessage(){
-				if(validateInput(this.userInfo)){
-					uni.request({
-						url:"http://192.168.0.196:8088/user/updateUserInfo",
-						method:'POST',
-						header:{
-							"satoken":uni.getStorageSync("satoken")
-						},
-						data:this.userInfo,
-						success:(res)=> {
-							uni.showToast({
-								icon:'success',
-								title:res.data.msg,
-								duration:1000
-							})
-						},
-						fail: (error) => {
-							console.log(error)
-						}
-					})
-				}else{
-					validateInput(this.userInfo)
-				}
-			},
+			
 		},
 		onShow() {
 			this.getSelfMessage()

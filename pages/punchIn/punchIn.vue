@@ -1,41 +1,43 @@
 <style>
 	.attendance-container{
 		text-align: center;
-		
-	}
-	.attendance-title{
-		position: absolute;
-		bottom: 0;
-		color: #ff0000;
 	}
 	.attendance-button{
 		text-align: center;
 		display: inline-flex;
 		border-radius:100%;
 		margin: 10px;
-		
-		padding:88rpx 66rpx;
+		padding:66rpx 44rpx;
 		background-color: #00aaff;
 		color: #ffffff;
 	}
 	.abutton{
 		background-color: #dedede;
+		margin-bottom: 30rpx;
+		width: 80%;
 	}
 </style>
 <template>
-	<view>
-		<button @click="getAddress" class="abutton" :disabled="outCheckIn">定位{{address}}</button>
-		</view>
-		<view class="attendance-container">
-		  <view>
-			  <view class="attendance-title">提示:上班打卡时间为早上九点之前,下班打卡时间为下午五点半之后</view>
-			  <view class="current-time" id="currentTimeDisplay" style="color: #48c5bd;">{{currentTimeDisplay}}</view>
-		  </view>
-		  <view class="attendance-clock-in-out">
-		    <button class="attendance-button"  :disabled="clockInButton" @click="show()" >打卡上班</button>
-		    <button class="attendance-button"  :disabled="clockOutButton" @click="show()">打卡下班</button>
-		  </view>
-		</view>
+	
+	<uni-section title="个人打卡" title-font-size="50rpx"  title-color="#00aaff" sub-title="个人打卡界面,如无法打卡,请查看公告" sub-title-color="#ff0000"> 
+		<view class="attendance-title">
+			<uni-notice-bar show-icon scrollable text="提示: 1.上班打卡时间为早上九点之前,下班打卡时间为下午五点半之后。2.打卡定位之前,必须连接公司打卡蓝牙机才能够进行定位。3.如果还是无法打卡,请保留相关信息,作为后期补签证据。"/>
+			</view>
+		<uni-card>
+			<view>
+				<button @click="getAddress" class="abutton" :disabled="outCheckIn">点击选择打卡位置{{address}}</button>
+				</view>
+				<view class="attendance-container">
+				  <view>
+					  <view class="current-time" id="currentTimeDisplay" style="color: #48c5bd;">{{currentTimeDisplay}}</view>
+				  </view>
+				  <view class="attendance-clock-in-out">
+				    <button class="attendance-button"  :disabled="clockInButton" @click="show()" >打卡上班</button>
+				    <button class="attendance-button"  :disabled="clockOutButton" @click="show()">打卡下班</button>
+				  </view>
+				</view>
+		</uni-card>
+	</uni-section>
 </template>
 <script>
 export default{
