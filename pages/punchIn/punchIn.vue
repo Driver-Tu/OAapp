@@ -71,7 +71,6 @@ export default{
 				//选择地点
 				uni.chooseLocation({
 					success: (res2) => {
-						console.log(res2)
 								if(Math.abs(res1.longitude-res2.longitude)<0.0002&&Math.abs(res1.latitude-res2.latitude)<0.0002){
 									this.address=res2.name
 									uni.showToast({
@@ -120,7 +119,6 @@ export default{
 					// 开始扫描蓝牙设备
 					uni.startBluetoothDevicesDiscovery({
 					  success: (res) => {
-						console.log('开始扫描蓝牙设备'+res);
 					  // 监听找到蓝牙设备事件
 					  uni.onBluetoothDeviceFound(devices => {
 					    this.deviceIds.map(deviceId=>{
@@ -128,7 +126,6 @@ export default{
 							// 找到设备后停止扫描
 								uni.stopBluetoothDevicesDiscovery({
 								  success: () => {
-									  console.log('蓝牙扫描已停止,已经扫到蓝牙:'+devices.devices[0].deviceId)
 									  uni.showToast({
 									  	title:"成功连接蓝牙",
 										icon:'success',

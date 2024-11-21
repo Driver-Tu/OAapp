@@ -23,6 +23,8 @@
     "Bluetooth": {},
     "Camera": {},
     "VideoPlayer": {},
+    "Push": {},
+    "Barcode": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -121,6 +123,21 @@
             "appkey_android": "9f6337687d2bd4364b96a8353592b4cb"
           }
         },
+        "push": {
+          "unipush": {
+            "version": "2",
+            "offline": false,
+            "icons": {
+              "small": {
+                "ldpi": "static/logo.png",
+                "mdpi": "static/logo.png",
+                "hdpi": "static/logo.png",
+                "xhdpi": "static/logo.png",
+                "xxhdpi": "static/logo.png"
+              }
+            }
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -131,14 +148,14 @@
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "light",
-      "background": "#319549"
+      "background": "#00aaff"
     },
     "uniStatistics": {
       "enable": false
     },
     "allowsInlineMediaPlayback": true,
     "safearea": {
-      "background": "#ffcd05",
+      "background": "#00aaff",
       "bottom": {
         "offset": "auto"
       }
@@ -167,7 +184,7 @@
       "iconWidth": "24px",
       "spacing": "3px",
       "height": "50px",
-      "backgroundColor": "#ffcd05",
+      "backgroundColor": "#00aaff",
       "list": [
         {
           "pagePath": "pages/main/main",
