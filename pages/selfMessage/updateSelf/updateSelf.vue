@@ -57,7 +57,7 @@
 	    // QQ邮箱正则表达式
 	    const qqEmailRegex = /^[1-9]\d{4,11}@qq\.com$/;
 		if(inputValue.telephone===null&&inputValue.email===null&&inputValue.userName===null){
-			return "请输入要修改的数据"
+			return "请输入要修改的数据s"
 		}
 			// 判断是否为手机号
 		if(!phoneRegex.test(inputValue.telephone)&&inputValue.telephone!==null){
