@@ -41,7 +41,7 @@
 </style>
 
 <template>
-	<uni-section title="打卡情况" sub-title="个人的打卡信息" type="line" style="background-color:#d0d0d0;"></uni-section>
+	<uni-section title="打卡情况" sub-title="个人的打卡信息" title-font-size="50rpx" type="line" sub-title-color="#757575" style="background-color:#98d6ff;"></uni-section>
 	<view>
 		<!-- 插入模式 -->
 		<uni-calendar class="date" :selected="info.selected" :showMonth="true" :lunar="true"

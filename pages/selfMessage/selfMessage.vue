@@ -1,155 +1,284 @@
 <style lang="scss">
-.userLayout{
-	background-color: #ececec;
-	width: 100vw;
-	.userInfo{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		padding: 50rpx 0;
-		.avatar{
-			width: 160rpx;
-			height: 160rpx;
-			border-radius: 50%;
-			overflow: hidden;
-			image{
-				width: 100%;
-				height: 100%;
-			}
-		}
-		.empNum{
-			font-size: 44rpx;
-			color: #333;
-			padding: 20rpx 0 5rpx;
-		}
-		.telephone{
-			font-size: 28rpx;
-			color: #aaa;
+body {
+  background-color: #f5f5f5;
+  margin: 0; // 确保页面没有默认边距
+  padding: 0; // 确保页面没有默认内边距
+}
+
+.card {
+  background-color: #fff; // 卡片背景颜色
+  border-radius: 10px; // 卡片圆角
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // 卡片阴影
+  margin: 10px;
+  padding: 20px; // 卡片内边距
+  display: flex; // 使用flex布局
+  flex-direction: column; // 垂直排列子元素
+  margin-top: 120rpx;
+}
+
+.userLayout {
+  display: flex;
+  align-items: center;
+  .avatar {
+    flex-shrink: 0; // 防止头像在小屏幕上被压缩
+    margin-right: 20px;
+
+    .image {
+      width: 130rpx; // 调整头像大小
+      height: 130rpx; // 调整头像大小
+      border-radius: 20rpx; // 圆形头像
+      border: 1px solid #aaa;
+      transition: transform 0.3s ease; // 平滑过渡效果
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // 添加阴影
+
+      &:hover {
+        transform: scale(1.05); // 鼠标悬停时放大
+      }
+    }
+  }
+
+  .userInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .userName {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .updateButton {
+    text-align: right;
+    cursor: pointer; // 鼠标悬停时显示指针样式
+    color: #bfbfbf;
+    margin-left: auto; // 将编辑按钮推向末尾
+
+    .uni-icons {
+      padding: 5rpx;
+      border: #e6e6e6 solid 1rpx;
+      border-radius: 4rpx; // 可以添加一些圆角来使按钮看起来更现代
+      transition: background-color 0.3s, transform 0.3s; // 过渡效果，用于背景色和变换
+
+      &:hover {
+        background-color: #eaeaea; // 鼠标悬停时的背景色
+      }
+
+      &:active {
+        background-color: #dcdcdc; // 鼠标点击时的背景色
+        transform: scale(0.95); // 点击时的缩放效果，使按钮有按下的感觉
+      }
+    }
+  }
+}
+
+.position {
+	 border-bottom: #e6e6e6 solid 1rpx;
+	 // 与userLayout的间距
+	 margin-top: 10rpx;
+     text-align: left; // 如果需要的话，可以居中显示position
+     padding: 10rpx;
+	 color: #959595;
+}
+.selfCard{
+	.uni-icons{
+		&:active{
+			background-color: #dcdcdc;
 		}
 	}
 }
-.section{
-	width: 690rpx;
-	margin: 50rpx auto;
-	border: 1px solid #aaa;
-	border-radius: 10rpx;
-	box-shadow: 0 0 30rpx rgb(0, 0,0,0.05);
-	.list{
-		.row{
-			display: flex;
-			justify-content: space-between;
-			padding: 0 30rpx;
-			height: 100rpx;
-			border-bottom:1px solid #d0d0d0;
-			&:last-child{border-bottom: 0;}
-			.left{
-				display: flex;
-				align-items: center;
-				.text{
-					padding-left:20rpx;
-					color: #666;
-				}
-			}
-			.right{
-				display: flex;
-				align-items: center;
-				.text{
-					font-size: 28rpx;
-					color: #aaa;
-				}
-			}
-		}
+.row {
+  display: flex;
+  flex-direction: column; // 子元素垂直排列
+  background-color: #fff; // 背景颜色
+  border-radius: 5rpx; // 圆角边框
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // 阴影效果
+  padding: 5px 0; // 根据需要添加内边距
+  margin: 20rpx;
+  .item {
+    display: flex;
+    align-items: center; // 子元素垂直居中
+    padding: 10px 20px; // 项目内边距
+    border-bottom: 1px solid #f0f0f0; // 项目间隔线
+	&:hover {
+	  background-color: #d6d6d6; // 鼠标悬停时的背景色
 	}
+	
+	&:active {
+	  background-color: #dcdcdc; // 鼠标点击时的背景色
+	  transform: scale(0.95); // 点击时的缩放效果，使按钮有按下的感觉
+	}
+    &:last-child {
+      border-bottom: none; // 最后一个项目不需要底部边框
+    }
+	
+    .left {
+      display: flex;
+      align-items: center; // 图片和文字垂直居中
+      margin-right: 20px; // 图片和右侧内容之间的间距
+
+      image {
+		border-radius: 10rpx;
+        width: 30px; // 图标大小
+        height: 30px; // 图标大小
+        margin-right: 10px; // 图片和文字之间的间距
+      }
+
+      text {
+        font-size: 16px; // 文本大小
+        color: #333; // 文本颜色
+      }
+    }
+
+    .right {
+      flex-grow: 1;
+      text-align: right; // 右侧内容右对齐
+      color: #666; // 右侧文本颜色
+      font-size: 14px; // 右侧文本大小
+    }
+  }
+}
+.review {
+	margin: 20rpx;
+  display: flex;
+  flex-wrap: wrap; // 允许子元素在需要时换行
+  justify-content: space-between; // 子元素在主轴上均匀分布
+  background-color: #fff; // 背景颜色
+  border-radius: 10px; // 圆角边框
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // 阴影效果
+  padding: 20px; // 内边距
+  color: #333; // 文本颜色
+
+  uni-section {
+    width: 100%; // 标题占满整行
+    margin-bottom: 15px; // 标题与其他内容的间距
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column; // 子元素垂直排列
+    align-items: center; // 子元素垂直居中
+    padding: 10px; // 项目内边距
+    border-radius: 5px; // 圆角边框
+    background-color: #e0f7fa; // 默认背景颜色
+    width: calc(25% - 10px); // 每个项目占据的宽度，减去间距
+
+    &:nth-child(1) {
+      background-color: #e0f7fa; // 第一个项目浅蓝色
+    }
+    &:nth-child(2) {
+      background-color: #fff3e0; // 第二个项目浅橙色
+    }
+    &:nth-child(3) {
+      background-color: #e8f5e9; // 第三个项目浅绿色
+    }
+
+    text {
+      font-size: 16px; // 子元素字体大小
+      &:first-child {
+        margin-bottom: 5px; // 第一个text和第二个text之间的间距
+        font-weight: bold; // 加粗第一个text
+      }
+      &:last-child {
+        font-size: 14px; // 第二个text的字体大小
+        color: #666; // 第二个text的颜色
+      }
+    }
+  }
 }
 </style>
 
 <template>
-	<view class="userLayout">
-		<view class="userInfo">
-			<view class="avatar">
-				<image class="image" :src="userMessage.avtor"></image>
-			</view>
-			<view class="empNum">{{userMessage.empNum}}</view>
-			<view class="telephone">{{userMessage.userName}}</view>
+  <view class="card">
+    <view class="userLayout">
+      <view class="avatar">
+        <image class="image" v-if="userMessage.avatar!==null" :src="userMessage.avatar" @click="imagePreview(userMessage.avatar)"></image>
+        <image class="image" v-else src="../../static/selfImage/self.png" @click="imagePreview(userMessage.avatar)"></image>
+      </view>
+      <view class="userInfo">
+        <view class="userName">
+		{{ userMessage.userName }}
 		</view>
+      </view>
+      <view class="updateButton">
+        <uni-icons type="compose" size="15px" @click="changeSelfUpdatePage" style="color:#959595;border-radius: 10rpx;">编辑资料</uni-icons>
+      </view>
+    </view>
+    <!-- position元素在userLayout下方，单独占据一行 -->
+    <view class="position">
+		<text style="font-size: 22rpx;color: #000000;font-weight: bold;margin-right: 20rpx;"></text><uni-icons type="auth-filled" size="22rpx" color="#00aaff">{{ position }}</uni-icons>
 	</view>
-	<view class="section">
-		<view class="list">
-			<view class="row" v-for="item in list1" @click="changePage(item.url,item.text)">
-				<view class="left">
-					<uni-icons :type="item.type" size="20" ></uni-icons>
-					<view class="text">{{item.text}}</view>
-				</view>
-				<view class="right">
-					<view class="text"></view>
-					<uni-icons :type="item.right" size="20"></uni-icons>
-				</view>
-			</view>
-		</view>
+	<view class="selfCard" style="width: 78vw; text-align: right;padding: 20rpx;">
+		<uni-icons type="staff" size="26rpx" style="color:#959595;border: #959595 solid 1rpx;padding: 4px;border-radius: 10rpx;" @click="changeSelfPage">个人名片</uni-icons>
 	</view>
-	<view class="section">
-		<view class="list">
-			<view class="row" v-for="item in list3" @click="changePage(item.url,item.text)">
-				<view class="left">
-					<uni-icons :type="item.type" size="20"></uni-icons>
-					<view class="text">{{item.text}}</view>
-				</view>
-				<view class="right">
-					<view class="text"></view>
-					<uni-icons :type="item.right" size="20"></uni-icons>
-				</view>
-			</view>
-		</view>
-	</view>
+  </view>
+	  <!-- <view class="review">
+	  	  <view class="item">
+	  		  <text>待我处理</text>
+	  		  <text>0</text>
+	  	  </view>
+	  	  <view class="item">
+	  	  		  <text>我创建的</text>
+	  	  		  <text>0</text>
+	  	  </view>
+	  	  <view class="item">
+	  	  		  <text>我已处理</text>
+	  	  		  <text>0</text>
+	  	  </view>
+	  </view> -->
+  <view class="row">
+	  <view class="item" @click="selectDataPage">
+		  <view class="left">
+			  <image src="../../static/selfImage/grsj.png"></image>
+			  <text>工作记录</text>
+			  </view>
+		  <view class="right">
+			  <uni-icons type="right" size="30rpx"></uni-icons>
+		  </view>
+	  </view>
+  </view>
+  <view class="row" v-if="admin===true">
+  	  <view class="item" @click="changeAdmin">
+  	  		  <view class="left">
+  				  <image src="../../static/selfImage/gly.png"></image>
+  				  <text>管理员系统</text>
+  				  </view>
+  	  		  <view class="right">
+  				  <uni-icons type="right" size="30rpx"></uni-icons>
+  			  </view>
+  	  </view>
+  </view>
+  <view class="row">
+  	  <view class="item" @click="changeSetUp">
+  	  		  <view class="left">
+  				  <image src="../../static/selfImage/sz.png"></image>
+  				  <text>设置</text>
+  				  </view>
+  	  		  <view class="right">
+				  <uni-icons type="right" size="30rpx"></uni-icons>
+			  </view>
+  	  </view>
+  </view>
 </template>
 
 <script>
 export default{
 	data(){
 		return{
-			list1:[
+			list2:[
 				{
 					type:"auth-filled",
-					text:"个人信息",
-					url:"/pages/selfMessage/self",
-					right:"right"
-				},{
-					type:"cloud-upload-filled",
-					text:"个人日志",
-					url:"/pages/logDay/logDay",
-					right:"right"
-				},{
-					type:"calendar",
-					text:"打卡信息",
-					url:"/pages/selfMessage/punchMessage",
-					right:"right"
-				},
-				{
-					type:"upload-filled",
-					text:"审批数据",
-					url:"/pages/review/reviewDetail",
-					right:"right"
-				},{
-					type:"paperclip",
-					text:"工作记录",
-					url:"",
+					text:"",
+					url:"/pages/selfMessage/adminPageController/adminPageController",
 					right:"right"
 				}
 			],
-			list3:[
-				{
-					type:"close",
-					text:"应用bug汇报",
-					url:"",
-					right:"paperplane"
-				},{
-					type:"home",
-					text:"退出登录",
-					url:"/pages/index/index",
-					right:"paperplane-filled"
-				}
-			],
+			position:null,
+			admin:null,
 			userMessage:{
 				userName:"",
 				departmentName:"",
@@ -160,14 +289,59 @@ export default{
 				email:null,
 				status:null,
 				ctTime:null,
-				avtor:null
+				avatar:null
 			},
 		}
 	},
 	onShow() {
 		this.isLogin()
+		this.getIsAdmin()
+		this.getSelfPosition()
 	},
 	methods:{
+		changeAdmin(){
+			uni.navigateTo({
+				url:"/pages/selfMessage/adminPageController/adminPageController"
+			})
+		},
+		changeSetUp(){
+			uni.navigateTo({
+				url:"/pages/selfMessage/SetUpPage/SetUpPage"
+			})
+		},
+		selectDataPage(){
+			uni.navigateTo({
+				url:"/pages/selfMessage/selfDataPage/selfDataPage"
+			})
+		},
+		imagePreview(i) {
+			uni.previewImage({
+				urls: [i]
+			})
+		},
+		changeSelfPage(){
+			uni.navigateTo({
+				url:"/pages/selfMessage/self"
+			})
+		},
+		changeSelfUpdatePage(){
+			uni.navigateTo({
+				url:"updateSelf/updateSelf"
+			})
+		},
+		//获取岗位信息
+		getSelfPosition(){
+			uni.request({
+				url:"http://192.168.0.196:8088/position/getSelfPosition",
+				method:"GET",
+				header:{
+					"satoken":uni.getStorageSync("satoken")
+				},
+				success: (res) => {
+					this.position=res.data.data.name
+		},
+		})
+		},
 		isLogin(){
 			uni.request({
 				url:"http://192.168.0.196:8088/user/isLogin",
@@ -192,64 +366,18 @@ export default{
 				}
 			})
 		},
-		changePage(str1,str2){
-			uni.navigateTo({
-				url:str1,
-				success() {
-					if(str2==="退出登录"){
-						uni.request({
-							url:"http://192.168.0.196:8088/user/logout",
-							header:{
-								"satoken":uni.getStorageSync("satoken")
-							},
-							method:'GET',
-							success:(res)=>{
-								if(res.data.code==="200"){
-									uni.setStorageSync("satoken","")
-									uni.showToast({
-										title:"退出成功",
-										icon:'success',
-										duration:1000,
-										mask:true,
-									})
-								}else{
-									uni.showToast({
-										title:res.data.msg,
-										icon:'error',
-										duration:1000,
-										mask:true,
-									})
-								}
-							},
-							fail:(error)=>{
-								console.log(error)
-								uni.showToast({
-									title:"页面错误!!!",
-									icon:'error',
-									duration:1000,
-									mask:true,
-								})
-							}
-						});
-						uni.showToast({
-							icon:'success',
-							title:"退出成功",
-							duration:1000
-						})
-					}else{
-						uni.showToast({
-							icon:'success',
-							title:str2,
-							duration:1000
-						})
-					}
+		getIsAdmin(){
+			uni.request({
+				url:"http://192.168.0.196:8088/user/isAdmin",
+				method:"GET",
+				header:{
+					"satoken":uni.getStorageSync("satoken")
 				},
-				fail() {
-					uni.showToast({
-						icon:'fail',
-						title:"页面待开发!",
-						duration:1000
-					})
+				success: (res) => {
+					this.admin=res.data.data
+				},
+				fail: (error) => {
+					console.log(error)
 				}
 			})
 		},
@@ -270,7 +398,11 @@ export default{
 					this.userMessage.status=res.data.data.status
 					this.userMessage.empNum=res.data.data.empNum
 					var date =new Date(res.data.data.ctTime)
-					this.userMessage.avtor=res.data.data.userImage
+					if(res.data.data.userImage!==null){
+						this.userMessage.avatar=res.data.data.userImage
+					}else{
+						this.userMessage.avatar="../../static/tx/default.png"
+					}
 					this.userMessage.ctTime=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()
 					}else{
 						uni.showToast({

@@ -1,4 +1,7 @@
 <style lang="scss">
+	body{
+		background-color: #f8f8f8;
+	}
 	.on{
 		margin-top: 50rpx;
 		width: 100vw;
@@ -19,60 +22,57 @@
 			text-align: center;
 			font-weight: bold;
 			padding: 10rpx;
-			font-size: 38rpx;
+			font-size: 30rpx;
 		}
 	}
-	.layout{
+	.back{
 		width: 100vw;
-		height: 100vh;
-		background-color: #ececec;
-		.row{
-			width: 100%;
-			height: 100%;
-		   .item{
-			   font-size:44rpx;
-			   padding: 10rpx;
-			   margin: 10rpx;
-			   border-radius: 20rpx;
-			   background-color: #f8f8f8;
-			   .left{
-				display: inline-block;
-				   text{
-					   display: block;
-					   padding: 15rpx;
-				   }
-			   }
-			   .right{
-				width: 110rpx;
-				height: 110rpx;
-				display: inline-block;
-				margin-left: 320rpx;
-				image{
-					width: 120rpx;
-					height: 120rpx;
-					border-radius: 100rpx;
-				}
-			   }
-			   .message{
-				   
-				   padding: 10rpx;
-				   view{
-					   padding: 3rpx;
-				   }
-				   .left{
-					   margin:0px 20rpx;
-					   font-size: 30rpx;
-					   font-weight: 600;
-				   }
-				   .right2{
-					   margin:10rpx 40rpx;
-					   color: #636363;
-					   font-size: 21rpx;
-				   }
-			   }
-		   }
-		}
+		height: 25vh;
+		background-image: url("../../static/selfImage/selfBack.png");
+		background-size: cover;
 	}
+.row2 {
+  display: flex;
+  flex-direction: column; // 子元素垂直排列
+  background-color: #fff; // 背景颜色
+  border-radius: 10px; // 圆角边框
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // 阴影效果
+  padding: 10px 0; // 根据需要添加内边距
+  margin: 20rpx;
+  .item {
+    display: flex;
+    align-items: center; // 子元素垂直居中
+    padding: 10px 20px; // 项目内边距
+    border-bottom: 1px solid #f0f0f0; // 项目间隔线
+	
+    &:last-child {
+      border-bottom: none; // 最后一个项目不需要底部边框
+    }
+
+    .left {
+      display: flex;
+      align-items: center; // 图片和文字垂直居中
+      margin-right: 20px; // 图片和右侧内容之间的间距
+	  font-weight: bold;
+
+      text {
+        font-size: 16px; // 文本大小
+        color: #333; // 文本颜色
+      }
+    }
+
+    .right {
+		image{
+			width: 40px;
+			height: 40px;
+		}
+      flex-grow: 1;
+      text-align: right; // 右侧内容右对齐
+      color: #666; // 右侧文本颜色
+      font-size: 14px; // 右侧文本大小
+    }
+  }
+}
 </style>
 
 <template>
@@ -81,61 +81,115 @@
 			<uni-icons type="arrow-left" size="36"></uni-icons>
 		</view>
 		<view class="center">
-			个人信息
+			个人资料
 		</view>
 		<view class="right">
 			<text @click="showDrawer" type="primary">编辑</text>
 		</view>
 	</view>
-	<view class="layout">
-		<view class="row" >
-			<view class="item" style="background-color: #fffabc;">
-				<view class="left">
-					<text style="font-weight: bold;">{{userMessage.userName}} {{userMessage.sex}}</text>
-					<text style="font-size: 28rpx; color: #00b959;">{{userMessage.roleName}}</text>
-					<text style="font-size: 20rpx; color: #b5b5b5;">工号:{{userMessage.empNum}}</text>
-				</view>
-				<view class="right">
-					<image :src="userMessage.userImage" @click="imagePreview(userMessage.userImage)"></image>
-				</view>
-			</view>
-			<view class="item" style="background-color: #aaffff;">
-				<view class="message">
-						<view style="font-weight: bold;">基本信息</view>
-						<view style="font-size: 20rpx; color: #636363;">提示：记录该员工基本信息</view>
-					</view>
-					<view class="message">
-						<view class="left">部门名称</view>
-						<view class="right2">{{userMessage.departmentName}}</view>
-					</view>
-					<view class="message">
-						<view class="left">电子邮箱</view>
-						<view class="right2">{{userMessage.email}}</view>
-					</view>
-					<view class="message">
-						<view class="left">联系方式</view>
-						<view class="right2">{{userMessage.telephone}}</view>
-					</view>
-					<view class="message">
-						<view class="left">入职时间</view>
-						<view class="right2">{{userMessage.ctTime}}</view>
-					</view>
-					<view class="message">
-						<view class="left">出生日期</view>
-						<view class="right2">{{userMessage.birth}}</view>
-					</view>
-			</view>
-			<view class="item" style="background-color: #a6ffca;">
-					<view class="message">
-							<view style="font-weight: bold;">状态</view>
-							<view style="font-size: 20rpx; color: #636363;">记录该员工状态信息</view>
-					</view>
-					<view class="message">
-						<view class="left" style="background-color: #00ff00;border: #001100 1px solid;padding: 8rpx;color: aliceblue;">{{userMessage.status}}</view>
-					</view>
-			</view>
+	<scroll-view scroll-y="true" direction="vertical" style="height: 100vh;">
+		<view class="back">
 		</view>
-	</view>
+		<view class="row2">
+			<view class="item">
+							  <view class="left">
+								  <text>头像</text>
+								  </view>
+							  <view class="right">
+								  <image v-if="userMessage.userImage!==null" :src="userMessage.userImage" @click="imagePreview(userMessage.userImage)"></image>
+								  <image v-if="userMessage.userImage===null" src="../../static/selfImage/self.png"></image>
+							  </view>
+			</view>
+			<view class="item">
+							  <view class="left">
+								  <text>昵称</text>
+								  </view>
+							  <view class="right">
+								  {{userMessage.userName}}
+								  <uni-icons type="right"></uni-icons>
+							  </view>
+			</view>
+			<view class="item">
+							  <view class="left">
+								  <text>工号</text>
+								  </view>
+							  <view class="right">
+								  {{userMessage.empNum}}
+							  </view>
+			</view>
+			<view class="item">
+							  <view class="left">
+								  <text>性别</text>
+								  </view>
+							  <view class="right">
+								  {{userMessage.sex}}
+							  </view>
+			</view>
+			<view class="item">
+							  <view class="left">
+								  <text>电子邮箱</text>
+								  </view>
+							  <view class="right">
+								  {{userMessage.email}}
+								  <uni-icons type="right"></uni-icons>
+							  </view>
+			</view>
+			<view class="item">
+							  <view class="left">
+								  <text>联系方式</text>
+								  </view>
+							  <view class="right">
+								  {{userMessage.telephone}}
+								  <uni-icons type="right"></uni-icons>
+							  </view>
+			</view>
+			</view>
+		<view class="row2">
+			<view class="item">
+							  <view class="left">
+								  <text>岗位名称</text>
+								  </view>
+							  <view class="right">
+								  {{position}}
+							  </view>
+			</view>
+			  <view class="item">
+			  				  <view class="left">
+			  					  <text>部门名称</text>
+			  					  </view>
+			  				  <view class="right">
+			  					  {{userMessage.departmentName}}
+			  				  </view>
+			  </view>
+			  
+			  <view class="item">
+			  				  <view class="left">
+			  					  <text>入职时间</text>
+			  					  </view>
+			  				  <view class="right">
+			  					 {{userMessage.ctTime}}
+			  				  </view>
+			  </view>
+			  <view class="item">
+			  				  <view class="left">
+			  					  <text>出生日期</text>
+			  					  </view>
+			  				  <view class="right">
+			  					  {{userMessage.birth}}
+			  				  </view>
+			  </view>
+		</view>
+		<view class="row2">
+			  <view class="item">
+			  				  <view class="left">
+			  					  <text>状态</text>
+			  					  </view>
+			  				  <view class="right" >
+								  <text style="border: 1px #00ff7f solid;color: #00ff7f;">{{userMessage.status}}</text>
+			  				  </view>
+			  </view>
+			  </view>
+	</scroll-view>
 </template>
 
 <script>
@@ -155,6 +209,7 @@
 	export default{
 		data(){
 			return{
+				position:null,
 				userMessage:{
 					departmentName:null,
 					userName:null,
@@ -172,6 +227,19 @@
 			}
 		},
 		methods:{
+			//获取岗位信息
+			getSelfPosition(){
+				uni.request({
+					url:"http://192.168.0.196:8088/position/getSelfPosition",
+					method:"GET",
+					header:{
+						"satoken":uni.getStorageSync("satoken")
+					},
+					success: (res) => {
+						this.position=res.data.data.name
+			},
+			})
+			},
 			updateImage(){
 				
 			},
@@ -186,8 +254,8 @@
 							});
 						},
 			changePage1(){
-				uni.switchTab({
-					url:'/pages/selfMessage/selfMessage'
+				uni.navigateBack({
+					delta:1
 				})
 			}
 			,
@@ -242,10 +310,10 @@
 					})
 				}
 			},
-			
 		},
 		onShow() {
-			this.getSelfMessage()
+			this.getSelfMessage();
+			this.getSelfPosition();
 		}
 	}
 </script>

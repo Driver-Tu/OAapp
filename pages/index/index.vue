@@ -48,7 +48,6 @@ const login=()=>{
 				// 登录成功后设置登录状态
 				uni.setStorageSync("empNum",loginAll.empNum)
 				uni.setStorageSync("satoken",res.data.data.tokenValue)
-				uni.setStorageSync("password",loginAll.password)
 				uni.showToast({
 					title:"登陆成功",
 					icon:'success',

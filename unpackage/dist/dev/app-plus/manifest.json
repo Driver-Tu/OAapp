@@ -22,6 +22,9 @@
     },
     "Bluetooth": {},
     "Camera": {},
+    "VideoPlayer": {},
+    "Push": {},
+    "Barcode": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -49,11 +52,12 @@
       "splashscreen": {
         "androidStyle": "default",
         "android": {
-          "hdpi": "C:/Users/admin/Desktop/logo.png",
-          "xxhdpi": "C:/Users/admin/Desktop/logo.png",
-          "xhdpi": "C:/Users/admin/Desktop/logo.png"
+          "hdpi": "static/main/jm.png",
+          "xxhdpi": "static/main/jm.png",
+          "xhdpi": "static/main/jm.png"
         },
-        "useOriginalMsgbox": false
+        "useOriginalMsgbox": false,
+        "iosStyle": "common"
       },
       "icons": {
         "android": {
@@ -119,6 +123,21 @@
             "appkey_android": "9f6337687d2bd4364b96a8353592b4cb"
           }
         },
+        "push": {
+          "unipush": {
+            "version": "2",
+            "offline": false,
+            "icons": {
+              "small": {
+                "ldpi": "static/logo.png",
+                "mdpi": "static/logo.png",
+                "hdpi": "static/logo.png",
+                "xhdpi": "static/logo.png",
+                "xxhdpi": "static/logo.png"
+              }
+            }
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -128,15 +147,15 @@
     },
     "statusbar": {
       "immersed": "supportedDevice",
-      "style": "light",
-      "background": "#319549"
+      "style": "dark",
+      "background": "#ffffff"
     },
     "uniStatistics": {
       "enable": false
     },
     "allowsInlineMediaPlayback": true,
     "safearea": {
-      "background": "#ffcd05",
+      "background": "#dcdcdc",
       "bottom": {
         "offset": "auto"
       }
@@ -157,33 +176,21 @@
     },
     "tabBar": {
       "position": "bottom",
-      "color": "white",
-      "selectedColor": "#000000",
+      "color": "black",
+      "selectedColor": "#00aaff",
       "borderStyle": "rgba(0,0,0,0.4)",
       "blurEffect": "none",
       "fontSize": "10px",
       "iconWidth": "24px",
       "spacing": "3px",
       "height": "50px",
-      "backgroundColor": "#ffcd05",
+      "backgroundColor": "#dcdcdc",
       "list": [
         {
           "pagePath": "pages/main/main",
-          "text": "首页",
+          "text": "工作台",
           "iconPath": "/static/house.png",
           "selectedIconPath": "/static/house.png"
-        },
-        {
-          "pagePath": "pages/review/review",
-          "text": "审批",
-          "iconPath": "/static/sp.png",
-          "selectedIconPath": "/static/sp.png"
-        },
-        {
-          "pagePath": "pages/punchIn/punchIn",
-          "text": "考勤打卡",
-          "iconPath": "/static/dk.png",
-          "selectedIconPath": "/static/dk.png"
         },
         {
           "pagePath": "pages/selfMessage/selfMessage",

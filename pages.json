@@ -4,30 +4,31 @@
 			"path" : "pages/main/main",
 			"style" : 
 			{
-				"navigationBarTitleText" : "首页",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarTitleText" : "工作台",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "登录页面",
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},{
 			"path": "pages/review/reviewDetail",
 			"style": {
 				"navigationBarTitleText": "审批数据",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff",
 				"enablePullDownRefresh": true
 			}
 		},{
 			"path": "pages/selfMessage/punchMessage",
 			"style": {
 				"navigationBarTitleText": "个人打卡信息",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},{
 			"path": "pages/selfMessage/self",
@@ -41,8 +42,7 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "个人中心",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -50,8 +50,8 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "修改个人信息",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},
 		{
@@ -59,31 +59,31 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "考勤打卡",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},
 		{
 			"path" : "pages/review/review",
 			"style" : 
 			{
-				"navigationBarTitleText" : "审批",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarTitleText" : "审批模块",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},{
 			"path": "pages/review/askForLeave",
 			"style": {
 				"navigationBarTitleText": "请假",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},{
 			"path": "pages/review/businessReview",
 			"style": {
 				"navigationBarTitleText": "出差",
-				"navigationBarTextStyle": "white",
-				"navigationBarBackgroundColor": "#00aaff"
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		}
 	,{
@@ -98,8 +98,8 @@
 	"style" : 
 	{
 		"navigationBarTitleText" : "日志",
-		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#00aaff"
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff"
 	}
 },
 {
@@ -115,8 +115,8 @@
 	"style" : 
 	{
 		"navigationBarTitleText" : "新增报告",
-		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#00aaff"
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff"
 	}
 },
 {
@@ -125,47 +125,81 @@
 	{
 		"navigationBarTitleText" : "看日志",
 		"enablePullDownRefresh": true,
-		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#00aaff"
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff"
 	}
 },{
 	"path" : "pages/logDay/reportDetail",
 	"style" : 
 	{
 		"navigationBarTitleText" : "日志详情",
-		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#00aaff"
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff"
 	}
 },
 {
 	"path" : "pages/mailToUserByQQ/mailToUserByQQ",
 	"style" : 
 	{
-		"navigationBarTitleText" : ""
+		"navigationBarTitleText" : "QQ邮箱通知"
+	}
+},
+{
+	"path" : "pages/selfMessage/adminPageController/adminPageController",
+	"style" : 
+	{
+		"navigationBarTitleText" : "管理界面",
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff"
+	}
+},
+{
+	"path" : "pages/selfMessage/selfDataPage/selfDataPage",
+	"style" : 
+	{
+		"navigationBarTitleText" : "个人数据",
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff"
+	}
+},
+{
+	"path" : "pages/selfMessage/SetUpPage/SetUpPage",
+	"style" : 
+	{
+		"navigationBarTitleText" : "账号设置",
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#b5b5b5"
+	}
+},
+{
+	"path" : "pages/logDay/SelectUser/SelectUser",
+	"style" : 
+	{
+		"navigationBarTitleText" : "指定查看人",
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#b5b5b5" 
+	}
+},
+{
+	"path" : "pages/VideoShow/VideoShow",
+	"style" : 
+	{
+		"navigationBarTitleText" : "观看视频",
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffff7f"
 	}
 }
 ],
 	"tabBar": {
-			"color": "white",
-			"selectedColor": "#000000",
-			"backgroundColor": "#00aaff",// 底部 tabBar 背景色
+			"color": "black",
+			"selectedColor": "#00aaff",
+			"backgroundColor": "#dcdcdc",// 底部 tabBar 背景色
 			"borderStyle": "black",
 			"list": [{
 					"pagePath": "pages/main/main",
-					"text":"首页",
+					"text":"工作台",
 					"iconPath": "static/house.png",
 					"selectedIconPath": "static/house.png"
-				},
-				{
-					"pagePath": "pages/review/review",
-					"text":"审批",
-					"iconPath": "static/sp.png",
-					"selectedIconPath": "static/sp.png"
-				},{
-					"pagePath": "pages/punchIn/punchIn",
-					"text":"考勤打卡",
-					"iconPath": "static/dk.png",
-					"selectedIconPath": "static/dk.png"
 				},
 				{
 					"pagePath": "pages/selfMessage/selfMessage",
@@ -179,8 +213,8 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#00aaff",
-		"backgroundColor": "#00aaff"
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff"
 	},
 	"uniIdRouter": {}
 }

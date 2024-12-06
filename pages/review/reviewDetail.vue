@@ -68,9 +68,9 @@
 					<view><text>简介：{{item.fromName}}</text></view>
 					<view>
 						<text style="font-weight: 700;">详细说明：</text>
-						<scroll-view :scroll-y="true" style="max-height: 5vh;min-height: 2vh;">
+						<scroll-view :scroll-y="true" style="max-height: 20vh;min-height: 2vh;">
 							<view>
-								<text>{{item.description}}</text>
+								<rich-text :nodes="item.description"></rich-text>
 							</view>
 						</scroll-view>
 					</view>
@@ -195,8 +195,8 @@
 			};
 		},
 			onPullDownRefresh() {
-				this.data.data.type=""
-				this.data.data.status=""
+				this.data.data.type=null
+				this.data.data.status=null
 				this.value=null
 				this.getReviewDatas();
 				setTimeout(function () {
@@ -268,7 +268,6 @@
 						"satoken": uni.getStorageSync("satoken")
 					},
 					success: (res) => {
-						console.log(res)
 						this.reviewData = res.data.data.records.map(record => {
 							const time = new Date(record.applicationDate)
 							if (record) { // 确保record存在
