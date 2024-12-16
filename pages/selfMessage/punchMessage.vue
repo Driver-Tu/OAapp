@@ -38,6 +38,7 @@
 		font-size: 40rpx;
 		font-weight: bold;
 	}
+	
 </style>
 
 <template>
@@ -58,27 +59,23 @@
 		</view>
 		<text class="layText" v-if="info.message.length!==0&&info.message[0]!==undefined">下班
 			{{info.message[0].timeOut}}</text>
-		<view class="address" v-if="info.message.length!==0&&info.message[0]!==undefined">
+		<view class="address" v-if="info.message.length!==0&&info.message[0]!==undefined&&info.message[0].timeOut!='下班未打卡'">
 			<uni-icons type="location" size="16px" style="margin-right: 16rpx;"></uni-icons>
 			<text class="Text" style="font-size: 16px;color: #909090;">{{info.message[0].address}}</text>
 		</view>
 		<text class="layText"
-			v-if="info.message.length===0&&isToday(data.data.date)===false&&isTomorrow(data.data.date)===false"
+			v-if="info.message.length===0&&isToday(data1.data.date)===false&&isTomorrow(data1.data.date)===false"
 			style="color: #ff0000;">该日未打卡，请点击下方补签按钮，提交补签审批!</text>
-		<text class="timeNow" v-if="isToday(data.data.date)" style="display: block; font-weight: bold;">当前时间:{{timeNow}}</text>
-		<text class="layText" v-if="isTomorrow(data.data.date)">还未到打卡时间，请改日再来</text>
-		<button v-if="info.message.length===0&&isToday(data.data.date)===false&&isTomorrow(data.data.date)===false"
+		<text class="layText" v-if="isTomorrow(data1.data.date)">还未到打卡时间，请改日再来</text>
+		<button v-if="info.message.length===0&&isToday(data1.data.date)===false&&isTomorrow(data1.data.date)===false"
 			@click="changePage">补签</button>
-		<button v-if="isToday(data.data.date)" @click="changePage2" style="background-color: #00aaff;">打卡</button>
+		<button v-if="isToday(data1.data.date)&&info.message.length===0&&info.message[0]===undefined" @click="changePage2" style="background-color: #00aaff;">打卡</button>
 		<view class="finalValue" v-if="finalResult!==null&&finalResult==='正常'"
 			style="margin: 30rpx;font-size: 42rpx; font-weight: 600; ">您当天的打卡结果为：<text style="color: #00aa00;border: #00aa00 1px dashed;">{{finalResult}}</text>
 			</view>
 		<view class="finalValue" v-if="finalResult!==null&&(finalResult!=='正常')"
 			style="margin: 30rpx;font-size: 42rpx; font-weight: 600;">您当天的打卡结果为：<text style=" color: #ff0000;border: #ff0000 1px dashed;">{{finalResult}}</text>
 			</view>
-		<navigator url="">
-			异常汇报<uni-icons type="link" size="26rpx" style="color: #00aa00;"></uni-icons>
-		</navigator>
 	</view>
 </template>
 
@@ -113,6 +110,15 @@
 						date: null
 					}
 				},
+				data1: {
+					pageNum: 1,
+					pageSize: 200,
+					data: {
+						status: null,
+						type: null,
+						date: null
+					}
+				},
 				showCalendar: false,
 				info: {
 					selected: [],
@@ -125,8 +131,9 @@
 			}
 		},
 		created() {
-			setInterval(this.getTime, 1000)
-		},
+			this.getData()
+			setInterval(this.getData,30000)
+			},
 		onReady() {
 
 		},
@@ -166,12 +173,8 @@
 					}
 				})
 			},
-			getTime() {
-				const date = new Date();
-				this.timeNow = date;
-			},
 			changePage2() {
-				uni.switchTab({
+				uni.navigateTo({
 					url: "/pages/punchIn/punchIn",
 					success() {
 						uni.showToast({
@@ -185,12 +188,12 @@
 			},
 			change(e) {
 				this.info.message=[]
-				this.data.data.date = e.fulldate
+				this.data1.data.date = e.fulldate
 				this.timeSelectNow = e.fulldate
 				this.finalResult = null
 				uni.request({
 					url: "http://192.168.0.196:8088/attendance/getSelfAttendance",
-					data: this.data,
+					data: this.data1,
 					method: 'POST',
 					header: {
 						"satoken": uni.getStorageSync("satoken")
@@ -258,11 +261,19 @@
 						if (res.data.data.records !== undefined) {
 							this.info.selected = res.data.data.records
 							this.info.selected = this.info.selected.map(record => {
-								return {
-									"address": record.address,
-									"date": record.date,
-									"info": record.status
-								};
+								if(this.isToday(record.date)&&record.timeOut===null){
+									return {
+										"address": record.address,
+										"date": record.date,
+										"info": "请签到"
+									};
+								}else{
+									return {
+										"address": record.address,
+										"date": record.date,
+										"info": record.status
+									};
+								}
 							});
 						}
 					},

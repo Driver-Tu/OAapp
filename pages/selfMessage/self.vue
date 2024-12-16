@@ -1,35 +1,8 @@
 <style lang="scss">
 	body{
-		background-color: #f8f8f8;
-	}
-	.on{
-		margin-top: 50rpx;
-		width: 100vw;
-		display: flex;
-		left: 0;
-		.left{
-			width: 10%;
-		}
-		.right{
-			width: 14%;
-			text-align: center;
-			padding: 12rpx;
-			font-size: 30rpx;
-			color: #55aaff;
-		}
-		.center{
-			width: 76%;
-			text-align: center;
-			font-weight: bold;
-			padding: 10rpx;
-			font-size: 30rpx;
-		}
-	}
-	.back{
-		width: 100vw;
-		height: 25vh;
-		background-image: url("../../static/selfImage/selfBack.png");
-		background-size: cover;
+		background-image: url("../../static/selfImage/msbj.jpg");
+		margin: 0;
+		padding: 0;
 	}
 .row2 {
   display: flex;
@@ -76,21 +49,10 @@
 </style>
 
 <template>
-	<view class="on">
-		<view class="left" @click="changePage1">
-			<uni-icons type="arrow-left" size="36"></uni-icons>
-		</view>
-		<view class="center">
-			个人资料
-		</view>
-		<view class="right">
-			<text @click="showDrawer" type="primary">编辑</text>
-		</view>
-	</view>
+	<uni-nav-bar dark :fixed="true" shadow background-color="#ffffff" :border="false"
+	 status-bar color="#00000" right-text="编辑" @click-right="showDrawer" title="个人资料" left-icon="left" @clickLeft="back"/>
 	<scroll-view scroll-y="true" direction="vertical" style="height: 100vh;">
-		<view class="back">
-		</view>
-		<view class="row2">
+		<view class="row2" style="margin-top: 120rpx;">
 			<view class="item">
 							  <view class="left">
 								  <text>头像</text>
@@ -253,7 +215,7 @@
 								url:"/pages/selfMessage/updateSelf/updateSelf"
 							});
 						},
-			changePage1(){
+			back(){
 				uni.navigateBack({
 					delta:1
 				})
@@ -268,6 +230,7 @@
 							"satoken":uni.getStorageSync("satoken")
 						},
 						success:(res)=>{
+							console.log(res)
 						if(res.data.code==="200"){
 						this.userMessage.userName=res.data.data.userName
 						this.userMessage.departmentName=res.data.data.departmentName
@@ -283,6 +246,7 @@
 						this.userMessage.sex=res.data.data.sex==="1"?"男":"女"
 						this.userMessage.birth=res.data.data.birth
 						this.userMessage.userImage=res.data.data.userImage
+						console.log(this.userMessage)
 						}else{
 							uni.showToast({
 								title:res.data.msg,

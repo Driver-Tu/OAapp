@@ -18,15 +18,15 @@
 		<view v-for="item in items">
 			<uni-card :title="item.title" :sub-title="item.subtitle" :extra="item.extra" padding="10px 0"
 				:thumbnail="item.thumbnail" >
-				<view class="select" @click="changeSelectPage(item)">
+				<view class="select" @click="changeSelectPage(item)" style="margin: 20rpx;">
 					<view>
 						<uni-icons color="#0055ff" type="bars" size="40rpx"></uni-icons>
-						<text style="color: #0055ff;font-size: 40rpx;">查看最近{{item.title}}</text>
+						<text style="color: #0055ff;font-size: 40rpx;margin: 20rpx;">查看最近{{item.title}}</text>
 					</view>
 				</view>
 				<view class="insert" @click="changePage(item)">
 					<view>
-						<uni-icons color="#ff0000" type="plusempty" size="40rpx"></uni-icons>
+						<uni-icons color="#ff0000" type="plusempty" size="40rpx">写一篇</uni-icons>
 					</view>
 				</view>
 			</uni-card>

@@ -47,8 +47,8 @@
 			<view class="content">
 				<rich-text :nodes="item.content"></rich-text>
 			</view>
-			<view class="userOnVos" v-if="index==='1'">
-				<uni-collapse >
+			<view class="userOnVos" v-if="index==='1'&&userOnVos!==null&&userOnVos.length!==0">
+				<uni-collapse>
 								<uni-collapse-item title="接收人" :show-animation="true">
 									<view class="content" style="min-height: 160rpx; max-height: 360rpx;">
 										<view class="userItem" v-for="item in userOnVos" style="display: inline-block; margin:10rpx 26rpx;" @click="selectItemUser(item)">
@@ -367,9 +367,8 @@
 							  userId = userId.replace(/\]/g, ""); // 替换所有的右方括号
 							  this.userIds = userId.split(","); // 假设此时userId是一个以逗号分隔的字符串
 							} else {
-							  console.error("userId is null or not a string");
+							  
 							}
-							console.log(this.userIds)
 							uni.request({
 								url:"http://192.168.0.196:8088/report/shareReportToUser",
 								data:this.userIds,

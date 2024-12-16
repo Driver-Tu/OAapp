@@ -2,13 +2,11 @@
 	.row {
 	  display: flex;
 	  flex-direction: column; // 子元素垂直排列，每个item占一行
-	  width: 100%; // 占满整个容器宽度
-	
+	  margin: 20rpx;
 	  .item {
 	    display: flex;
 	    justify-content: center; // 子元素水平居中
 	    align-items: center; // 子元素垂直居中
-	    width: 100%; // 每个项目占满整行宽度
 	    padding: 15px; // 内边距
 	    margin-bottom: 10px; // 项目之间的间距
 	    border-radius: 8px; // 圆角边框

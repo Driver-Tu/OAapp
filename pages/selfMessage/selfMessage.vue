@@ -1,6 +1,6 @@
 <style lang="scss">
 body {
-  background-color: #f5f5f5;
+  background-image: url("../../static/selfImage/bj.jpg");
   margin: 0; // 确保页面没有默认边距
   padding: 0; // 确保页面没有默认内边距
 }
@@ -13,7 +13,7 @@ body {
   padding: 20px; // 卡片内边距
   display: flex; // 使用flex布局
   flex-direction: column; // 垂直排列子元素
-  margin-top: 120rpx;
+margin-top: 80rpx;
 }
 
 .userLayout {
@@ -190,32 +190,41 @@ body {
     }
   }
 }
+.head{
+	width: 100%; 
+	height: var(--status-bar-height);
+}
 </style>
 
 <template>
-  <view class="card">
-    <view class="userLayout">
-      <view class="avatar">
-        <image class="image" v-if="userMessage.avatar!==null" :src="userMessage.avatar" @click="imagePreview(userMessage.avatar)"></image>
-        <image class="image" v-else src="../../static/selfImage/self.png" @click="imagePreview(userMessage.avatar)"></image>
-      </view>
-      <view class="userInfo">
-        <view class="userName">
-		{{ userMessage.userName }}
+<view class="layout">
+	<uni-nav-bar dark :fixed="true" shadow background-color="#ffffff" :border="false"
+	 status-bar color="#000" title="个人资料"/>
+	 
+	<view class="card">
+	  <view class="userLayout">
+	    <view class="avatar">
+	      <image class="image" v-if="userMessage.avatar!==null" :src="userMessage.avatar" @click="imagePreview(userMessage.avatar)"></image>
+	      <image class="image" v-else src="../../static/selfImage/self.png" @click="imagePreview(userMessage.avatar)"></image>
+	    </view>
+	    <view class="userInfo">
+	      <view class="userName">
+			{{ userMessage.userName }}
+			</view>
+	    </view>
+	    <view class="updateButton">
+	      <uni-icons type="compose" size="15px" @click="changeSelfPage" style="color:#959595;border-radius: 10rpx;">编辑资料</uni-icons>
+	    </view>
+	  </view>
+	  <!-- position元素在userLayout下方，单独占据一行 -->
+	  <view class="position">
+			<text style="font-size: 22rpx;color: #000000;font-weight: bold;margin-right: 20rpx;"></text><uni-icons type="auth-filled" size="22rpx" color="#00aaff">{{ position }}</uni-icons>
 		</view>
-      </view>
-      <view class="updateButton">
-        <uni-icons type="compose" size="15px" @click="changeSelfUpdatePage" style="color:#959595;border-radius: 10rpx;">编辑资料</uni-icons>
-      </view>
-    </view>
-    <!-- position元素在userLayout下方，单独占据一行 -->
-    <view class="position">
-		<text style="font-size: 22rpx;color: #000000;font-weight: bold;margin-right: 20rpx;"></text><uni-icons type="auth-filled" size="22rpx" color="#00aaff">{{ position }}</uni-icons>
+		<view class="selfCard" style="width: 78vw; text-align: right;padding: 20rpx;">
+			<uni-icons type="staff" size="26rpx" style="color:#959595;border: #959595 solid 1rpx;padding: 4px;border-radius: 10rpx;" @click="changeSelfPage">个人名片</uni-icons>
+		</view>
 	</view>
-	<view class="selfCard" style="width: 78vw; text-align: right;padding: 20rpx;">
-		<uni-icons type="staff" size="26rpx" style="color:#959595;border: #959595 solid 1rpx;padding: 4px;border-radius: 10rpx;" @click="changeSelfPage">个人名片</uni-icons>
-	</view>
-  </view>
+</view>
 	  <!-- <view class="review">
 	  	  <view class="item">
 	  		  <text>待我处理</text>
@@ -241,7 +250,7 @@ body {
 		  </view>
 	  </view>
   </view>
-  <view class="row" v-if="admin===true">
+  <!-- <view class="row" v-if="admin===true">
   	  <view class="item" @click="changeAdmin">
   	  		  <view class="left">
   				  <image src="../../static/selfImage/gly.png"></image>
@@ -251,7 +260,7 @@ body {
   				  <uni-icons type="right" size="30rpx"></uni-icons>
   			  </view>
   	  </view>
-  </view>
+  </view> -->
   <view class="row">
   	  <view class="item" @click="changeSetUp">
   	  		  <view class="left">
@@ -280,8 +289,8 @@ export default{
 			position:null,
 			admin:null,
 			userMessage:{
-				userName:"",
-				departmentName:"",
+				userName:null,
+				departmentName:null,
 				userName:null,
 				departmentName:null,
 				empNum:null,

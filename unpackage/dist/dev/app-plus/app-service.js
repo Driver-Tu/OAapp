@@ -31,19 +31,6 @@ if (uni.restoreGlobal) {
 }
 (function(vue) {
   "use strict";
-  function requireNativePlugin(name) {
-    return weex.requireModule(name);
-  }
-  function formatAppLog(type, filename, ...args) {
-    if (uni.__log__) {
-      uni.__log__(type, filename, ...args);
-    } else {
-      console[type].apply(console, [...args, filename]);
-    }
-  }
-  function resolveEasycom(component, easycom) {
-    return typeof component === "string" ? easycom : component;
-  }
   const fontData = [
     {
       "font_class": "arrow-down",
@@ -697,11 +684,11 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const getVal = (val) => {
+  const getVal$1 = (val) => {
     const reg = /^[0-9]*$/g;
     return typeof val === "number" || reg.test(val) ? val + "px" : val;
   };
-  const _sfc_main$P = {
+  const _sfc_main$R = {
     name: "UniIcons",
     emits: ["click"],
     props: {
@@ -740,7 +727,7 @@ if (uni.restoreGlobal) {
         return "";
       },
       iconSize() {
-        return getVal(this.size);
+        return getVal$1(this.size);
       },
       styleObj() {
         if (this.fontFamily !== "") {
@@ -755,7 +742,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$N(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$P(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "text",
       {
@@ -770,7 +757,437 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$7 = /* @__PURE__ */ _export_sfc(_sfc_main$P, [["render", _sfc_render$N], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/HB/UOApp/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  const __easycom_0$8 = /* @__PURE__ */ _export_sfc(_sfc_main$R, [["render", _sfc_render$P], ["__scopeId", "data-v-d31e1c47"], ["__file", "D:/HB/UOApp/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  function requireNativePlugin(name) {
+    return weex.requireModule(name);
+  }
+  function formatAppLog(type, filename, ...args) {
+    if (uni.__log__) {
+      uni.__log__(type, filename, ...args);
+    } else {
+      console[type].apply(console, [...args, filename]);
+    }
+  }
+  function resolveEasycom(component, easycom) {
+    return typeof component === "string" ? easycom : component;
+  }
+  const _sfc_main$Q = {
+    name: "UniStatusBar",
+    data() {
+      return {
+        statusBarHeight: uni.getSystemInfoSync().statusBarHeight + "px"
+      };
+    }
+  };
+  function _sfc_render$O(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        style: vue.normalizeStyle({ height: $data.statusBarHeight }),
+        class: "uni-status-bar"
+      },
+      [
+        vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
+      ],
+      4
+      /* STYLE */
+    );
+  }
+  const statusBar = /* @__PURE__ */ _export_sfc(_sfc_main$Q, [["render", _sfc_render$O], ["__scopeId", "data-v-7920e3e0"], ["__file", "D:/HB/UOApp/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-status-bar.vue"]]);
+  const getVal = (val) => typeof val === "number" ? val + "px" : val;
+  const _sfc_main$P = {
+    name: "UniNavBar",
+    components: {
+      statusBar
+    },
+    emits: ["clickLeft", "clickRight", "clickTitle"],
+    props: {
+      dark: {
+        type: Boolean,
+        default: false
+      },
+      title: {
+        type: String,
+        default: ""
+      },
+      leftText: {
+        type: String,
+        default: ""
+      },
+      rightText: {
+        type: String,
+        default: ""
+      },
+      leftIcon: {
+        type: String,
+        default: ""
+      },
+      rightIcon: {
+        type: String,
+        default: ""
+      },
+      fixed: {
+        type: [Boolean, String],
+        default: false
+      },
+      color: {
+        type: String,
+        default: ""
+      },
+      backgroundColor: {
+        type: String,
+        default: ""
+      },
+      statusBar: {
+        type: [Boolean, String],
+        default: false
+      },
+      shadow: {
+        type: [Boolean, String],
+        default: false
+      },
+      border: {
+        type: [Boolean, String],
+        default: true
+      },
+      height: {
+        type: [Number, String],
+        default: 44
+      },
+      leftWidth: {
+        type: [Number, String],
+        default: 60
+      },
+      rightWidth: {
+        type: [Number, String],
+        default: 60
+      },
+      stat: {
+        type: [Boolean, String],
+        default: ""
+      }
+    },
+    computed: {
+      themeBgColor() {
+        if (this.dark) {
+          if (this.backgroundColor) {
+            return this.backgroundColor;
+          } else {
+            return this.dark ? "#333" : "#FFF";
+          }
+        }
+        return this.backgroundColor || "#FFF";
+      },
+      themeColor() {
+        if (this.dark) {
+          if (this.color) {
+            return this.color;
+          } else {
+            return this.dark ? "#fff" : "#333";
+          }
+        }
+        return this.color || "#333";
+      },
+      navbarHeight() {
+        return getVal(this.height);
+      },
+      leftIconWidth() {
+        return getVal(this.leftWidth);
+      },
+      rightIconWidth() {
+        return getVal(this.rightWidth);
+      }
+    },
+    mounted() {
+      if (uni.report && this.stat && this.title !== "") {
+        uni.report("title", this.title);
+      }
+    },
+    methods: {
+      onClickLeft() {
+        this.$emit("clickLeft");
+      },
+      onClickRight() {
+        this.$emit("clickRight");
+      },
+      onClickTitle() {
+        this.$emit("clickTitle");
+      }
+    }
+  };
+  function _sfc_render$N(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_status_bar = vue.resolveComponent("status-bar");
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        class: vue.normalizeClass(["uni-navbar", { "uni-dark": $props.dark, "uni-nvue-fixed": $props.fixed }])
+      },
+      [
+        vue.createElementVNode(
+          "view",
+          {
+            class: vue.normalizeClass(["uni-navbar__content", { "uni-navbar--fixed": $props.fixed, "uni-navbar--shadow": $props.shadow, "uni-navbar--border": $props.border }]),
+            style: vue.normalizeStyle({ "background-color": $options.themeBgColor, "border-bottom-color": $options.themeColor })
+          },
+          [
+            $props.statusBar ? (vue.openBlock(), vue.createBlock(_component_status_bar, { key: 0 })) : vue.createCommentVNode("v-if", true),
+            vue.createElementVNode(
+              "view",
+              {
+                style: vue.normalizeStyle({ color: $options.themeColor, backgroundColor: $options.themeBgColor, height: $options.navbarHeight }),
+                class: "uni-navbar__header"
+              },
+              [
+                vue.createElementVNode(
+                  "view",
+                  {
+                    onClick: _cache[0] || (_cache[0] = (...args) => $options.onClickLeft && $options.onClickLeft(...args)),
+                    class: "uni-navbar__header-btns uni-navbar__header-btns-left",
+                    style: vue.normalizeStyle({ width: $options.leftIconWidth })
+                  },
+                  [
+                    vue.renderSlot(_ctx.$slots, "left", {}, () => [
+                      $props.leftIcon.length > 0 ? (vue.openBlock(), vue.createElementBlock("view", {
+                        key: 0,
+                        class: "uni-navbar__content_view"
+                      }, [
+                        vue.createVNode(_component_uni_icons, {
+                          color: $options.themeColor,
+                          type: $props.leftIcon,
+                          size: "20"
+                        }, null, 8, ["color", "type"])
+                      ])) : vue.createCommentVNode("v-if", true),
+                      $props.leftText.length ? (vue.openBlock(), vue.createElementBlock(
+                        "view",
+                        {
+                          key: 1,
+                          class: vue.normalizeClass([{ "uni-navbar-btn-icon-left": !$props.leftIcon.length > 0 }, "uni-navbar-btn-text"])
+                        },
+                        [
+                          vue.createElementVNode(
+                            "text",
+                            {
+                              style: vue.normalizeStyle({ color: $options.themeColor, fontSize: "12px" })
+                            },
+                            vue.toDisplayString($props.leftText),
+                            5
+                            /* TEXT, STYLE */
+                          )
+                        ],
+                        2
+                        /* CLASS */
+                      )) : vue.createCommentVNode("v-if", true)
+                    ], true)
+                  ],
+                  4
+                  /* STYLE */
+                ),
+                vue.createElementVNode("view", {
+                  class: "uni-navbar__header-container",
+                  onClick: _cache[1] || (_cache[1] = (...args) => $options.onClickTitle && $options.onClickTitle(...args))
+                }, [
+                  vue.renderSlot(_ctx.$slots, "default", {}, () => [
+                    $props.title.length > 0 ? (vue.openBlock(), vue.createElementBlock("view", {
+                      key: 0,
+                      class: "uni-navbar__header-container-inner"
+                    }, [
+                      vue.createElementVNode(
+                        "text",
+                        {
+                          class: "uni-nav-bar-text uni-ellipsis-1",
+                          style: vue.normalizeStyle({ color: $options.themeColor })
+                        },
+                        vue.toDisplayString($props.title),
+                        5
+                        /* TEXT, STYLE */
+                      )
+                    ])) : vue.createCommentVNode("v-if", true)
+                  ], true)
+                ]),
+                vue.createElementVNode(
+                  "view",
+                  {
+                    onClick: _cache[2] || (_cache[2] = (...args) => $options.onClickRight && $options.onClickRight(...args)),
+                    class: "uni-navbar__header-btns uni-navbar__header-btns-right",
+                    style: vue.normalizeStyle({ width: $options.rightIconWidth })
+                  },
+                  [
+                    vue.renderSlot(_ctx.$slots, "right", {}, () => [
+                      $props.rightIcon.length ? (vue.openBlock(), vue.createElementBlock("view", { key: 0 }, [
+                        vue.createVNode(_component_uni_icons, {
+                          color: $options.themeColor,
+                          type: $props.rightIcon,
+                          size: "22"
+                        }, null, 8, ["color", "type"])
+                      ])) : vue.createCommentVNode("v-if", true),
+                      $props.rightText.length && !$props.rightIcon.length ? (vue.openBlock(), vue.createElementBlock("view", {
+                        key: 1,
+                        class: "uni-navbar-btn-text"
+                      }, [
+                        vue.createElementVNode(
+                          "text",
+                          {
+                            class: "uni-nav-bar-right-text",
+                            style: vue.normalizeStyle({ color: $options.themeColor })
+                          },
+                          vue.toDisplayString($props.rightText),
+                          5
+                          /* TEXT, STYLE */
+                        )
+                      ])) : vue.createCommentVNode("v-if", true)
+                    ], true)
+                  ],
+                  4
+                  /* STYLE */
+                )
+              ],
+              4
+              /* STYLE */
+            )
+          ],
+          6
+          /* CLASS, STYLE */
+        ),
+        $props.fixed ? (vue.openBlock(), vue.createElementBlock("view", {
+          key: 0,
+          class: "uni-navbar__placeholder"
+        }, [
+          $props.statusBar ? (vue.openBlock(), vue.createBlock(_component_status_bar, { key: 0 })) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode(
+            "view",
+            {
+              class: "uni-navbar__placeholder-view",
+              style: vue.normalizeStyle({ height: $options.navbarHeight })
+            },
+            null,
+            4
+            /* STYLE */
+          )
+        ])) : vue.createCommentVNode("v-if", true)
+      ],
+      2
+      /* CLASS */
+    );
+  }
+  const __easycom_0$7 = /* @__PURE__ */ _export_sfc(_sfc_main$P, [["render", _sfc_render$N], ["__scopeId", "data-v-26544265"], ["__file", "D:/HB/UOApp/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue"]]);
+  const _sfc_main$O = {
+    name: "UniSection",
+    emits: ["click"],
+    props: {
+      type: {
+        type: String,
+        default: ""
+      },
+      title: {
+        type: String,
+        required: true,
+        default: ""
+      },
+      titleFontSize: {
+        type: String,
+        default: "14px"
+      },
+      titleColor: {
+        type: String,
+        default: "#333"
+      },
+      subTitle: {
+        type: String,
+        default: ""
+      },
+      subTitleFontSize: {
+        type: String,
+        default: "12px"
+      },
+      subTitleColor: {
+        type: String,
+        default: "#999"
+      },
+      padding: {
+        type: [Boolean, String],
+        default: false
+      }
+    },
+    computed: {
+      _padding() {
+        if (typeof this.padding === "string") {
+          return this.padding;
+        }
+        return this.padding ? "10px" : "";
+      }
+    },
+    watch: {
+      title(newVal) {
+        if (uni.report && newVal !== "") {
+          uni.report("title", newVal);
+        }
+      }
+    },
+    methods: {
+      onClick() {
+        this.$emit("click");
+      }
+    }
+  };
+  function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", { class: "uni-section" }, [
+      vue.createElementVNode("view", {
+        class: "uni-section-header",
+        onClick: _cache[0] || (_cache[0] = (...args) => $options.onClick && $options.onClick(...args))
+      }, [
+        $props.type ? (vue.openBlock(), vue.createElementBlock(
+          "view",
+          {
+            key: 0,
+            class: vue.normalizeClass(["uni-section-header__decoration", $props.type])
+          },
+          null,
+          2
+          /* CLASS */
+        )) : vue.renderSlot(_ctx.$slots, "decoration", { key: 1 }, void 0, true),
+        vue.createElementVNode("view", { class: "uni-section-header__content" }, [
+          vue.createElementVNode(
+            "text",
+            {
+              style: vue.normalizeStyle({ "font-size": $props.titleFontSize, "color": $props.titleColor }),
+              class: vue.normalizeClass(["uni-section__content-title", { "distraction": !$props.subTitle }])
+            },
+            vue.toDisplayString($props.title),
+            7
+            /* TEXT, CLASS, STYLE */
+          ),
+          $props.subTitle ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 0,
+              style: vue.normalizeStyle({ "font-size": $props.subTitleFontSize, "color": $props.subTitleColor }),
+              class: "uni-section-header__content-sub"
+            },
+            vue.toDisplayString($props.subTitle),
+            5
+            /* TEXT, STYLE */
+          )) : vue.createCommentVNode("v-if", true)
+        ]),
+        vue.createElementVNode("view", { class: "uni-section-header__slot-right" }, [
+          vue.renderSlot(_ctx.$slots, "right", {}, void 0, true)
+        ])
+      ]),
+      vue.createElementVNode(
+        "view",
+        {
+          class: "uni-section-content",
+          style: vue.normalizeStyle({ padding: $options._padding })
+        },
+        [
+          vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
+        ],
+        4
+        /* STYLE */
+      )
+    ]);
+  }
+  const __easycom_0$6 = /* @__PURE__ */ _export_sfc(_sfc_main$O, [["render", _sfc_render$M], ["__scopeId", "data-v-637fd36b"], ["__file", "D:/HB/UOApp/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
   class MPAnimation {
     constructor(options, _this) {
       this.options = options;
@@ -883,7 +1300,7 @@ if (uni.restoreGlobal) {
     clearTimeout(_this.timer);
     return new MPAnimation(option, _this);
   }
-  const _sfc_main$O = {
+  const _sfc_main$N = {
     name: "uniTransition",
     emits: ["click", "change"],
     props: {
@@ -1134,7 +1551,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$M(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.withDirectives((vue.openBlock(), vue.createElementBlock("view", {
       ref: "ani",
       animation: $data.animationData,
@@ -1147,8 +1564,8 @@ if (uni.restoreGlobal) {
       [vue.vShow, $data.isShow]
     ]);
   }
-  const __easycom_0$6 = /* @__PURE__ */ _export_sfc(_sfc_main$O, [["render", _sfc_render$M], ["__file", "D:/HB/UOApp/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
-  const _sfc_main$N = {
+  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$N, [["render", _sfc_render$L], ["__file", "D:/HB/UOApp/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
+  const _sfc_main$M = {
     name: "uniPopup",
     components: {},
     emits: ["change", "maskClick"],
@@ -1501,8 +1918,8 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$L(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_transition = resolveEasycom(vue.resolveDynamicComponent("uni-transition"), __easycom_0$6);
+  function _sfc_render$K(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_transition = resolveEasycom(vue.resolveDynamicComponent("uni-transition"), __easycom_0$5);
     return $data.showPopup ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -1561,11 +1978,2454 @@ if (uni.restoreGlobal) {
       /* CLASS */
     )) : vue.createCommentVNode("v-if", true);
   }
-  const __easycom_1$6 = /* @__PURE__ */ _export_sfc(_sfc_main$N, [["render", _sfc_render$L], ["__scopeId", "data-v-4dd3c44b"], ["__file", "D:/HB/UOApp/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
-  const _sfc_main$M = {
+  const __easycom_3$3 = /* @__PURE__ */ _export_sfc(_sfc_main$M, [["render", _sfc_render$K], ["__scopeId", "data-v-4dd3c44b"], ["__file", "D:/HB/UOApp/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
+  var calendar = {
+    /**
+        * 农历1900-2100的润大小信息表
+        * @Array Of Property
+        * @return Hex
+        */
+    lunarInfo: [
+      19416,
+      19168,
+      42352,
+      21717,
+      53856,
+      55632,
+      91476,
+      22176,
+      39632,
+      21970,
+      // 1900-1909
+      19168,
+      42422,
+      42192,
+      53840,
+      119381,
+      46400,
+      54944,
+      44450,
+      38320,
+      84343,
+      // 1910-1919
+      18800,
+      42160,
+      46261,
+      27216,
+      27968,
+      109396,
+      11104,
+      38256,
+      21234,
+      18800,
+      // 1920-1929
+      25958,
+      54432,
+      59984,
+      28309,
+      23248,
+      11104,
+      100067,
+      37600,
+      116951,
+      51536,
+      // 1930-1939
+      54432,
+      120998,
+      46416,
+      22176,
+      107956,
+      9680,
+      37584,
+      53938,
+      43344,
+      46423,
+      // 1940-1949
+      27808,
+      46416,
+      86869,
+      19872,
+      42416,
+      83315,
+      21168,
+      43432,
+      59728,
+      27296,
+      // 1950-1959
+      44710,
+      43856,
+      19296,
+      43748,
+      42352,
+      21088,
+      62051,
+      55632,
+      23383,
+      22176,
+      // 1960-1969
+      38608,
+      19925,
+      19152,
+      42192,
+      54484,
+      53840,
+      54616,
+      46400,
+      46752,
+      103846,
+      // 1970-1979
+      38320,
+      18864,
+      43380,
+      42160,
+      45690,
+      27216,
+      27968,
+      44870,
+      43872,
+      38256,
+      // 1980-1989
+      19189,
+      18800,
+      25776,
+      29859,
+      59984,
+      27480,
+      23232,
+      43872,
+      38613,
+      37600,
+      // 1990-1999
+      51552,
+      55636,
+      54432,
+      55888,
+      30034,
+      22176,
+      43959,
+      9680,
+      37584,
+      51893,
+      // 2000-2009
+      43344,
+      46240,
+      47780,
+      44368,
+      21977,
+      19360,
+      42416,
+      86390,
+      21168,
+      43312,
+      // 2010-2019
+      31060,
+      27296,
+      44368,
+      23378,
+      19296,
+      42726,
+      42208,
+      53856,
+      60005,
+      54576,
+      // 2020-2029
+      23200,
+      30371,
+      38608,
+      19195,
+      19152,
+      42192,
+      118966,
+      53840,
+      54560,
+      56645,
+      // 2030-2039
+      46496,
+      22224,
+      21938,
+      18864,
+      42359,
+      42160,
+      43600,
+      111189,
+      27936,
+      44448,
+      // 2040-2049
+      /** Add By JJonline@JJonline.Cn**/
+      84835,
+      37744,
+      18936,
+      18800,
+      25776,
+      92326,
+      59984,
+      27424,
+      108228,
+      43744,
+      // 2050-2059
+      41696,
+      53987,
+      51552,
+      54615,
+      54432,
+      55888,
+      23893,
+      22176,
+      42704,
+      21972,
+      // 2060-2069
+      21200,
+      43448,
+      43344,
+      46240,
+      46758,
+      44368,
+      21920,
+      43940,
+      42416,
+      21168,
+      // 2070-2079
+      45683,
+      26928,
+      29495,
+      27296,
+      44368,
+      84821,
+      19296,
+      42352,
+      21732,
+      53600,
+      // 2080-2089
+      59752,
+      54560,
+      55968,
+      92838,
+      22224,
+      19168,
+      43476,
+      41680,
+      53584,
+      62034,
+      // 2090-2099
+      54560
+    ],
+    // 2100
+    /**
+        * 公历每个月份的天数普通表
+        * @Array Of Property
+        * @return Number
+        */
+    solarMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    /**
+        * 天干地支之天干速查表
+        * @Array Of Property trans["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
+        * @return Cn string
+        */
+    Gan: ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"],
+    /**
+        * 天干地支之地支速查表
+        * @Array Of Property
+        * @trans["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
+        * @return Cn string
+        */
+    Zhi: ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+    /**
+        * 天干地支之地支速查表<=>生肖
+        * @Array Of Property
+        * @trans["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
+        * @return Cn string
+        */
+    Animals: ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"],
+    /**
+        * 24节气速查表
+        * @Array Of Property
+        * @trans["小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至"]
+        * @return Cn string
+        */
+    solarTerm: ["小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"],
+    /**
+        * 1900-2100各年的24节气日期速查表
+        * @Array Of Property
+        * @return 0x string For splice
+        */
+    sTermInfo: [
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c3598082c95f8c965cc920f",
+      "97bd0b06bdb0722c965ce1cfcc920f",
+      "b027097bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd0b06bdb0722c965ce1cfcc920f",
+      "b027097bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd0b06bdb0722c965ce1cfcc920f",
+      "b027097bd097c36b0b6fc9274c91aa",
+      "9778397bd19801ec9210c965cc920e",
+      "97b6b97bd19801ec95f8c965cc920f",
+      "97bd09801d98082c95f8e1cfcc920f",
+      "97bd097bd097c36b0b6fc9210c8dc2",
+      "9778397bd197c36c9210c9274c91aa",
+      "97b6b97bd19801ec95f8c965cc920e",
+      "97bd09801d98082c95f8e1cfcc920f",
+      "97bd097bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c91aa",
+      "97b6b97bd19801ec95f8c965cc920e",
+      "97bcf97c3598082c95f8e1cfcc920f",
+      "97bd097bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c3598082c95f8c965cc920f",
+      "97bd097bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c3598082c95f8c965cc920f",
+      "97bd097bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd097bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd097bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf97c359801ec95f8c965cc920f",
+      "97bd097bd07f595b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9210c8dc2",
+      "9778397bd19801ec9210c9274c920e",
+      "97b6b97bd19801ec95f8c965cc920f",
+      "97bd07f5307f595b0b0bc920fb0722",
+      "7f0e397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c920e",
+      "97b6b97bd19801ec95f8c965cc920f",
+      "97bd07f5307f595b0b0bc920fb0722",
+      "7f0e397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bd07f1487f595b0b0bc920fb0722",
+      "7f0e397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf7f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf7f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf7f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c965cc920e",
+      "97bcf7f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b97bd19801ec9210c9274c920e",
+      "97bcf7f0e47f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9210c91aa",
+      "97b6b97bd197c36c9210c9274c920e",
+      "97bcf7f0e47f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36c9210c9274c920e",
+      "97b6b7f0e47f531b0723b0b6fb0722",
+      "7f0e37f5307f595b0b0bc920fb0722",
+      "7f0e397bd097c36b0b6fc9210c8dc2",
+      "9778397bd097c36b0b70c9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e37f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc9210c8dc2",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9274c91aa",
+      "97b6b7f0e47f531b0723b0787b0721",
+      "7f0e27f0e47f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9210c91aa",
+      "97b6b7f0e47f149b0723b0787b0721",
+      "7f0e27f0e47f531b0723b0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "9778397bd097c36b0b6fc9210c8dc2",
+      "977837f0e37f149b0723b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e37f5307f595b0b0bc920fb0722",
+      "7f0e397bd097c35b0b6fc9210c8dc2",
+      "977837f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e37f1487f595b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc9210c8dc2",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd097c35b0b6fc920fb0722",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "977837f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f149b0723b0787b0721",
+      "7f0e27f0e47f531b0b0bb0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "977837f0e37f14998082b0723b06bd",
+      "7f07e7f0e37f149b0723b0787b0721",
+      "7f0e27f0e47f531b0723b0b6fb0722",
+      "7f0e397bd07f595b0b0bc920fb0722",
+      "977837f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e37f1487f595b0b0bb0b6fb0722",
+      "7f0e37f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e37f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e37f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e37f14898082b072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e37f14898082b072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e366aa89801eb072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f149b0723b0787b0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722",
+      "7f0e37f0e366aa89801eb072297c35",
+      "7ec967f0e37f14998082b0723b06bd",
+      "7f07e7f0e47f149b0723b0787b0721",
+      "7f0e27f0e47f531b0723b0b6fb0722",
+      "7f0e37f0e366aa89801eb072297c35",
+      "7ec967f0e37f14998082b0723b06bd",
+      "7f07e7f0e37f14998083b0787b0721",
+      "7f0e27f0e47f531b0723b0b6fb0722",
+      "7f0e37f0e366aa89801eb072297c35",
+      "7ec967f0e37f14898082b0723b02d5",
+      "7f07e7f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e36665b66aa89801e9808297c35",
+      "665f67f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b0721",
+      "7f07e7f0e47f531b0723b0b6fb0722",
+      "7f0e36665b66a449801e9808297c35",
+      "665f67f0e37f14898082b0723b02d5",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e36665b66a449801e9808297c35",
+      "665f67f0e37f14898082b072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e26665b66a449801e9808297c35",
+      "665f67f0e37f1489801eb072297c35",
+      "7ec967f0e37f14998082b0787b06bd",
+      "7f07e7f0e47f531b0723b0b6fb0721",
+      "7f0e27f1487f531b0b0bb0b6fb0722"
+    ],
+    /**
+        * 数字转中文速查表
+        * @Array Of Property
+        * @trans ['日','一','二','三','四','五','六','七','八','九','十']
+        * @return Cn string
+        */
+    nStr1: ["日", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"],
+    /**
+        * 日期转农历称呼速查表
+        * @Array Of Property
+        * @trans ['初','十','廿','卅']
+        * @return Cn string
+        */
+    nStr2: ["初", "十", "廿", "卅"],
+    /**
+        * 月份转农历称呼速查表
+        * @Array Of Property
+        * @trans ['正','一','二','三','四','五','六','七','八','九','十','冬','腊']
+        * @return Cn string
+        */
+    nStr3: ["正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬", "腊"],
+    /**
+        * 返回农历y年一整年的总天数
+        * @param lunar Year
+        * @return Number
+        * @eg:var count = calendar.lYearDays(1987) ;//count=387
+        */
+    lYearDays: function(y2) {
+      var i2;
+      var sum = 348;
+      for (i2 = 32768; i2 > 8; i2 >>= 1) {
+        sum += this.lunarInfo[y2 - 1900] & i2 ? 1 : 0;
+      }
+      return sum + this.leapDays(y2);
+    },
+    /**
+        * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
+        * @param lunar Year
+        * @return Number (0-12)
+        * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
+        */
+    leapMonth: function(y2) {
+      return this.lunarInfo[y2 - 1900] & 15;
+    },
+    /**
+        * 返回农历y年闰月的天数 若该年没有闰月则返回0
+        * @param lunar Year
+        * @return Number (0、29、30)
+        * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
+        */
+    leapDays: function(y2) {
+      if (this.leapMonth(y2)) {
+        return this.lunarInfo[y2 - 1900] & 65536 ? 30 : 29;
+      }
+      return 0;
+    },
+    /**
+        * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
+        * @param lunar Year
+        * @return Number (-1、29、30)
+        * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
+        */
+    monthDays: function(y2, m2) {
+      if (m2 > 12 || m2 < 1) {
+        return -1;
+      }
+      return this.lunarInfo[y2 - 1900] & 65536 >> m2 ? 30 : 29;
+    },
+    /**
+        * 返回公历(!)y年m月的天数
+        * @param solar Year
+        * @return Number (-1、28、29、30、31)
+        * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
+        */
+    solarDays: function(y2, m2) {
+      if (m2 > 12 || m2 < 1) {
+        return -1;
+      }
+      var ms2 = m2 - 1;
+      if (ms2 == 1) {
+        return y2 % 4 == 0 && y2 % 100 != 0 || y2 % 400 == 0 ? 29 : 28;
+      } else {
+        return this.solarMonth[ms2];
+      }
+    },
+    /**
+       * 农历年份转换为干支纪年
+       * @param  lYear 农历年的年份数
+       * @return Cn string
+       */
+    toGanZhiYear: function(lYear) {
+      var ganKey = (lYear - 3) % 10;
+      var zhiKey = (lYear - 3) % 12;
+      if (ganKey == 0)
+        ganKey = 10;
+      if (zhiKey == 0)
+        zhiKey = 12;
+      return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1];
+    },
+    /**
+       * 公历月、日判断所属星座
+       * @param  cMonth [description]
+       * @param  cDay [description]
+       * @return Cn string
+       */
+    toAstro: function(cMonth, cDay) {
+      var s2 = "魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
+      var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
+      return s2.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "座";
+    },
+    /**
+        * 传入offset偏移量返回干支
+        * @param offset 相对甲子的偏移量
+        * @return Cn string
+        */
+    toGanZhi: function(offset) {
+      return this.Gan[offset % 10] + this.Zhi[offset % 12];
+    },
+    /**
+        * 传入公历(!)y年获得该年第n个节气的公历日期
+        * @param y公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起
+        * @return day Number
+        * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
+        */
+    getTerm: function(y2, n2) {
+      if (y2 < 1900 || y2 > 2100) {
+        return -1;
+      }
+      if (n2 < 1 || n2 > 24) {
+        return -1;
+      }
+      var _table = this.sTermInfo[y2 - 1900];
+      var _info = [
+        parseInt("0x" + _table.substr(0, 5)).toString(),
+        parseInt("0x" + _table.substr(5, 5)).toString(),
+        parseInt("0x" + _table.substr(10, 5)).toString(),
+        parseInt("0x" + _table.substr(15, 5)).toString(),
+        parseInt("0x" + _table.substr(20, 5)).toString(),
+        parseInt("0x" + _table.substr(25, 5)).toString()
+      ];
+      var _calday = [
+        _info[0].substr(0, 1),
+        _info[0].substr(1, 2),
+        _info[0].substr(3, 1),
+        _info[0].substr(4, 2),
+        _info[1].substr(0, 1),
+        _info[1].substr(1, 2),
+        _info[1].substr(3, 1),
+        _info[1].substr(4, 2),
+        _info[2].substr(0, 1),
+        _info[2].substr(1, 2),
+        _info[2].substr(3, 1),
+        _info[2].substr(4, 2),
+        _info[3].substr(0, 1),
+        _info[3].substr(1, 2),
+        _info[3].substr(3, 1),
+        _info[3].substr(4, 2),
+        _info[4].substr(0, 1),
+        _info[4].substr(1, 2),
+        _info[4].substr(3, 1),
+        _info[4].substr(4, 2),
+        _info[5].substr(0, 1),
+        _info[5].substr(1, 2),
+        _info[5].substr(3, 1),
+        _info[5].substr(4, 2)
+      ];
+      return parseInt(_calday[n2 - 1]);
+    },
+    /**
+        * 传入农历数字月份返回汉语通俗表示法
+        * @param lunar month
+        * @return Cn string
+        * @eg:var cnMonth = calendar.toChinaMonth(12) ;//cnMonth='腊月'
+        */
+    toChinaMonth: function(m2) {
+      if (m2 > 12 || m2 < 1) {
+        return -1;
+      }
+      var s2 = this.nStr3[m2 - 1];
+      s2 += "月";
+      return s2;
+    },
+    /**
+        * 传入农历日期数字返回汉字表示法
+        * @param lunar day
+        * @return Cn string
+        * @eg:var cnDay = calendar.toChinaDay(21) ;//cnMonth='廿一'
+        */
+    toChinaDay: function(d2) {
+      var s2;
+      switch (d2) {
+        case 10:
+          s2 = "初十";
+          break;
+        case 20:
+          s2 = "二十";
+          break;
+        case 30:
+          s2 = "三十";
+          break;
+        default:
+          s2 = this.nStr2[Math.floor(d2 / 10)];
+          s2 += this.nStr1[d2 % 10];
+      }
+      return s2;
+    },
+    /**
+        * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
+        * @param y year
+        * @return Cn string
+        * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
+        */
+    getAnimal: function(y2) {
+      return this.Animals[(y2 - 4) % 12];
+    },
+    /**
+        * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
+        * @param y  solar year
+        * @param m  solar month
+        * @param d  solar day
+        * @return JSON object
+        * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:379',calendar.solar2lunar(1987,11,01));
+        */
+    solar2lunar: function(y2, m2, d2) {
+      if (y2 < 1900 || y2 > 2100) {
+        return -1;
+      }
+      if (y2 == 1900 && m2 == 1 && d2 < 31) {
+        return -1;
+      }
+      if (!y2) {
+        var objDate = /* @__PURE__ */ new Date();
+      } else {
+        var objDate = new Date(y2, parseInt(m2) - 1, d2);
+      }
+      var i2;
+      var leap = 0;
+      var temp = 0;
+      var y2 = objDate.getFullYear();
+      var m2 = objDate.getMonth() + 1;
+      var d2 = objDate.getDate();
+      var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 864e5;
+      for (i2 = 1900; i2 < 2101 && offset > 0; i2++) {
+        temp = this.lYearDays(i2);
+        offset -= temp;
+      }
+      if (offset < 0) {
+        offset += temp;
+        i2--;
+      }
+      var isTodayObj = /* @__PURE__ */ new Date();
+      var isToday = false;
+      if (isTodayObj.getFullYear() == y2 && isTodayObj.getMonth() + 1 == m2 && isTodayObj.getDate() == d2) {
+        isToday = true;
+      }
+      var nWeek = objDate.getDay();
+      var cWeek = this.nStr1[nWeek];
+      if (nWeek == 0) {
+        nWeek = 7;
+      }
+      var year = i2;
+      var leap = this.leapMonth(i2);
+      var isLeap = false;
+      for (i2 = 1; i2 < 13 && offset > 0; i2++) {
+        if (leap > 0 && i2 == leap + 1 && isLeap == false) {
+          --i2;
+          isLeap = true;
+          temp = this.leapDays(year);
+        } else {
+          temp = this.monthDays(year, i2);
+        }
+        if (isLeap == true && i2 == leap + 1) {
+          isLeap = false;
+        }
+        offset -= temp;
+      }
+      if (offset == 0 && leap > 0 && i2 == leap + 1) {
+        if (isLeap) {
+          isLeap = false;
+        } else {
+          isLeap = true;
+          --i2;
+        }
+      }
+      if (offset < 0) {
+        offset += temp;
+        --i2;
+      }
+      var month = i2;
+      var day = offset + 1;
+      var sm = m2 - 1;
+      var gzY = this.toGanZhiYear(year);
+      var firstNode = this.getTerm(y2, m2 * 2 - 1);
+      var secondNode = this.getTerm(y2, m2 * 2);
+      var gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 11);
+      if (d2 >= firstNode) {
+        gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 12);
+      }
+      var isTerm = false;
+      var Term = null;
+      if (firstNode == d2) {
+        isTerm = true;
+        Term = this.solarTerm[m2 * 2 - 2];
+      }
+      if (secondNode == d2) {
+        isTerm = true;
+        Term = this.solarTerm[m2 * 2 - 1];
+      }
+      var dayCyclical = Date.UTC(y2, sm, 1, 0, 0, 0, 0) / 864e5 + 25567 + 10;
+      var gzD = this.toGanZhi(dayCyclical + d2 - 1);
+      var astro = this.toAstro(m2, d2);
+      return { "lYear": year, "lMonth": month, "lDay": day, "Animal": this.getAnimal(year), "IMonthCn": (isLeap ? "闰" : "") + this.toChinaMonth(month), "IDayCn": this.toChinaDay(day), "cYear": y2, "cMonth": m2, "cDay": d2, "gzYear": gzY, "gzMonth": gzM, "gzDay": gzD, "isToday": isToday, "isLeap": isLeap, "nWeek": nWeek, "ncWeek": "星期" + cWeek, "isTerm": isTerm, "Term": Term, "astro": astro };
+    },
+    /**
+        * 传入农历年月日以及传入的月份是否闰月获得详细的公历、农历object信息 <=>JSON
+        * @param y  lunar year
+        * @param m  lunar month
+        * @param d  lunar day
+        * @param isLeapMonth  lunar month is leap or not.[如果是农历闰月第四个参数赋值true即可]
+        * @return JSON object
+        * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:498',calendar.lunar2solar(1987,9,10));
+        */
+    lunar2solar: function(y2, m2, d2, isLeapMonth) {
+      var isLeapMonth = !!isLeapMonth;
+      var leapMonth = this.leapMonth(y2);
+      this.leapDays(y2);
+      if (isLeapMonth && leapMonth != m2) {
+        return -1;
+      }
+      if (y2 == 2100 && m2 == 12 && d2 > 1 || y2 == 1900 && m2 == 1 && d2 < 31) {
+        return -1;
+      }
+      var day = this.monthDays(y2, m2);
+      var _day = day;
+      if (isLeapMonth) {
+        _day = this.leapDays(y2, m2);
+      }
+      if (y2 < 1900 || y2 > 2100 || d2 > _day) {
+        return -1;
+      }
+      var offset = 0;
+      for (var i2 = 1900; i2 < y2; i2++) {
+        offset += this.lYearDays(i2);
+      }
+      var leap = 0;
+      var isAdd = false;
+      for (var i2 = 1; i2 < m2; i2++) {
+        leap = this.leapMonth(y2);
+        if (!isAdd) {
+          if (leap <= i2 && leap > 0) {
+            offset += this.leapDays(y2);
+            isAdd = true;
+          }
+        }
+        offset += this.monthDays(y2, i2);
+      }
+      if (isLeapMonth) {
+        offset += day;
+      }
+      var stmap = Date.UTC(1900, 1, 30, 0, 0, 0);
+      var calObj = new Date((offset + d2 - 31) * 864e5 + stmap);
+      var cY = calObj.getUTCFullYear();
+      var cM = calObj.getUTCMonth() + 1;
+      var cD = calObj.getUTCDate();
+      return this.solar2lunar(cY, cM, cD);
+    }
+  };
+  let Calendar$2 = class Calendar {
+    constructor({
+      date,
+      selected,
+      startDate,
+      endDate,
+      range
+    } = {}) {
+      this.date = this.getDate(/* @__PURE__ */ new Date());
+      this.selected = selected || [];
+      this.startDate = startDate;
+      this.endDate = endDate;
+      this.range = range;
+      this.cleanMultipleStatus();
+      this.weeks = {};
+    }
+    /**
+     * 设置日期
+     * @param {Object} date
+     */
+    setDate(date) {
+      this.selectDate = this.getDate(date);
+      this._getWeek(this.selectDate.fullDate);
+    }
+    /**
+     * 清理多选状态
+     */
+    cleanMultipleStatus() {
+      this.multipleStatus = {
+        before: "",
+        after: "",
+        data: []
+      };
+    }
+    /**
+     * 重置开始日期
+     */
+    resetSatrtDate(startDate) {
+      this.startDate = startDate;
+    }
+    /**
+     * 重置结束日期
+     */
+    resetEndDate(endDate) {
+      this.endDate = endDate;
+    }
+    /**
+     * 获取任意时间
+     */
+    getDate(date, AddDayCount = 0, str = "day") {
+      if (!date) {
+        date = /* @__PURE__ */ new Date();
+      }
+      if (typeof date !== "object") {
+        date = date.replace(/-/g, "/");
+      }
+      const dd = new Date(date);
+      switch (str) {
+        case "day":
+          dd.setDate(dd.getDate() + AddDayCount);
+          break;
+        case "month":
+          if (dd.getDate() === 31 && AddDayCount > 0) {
+            dd.setDate(dd.getDate() + AddDayCount);
+          } else {
+            const preMonth = dd.getMonth();
+            dd.setMonth(preMonth + AddDayCount);
+            const nextMonth = dd.getMonth();
+            if (AddDayCount < 0 && preMonth !== 0 && nextMonth - preMonth > AddDayCount) {
+              dd.setMonth(nextMonth + (nextMonth - preMonth + AddDayCount));
+            }
+            if (AddDayCount > 0 && nextMonth - preMonth > AddDayCount) {
+              dd.setMonth(nextMonth - (nextMonth - preMonth - AddDayCount));
+            }
+          }
+          break;
+        case "year":
+          dd.setFullYear(dd.getFullYear() + AddDayCount);
+          break;
+      }
+      const y2 = dd.getFullYear();
+      const m2 = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
+      const d2 = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
+      return {
+        fullDate: y2 + "-" + m2 + "-" + d2,
+        year: y2,
+        month: m2,
+        date: d2,
+        day: dd.getDay()
+      };
+    }
+    /**
+     * 获取上月剩余天数
+     */
+    _getLastMonthDays(firstDay, full) {
+      let dateArr = [];
+      for (let i2 = firstDay; i2 > 0; i2--) {
+        const beforeDate = new Date(full.year, full.month - 1, -i2 + 1).getDate();
+        dateArr.push({
+          date: beforeDate,
+          month: full.month - 1,
+          lunar: this.getlunar(full.year, full.month - 1, beforeDate),
+          disable: true
+        });
+      }
+      return dateArr;
+    }
+    /**
+     * 获取本月天数
+     */
+    _currentMonthDys(dateData, full) {
+      let dateArr = [];
+      let fullDate = this.date.fullDate;
+      for (let i2 = 1; i2 <= dateData; i2++) {
+        let nowDate = full.year + "-" + (full.month < 10 ? full.month : full.month) + "-" + (i2 < 10 ? "0" + i2 : i2);
+        let isDay = fullDate === nowDate;
+        let info = this.selected && this.selected.find((item) => {
+          if (this.dateEqual(nowDate, item.date)) {
+            return item;
+          }
+        });
+        let disableBefore = true;
+        let disableAfter = true;
+        if (this.startDate) {
+          disableBefore = this.dateCompare(this.startDate, nowDate);
+        }
+        if (this.endDate) {
+          disableAfter = this.dateCompare(nowDate, this.endDate);
+        }
+        let multiples = this.multipleStatus.data;
+        let checked = false;
+        let multiplesStatus = -1;
+        if (this.range) {
+          if (multiples) {
+            multiplesStatus = multiples.findIndex((item) => {
+              return this.dateEqual(item, nowDate);
+            });
+          }
+          if (multiplesStatus !== -1) {
+            checked = true;
+          }
+        }
+        let data = {
+          fullDate: nowDate,
+          year: full.year,
+          date: i2,
+          multiple: this.range ? checked : false,
+          beforeMultiple: this.dateEqual(this.multipleStatus.before, nowDate),
+          afterMultiple: this.dateEqual(this.multipleStatus.after, nowDate),
+          month: full.month,
+          lunar: this.getlunar(full.year, full.month, i2),
+          disable: !(disableBefore && disableAfter),
+          isDay
+        };
+        if (info) {
+          data.extraInfo = info;
+        }
+        dateArr.push(data);
+      }
+      return dateArr;
+    }
+    /**
+     * 获取下月天数
+     */
+    _getNextMonthDays(surplus, full) {
+      let dateArr = [];
+      for (let i2 = 1; i2 < surplus + 1; i2++) {
+        dateArr.push({
+          date: i2,
+          month: Number(full.month) + 1,
+          lunar: this.getlunar(full.year, Number(full.month) + 1, i2),
+          disable: true
+        });
+      }
+      return dateArr;
+    }
+    /**
+     * 获取当前日期详情
+     * @param {Object} date
+     */
+    getInfo(date) {
+      if (!date) {
+        date = /* @__PURE__ */ new Date();
+      }
+      const dateInfo = this.canlender.find((item) => item.fullDate === this.getDate(date).fullDate);
+      return dateInfo;
+    }
+    /**
+     * 比较时间大小
+     */
+    dateCompare(startDate, endDate) {
+      startDate = new Date(startDate.replace("-", "/").replace("-", "/"));
+      endDate = new Date(endDate.replace("-", "/").replace("-", "/"));
+      if (startDate <= endDate) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    /**
+     * 比较时间是否相等
+     */
+    dateEqual(before, after) {
+      before = new Date(before.replace("-", "/").replace("-", "/"));
+      after = new Date(after.replace("-", "/").replace("-", "/"));
+      if (before.getTime() - after.getTime() === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    /**
+     * 获取日期范围内所有日期
+     * @param {Object} begin
+     * @param {Object} end
+     */
+    geDateAll(begin, end) {
+      var arr = [];
+      var ab = begin.split("-");
+      var ae2 = end.split("-");
+      var db2 = /* @__PURE__ */ new Date();
+      db2.setFullYear(ab[0], ab[1] - 1, ab[2]);
+      var de2 = /* @__PURE__ */ new Date();
+      de2.setFullYear(ae2[0], ae2[1] - 1, ae2[2]);
+      var unixDb = db2.getTime() - 24 * 60 * 60 * 1e3;
+      var unixDe = de2.getTime() - 24 * 60 * 60 * 1e3;
+      for (var k = unixDb; k <= unixDe; ) {
+        k = k + 24 * 60 * 60 * 1e3;
+        arr.push(this.getDate(new Date(parseInt(k))).fullDate);
+      }
+      return arr;
+    }
+    /**
+     * 计算阴历日期显示
+     */
+    getlunar(year, month, date) {
+      return calendar.solar2lunar(year, month, date);
+    }
+    /**
+     * 设置打点
+     */
+    setSelectInfo(data, value) {
+      this.selected = value;
+      this._getWeek(data);
+    }
+    /**
+     *  获取多选状态
+     */
+    setMultiple(fullDate) {
+      let {
+        before,
+        after
+      } = this.multipleStatus;
+      if (!this.range)
+        return;
+      if (before && after) {
+        this.multipleStatus.before = fullDate;
+        this.multipleStatus.after = "";
+        this.multipleStatus.data = [];
+      } else {
+        if (!before) {
+          this.multipleStatus.before = fullDate;
+        } else {
+          this.multipleStatus.after = fullDate;
+          if (this.dateCompare(this.multipleStatus.before, this.multipleStatus.after)) {
+            this.multipleStatus.data = this.geDateAll(this.multipleStatus.before, this.multipleStatus.after);
+          } else {
+            this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus.before);
+          }
+        }
+      }
+      this._getWeek(fullDate);
+    }
+    /**
+     * 获取每周数据
+     * @param {Object} dateData
+     */
+    _getWeek(dateData) {
+      const {
+        year,
+        month
+      } = this.getDate(dateData);
+      let firstDay = new Date(year, month - 1, 1).getDay();
+      let currentDay = new Date(year, month, 0).getDate();
+      let dates = {
+        lastMonthDays: this._getLastMonthDays(firstDay, this.getDate(dateData)),
+        // 上个月末尾几天
+        currentMonthDys: this._currentMonthDys(currentDay, this.getDate(dateData)),
+        // 本月天数
+        nextMonthDays: [],
+        // 下个月开始几天
+        weeks: []
+      };
+      let canlender = [];
+      const surplus = 42 - (dates.lastMonthDays.length + dates.currentMonthDys.length);
+      dates.nextMonthDays = this._getNextMonthDays(surplus, this.getDate(dateData));
+      canlender = canlender.concat(dates.lastMonthDays, dates.currentMonthDys, dates.nextMonthDays);
+      let weeks = {};
+      for (let i2 = 0; i2 < canlender.length; i2++) {
+        if (i2 % 7 === 0) {
+          weeks[parseInt(i2 / 7)] = new Array(7);
+        }
+        weeks[parseInt(i2 / 7)][i2 % 7] = canlender[i2];
+      }
+      this.canlender = canlender;
+      this.weeks = weeks;
+    }
+    //静态方法
+    // static init(date) {
+    // 	if (!this.instance) {
+    // 		this.instance = new Calendar(date);
+    // 	}
+    // 	return this.instance;
+    // }
+  };
+  const isObject = (val) => val !== null && typeof val === "object";
+  const defaultDelimiters = ["{", "}"];
+  class BaseFormatter {
+    constructor() {
+      this._caches = /* @__PURE__ */ Object.create(null);
+    }
+    interpolate(message, values, delimiters = defaultDelimiters) {
+      if (!values) {
+        return [message];
+      }
+      let tokens = this._caches[message];
+      if (!tokens) {
+        tokens = parse(message, delimiters);
+        this._caches[message] = tokens;
+      }
+      return compile(tokens, values);
+    }
+  }
+  const RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+  const RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+  function parse(format, [startDelimiter, endDelimiter]) {
+    const tokens = [];
+    let position = 0;
+    let text = "";
+    while (position < format.length) {
+      let char = format[position++];
+      if (char === startDelimiter) {
+        if (text) {
+          tokens.push({ type: "text", value: text });
+        }
+        text = "";
+        let sub = "";
+        char = format[position++];
+        while (char !== void 0 && char !== endDelimiter) {
+          sub += char;
+          char = format[position++];
+        }
+        const isClosed = char === endDelimiter;
+        const type = RE_TOKEN_LIST_VALUE.test(sub) ? "list" : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? "named" : "unknown";
+        tokens.push({ value: sub, type });
+      } else {
+        text += char;
+      }
+    }
+    text && tokens.push({ type: "text", value: text });
+    return tokens;
+  }
+  function compile(tokens, values) {
+    const compiled = [];
+    let index = 0;
+    const mode = Array.isArray(values) ? "list" : isObject(values) ? "named" : "unknown";
+    if (mode === "unknown") {
+      return compiled;
+    }
+    while (index < tokens.length) {
+      const token = tokens[index];
+      switch (token.type) {
+        case "text":
+          compiled.push(token.value);
+          break;
+        case "list":
+          compiled.push(values[parseInt(token.value, 10)]);
+          break;
+        case "named":
+          if (mode === "named") {
+            compiled.push(values[token.value]);
+          } else {
+            {
+              console.warn(`Type of token '${token.type}' and format of value '${mode}' don't match!`);
+            }
+          }
+          break;
+        case "unknown":
+          {
+            console.warn(`Detect 'unknown' type of token!`);
+          }
+          break;
+      }
+      index++;
+    }
+    return compiled;
+  }
+  const LOCALE_ZH_HANS = "zh-Hans";
+  const LOCALE_ZH_HANT = "zh-Hant";
+  const LOCALE_EN = "en";
+  const LOCALE_FR = "fr";
+  const LOCALE_ES = "es";
+  const hasOwnProperty = Object.prototype.hasOwnProperty;
+  const hasOwn = (val, key) => hasOwnProperty.call(val, key);
+  const defaultFormatter = new BaseFormatter();
+  function include(str, parts) {
+    return !!parts.find((part) => str.indexOf(part) !== -1);
+  }
+  function startsWith(str, parts) {
+    return parts.find((part) => str.indexOf(part) === 0);
+  }
+  function normalizeLocale(locale, messages) {
+    if (!locale) {
+      return;
+    }
+    locale = locale.trim().replace(/_/g, "-");
+    if (messages && messages[locale]) {
+      return locale;
+    }
+    locale = locale.toLowerCase();
+    if (locale === "chinese") {
+      return LOCALE_ZH_HANS;
+    }
+    if (locale.indexOf("zh") === 0) {
+      if (locale.indexOf("-hans") > -1) {
+        return LOCALE_ZH_HANS;
+      }
+      if (locale.indexOf("-hant") > -1) {
+        return LOCALE_ZH_HANT;
+      }
+      if (include(locale, ["-tw", "-hk", "-mo", "-cht"])) {
+        return LOCALE_ZH_HANT;
+      }
+      return LOCALE_ZH_HANS;
+    }
+    let locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
+    if (messages && Object.keys(messages).length > 0) {
+      locales = Object.keys(messages);
+    }
+    const lang = startsWith(locale, locales);
+    if (lang) {
+      return lang;
+    }
+  }
+  class I18n {
+    constructor({ locale, fallbackLocale, messages, watcher, formater: formater2 }) {
+      this.locale = LOCALE_EN;
+      this.fallbackLocale = LOCALE_EN;
+      this.message = {};
+      this.messages = {};
+      this.watchers = [];
+      if (fallbackLocale) {
+        this.fallbackLocale = fallbackLocale;
+      }
+      this.formater = formater2 || defaultFormatter;
+      this.messages = messages || {};
+      this.setLocale(locale || LOCALE_EN);
+      if (watcher) {
+        this.watchLocale(watcher);
+      }
+    }
+    setLocale(locale) {
+      const oldLocale = this.locale;
+      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
+      if (!this.messages[this.locale]) {
+        this.messages[this.locale] = {};
+      }
+      this.message = this.messages[this.locale];
+      if (oldLocale !== this.locale) {
+        this.watchers.forEach((watcher) => {
+          watcher(this.locale, oldLocale);
+        });
+      }
+    }
+    getLocale() {
+      return this.locale;
+    }
+    watchLocale(fn) {
+      const index = this.watchers.push(fn) - 1;
+      return () => {
+        this.watchers.splice(index, 1);
+      };
+    }
+    add(locale, message, override = true) {
+      const curMessages = this.messages[locale];
+      if (curMessages) {
+        if (override) {
+          Object.assign(curMessages, message);
+        } else {
+          Object.keys(message).forEach((key) => {
+            if (!hasOwn(curMessages, key)) {
+              curMessages[key] = message[key];
+            }
+          });
+        }
+      } else {
+        this.messages[locale] = message;
+      }
+    }
+    f(message, values, delimiters) {
+      return this.formater.interpolate(message, values, delimiters).join("");
+    }
+    t(key, locale, values) {
+      let message = this.message;
+      if (typeof locale === "string") {
+        locale = normalizeLocale(locale, this.messages);
+        locale && (message = this.messages[locale]);
+      } else {
+        values = locale;
+      }
+      if (!hasOwn(message, key)) {
+        console.warn(`Cannot translate the value of keypath ${key}. Use the value of keypath as default.`);
+        return key;
+      }
+      return this.formater.interpolate(message[key], values).join("");
+    }
+  }
+  function watchAppLocale(appVm, i18n) {
+    if (appVm.$watchLocale) {
+      appVm.$watchLocale((newLocale) => {
+        i18n.setLocale(newLocale);
+      });
+    } else {
+      appVm.$watch(() => appVm.$locale, (newLocale) => {
+        i18n.setLocale(newLocale);
+      });
+    }
+  }
+  function getDefaultLocale() {
+    if (typeof uni !== "undefined" && uni.getLocale) {
+      return uni.getLocale();
+    }
+    if (typeof global !== "undefined" && global.getLocale) {
+      return global.getLocale();
+    }
+    return LOCALE_EN;
+  }
+  function initVueI18n(locale, messages = {}, fallbackLocale, watcher) {
+    if (typeof locale !== "string") {
+      const options = [
+        messages,
+        locale
+      ];
+      locale = options[0];
+      messages = options[1];
+    }
+    if (typeof locale !== "string") {
+      locale = getDefaultLocale();
+    }
+    if (typeof fallbackLocale !== "string") {
+      fallbackLocale = typeof __uniConfig !== "undefined" && __uniConfig.fallbackLocale || LOCALE_EN;
+    }
+    const i18n = new I18n({
+      locale,
+      fallbackLocale,
+      messages,
+      watcher
+    });
+    let t2 = (key, values) => {
+      if (typeof getApp !== "function") {
+        t2 = function(key2, values2) {
+          return i18n.t(key2, values2);
+        };
+      } else {
+        let isWatchedAppLocale = false;
+        t2 = function(key2, values2) {
+          const appVm = getApp().$vm;
+          if (appVm) {
+            appVm.$locale;
+            if (!isWatchedAppLocale) {
+              isWatchedAppLocale = true;
+              watchAppLocale(appVm, i18n);
+            }
+          }
+          return i18n.t(key2, values2);
+        };
+      }
+      return t2(key, values);
+    };
+    return {
+      i18n,
+      f(message, values, delimiters) {
+        return i18n.f(message, values, delimiters);
+      },
+      t(key, values) {
+        return t2(key, values);
+      },
+      add(locale2, message, override = true) {
+        return i18n.add(locale2, message, override);
+      },
+      watch(fn) {
+        return i18n.watchLocale(fn);
+      },
+      getLocale() {
+        return i18n.getLocale();
+      },
+      setLocale(newLocale) {
+        return i18n.setLocale(newLocale);
+      }
+    };
+  }
+  const en$1 = {
+    "uni-calender.ok": "ok",
+    "uni-calender.cancel": "cancel",
+    "uni-calender.today": "today",
+    "uni-calender.MON": "MON",
+    "uni-calender.TUE": "TUE",
+    "uni-calender.WED": "WED",
+    "uni-calender.THU": "THU",
+    "uni-calender.FRI": "FRI",
+    "uni-calender.SAT": "SAT",
+    "uni-calender.SUN": "SUN"
+  };
+  const zhHans$1 = {
+    "uni-calender.ok": "确定",
+    "uni-calender.cancel": "取消",
+    "uni-calender.today": "今日",
+    "uni-calender.SUN": "日",
+    "uni-calender.MON": "一",
+    "uni-calender.TUE": "二",
+    "uni-calender.WED": "三",
+    "uni-calender.THU": "四",
+    "uni-calender.FRI": "五",
+    "uni-calender.SAT": "六"
+  };
+  const zhHant$1 = {
+    "uni-calender.ok": "確定",
+    "uni-calender.cancel": "取消",
+    "uni-calender.today": "今日",
+    "uni-calender.SUN": "日",
+    "uni-calender.MON": "一",
+    "uni-calender.TUE": "二",
+    "uni-calender.WED": "三",
+    "uni-calender.THU": "四",
+    "uni-calender.FRI": "五",
+    "uni-calender.SAT": "六"
+  };
+  const i18nMessages$1 = {
+    en: en$1,
+    "zh-Hans": zhHans$1,
+    "zh-Hant": zhHant$1
+  };
+  const { t: t$4 } = initVueI18n(i18nMessages$1);
+  const _sfc_main$L = {
+    emits: ["change"],
+    props: {
+      weeks: {
+        type: Object,
+        default() {
+          return {};
+        }
+      },
+      calendar: {
+        type: Object,
+        default: () => {
+          return {};
+        }
+      },
+      selected: {
+        type: Array,
+        default: () => {
+          return [];
+        }
+      },
+      lunar: {
+        type: Boolean,
+        default: false
+      }
+    },
+    computed: {
+      todayText() {
+        return t$4("uni-calender.today");
+      }
+    },
+    methods: {
+      choiceDate(weeks) {
+        this.$emit("change", weeks);
+      }
+    }
+  };
+  function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        class: vue.normalizeClass(["uni-calendar-item__weeks-box", {
+          "uni-calendar-item--disable": $props.weeks.disable,
+          "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+          "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+          "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+          "uni-calendar-item--multiple": $props.weeks.multiple,
+          "uni-calendar-item--after-checked": $props.weeks.afterMultiple
+        }]),
+        onClick: _cache[0] || (_cache[0] = ($event) => $options.choiceDate($props.weeks))
+      },
+      [
+        vue.createElementVNode("view", { class: "uni-calendar-item__weeks-box-item" }, [
+          $props.selected && $props.weeks.extraInfo ? (vue.openBlock(), vue.createElementBlock("text", {
+            key: 0,
+            class: "uni-calendar-item__weeks-box-circle"
+          })) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode(
+            "text",
+            {
+              class: vue.normalizeClass(["uni-calendar-item__weeks-box-text", {
+                "uni-calendar-item--isDay-text": $props.weeks.isDay,
+                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+                "uni-calendar-item--multiple": $props.weeks.multiple,
+                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
+                "uni-calendar-item--disable": $props.weeks.disable
+              }])
+            },
+            vue.toDisplayString($props.weeks.date),
+            3
+            /* TEXT, CLASS */
+          ),
+          !$props.lunar && !$props.weeks.extraInfo && $props.weeks.isDay ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 1,
+              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
+                "uni-calendar-item--isDay-text": $props.weeks.isDay,
+                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+                "uni-calendar-item--multiple": $props.weeks.multiple,
+                "uni-calendar-item--after-checked": $props.weeks.afterMultiple
+              }])
+            },
+            vue.toDisplayString($options.todayText),
+            3
+            /* TEXT, CLASS */
+          )) : vue.createCommentVNode("v-if", true),
+          $props.lunar && !$props.weeks.extraInfo ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 2,
+              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
+                "uni-calendar-item--isDay-text": $props.weeks.isDay,
+                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+                "uni-calendar-item--multiple": $props.weeks.multiple,
+                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
+                "uni-calendar-item--disable": $props.weeks.disable
+              }])
+            },
+            vue.toDisplayString($props.weeks.isDay ? $options.todayText : $props.weeks.lunar.IDayCn === "初一" ? $props.weeks.lunar.IMonthCn : $props.weeks.lunar.IDayCn),
+            3
+            /* TEXT, CLASS */
+          )) : vue.createCommentVNode("v-if", true),
+          $props.weeks.extraInfo && $props.weeks.extraInfo.info ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 3,
+              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
+                "uni-calendar-item--extra": $props.weeks.extraInfo.info,
+                "uni-calendar-item--isDay-text": $props.weeks.isDay,
+                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
+                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
+                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
+                "uni-calendar-item--multiple": $props.weeks.multiple,
+                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
+                "uni-calendar-item--disable": $props.weeks.disable
+              }])
+            },
+            vue.toDisplayString($props.weeks.extraInfo.info),
+            3
+            /* TEXT, CLASS */
+          )) : vue.createCommentVNode("v-if", true)
+        ])
+      ],
+      2
+      /* CLASS */
+    );
+  }
+  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$L, [["render", _sfc_render$J], ["__scopeId", "data-v-65626c58"], ["__file", "D:/HB/UOApp/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
+  const { t: t$3 } = initVueI18n(i18nMessages$1);
+  const _sfc_main$K = {
+    components: {
+      CalendarItem
+    },
+    emits: ["close", "confirm", "change", "monthSwitch"],
+    props: {
+      date: {
+        type: String,
+        default: ""
+      },
+      selected: {
+        type: Array,
+        default() {
+          return [];
+        }
+      },
+      lunar: {
+        type: Boolean,
+        default: false
+      },
+      startDate: {
+        type: String,
+        default: ""
+      },
+      endDate: {
+        type: String,
+        default: ""
+      },
+      range: {
+        type: Boolean,
+        default: false
+      },
+      insert: {
+        type: Boolean,
+        default: true
+      },
+      showMonth: {
+        type: Boolean,
+        default: true
+      },
+      clearDate: {
+        type: Boolean,
+        default: true
+      }
+    },
+    data() {
+      return {
+        show: false,
+        weeks: [],
+        calendar: {},
+        nowDate: "",
+        aniMaskShow: false
+      };
+    },
+    computed: {
+      /**
+       * for i18n
+       */
+      okText() {
+        return t$3("uni-calender.ok");
+      },
+      cancelText() {
+        return t$3("uni-calender.cancel");
+      },
+      todayText() {
+        return t$3("uni-calender.today");
+      },
+      monText() {
+        return t$3("uni-calender.MON");
+      },
+      TUEText() {
+        return t$3("uni-calender.TUE");
+      },
+      WEDText() {
+        return t$3("uni-calender.WED");
+      },
+      THUText() {
+        return t$3("uni-calender.THU");
+      },
+      FRIText() {
+        return t$3("uni-calender.FRI");
+      },
+      SATText() {
+        return t$3("uni-calender.SAT");
+      },
+      SUNText() {
+        return t$3("uni-calender.SUN");
+      }
+    },
+    watch: {
+      date(newVal) {
+        this.init(newVal);
+      },
+      startDate(val) {
+        this.cale.resetSatrtDate(val);
+        this.cale.setDate(this.nowDate.fullDate);
+        this.weeks = this.cale.weeks;
+      },
+      endDate(val) {
+        this.cale.resetEndDate(val);
+        this.cale.setDate(this.nowDate.fullDate);
+        this.weeks = this.cale.weeks;
+      },
+      selected(newVal) {
+        this.cale.setSelectInfo(this.nowDate.fullDate, newVal);
+        this.weeks = this.cale.weeks;
+      }
+    },
+    created() {
+      this.cale = new Calendar$2({
+        selected: this.selected,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        range: this.range
+      });
+      this.init(this.date);
+    },
+    methods: {
+      // 取消穿透
+      clean() {
+      },
+      bindDateChange(e2) {
+        const value = e2.detail.value + "-1";
+        this.setDate(value);
+        const { year, month } = this.cale.getDate(value);
+        this.$emit("monthSwitch", {
+          year,
+          month
+        });
+      },
+      /**
+       * 初始化日期显示
+       * @param {Object} date
+       */
+      init(date) {
+        this.cale.setDate(date);
+        this.weeks = this.cale.weeks;
+        this.nowDate = this.calendar = this.cale.getInfo(date);
+      },
+      /**
+       * 打开日历弹窗
+       */
+      open() {
+        if (this.clearDate && !this.insert) {
+          this.cale.cleanMultipleStatus();
+          this.init(this.date);
+        }
+        this.show = true;
+        this.$nextTick(() => {
+          setTimeout(() => {
+            this.aniMaskShow = true;
+          }, 50);
+        });
+      },
+      /**
+       * 关闭日历弹窗
+       */
+      close() {
+        this.aniMaskShow = false;
+        this.$nextTick(() => {
+          setTimeout(() => {
+            this.show = false;
+            this.$emit("close");
+          }, 300);
+        });
+      },
+      /**
+       * 确认按钮
+       */
+      confirm() {
+        this.setEmit("confirm");
+        this.close();
+      },
+      /**
+       * 变化触发
+       */
+      change() {
+        if (!this.insert)
+          return;
+        this.setEmit("change");
+      },
+      /**
+       * 选择月份触发
+       */
+      monthSwitch() {
+        let {
+          year,
+          month
+        } = this.nowDate;
+        this.$emit("monthSwitch", {
+          year,
+          month: Number(month)
+        });
+      },
+      /**
+       * 派发事件
+       * @param {Object} name
+       */
+      setEmit(name) {
+        let {
+          year,
+          month,
+          date,
+          fullDate,
+          lunar,
+          extraInfo
+        } = this.calendar;
+        this.$emit(name, {
+          range: this.cale.multipleStatus,
+          year,
+          month,
+          date,
+          fulldate: fullDate,
+          lunar,
+          extraInfo: extraInfo || {}
+        });
+      },
+      /**
+       * 选择天触发
+       * @param {Object} weeks
+       */
+      choiceDate(weeks) {
+        if (weeks.disable)
+          return;
+        this.calendar = weeks;
+        this.cale.setMultiple(this.calendar.fullDate);
+        this.weeks = this.cale.weeks;
+        this.change();
+      },
+      /**
+       * 回到今天
+       */
+      backToday() {
+        const nowYearMonth = `${this.nowDate.year}-${this.nowDate.month}`;
+        const date = this.cale.getDate(/* @__PURE__ */ new Date());
+        const todayYearMonth = `${date.year}-${date.month}`;
+        this.init(date.fullDate);
+        if (nowYearMonth !== todayYearMonth) {
+          this.monthSwitch();
+        }
+        this.change();
+      },
+      /**
+       * 上个月
+       */
+      pre() {
+        const preDate = this.cale.getDate(this.nowDate.fullDate, -1, "month").fullDate;
+        this.setDate(preDate);
+        this.monthSwitch();
+      },
+      /**
+       * 下个月
+       */
+      next() {
+        const nextDate = this.cale.getDate(this.nowDate.fullDate, 1, "month").fullDate;
+        this.setDate(nextDate);
+        this.monthSwitch();
+      },
+      /**
+       * 设置日期
+       * @param {Object} date
+       */
+      setDate(date) {
+        this.cale.setDate(date);
+        this.weeks = this.cale.weeks;
+        this.nowDate = this.cale.getInfo(date);
+      }
+    }
+  };
+  function _sfc_render$I(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_calendar_item = vue.resolveComponent("calendar-item");
+    return vue.openBlock(), vue.createElementBlock("view", { class: "uni-calendar" }, [
+      !$props.insert && $data.show ? (vue.openBlock(), vue.createElementBlock(
+        "view",
+        {
+          key: 0,
+          class: vue.normalizeClass(["uni-calendar__mask", { "uni-calendar--mask-show": $data.aniMaskShow }]),
+          onClick: _cache[0] || (_cache[0] = (...args) => $options.clean && $options.clean(...args))
+        },
+        null,
+        2
+        /* CLASS */
+      )) : vue.createCommentVNode("v-if", true),
+      $props.insert || $data.show ? (vue.openBlock(), vue.createElementBlock(
+        "view",
+        {
+          key: 1,
+          class: vue.normalizeClass(["uni-calendar__content", { "uni-calendar--fixed": !$props.insert, "uni-calendar--ani-show": $data.aniMaskShow }])
+        },
+        [
+          !$props.insert ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 0,
+            class: "uni-calendar__header uni-calendar--fixed-top"
+          }, [
+            vue.createElementVNode("view", {
+              class: "uni-calendar__header-btn-box",
+              onClick: _cache[1] || (_cache[1] = (...args) => $options.close && $options.close(...args))
+            }, [
+              vue.createElementVNode(
+                "text",
+                { class: "uni-calendar__header-text uni-calendar--fixed-width" },
+                vue.toDisplayString($options.cancelText),
+                1
+                /* TEXT */
+              )
+            ]),
+            vue.createElementVNode("view", {
+              class: "uni-calendar__header-btn-box",
+              onClick: _cache[2] || (_cache[2] = (...args) => $options.confirm && $options.confirm(...args))
+            }, [
+              vue.createElementVNode(
+                "text",
+                { class: "uni-calendar__header-text uni-calendar--fixed-width" },
+                vue.toDisplayString($options.okText),
+                1
+                /* TEXT */
+              )
+            ])
+          ])) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode("view", { class: "uni-calendar__header" }, [
+            vue.createElementVNode("view", {
+              class: "uni-calendar__header-btn-box",
+              onClick: _cache[3] || (_cache[3] = vue.withModifiers((...args) => $options.pre && $options.pre(...args), ["stop"]))
+            }, [
+              vue.createElementVNode("view", { class: "uni-calendar__header-btn uni-calendar--left" })
+            ]),
+            vue.createElementVNode("picker", {
+              mode: "date",
+              value: $props.date,
+              fields: "month",
+              onChange: _cache[4] || (_cache[4] = (...args) => $options.bindDateChange && $options.bindDateChange(...args))
+            }, [
+              vue.createElementVNode(
+                "text",
+                { class: "uni-calendar__header-text" },
+                vue.toDisplayString(($data.nowDate.year || "") + " / " + ($data.nowDate.month || "")),
+                1
+                /* TEXT */
+              )
+            ], 40, ["value"]),
+            vue.createElementVNode("view", {
+              class: "uni-calendar__header-btn-box",
+              onClick: _cache[5] || (_cache[5] = vue.withModifiers((...args) => $options.next && $options.next(...args), ["stop"]))
+            }, [
+              vue.createElementVNode("view", { class: "uni-calendar__header-btn uni-calendar--right" })
+            ]),
+            vue.createElementVNode(
+              "text",
+              {
+                class: "uni-calendar__backtoday",
+                onClick: _cache[6] || (_cache[6] = (...args) => $options.backToday && $options.backToday(...args))
+              },
+              vue.toDisplayString($options.todayText),
+              1
+              /* TEXT */
+            )
+          ]),
+          vue.createElementVNode("view", { class: "uni-calendar__box" }, [
+            $props.showMonth ? (vue.openBlock(), vue.createElementBlock("view", {
+              key: 0,
+              class: "uni-calendar__box-bg"
+            }, [
+              vue.createElementVNode(
+                "text",
+                { class: "uni-calendar__box-bg-text" },
+                vue.toDisplayString($data.nowDate.month),
+                1
+                /* TEXT */
+              )
+            ])) : vue.createCommentVNode("v-if", true),
+            vue.createElementVNode("view", { class: "uni-calendar__weeks" }, [
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.SUNText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.monText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.TUEText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.WEDText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.THUText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.FRIText),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
+                vue.createElementVNode(
+                  "text",
+                  { class: "uni-calendar__weeks-day-text" },
+                  vue.toDisplayString($options.SATText),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ]),
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($data.weeks, (item, weekIndex) => {
+                return vue.openBlock(), vue.createElementBlock("view", {
+                  class: "uni-calendar__weeks",
+                  key: weekIndex
+                }, [
+                  (vue.openBlock(true), vue.createElementBlock(
+                    vue.Fragment,
+                    null,
+                    vue.renderList(item, (weeks, weeksIndex) => {
+                      return vue.openBlock(), vue.createElementBlock("view", {
+                        class: "uni-calendar__weeks-item",
+                        key: weeksIndex
+                      }, [
+                        vue.createVNode(_component_calendar_item, {
+                          class: "uni-calendar-item--hook",
+                          weeks,
+                          calendar: $data.calendar,
+                          selected: $props.selected,
+                          lunar: $props.lunar,
+                          onChange: $options.choiceDate
+                        }, null, 8, ["weeks", "calendar", "selected", "lunar", "onChange"])
+                      ]);
+                    }),
+                    128
+                    /* KEYED_FRAGMENT */
+                  ))
+                ]);
+              }),
+              128
+              /* KEYED_FRAGMENT */
+            ))
+          ])
+        ],
+        2
+        /* CLASS */
+      )) : vue.createCommentVNode("v-if", true)
+    ]);
+  }
+  const __easycom_1$5 = /* @__PURE__ */ _export_sfc(_sfc_main$K, [["render", _sfc_render$I], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/HB/UOApp/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
+  function compareTimeWithSpecificTime(startTime, endTime) {
+    const currentDateTime = new Date(startTime);
+    const specificDateTime = new Date(endTime);
+    const morningTime = new Date(new Date(startTime).setHours(9, 0, 0, 0));
+    const eveningTime = new Date(new Date(startTime).setHours(17, 30, 0, 0));
+    if (currentDateTime <= morningTime && specificDateTime >= eveningTime) {
+      return "正常";
+    } else if (currentDateTime <= morningTime && specificDateTime < eveningTime) {
+      return "早退";
+    } else if (currentDateTime > morningTime && specificDateTime >= eveningTime) {
+      return "迟到";
+    } else if (currentDateTime > morningTime && specificDateTime < eveningTime) {
+      return "迟到又早退";
+    }
+  }
+  const _sfc_main$J = {
     components: {},
     data() {
       return {
+        data: {
+          pageNum: 1,
+          pageSize: 200,
+          data: {
+            status: null,
+            type: null,
+            date: null
+          }
+        },
+        data1: {
+          pageNum: 1,
+          pageSize: 200,
+          data: {
+            status: null,
+            type: null,
+            date: null
+          }
+        },
+        showCalendar: false,
+        info: {
+          selected: [],
+          message: [],
+          fullDate: ""
+        },
+        timeNow: "",
+        timeSelectNow: "",
+        finalResult: null
+      };
+    },
+    created() {
+      this.getData();
+      setInterval(this.getData, 3e4);
+    },
+    onReady() {
+    },
+    onShow() {
+      this.getData();
+    },
+    methods: {
+      isToday(dateString) {
+        const date = new Date(dateString);
+        const today = /* @__PURE__ */ new Date();
+        return date.toDateString() === today.toDateString();
+      },
+      isTomorrow(date) {
+        const today = /* @__PURE__ */ new Date();
+        today.setHours(0, 0, 0, 0);
+        today.setDate(today.getDate() + 1);
+        const inputDate = new Date(date);
+        return inputDate > today;
+      },
+      changePage() {
+        uni.switchTab({
+          url: "/pages/review/review",
+          success() {
+            uni.showToast({
+              mask: true,
+              title: "成功跳转",
+              icon: "success",
+              duration: 1e3
+            });
+          }
+        });
+      },
+      changePage2() {
+        uni.navigateTo({
+          url: "/pages/punchIn/punchIn",
+          success() {
+            uni.showToast({
+              mask: true,
+              title: "请打卡",
+              icon: "success",
+              duration: 1e3
+            });
+          }
+        });
+      },
+      change(e2) {
+        this.info.message = [];
+        this.data1.data.date = e2.fulldate;
+        this.timeSelectNow = e2.fulldate;
+        this.finalResult = null;
+        uni.request({
+          url: "http://192.168.0.196:8088/attendance/getSelfAttendance",
+          data: this.data1,
+          method: "POST",
+          header: {
+            "satoken": uni.getStorageSync("satoken")
+          },
+          success: (res) => {
+            if (res.data.data) {
+              this.info.message = res.data.data.records.map((record) => {
+                if (record && record.timeIn && record.timeOut) {
+                  const timeI = new Date(record.timeIn);
+                  const timeO = new Date(record.timeOut);
+                  const timeIn = timeI.getHours() + ":" + timeI.getMinutes() + ":" + timeI.getSeconds();
+                  const timeOut = timeO.getHours() + ":" + timeO.getMinutes() + ":" + timeO.getSeconds();
+                  const address = record.address;
+                  this.finalResult = compareTimeWithSpecificTime(record.timeIn, record.timeOut);
+                  return {
+                    "address": address,
+                    "timeIn": timeIn,
+                    "timeOut": timeOut
+                  };
+                } else if (record && !record.timeIn && record.timeOut) {
+                  const timeO = new Date(record.timeOut);
+                  const timeIn = "上班未打卡";
+                  const timeOut = timeO.getHours() + ":" + timeO.getMinutes() + ":" + timeO.getSeconds();
+                  const address = record.address;
+                  this.finalResult = "上班未打卡";
+                  return {
+                    "address": address,
+                    "timeIn": timeIn,
+                    "timeOut": timeOut
+                  };
+                } else if (record && record.timeIn && !record.timeOut) {
+                  const timeI = new Date(record.timeIn);
+                  const timeIn = timeI.getHours() + ":" + timeI.getMinutes() + ":" + timeI.getSeconds();
+                  const timeOut = "下班未打卡";
+                  const address = record.address;
+                  this.finalResult = "下班未打卡";
+                  return {
+                    "address": address,
+                    "timeIn": timeIn,
+                    "timeOut": timeOut
+                  };
+                }
+              });
+            }
+          },
+          fail: (error) => {
+            formatAppLog("log", "at pages/selfMessage/punchMessage.vue:248", error);
+          }
+        });
+      },
+      getData() {
+        uni.request({
+          url: "http://192.168.0.196:8088/attendance/getSelfAttendance",
+          data: this.data,
+          method: "POST",
+          header: {
+            "satoken": uni.getStorageSync("satoken")
+          },
+          success: (res) => {
+            if (res.data.data.records !== void 0) {
+              this.info.selected = res.data.data.records;
+              this.info.selected = this.info.selected.map((record) => {
+                if (this.isToday(record.date) && record.timeOut === null) {
+                  return {
+                    "address": record.address,
+                    "date": record.date,
+                    "info": "请签到"
+                  };
+                } else {
+                  return {
+                    "address": record.address,
+                    "date": record.date,
+                    "info": record.status
+                  };
+                }
+              });
+            }
+          },
+          fail: (error) => {
+            formatAppLog("log", "at pages/selfMessage/punchMessage.vue:281", error);
+          }
+        });
+      }
+    }
+  };
+  function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
+    const _component_uni_calendar = resolveEasycom(vue.resolveDynamicComponent("uni-calendar"), __easycom_1$5);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
+        vue.createVNode(_component_uni_section, {
+          title: "打卡情况",
+          "sub-title": "个人的打卡信息",
+          "title-font-size": "50rpx",
+          type: "line",
+          "sub-title-color": "#757575",
+          style: { "background-color": "#98d6ff" }
+        }),
+        vue.createElementVNode("view", null, [
+          vue.createCommentVNode(" 插入模式 "),
+          vue.createVNode(_component_uni_calendar, {
+            class: "date",
+            selected: $data.info.selected,
+            showMonth: true,
+            lunar: true,
+            onChange: $options.change
+          }, null, 8, ["selected", "onChange"])
+        ]),
+        vue.createVNode(_component_uni_section, {
+          title: "详细信息",
+          type: "line",
+          style: { "background-color": "#d0d0d0" }
+        }),
+        vue.createElementVNode("view", { class: "layout" }, [
+          vue.createElementVNode(
+            "text",
+            {
+              class: "day",
+              style: { "font-weight": "700" }
+            },
+            vue.toDisplayString($data.timeSelectNow),
+            1
+            /* TEXT */
+          ),
+          $data.info.message.length !== 0 && $data.info.message[0] !== void 0 ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 0,
+              class: "layText"
+            },
+            "上班 " + vue.toDisplayString($data.info.message[0].timeIn),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length !== 0 && $data.info.message[0] !== void 0 ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 1,
+            class: "address"
+          }, [
+            vue.createVNode(_component_uni_icons, {
+              type: "location",
+              size: "16px",
+              style: { "margin-right": "16rpx" }
+            }),
+            vue.createElementVNode(
+              "text",
+              {
+                class: "Text",
+                style: { "font-size": "16px", "color": "#909090" }
+              },
+              vue.toDisplayString($data.info.message[0].address),
+              1
+              /* TEXT */
+            )
+          ])) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length !== 0 && $data.info.message[0] !== void 0 ? (vue.openBlock(), vue.createElementBlock(
+            "text",
+            {
+              key: 2,
+              class: "layText"
+            },
+            "下班 " + vue.toDisplayString($data.info.message[0].timeOut),
+            1
+            /* TEXT */
+          )) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length !== 0 && $data.info.message[0] !== void 0 && $data.info.message[0].timeOut != "下班未打卡" ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 3,
+            class: "address"
+          }, [
+            vue.createVNode(_component_uni_icons, {
+              type: "location",
+              size: "16px",
+              style: { "margin-right": "16rpx" }
+            }),
+            vue.createElementVNode(
+              "text",
+              {
+                class: "Text",
+                style: { "font-size": "16px", "color": "#909090" }
+              },
+              vue.toDisplayString($data.info.message[0].address),
+              1
+              /* TEXT */
+            )
+          ])) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length === 0 && $options.isToday($data.data1.data.date) === false && $options.isTomorrow($data.data1.data.date) === false ? (vue.openBlock(), vue.createElementBlock("text", {
+            key: 4,
+            class: "layText",
+            style: { "color": "#ff0000" }
+          }, "该日未打卡，请点击下方补签按钮，提交补签审批!")) : vue.createCommentVNode("v-if", true),
+          $options.isTomorrow($data.data1.data.date) ? (vue.openBlock(), vue.createElementBlock("text", {
+            key: 5,
+            class: "layText"
+          }, "还未到打卡时间，请改日再来")) : vue.createCommentVNode("v-if", true),
+          $data.info.message.length === 0 && $options.isToday($data.data1.data.date) === false && $options.isTomorrow($data.data1.data.date) === false ? (vue.openBlock(), vue.createElementBlock("button", {
+            key: 6,
+            onClick: _cache[0] || (_cache[0] = (...args) => $options.changePage && $options.changePage(...args))
+          }, "补签")) : vue.createCommentVNode("v-if", true),
+          $options.isToday($data.data1.data.date) && $data.info.message.length === 0 && $data.info.message[0] === void 0 ? (vue.openBlock(), vue.createElementBlock("button", {
+            key: 7,
+            onClick: _cache[1] || (_cache[1] = (...args) => $options.changePage2 && $options.changePage2(...args)),
+            style: { "background-color": "#00aaff" }
+          }, "打卡")) : vue.createCommentVNode("v-if", true),
+          $data.finalResult !== null && $data.finalResult === "正常" ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 8,
+            class: "finalValue",
+            style: { "margin": "30rpx", "font-size": "42rpx", "font-weight": "600" }
+          }, [
+            vue.createTextVNode("您当天的打卡结果为："),
+            vue.createElementVNode(
+              "text",
+              { style: { "color": "#00aa00", "border": "#00aa00 1px dashed" } },
+              vue.toDisplayString($data.finalResult),
+              1
+              /* TEXT */
+            )
+          ])) : vue.createCommentVNode("v-if", true),
+          $data.finalResult !== null && $data.finalResult !== "正常" ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 9,
+            class: "finalValue",
+            style: { "margin": "30rpx", "font-size": "42rpx", "font-weight": "600" }
+          }, [
+            vue.createTextVNode("您当天的打卡结果为："),
+            vue.createElementVNode(
+              "text",
+              { style: { "color": "#ff0000", "border": "#ff0000 1px dashed" } },
+              vue.toDisplayString($data.finalResult),
+              1
+              /* TEXT */
+            )
+          ])) : vue.createCommentVNode("v-if", true)
+        ])
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
+  }
+  const PagesSelfMessagePunchMessage = /* @__PURE__ */ _export_sfc(_sfc_main$J, [["render", _sfc_render$H], ["__file", "D:/HB/UOApp/pages/selfMessage/punchMessage.vue"]]);
+  const _imports_0$3 = "/static/main/cpjs.png";
+  const _sfc_main$I = {
+    components: {
+      punchIn: PagesSelfMessagePunchMessage
+    },
+    data() {
+      return {
+        userName: null,
         sList: [
           {
             url: "/pages/logDay/InsertReport",
@@ -1609,15 +4469,13 @@ if (uni.restoreGlobal) {
     },
     onShow() {
       this.isLogin();
+      this.getSelfMessage();
     },
     methods: {
       changeMenuPage(urls) {
         uni.navigateTo({
           url: urls
         });
-      },
-      change(e2) {
-        formatAppLog("log", "at pages/main/main.vue:177", e2);
       },
       toggle(type) {
         this.type = type;
@@ -1691,45 +4549,78 @@ if (uni.restoreGlobal) {
             });
           }
         });
+      },
+      getSelfMessage() {
+        if (uni.getStorageSync("satoken")) {
+          uni.request({
+            url: "http://192.168.0.196:8088/user/info",
+            method: "GET",
+            header: {
+              "satoken": uni.getStorageSync("satoken")
+            },
+            success: (res) => {
+              if (res.data.code === "200") {
+                this.userName = res.data.data.userName;
+              } else {
+                uni.showToast({
+                  title: res.data.msg,
+                  icon: "fail",
+                  duration: 1e3,
+                  mask: true
+                });
+              }
+            },
+            fail: (error) => {
+              uni.showToast({
+                title: "页面错误!!!",
+                icon: "error",
+                duration: 5e3,
+                mask: true
+              }), uni.navigateTo({
+                url: "/pages/index/index"
+              });
+            }
+          });
+        } else {
+          uni.navigateTo({
+            url: "/pages/index/index"
+          });
+        }
       }
     }
   };
-  function _sfc_render$K(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
-    const _component_uni_popup = resolveEasycom(vue.resolveDynamicComponent("uni-popup"), __easycom_1$6);
+  function _sfc_render$G(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_nav_bar = resolveEasycom(vue.resolveDynamicComponent("uni-nav-bar"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
+    const _component_punchIn = vue.resolveComponent("punchIn");
+    const _component_uni_popup = resolveEasycom(vue.resolveDynamicComponent("uni-popup"), __easycom_3$3);
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
       [
-        vue.createElementVNode("view", { class: "head" }, [
-          vue.createVNode(_component_uni_icons, {
-            type: "bars",
-            size: "30px",
-            onClick: _cache[0] || (_cache[0] = ($event) => $options.toggle("left"))
-          })
-        ]),
-        vue.createElementVNode("swiper", {
-          "indicator-dots": "true",
-          autoplay: "true",
-          interval: "3000",
-          duration: "500",
-          circular: "true",
-          class: "swiper-container"
+        vue.createVNode(_component_uni_nav_bar, {
+          dark: "",
+          fixed: true,
+          shadow: "",
+          "background-color": "#ffffff",
+          border: false,
+          "status-bar": "",
+          color: "#00000",
+          "right-icon": "plusempty",
+          onClickRight: _cache[0] || (_cache[0] = ($event) => $options.toggle("top")),
+          title: "控制台"
+        }),
+        vue.createElementVNode("view", {
+          class: "head",
+          style: { "margin": "5rpx 20rpx" }
         }, [
-          (vue.openBlock(true), vue.createElementBlock(
-            vue.Fragment,
-            null,
-            vue.renderList($data.images, (image, index) => {
-              return vue.openBlock(), vue.createElementBlock("swiper-item", { key: index }, [
-                vue.createElementVNode("image", {
-                  src: image,
-                  class: "swiper-image"
-                }, null, 8, ["src"])
-              ]);
-            }),
-            128
-            /* KEYED_FRAGMENT */
-          ))
+          vue.createElementVNode("view", { class: "text" }, [
+            vue.createElementVNode("image", {
+              src: _imports_0$3,
+              style: { "height": "300rpx", "width": "100%" }
+            })
+          ])
         ]),
         vue.createElementVNode("view", { class: "other" }, [
           vue.createElementVNode("view", {
@@ -1743,7 +4634,7 @@ if (uni.restoreGlobal) {
               style: { "color": "#fff" }
             })
           ]),
-          vue.createCommentVNode(' <view class="other-item" style="background-color: #ff8902;" @click="reviewPage">\r\n		  <text>OA审批</text>\r\n		  <uni-icons type="right" size="36rpx" style="color: #fff;"></uni-icons>\r\n	  </view> '),
+          vue.createCommentVNode(' <view class="other-item" style="background-color: #ff8902;" @click="reviewPage">\r\n		  		  <text>OA审批</text>\r\n		  		  <uni-icons type="right" size="36rpx" style="color: #fff;"></uni-icons>\r\n		   </view> '),
           vue.createElementVNode("view", {
             class: "other-item",
             style: { "background-color": "#ff8902" },
@@ -1759,84 +4650,109 @@ if (uni.restoreGlobal) {
         ]),
         vue.createElementVNode("view", { class: "warp" }, [
           vue.createElementVNode("view", { class: "Layout" }, [
-            (vue.openBlock(true), vue.createElementBlock(
-              vue.Fragment,
-              null,
-              vue.renderList($data.list, (item) => {
-                return vue.openBlock(), vue.createElementBlock("view", {
-                  class: "row",
-                  key: item.text,
-                  onClick: ($event) => $options.changePage(item.URL)
-                }, [
-                  vue.createElementVNode("view", { class: "item" }, [
-                    vue.createElementVNode("image", {
-                      src: item.url,
-                      class: "item-image"
-                    }, null, 8, ["src"]),
-                    vue.createElementVNode(
-                      "text",
-                      { class: "item-text" },
-                      vue.toDisplayString(item.text),
-                      1
-                      /* TEXT */
-                    )
-                  ])
-                ], 8, ["onClick"]);
-              }),
-              128
-              /* KEYED_FRAGMENT */
-            ))
-          ])
-        ]),
-        vue.createElementVNode("view", null, [
-          vue.createCommentVNode(" 普通弹窗 "),
-          vue.createVNode(_component_uni_popup, {
-            ref: "popup",
-            "background-color": "#000",
-            onChange: $options.change
-          }, {
-            default: vue.withCtx(() => [
-              (vue.openBlock(true), vue.createElementBlock(
-                vue.Fragment,
-                null,
-                vue.renderList($data.sList, (item) => {
-                  return vue.openBlock(), vue.createElementBlock("view", {
-                    class: "menuItem",
-                    style: { "padding": "20rpx" },
-                    onClick: ($event) => $options.changeMenuPage(item.url)
-                  }, [
-                    vue.createVNode(_component_uni_icons, {
-                      type: item.icon,
-                      size: "40rpx",
-                      color: "#fff"
-                    }, {
-                      default: vue.withCtx(() => [
-                        vue.createTextVNode(
+            vue.createVNode(_component_uni_section, {
+              title: "基本功能",
+              type: "circle"
+            }, {
+              default: vue.withCtx(() => [
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList($data.list, (item) => {
+                    return vue.openBlock(), vue.createElementBlock("view", {
+                      class: "row",
+                      key: item.text,
+                      onClick: ($event) => $options.changePage(item.URL)
+                    }, [
+                      vue.createElementVNode("view", { class: "item" }, [
+                        vue.createElementVNode("image", {
+                          src: item.url,
+                          class: "item-image"
+                        }, null, 8, ["src"]),
+                        vue.createElementVNode(
+                          "text",
+                          { class: "item-text" },
                           vue.toDisplayString(item.text),
                           1
                           /* TEXT */
                         )
-                      ]),
-                      _: 2
-                      /* DYNAMIC */
-                    }, 1032, ["type"])
-                  ], 8, ["onClick"]);
-                }),
-                256
-                /* UNKEYED_FRAGMENT */
-              ))
-            ]),
-            _: 1
-            /* STABLE */
-          }, 8, ["onChange"])
+                      ])
+                    ], 8, ["onClick"]);
+                  }),
+                  128
+                  /* KEYED_FRAGMENT */
+                ))
+              ]),
+              _: 1
+              /* STABLE */
+            })
+          ])
+        ]),
+        vue.createVNode(_component_uni_section, {
+          title: "查看今日打卡信息",
+          type: "circle",
+          style: { "margin": "10rpx" }
+        }, {
+          default: vue.withCtx(() => [
+            vue.createVNode(_component_punchIn)
+          ]),
+          _: 1
+          /* STABLE */
+        }),
+        vue.createElementVNode("view", null, [
+          vue.createCommentVNode(" 普通弹窗 "),
+          vue.createVNode(
+            _component_uni_popup,
+            {
+              class: "popup",
+              ref: "popup",
+              "background-color": "#fff",
+              style: { "margin-top": "150rpx" }
+            },
+            {
+              default: vue.withCtx(() => [
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList($data.sList, (item) => {
+                    return vue.openBlock(), vue.createElementBlock("view", {
+                      class: "menuItem",
+                      style: {},
+                      onClick: ($event) => $options.changeMenuPage(item.url)
+                    }, [
+                      vue.createVNode(_component_uni_icons, {
+                        type: item.icon,
+                        size: "30rpx",
+                        color: "#000000",
+                        style: { "margin": "0rpx 20rpx" }
+                      }, null, 8, ["type"]),
+                      vue.createElementVNode(
+                        "text",
+                        { style: { "font-size": "30rpx" } },
+                        vue.toDisplayString(item.text),
+                        1
+                        /* TEXT */
+                      )
+                    ], 8, ["onClick"]);
+                  }),
+                  256
+                  /* UNKEYED_FRAGMENT */
+                ))
+              ]),
+              _: 1
+              /* STABLE */
+            },
+            512
+            /* NEED_PATCH */
+          )
         ])
       ],
       64
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$M, [["render", _sfc_render$K], ["__file", "D:/HB/UOApp/pages/main/main.vue"]]);
-  const _sfc_main$L = {
+  const PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$I, [["render", _sfc_render$G], ["__file", "D:/HB/UOApp/pages/main/main.vue"]]);
+  const _sfc_main$H = {
     __name: "index",
     setup(__props) {
       const loginAll = vue.reactive({
@@ -1879,7 +4795,7 @@ if (uni.restoreGlobal) {
         });
       };
       return (_ctx, _cache) => {
-        const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+        const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
         return vue.openBlock(), vue.createElementBlock(
           vue.Fragment,
           null,
@@ -1971,8 +4887,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$L, [["__file", "D:/HB/UOApp/pages/index/index.vue"]]);
-  const _sfc_main$K = {
+  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$H, [["__file", "D:/HB/UOApp/pages/index/index.vue"]]);
+  const _sfc_main$G = {
     name: "UniSegmentedControl",
     emits: ["clickItem"],
     props: {
@@ -2026,7 +4942,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$J(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$F(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -2070,22 +4986,20 @@ if (uni.restoreGlobal) {
       /* CLASS, STYLE */
     );
   }
-  const __easycom_0$5 = /* @__PURE__ */ _export_sfc(_sfc_main$K, [["render", _sfc_render$J], ["__scopeId", "data-v-86aa1171"], ["__file", "D:/HB/UOApp/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue"]]);
+  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$G, [["render", _sfc_render$F], ["__scopeId", "data-v-86aa1171"], ["__file", "D:/HB/UOApp/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue"]]);
   const pages = [
     {
       path: "pages/main/main",
       style: {
         navigationBarTitleText: "工作台",
-        navigationBarTextStyle: "black",
-        navigationBarBackgroundColor: "#ffffff"
+        navigationStyle: "custom"
       }
     },
     {
       path: "pages/index/index",
       style: {
         navigationBarTitleText: "",
-        navigationBarTextStyle: "black",
-        navigationBarBackgroundColor: "#ffffff"
+        navigationStyle: "custom"
       }
     },
     {
@@ -2287,7 +5201,7 @@ if (uni.restoreGlobal) {
     uniIdRouter
   };
   var define_process_env_UNI_SECURE_NETWORK_CONFIG_default = [];
-  function t$4(e2) {
+  function t$2(e2) {
     return e2 && e2.__esModule && Object.prototype.hasOwnProperty.call(e2, "default") ? e2.default : e2;
   }
   function n(e2, t2, n2) {
@@ -2575,7 +5489,7 @@ if (uni.restoreGlobal) {
   function I(e2) {
     return e2 && "string" == typeof e2 ? JSON.parse(e2) : e2;
   }
-  const S = true, b = "app", A = I(define_process_env_UNI_SECURE_NETWORK_CONFIG_default), C = b, P = I('{\n    "address": [\n        "127.0.0.1",\n        "192.168.200.1",\n        "192.168.0.196",\n        "172.31.240.1"\n    ],\n    "debugPort": 9002,\n    "initialLaunchType": "local",\n    "servePort": 7002,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/工具/HB/HBuilderX.4.24.2024072208/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), T = I('[{"provider":"aliyun","spaceName":"oaapp","spaceId":"mp-b8e53f5e-c503-4780-9859-ec2675b3d8cd","clientSecret":"ZfuXHdXTBw0sCP1CERJicQ==","endpoint":"https://api.next.bspapp.com"}]') || [];
+  const S = true, b = "app", A = I(define_process_env_UNI_SECURE_NETWORK_CONFIG_default), C = b, P = I('{\n    "address": [\n        "127.0.0.1",\n        "192.168.200.1",\n        "192.168.0.196",\n        "172.18.192.1"\n    ],\n    "debugPort": 9000,\n    "initialLaunchType": "local",\n    "servePort": 7000,\n    "skipFiles": [\n        "<node_internals>/**",\n        "D:/工具/HB/HBuilderX.4.24.2024072208/HBuilderX/plugins/unicloud/**/*.js"\n    ]\n}\n'), T = I('[{"provider":"aliyun","spaceName":"oaapp","spaceId":"mp-b8e53f5e-c503-4780-9859-ec2675b3d8cd","clientSecret":"ZfuXHdXTBw0sCP1CERJicQ==","endpoint":"https://api.next.bspapp.com"}]') || [];
   let O = "";
   try {
     O = "__UNI__9571461";
@@ -4597,7 +7511,7 @@ ${i3}
         }(t3), t3);
       };
     };
-  }), Ls = t$4(Es);
+  }), Ls = t$2(Es);
   const Rs = "manual";
   function Us(e2) {
     return { props: { localdata: { type: Array, default: () => [] }, options: { type: [Object, Array], default: () => ({}) }, spaceInfo: { type: Object, default: () => ({}) }, collection: { type: [String, Array], default: "" }, action: { type: String, default: "" }, field: { type: String, default: "" }, orderby: { type: String, default: "" }, where: { type: [String, Object], default: "" }, pageData: { type: String, default: "add" }, pageCurrent: { type: Number, default: 1 }, pageSize: { type: Number, default: 20 }, getcount: { type: [Boolean, String], default: false }, gettree: { type: [Boolean, String], default: false }, gettreepath: { type: [Boolean, String], default: false }, startwith: { type: String, default: "" }, limitlevel: { type: Number, default: 10 }, groupby: { type: String, default: "" }, groupField: { type: String, default: "" }, distinct: { type: [Boolean, String], default: false }, foreignKey: { type: String, default: "" }, loadtime: { type: String, default: "auto" }, manual: { type: Boolean, default: false } }, data: () => ({ mixinDatacomLoading: false, mixinDatacomHasMore: false, mixinDatacomResData: [], mixinDatacomErrorMessage: "", mixinDatacomPage: {}, mixinDatacomError: null }), created() {
@@ -5009,7 +7923,7 @@ ${i3}
     } }), Cs(Js), Js.addInterceptor = N, Js.removeInterceptor = D, Js.interceptObject = F;
   })();
   var Vs = Js;
-  const _sfc_main$J = {
+  const _sfc_main$F = {
     name: "uni-data-select",
     mixins: [Vs.mixinDatacom || {}],
     props: {
@@ -5261,8 +8175,8 @@ ${i3}
       }
     }
   };
-  function _sfc_render$I(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+  function _sfc_render$E(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-stat__select" }, [
       $props.label ? (vue.openBlock(), vue.createElementBlock(
         "span",
@@ -5401,126 +8315,9 @@ ${i3}
       )
     ]);
   }
-  const __easycom_1$5 = /* @__PURE__ */ _export_sfc(_sfc_main$J, [["render", _sfc_render$I], ["__scopeId", "data-v-ddf9e0a2"], ["__file", "D:/HB/UOApp/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue"]]);
-  const _sfc_main$I = {
-    name: "UniSection",
-    emits: ["click"],
-    props: {
-      type: {
-        type: String,
-        default: ""
-      },
-      title: {
-        type: String,
-        required: true,
-        default: ""
-      },
-      titleFontSize: {
-        type: String,
-        default: "14px"
-      },
-      titleColor: {
-        type: String,
-        default: "#333"
-      },
-      subTitle: {
-        type: String,
-        default: ""
-      },
-      subTitleFontSize: {
-        type: String,
-        default: "12px"
-      },
-      subTitleColor: {
-        type: String,
-        default: "#999"
-      },
-      padding: {
-        type: [Boolean, String],
-        default: false
-      }
-    },
-    computed: {
-      _padding() {
-        if (typeof this.padding === "string") {
-          return this.padding;
-        }
-        return this.padding ? "10px" : "";
-      }
-    },
-    watch: {
-      title(newVal) {
-        if (uni.report && newVal !== "") {
-          uni.report("title", newVal);
-        }
-      }
-    },
-    methods: {
-      onClick() {
-        this.$emit("click");
-      }
-    }
-  };
-  function _sfc_render$H(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view", { class: "uni-section" }, [
-      vue.createElementVNode("view", {
-        class: "uni-section-header",
-        onClick: _cache[0] || (_cache[0] = (...args) => $options.onClick && $options.onClick(...args))
-      }, [
-        $props.type ? (vue.openBlock(), vue.createElementBlock(
-          "view",
-          {
-            key: 0,
-            class: vue.normalizeClass(["uni-section-header__decoration", $props.type])
-          },
-          null,
-          2
-          /* CLASS */
-        )) : vue.renderSlot(_ctx.$slots, "decoration", { key: 1 }, void 0, true),
-        vue.createElementVNode("view", { class: "uni-section-header__content" }, [
-          vue.createElementVNode(
-            "text",
-            {
-              style: vue.normalizeStyle({ "font-size": $props.titleFontSize, "color": $props.titleColor }),
-              class: vue.normalizeClass(["uni-section__content-title", { "distraction": !$props.subTitle }])
-            },
-            vue.toDisplayString($props.title),
-            7
-            /* TEXT, CLASS, STYLE */
-          ),
-          $props.subTitle ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 0,
-              style: vue.normalizeStyle({ "font-size": $props.subTitleFontSize, "color": $props.subTitleColor }),
-              class: "uni-section-header__content-sub"
-            },
-            vue.toDisplayString($props.subTitle),
-            5
-            /* TEXT, STYLE */
-          )) : vue.createCommentVNode("v-if", true)
-        ]),
-        vue.createElementVNode("view", { class: "uni-section-header__slot-right" }, [
-          vue.renderSlot(_ctx.$slots, "right", {}, void 0, true)
-        ])
-      ]),
-      vue.createElementVNode(
-        "view",
-        {
-          class: "uni-section-content",
-          style: vue.normalizeStyle({ padding: $options._padding })
-        },
-        [
-          vue.renderSlot(_ctx.$slots, "default", {}, void 0, true)
-        ],
-        4
-        /* STYLE */
-      )
-    ]);
-  }
-  const __easycom_0$4 = /* @__PURE__ */ _export_sfc(_sfc_main$I, [["render", _sfc_render$H], ["__scopeId", "data-v-637fd36b"], ["__file", "D:/HB/UOApp/uni_modules/uni-section/components/uni-section/uni-section.vue"]]);
+  const __easycom_1$4 = /* @__PURE__ */ _export_sfc(_sfc_main$F, [["render", _sfc_render$E], ["__scopeId", "data-v-ddf9e0a2"], ["__file", "D:/HB/UOApp/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue"]]);
   const _imports_0$2 = "/assets/empty.091ed2e3.png";
-  const _sfc_main$H = {
+  const _sfc_main$E = {
     name: "mine-empty",
     props: {
       mode: {
@@ -5533,7 +8330,7 @@ ${i3}
       }
     }
   };
-  function _sfc_render$G(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "mine-empty" }, [
       vue.createElementVNode("view", { class: "mine-empty__image" }, [
         vue.createElementVNode("image", {
@@ -5551,8 +8348,8 @@ ${i3}
       vue.renderSlot(_ctx.$slots, "default")
     ]);
   }
-  const ComponentMineListMineEmptyMineEmpty = /* @__PURE__ */ _export_sfc(_sfc_main$H, [["render", _sfc_render$G], ["__file", "D:/HB/UOApp/component/mineList/mine-empty/mine-empty.vue"]]);
-  const _sfc_main$G = {
+  const ComponentMineListMineEmptyMineEmpty = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["render", _sfc_render$D], ["__file", "D:/HB/UOApp/component/mineList/mine-empty/mine-empty.vue"]]);
+  const _sfc_main$D = {
     components: {
       mineEmpty: ComponentMineListMineEmptyMineEmpty
     },
@@ -5758,11 +8555,11 @@ ${i3}
       this.getReviewDatas();
     }
   };
-  function _sfc_render$F(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_segmented_control = resolveEasycom(vue.resolveDynamicComponent("uni-segmented-control"), __easycom_0$5);
-    const _component_uni_data_select = resolveEasycom(vue.resolveDynamicComponent("uni-data-select"), __easycom_1$5);
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+  function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_uni_segmented_control = resolveEasycom(vue.resolveDynamicComponent("uni-segmented-control"), __easycom_0$4);
+    const _component_uni_data_select = resolveEasycom(vue.resolveDynamicComponent("uni-data-select"), __easycom_1$4);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     const _component_mineEmpty = vue.resolveComponent("mineEmpty");
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
@@ -5903,2451 +8700,7 @@ ${i3}
       /* STABLE_FRAGMENT */
     );
   }
-  const PagesReviewReviewDetail = /* @__PURE__ */ _export_sfc(_sfc_main$G, [["render", _sfc_render$F], ["__file", "D:/HB/UOApp/pages/review/reviewDetail.vue"]]);
-  var calendar = {
-    /**
-        * 农历1900-2100的润大小信息表
-        * @Array Of Property
-        * @return Hex
-        */
-    lunarInfo: [
-      19416,
-      19168,
-      42352,
-      21717,
-      53856,
-      55632,
-      91476,
-      22176,
-      39632,
-      21970,
-      // 1900-1909
-      19168,
-      42422,
-      42192,
-      53840,
-      119381,
-      46400,
-      54944,
-      44450,
-      38320,
-      84343,
-      // 1910-1919
-      18800,
-      42160,
-      46261,
-      27216,
-      27968,
-      109396,
-      11104,
-      38256,
-      21234,
-      18800,
-      // 1920-1929
-      25958,
-      54432,
-      59984,
-      28309,
-      23248,
-      11104,
-      100067,
-      37600,
-      116951,
-      51536,
-      // 1930-1939
-      54432,
-      120998,
-      46416,
-      22176,
-      107956,
-      9680,
-      37584,
-      53938,
-      43344,
-      46423,
-      // 1940-1949
-      27808,
-      46416,
-      86869,
-      19872,
-      42416,
-      83315,
-      21168,
-      43432,
-      59728,
-      27296,
-      // 1950-1959
-      44710,
-      43856,
-      19296,
-      43748,
-      42352,
-      21088,
-      62051,
-      55632,
-      23383,
-      22176,
-      // 1960-1969
-      38608,
-      19925,
-      19152,
-      42192,
-      54484,
-      53840,
-      54616,
-      46400,
-      46752,
-      103846,
-      // 1970-1979
-      38320,
-      18864,
-      43380,
-      42160,
-      45690,
-      27216,
-      27968,
-      44870,
-      43872,
-      38256,
-      // 1980-1989
-      19189,
-      18800,
-      25776,
-      29859,
-      59984,
-      27480,
-      23232,
-      43872,
-      38613,
-      37600,
-      // 1990-1999
-      51552,
-      55636,
-      54432,
-      55888,
-      30034,
-      22176,
-      43959,
-      9680,
-      37584,
-      51893,
-      // 2000-2009
-      43344,
-      46240,
-      47780,
-      44368,
-      21977,
-      19360,
-      42416,
-      86390,
-      21168,
-      43312,
-      // 2010-2019
-      31060,
-      27296,
-      44368,
-      23378,
-      19296,
-      42726,
-      42208,
-      53856,
-      60005,
-      54576,
-      // 2020-2029
-      23200,
-      30371,
-      38608,
-      19195,
-      19152,
-      42192,
-      118966,
-      53840,
-      54560,
-      56645,
-      // 2030-2039
-      46496,
-      22224,
-      21938,
-      18864,
-      42359,
-      42160,
-      43600,
-      111189,
-      27936,
-      44448,
-      // 2040-2049
-      /** Add By JJonline@JJonline.Cn**/
-      84835,
-      37744,
-      18936,
-      18800,
-      25776,
-      92326,
-      59984,
-      27424,
-      108228,
-      43744,
-      // 2050-2059
-      41696,
-      53987,
-      51552,
-      54615,
-      54432,
-      55888,
-      23893,
-      22176,
-      42704,
-      21972,
-      // 2060-2069
-      21200,
-      43448,
-      43344,
-      46240,
-      46758,
-      44368,
-      21920,
-      43940,
-      42416,
-      21168,
-      // 2070-2079
-      45683,
-      26928,
-      29495,
-      27296,
-      44368,
-      84821,
-      19296,
-      42352,
-      21732,
-      53600,
-      // 2080-2089
-      59752,
-      54560,
-      55968,
-      92838,
-      22224,
-      19168,
-      43476,
-      41680,
-      53584,
-      62034,
-      // 2090-2099
-      54560
-    ],
-    // 2100
-    /**
-        * 公历每个月份的天数普通表
-        * @Array Of Property
-        * @return Number
-        */
-    solarMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-    /**
-        * 天干地支之天干速查表
-        * @Array Of Property trans["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
-        * @return Cn string
-        */
-    Gan: ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"],
-    /**
-        * 天干地支之地支速查表
-        * @Array Of Property
-        * @trans["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
-        * @return Cn string
-        */
-    Zhi: ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
-    /**
-        * 天干地支之地支速查表<=>生肖
-        * @Array Of Property
-        * @trans["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
-        * @return Cn string
-        */
-    Animals: ["鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"],
-    /**
-        * 24节气速查表
-        * @Array Of Property
-        * @trans["小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至"]
-        * @return Cn string
-        */
-    solarTerm: ["小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"],
-    /**
-        * 1900-2100各年的24节气日期速查表
-        * @Array Of Property
-        * @return 0x string For splice
-        */
-    sTermInfo: [
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c3598082c95f8c965cc920f",
-      "97bd0b06bdb0722c965ce1cfcc920f",
-      "b027097bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd0b06bdb0722c965ce1cfcc920f",
-      "b027097bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd0b06bdb0722c965ce1cfcc920f",
-      "b027097bd097c36b0b6fc9274c91aa",
-      "9778397bd19801ec9210c965cc920e",
-      "97b6b97bd19801ec95f8c965cc920f",
-      "97bd09801d98082c95f8e1cfcc920f",
-      "97bd097bd097c36b0b6fc9210c8dc2",
-      "9778397bd197c36c9210c9274c91aa",
-      "97b6b97bd19801ec95f8c965cc920e",
-      "97bd09801d98082c95f8e1cfcc920f",
-      "97bd097bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c91aa",
-      "97b6b97bd19801ec95f8c965cc920e",
-      "97bcf97c3598082c95f8e1cfcc920f",
-      "97bd097bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c3598082c95f8c965cc920f",
-      "97bd097bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c3598082c95f8c965cc920f",
-      "97bd097bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd097bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd097bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf97c359801ec95f8c965cc920f",
-      "97bd097bd07f595b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9210c8dc2",
-      "9778397bd19801ec9210c9274c920e",
-      "97b6b97bd19801ec95f8c965cc920f",
-      "97bd07f5307f595b0b0bc920fb0722",
-      "7f0e397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c920e",
-      "97b6b97bd19801ec95f8c965cc920f",
-      "97bd07f5307f595b0b0bc920fb0722",
-      "7f0e397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bd07f1487f595b0b0bc920fb0722",
-      "7f0e397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf7f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf7f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf7f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c965cc920e",
-      "97bcf7f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b97bd19801ec9210c9274c920e",
-      "97bcf7f0e47f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9210c91aa",
-      "97b6b97bd197c36c9210c9274c920e",
-      "97bcf7f0e47f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36c9210c9274c920e",
-      "97b6b7f0e47f531b0723b0b6fb0722",
-      "7f0e37f5307f595b0b0bc920fb0722",
-      "7f0e397bd097c36b0b6fc9210c8dc2",
-      "9778397bd097c36b0b70c9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e37f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc9210c8dc2",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9274c91aa",
-      "97b6b7f0e47f531b0723b0787b0721",
-      "7f0e27f0e47f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9210c91aa",
-      "97b6b7f0e47f149b0723b0787b0721",
-      "7f0e27f0e47f531b0723b0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "9778397bd097c36b0b6fc9210c8dc2",
-      "977837f0e37f149b0723b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e37f5307f595b0b0bc920fb0722",
-      "7f0e397bd097c35b0b6fc9210c8dc2",
-      "977837f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e37f1487f595b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc9210c8dc2",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd097c35b0b6fc920fb0722",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "977837f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f149b0723b0787b0721",
-      "7f0e27f0e47f531b0b0bb0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "977837f0e37f14998082b0723b06bd",
-      "7f07e7f0e37f149b0723b0787b0721",
-      "7f0e27f0e47f531b0723b0b6fb0722",
-      "7f0e397bd07f595b0b0bc920fb0722",
-      "977837f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e37f1487f595b0b0bb0b6fb0722",
-      "7f0e37f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e37f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e37f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e37f14898082b072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e37f14898082b072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e366aa89801eb072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f149b0723b0787b0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722",
-      "7f0e37f0e366aa89801eb072297c35",
-      "7ec967f0e37f14998082b0723b06bd",
-      "7f07e7f0e47f149b0723b0787b0721",
-      "7f0e27f0e47f531b0723b0b6fb0722",
-      "7f0e37f0e366aa89801eb072297c35",
-      "7ec967f0e37f14998082b0723b06bd",
-      "7f07e7f0e37f14998083b0787b0721",
-      "7f0e27f0e47f531b0723b0b6fb0722",
-      "7f0e37f0e366aa89801eb072297c35",
-      "7ec967f0e37f14898082b0723b02d5",
-      "7f07e7f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e36665b66aa89801e9808297c35",
-      "665f67f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b0721",
-      "7f07e7f0e47f531b0723b0b6fb0722",
-      "7f0e36665b66a449801e9808297c35",
-      "665f67f0e37f14898082b0723b02d5",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e36665b66a449801e9808297c35",
-      "665f67f0e37f14898082b072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e26665b66a449801e9808297c35",
-      "665f67f0e37f1489801eb072297c35",
-      "7ec967f0e37f14998082b0787b06bd",
-      "7f07e7f0e47f531b0723b0b6fb0721",
-      "7f0e27f1487f531b0b0bb0b6fb0722"
-    ],
-    /**
-        * 数字转中文速查表
-        * @Array Of Property
-        * @trans ['日','一','二','三','四','五','六','七','八','九','十']
-        * @return Cn string
-        */
-    nStr1: ["日", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"],
-    /**
-        * 日期转农历称呼速查表
-        * @Array Of Property
-        * @trans ['初','十','廿','卅']
-        * @return Cn string
-        */
-    nStr2: ["初", "十", "廿", "卅"],
-    /**
-        * 月份转农历称呼速查表
-        * @Array Of Property
-        * @trans ['正','一','二','三','四','五','六','七','八','九','十','冬','腊']
-        * @return Cn string
-        */
-    nStr3: ["正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬", "腊"],
-    /**
-        * 返回农历y年一整年的总天数
-        * @param lunar Year
-        * @return Number
-        * @eg:var count = calendar.lYearDays(1987) ;//count=387
-        */
-    lYearDays: function(y2) {
-      var i2;
-      var sum = 348;
-      for (i2 = 32768; i2 > 8; i2 >>= 1) {
-        sum += this.lunarInfo[y2 - 1900] & i2 ? 1 : 0;
-      }
-      return sum + this.leapDays(y2);
-    },
-    /**
-        * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
-        * @param lunar Year
-        * @return Number (0-12)
-        * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
-        */
-    leapMonth: function(y2) {
-      return this.lunarInfo[y2 - 1900] & 15;
-    },
-    /**
-        * 返回农历y年闰月的天数 若该年没有闰月则返回0
-        * @param lunar Year
-        * @return Number (0、29、30)
-        * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
-        */
-    leapDays: function(y2) {
-      if (this.leapMonth(y2)) {
-        return this.lunarInfo[y2 - 1900] & 65536 ? 30 : 29;
-      }
-      return 0;
-    },
-    /**
-        * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
-        * @param lunar Year
-        * @return Number (-1、29、30)
-        * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
-        */
-    monthDays: function(y2, m2) {
-      if (m2 > 12 || m2 < 1) {
-        return -1;
-      }
-      return this.lunarInfo[y2 - 1900] & 65536 >> m2 ? 30 : 29;
-    },
-    /**
-        * 返回公历(!)y年m月的天数
-        * @param solar Year
-        * @return Number (-1、28、29、30、31)
-        * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
-        */
-    solarDays: function(y2, m2) {
-      if (m2 > 12 || m2 < 1) {
-        return -1;
-      }
-      var ms2 = m2 - 1;
-      if (ms2 == 1) {
-        return y2 % 4 == 0 && y2 % 100 != 0 || y2 % 400 == 0 ? 29 : 28;
-      } else {
-        return this.solarMonth[ms2];
-      }
-    },
-    /**
-       * 农历年份转换为干支纪年
-       * @param  lYear 农历年的年份数
-       * @return Cn string
-       */
-    toGanZhiYear: function(lYear) {
-      var ganKey = (lYear - 3) % 10;
-      var zhiKey = (lYear - 3) % 12;
-      if (ganKey == 0)
-        ganKey = 10;
-      if (zhiKey == 0)
-        zhiKey = 12;
-      return this.Gan[ganKey - 1] + this.Zhi[zhiKey - 1];
-    },
-    /**
-       * 公历月、日判断所属星座
-       * @param  cMonth [description]
-       * @param  cDay [description]
-       * @return Cn string
-       */
-    toAstro: function(cMonth, cDay) {
-      var s2 = "魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
-      var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
-      return s2.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "座";
-    },
-    /**
-        * 传入offset偏移量返回干支
-        * @param offset 相对甲子的偏移量
-        * @return Cn string
-        */
-    toGanZhi: function(offset) {
-      return this.Gan[offset % 10] + this.Zhi[offset % 12];
-    },
-    /**
-        * 传入公历(!)y年获得该年第n个节气的公历日期
-        * @param y公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起
-        * @return day Number
-        * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
-        */
-    getTerm: function(y2, n2) {
-      if (y2 < 1900 || y2 > 2100) {
-        return -1;
-      }
-      if (n2 < 1 || n2 > 24) {
-        return -1;
-      }
-      var _table = this.sTermInfo[y2 - 1900];
-      var _info = [
-        parseInt("0x" + _table.substr(0, 5)).toString(),
-        parseInt("0x" + _table.substr(5, 5)).toString(),
-        parseInt("0x" + _table.substr(10, 5)).toString(),
-        parseInt("0x" + _table.substr(15, 5)).toString(),
-        parseInt("0x" + _table.substr(20, 5)).toString(),
-        parseInt("0x" + _table.substr(25, 5)).toString()
-      ];
-      var _calday = [
-        _info[0].substr(0, 1),
-        _info[0].substr(1, 2),
-        _info[0].substr(3, 1),
-        _info[0].substr(4, 2),
-        _info[1].substr(0, 1),
-        _info[1].substr(1, 2),
-        _info[1].substr(3, 1),
-        _info[1].substr(4, 2),
-        _info[2].substr(0, 1),
-        _info[2].substr(1, 2),
-        _info[2].substr(3, 1),
-        _info[2].substr(4, 2),
-        _info[3].substr(0, 1),
-        _info[3].substr(1, 2),
-        _info[3].substr(3, 1),
-        _info[3].substr(4, 2),
-        _info[4].substr(0, 1),
-        _info[4].substr(1, 2),
-        _info[4].substr(3, 1),
-        _info[4].substr(4, 2),
-        _info[5].substr(0, 1),
-        _info[5].substr(1, 2),
-        _info[5].substr(3, 1),
-        _info[5].substr(4, 2)
-      ];
-      return parseInt(_calday[n2 - 1]);
-    },
-    /**
-        * 传入农历数字月份返回汉语通俗表示法
-        * @param lunar month
-        * @return Cn string
-        * @eg:var cnMonth = calendar.toChinaMonth(12) ;//cnMonth='腊月'
-        */
-    toChinaMonth: function(m2) {
-      if (m2 > 12 || m2 < 1) {
-        return -1;
-      }
-      var s2 = this.nStr3[m2 - 1];
-      s2 += "月";
-      return s2;
-    },
-    /**
-        * 传入农历日期数字返回汉字表示法
-        * @param lunar day
-        * @return Cn string
-        * @eg:var cnDay = calendar.toChinaDay(21) ;//cnMonth='廿一'
-        */
-    toChinaDay: function(d2) {
-      var s2;
-      switch (d2) {
-        case 10:
-          s2 = "初十";
-          break;
-        case 20:
-          s2 = "二十";
-          break;
-        case 30:
-          s2 = "三十";
-          break;
-        default:
-          s2 = this.nStr2[Math.floor(d2 / 10)];
-          s2 += this.nStr1[d2 % 10];
-      }
-      return s2;
-    },
-    /**
-        * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
-        * @param y year
-        * @return Cn string
-        * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
-        */
-    getAnimal: function(y2) {
-      return this.Animals[(y2 - 4) % 12];
-    },
-    /**
-        * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
-        * @param y  solar year
-        * @param m  solar month
-        * @param d  solar day
-        * @return JSON object
-        * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:379',calendar.solar2lunar(1987,11,01));
-        */
-    solar2lunar: function(y2, m2, d2) {
-      if (y2 < 1900 || y2 > 2100) {
-        return -1;
-      }
-      if (y2 == 1900 && m2 == 1 && d2 < 31) {
-        return -1;
-      }
-      if (!y2) {
-        var objDate = /* @__PURE__ */ new Date();
-      } else {
-        var objDate = new Date(y2, parseInt(m2) - 1, d2);
-      }
-      var i2;
-      var leap = 0;
-      var temp = 0;
-      var y2 = objDate.getFullYear();
-      var m2 = objDate.getMonth() + 1;
-      var d2 = objDate.getDate();
-      var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 864e5;
-      for (i2 = 1900; i2 < 2101 && offset > 0; i2++) {
-        temp = this.lYearDays(i2);
-        offset -= temp;
-      }
-      if (offset < 0) {
-        offset += temp;
-        i2--;
-      }
-      var isTodayObj = /* @__PURE__ */ new Date();
-      var isToday = false;
-      if (isTodayObj.getFullYear() == y2 && isTodayObj.getMonth() + 1 == m2 && isTodayObj.getDate() == d2) {
-        isToday = true;
-      }
-      var nWeek = objDate.getDay();
-      var cWeek = this.nStr1[nWeek];
-      if (nWeek == 0) {
-        nWeek = 7;
-      }
-      var year = i2;
-      var leap = this.leapMonth(i2);
-      var isLeap = false;
-      for (i2 = 1; i2 < 13 && offset > 0; i2++) {
-        if (leap > 0 && i2 == leap + 1 && isLeap == false) {
-          --i2;
-          isLeap = true;
-          temp = this.leapDays(year);
-        } else {
-          temp = this.monthDays(year, i2);
-        }
-        if (isLeap == true && i2 == leap + 1) {
-          isLeap = false;
-        }
-        offset -= temp;
-      }
-      if (offset == 0 && leap > 0 && i2 == leap + 1) {
-        if (isLeap) {
-          isLeap = false;
-        } else {
-          isLeap = true;
-          --i2;
-        }
-      }
-      if (offset < 0) {
-        offset += temp;
-        --i2;
-      }
-      var month = i2;
-      var day = offset + 1;
-      var sm = m2 - 1;
-      var gzY = this.toGanZhiYear(year);
-      var firstNode = this.getTerm(y2, m2 * 2 - 1);
-      var secondNode = this.getTerm(y2, m2 * 2);
-      var gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 11);
-      if (d2 >= firstNode) {
-        gzM = this.toGanZhi((y2 - 1900) * 12 + m2 + 12);
-      }
-      var isTerm = false;
-      var Term = null;
-      if (firstNode == d2) {
-        isTerm = true;
-        Term = this.solarTerm[m2 * 2 - 2];
-      }
-      if (secondNode == d2) {
-        isTerm = true;
-        Term = this.solarTerm[m2 * 2 - 1];
-      }
-      var dayCyclical = Date.UTC(y2, sm, 1, 0, 0, 0, 0) / 864e5 + 25567 + 10;
-      var gzD = this.toGanZhi(dayCyclical + d2 - 1);
-      var astro = this.toAstro(m2, d2);
-      return { "lYear": year, "lMonth": month, "lDay": day, "Animal": this.getAnimal(year), "IMonthCn": (isLeap ? "闰" : "") + this.toChinaMonth(month), "IDayCn": this.toChinaDay(day), "cYear": y2, "cMonth": m2, "cDay": d2, "gzYear": gzY, "gzMonth": gzM, "gzDay": gzD, "isToday": isToday, "isLeap": isLeap, "nWeek": nWeek, "ncWeek": "星期" + cWeek, "isTerm": isTerm, "Term": Term, "astro": astro };
-    },
-    /**
-        * 传入农历年月日以及传入的月份是否闰月获得详细的公历、农历object信息 <=>JSON
-        * @param y  lunar year
-        * @param m  lunar month
-        * @param d  lunar day
-        * @param isLeapMonth  lunar month is leap or not.[如果是农历闰月第四个参数赋值true即可]
-        * @return JSON object
-        * @eg:__f__('log','at uni_modules/uni-calendar/components/uni-calendar/calendar.js:498',calendar.lunar2solar(1987,9,10));
-        */
-    lunar2solar: function(y2, m2, d2, isLeapMonth) {
-      var isLeapMonth = !!isLeapMonth;
-      var leapMonth = this.leapMonth(y2);
-      this.leapDays(y2);
-      if (isLeapMonth && leapMonth != m2) {
-        return -1;
-      }
-      if (y2 == 2100 && m2 == 12 && d2 > 1 || y2 == 1900 && m2 == 1 && d2 < 31) {
-        return -1;
-      }
-      var day = this.monthDays(y2, m2);
-      var _day = day;
-      if (isLeapMonth) {
-        _day = this.leapDays(y2, m2);
-      }
-      if (y2 < 1900 || y2 > 2100 || d2 > _day) {
-        return -1;
-      }
-      var offset = 0;
-      for (var i2 = 1900; i2 < y2; i2++) {
-        offset += this.lYearDays(i2);
-      }
-      var leap = 0;
-      var isAdd = false;
-      for (var i2 = 1; i2 < m2; i2++) {
-        leap = this.leapMonth(y2);
-        if (!isAdd) {
-          if (leap <= i2 && leap > 0) {
-            offset += this.leapDays(y2);
-            isAdd = true;
-          }
-        }
-        offset += this.monthDays(y2, i2);
-      }
-      if (isLeapMonth) {
-        offset += day;
-      }
-      var stmap = Date.UTC(1900, 1, 30, 0, 0, 0);
-      var calObj = new Date((offset + d2 - 31) * 864e5 + stmap);
-      var cY = calObj.getUTCFullYear();
-      var cM = calObj.getUTCMonth() + 1;
-      var cD = calObj.getUTCDate();
-      return this.solar2lunar(cY, cM, cD);
-    }
-  };
-  let Calendar$2 = class Calendar {
-    constructor({
-      date,
-      selected,
-      startDate,
-      endDate,
-      range
-    } = {}) {
-      this.date = this.getDate(/* @__PURE__ */ new Date());
-      this.selected = selected || [];
-      this.startDate = startDate;
-      this.endDate = endDate;
-      this.range = range;
-      this.cleanMultipleStatus();
-      this.weeks = {};
-    }
-    /**
-     * 设置日期
-     * @param {Object} date
-     */
-    setDate(date) {
-      this.selectDate = this.getDate(date);
-      this._getWeek(this.selectDate.fullDate);
-    }
-    /**
-     * 清理多选状态
-     */
-    cleanMultipleStatus() {
-      this.multipleStatus = {
-        before: "",
-        after: "",
-        data: []
-      };
-    }
-    /**
-     * 重置开始日期
-     */
-    resetSatrtDate(startDate) {
-      this.startDate = startDate;
-    }
-    /**
-     * 重置结束日期
-     */
-    resetEndDate(endDate) {
-      this.endDate = endDate;
-    }
-    /**
-     * 获取任意时间
-     */
-    getDate(date, AddDayCount = 0, str = "day") {
-      if (!date) {
-        date = /* @__PURE__ */ new Date();
-      }
-      if (typeof date !== "object") {
-        date = date.replace(/-/g, "/");
-      }
-      const dd = new Date(date);
-      switch (str) {
-        case "day":
-          dd.setDate(dd.getDate() + AddDayCount);
-          break;
-        case "month":
-          if (dd.getDate() === 31 && AddDayCount > 0) {
-            dd.setDate(dd.getDate() + AddDayCount);
-          } else {
-            const preMonth = dd.getMonth();
-            dd.setMonth(preMonth + AddDayCount);
-            const nextMonth = dd.getMonth();
-            if (AddDayCount < 0 && preMonth !== 0 && nextMonth - preMonth > AddDayCount) {
-              dd.setMonth(nextMonth + (nextMonth - preMonth + AddDayCount));
-            }
-            if (AddDayCount > 0 && nextMonth - preMonth > AddDayCount) {
-              dd.setMonth(nextMonth - (nextMonth - preMonth - AddDayCount));
-            }
-          }
-          break;
-        case "year":
-          dd.setFullYear(dd.getFullYear() + AddDayCount);
-          break;
-      }
-      const y2 = dd.getFullYear();
-      const m2 = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
-      const d2 = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
-      return {
-        fullDate: y2 + "-" + m2 + "-" + d2,
-        year: y2,
-        month: m2,
-        date: d2,
-        day: dd.getDay()
-      };
-    }
-    /**
-     * 获取上月剩余天数
-     */
-    _getLastMonthDays(firstDay, full) {
-      let dateArr = [];
-      for (let i2 = firstDay; i2 > 0; i2--) {
-        const beforeDate = new Date(full.year, full.month - 1, -i2 + 1).getDate();
-        dateArr.push({
-          date: beforeDate,
-          month: full.month - 1,
-          lunar: this.getlunar(full.year, full.month - 1, beforeDate),
-          disable: true
-        });
-      }
-      return dateArr;
-    }
-    /**
-     * 获取本月天数
-     */
-    _currentMonthDys(dateData, full) {
-      let dateArr = [];
-      let fullDate = this.date.fullDate;
-      for (let i2 = 1; i2 <= dateData; i2++) {
-        let nowDate = full.year + "-" + (full.month < 10 ? full.month : full.month) + "-" + (i2 < 10 ? "0" + i2 : i2);
-        let isDay = fullDate === nowDate;
-        let info = this.selected && this.selected.find((item) => {
-          if (this.dateEqual(nowDate, item.date)) {
-            return item;
-          }
-        });
-        let disableBefore = true;
-        let disableAfter = true;
-        if (this.startDate) {
-          disableBefore = this.dateCompare(this.startDate, nowDate);
-        }
-        if (this.endDate) {
-          disableAfter = this.dateCompare(nowDate, this.endDate);
-        }
-        let multiples = this.multipleStatus.data;
-        let checked = false;
-        let multiplesStatus = -1;
-        if (this.range) {
-          if (multiples) {
-            multiplesStatus = multiples.findIndex((item) => {
-              return this.dateEqual(item, nowDate);
-            });
-          }
-          if (multiplesStatus !== -1) {
-            checked = true;
-          }
-        }
-        let data = {
-          fullDate: nowDate,
-          year: full.year,
-          date: i2,
-          multiple: this.range ? checked : false,
-          beforeMultiple: this.dateEqual(this.multipleStatus.before, nowDate),
-          afterMultiple: this.dateEqual(this.multipleStatus.after, nowDate),
-          month: full.month,
-          lunar: this.getlunar(full.year, full.month, i2),
-          disable: !(disableBefore && disableAfter),
-          isDay
-        };
-        if (info) {
-          data.extraInfo = info;
-        }
-        dateArr.push(data);
-      }
-      return dateArr;
-    }
-    /**
-     * 获取下月天数
-     */
-    _getNextMonthDays(surplus, full) {
-      let dateArr = [];
-      for (let i2 = 1; i2 < surplus + 1; i2++) {
-        dateArr.push({
-          date: i2,
-          month: Number(full.month) + 1,
-          lunar: this.getlunar(full.year, Number(full.month) + 1, i2),
-          disable: true
-        });
-      }
-      return dateArr;
-    }
-    /**
-     * 获取当前日期详情
-     * @param {Object} date
-     */
-    getInfo(date) {
-      if (!date) {
-        date = /* @__PURE__ */ new Date();
-      }
-      const dateInfo = this.canlender.find((item) => item.fullDate === this.getDate(date).fullDate);
-      return dateInfo;
-    }
-    /**
-     * 比较时间大小
-     */
-    dateCompare(startDate, endDate) {
-      startDate = new Date(startDate.replace("-", "/").replace("-", "/"));
-      endDate = new Date(endDate.replace("-", "/").replace("-", "/"));
-      if (startDate <= endDate) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    /**
-     * 比较时间是否相等
-     */
-    dateEqual(before, after) {
-      before = new Date(before.replace("-", "/").replace("-", "/"));
-      after = new Date(after.replace("-", "/").replace("-", "/"));
-      if (before.getTime() - after.getTime() === 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    /**
-     * 获取日期范围内所有日期
-     * @param {Object} begin
-     * @param {Object} end
-     */
-    geDateAll(begin, end) {
-      var arr = [];
-      var ab = begin.split("-");
-      var ae2 = end.split("-");
-      var db2 = /* @__PURE__ */ new Date();
-      db2.setFullYear(ab[0], ab[1] - 1, ab[2]);
-      var de2 = /* @__PURE__ */ new Date();
-      de2.setFullYear(ae2[0], ae2[1] - 1, ae2[2]);
-      var unixDb = db2.getTime() - 24 * 60 * 60 * 1e3;
-      var unixDe = de2.getTime() - 24 * 60 * 60 * 1e3;
-      for (var k = unixDb; k <= unixDe; ) {
-        k = k + 24 * 60 * 60 * 1e3;
-        arr.push(this.getDate(new Date(parseInt(k))).fullDate);
-      }
-      return arr;
-    }
-    /**
-     * 计算阴历日期显示
-     */
-    getlunar(year, month, date) {
-      return calendar.solar2lunar(year, month, date);
-    }
-    /**
-     * 设置打点
-     */
-    setSelectInfo(data, value) {
-      this.selected = value;
-      this._getWeek(data);
-    }
-    /**
-     *  获取多选状态
-     */
-    setMultiple(fullDate) {
-      let {
-        before,
-        after
-      } = this.multipleStatus;
-      if (!this.range)
-        return;
-      if (before && after) {
-        this.multipleStatus.before = fullDate;
-        this.multipleStatus.after = "";
-        this.multipleStatus.data = [];
-      } else {
-        if (!before) {
-          this.multipleStatus.before = fullDate;
-        } else {
-          this.multipleStatus.after = fullDate;
-          if (this.dateCompare(this.multipleStatus.before, this.multipleStatus.after)) {
-            this.multipleStatus.data = this.geDateAll(this.multipleStatus.before, this.multipleStatus.after);
-          } else {
-            this.multipleStatus.data = this.geDateAll(this.multipleStatus.after, this.multipleStatus.before);
-          }
-        }
-      }
-      this._getWeek(fullDate);
-    }
-    /**
-     * 获取每周数据
-     * @param {Object} dateData
-     */
-    _getWeek(dateData) {
-      const {
-        year,
-        month
-      } = this.getDate(dateData);
-      let firstDay = new Date(year, month - 1, 1).getDay();
-      let currentDay = new Date(year, month, 0).getDate();
-      let dates = {
-        lastMonthDays: this._getLastMonthDays(firstDay, this.getDate(dateData)),
-        // 上个月末尾几天
-        currentMonthDys: this._currentMonthDys(currentDay, this.getDate(dateData)),
-        // 本月天数
-        nextMonthDays: [],
-        // 下个月开始几天
-        weeks: []
-      };
-      let canlender = [];
-      const surplus = 42 - (dates.lastMonthDays.length + dates.currentMonthDys.length);
-      dates.nextMonthDays = this._getNextMonthDays(surplus, this.getDate(dateData));
-      canlender = canlender.concat(dates.lastMonthDays, dates.currentMonthDys, dates.nextMonthDays);
-      let weeks = {};
-      for (let i2 = 0; i2 < canlender.length; i2++) {
-        if (i2 % 7 === 0) {
-          weeks[parseInt(i2 / 7)] = new Array(7);
-        }
-        weeks[parseInt(i2 / 7)][i2 % 7] = canlender[i2];
-      }
-      this.canlender = canlender;
-      this.weeks = weeks;
-    }
-    //静态方法
-    // static init(date) {
-    // 	if (!this.instance) {
-    // 		this.instance = new Calendar(date);
-    // 	}
-    // 	return this.instance;
-    // }
-  };
-  const isObject = (val) => val !== null && typeof val === "object";
-  const defaultDelimiters = ["{", "}"];
-  class BaseFormatter {
-    constructor() {
-      this._caches = /* @__PURE__ */ Object.create(null);
-    }
-    interpolate(message, values, delimiters = defaultDelimiters) {
-      if (!values) {
-        return [message];
-      }
-      let tokens = this._caches[message];
-      if (!tokens) {
-        tokens = parse(message, delimiters);
-        this._caches[message] = tokens;
-      }
-      return compile(tokens, values);
-    }
-  }
-  const RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
-  const RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
-  function parse(format, [startDelimiter, endDelimiter]) {
-    const tokens = [];
-    let position = 0;
-    let text = "";
-    while (position < format.length) {
-      let char = format[position++];
-      if (char === startDelimiter) {
-        if (text) {
-          tokens.push({ type: "text", value: text });
-        }
-        text = "";
-        let sub = "";
-        char = format[position++];
-        while (char !== void 0 && char !== endDelimiter) {
-          sub += char;
-          char = format[position++];
-        }
-        const isClosed = char === endDelimiter;
-        const type = RE_TOKEN_LIST_VALUE.test(sub) ? "list" : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? "named" : "unknown";
-        tokens.push({ value: sub, type });
-      } else {
-        text += char;
-      }
-    }
-    text && tokens.push({ type: "text", value: text });
-    return tokens;
-  }
-  function compile(tokens, values) {
-    const compiled = [];
-    let index = 0;
-    const mode = Array.isArray(values) ? "list" : isObject(values) ? "named" : "unknown";
-    if (mode === "unknown") {
-      return compiled;
-    }
-    while (index < tokens.length) {
-      const token = tokens[index];
-      switch (token.type) {
-        case "text":
-          compiled.push(token.value);
-          break;
-        case "list":
-          compiled.push(values[parseInt(token.value, 10)]);
-          break;
-        case "named":
-          if (mode === "named") {
-            compiled.push(values[token.value]);
-          } else {
-            {
-              console.warn(`Type of token '${token.type}' and format of value '${mode}' don't match!`);
-            }
-          }
-          break;
-        case "unknown":
-          {
-            console.warn(`Detect 'unknown' type of token!`);
-          }
-          break;
-      }
-      index++;
-    }
-    return compiled;
-  }
-  const LOCALE_ZH_HANS = "zh-Hans";
-  const LOCALE_ZH_HANT = "zh-Hant";
-  const LOCALE_EN = "en";
-  const LOCALE_FR = "fr";
-  const LOCALE_ES = "es";
-  const hasOwnProperty = Object.prototype.hasOwnProperty;
-  const hasOwn = (val, key) => hasOwnProperty.call(val, key);
-  const defaultFormatter = new BaseFormatter();
-  function include(str, parts) {
-    return !!parts.find((part) => str.indexOf(part) !== -1);
-  }
-  function startsWith(str, parts) {
-    return parts.find((part) => str.indexOf(part) === 0);
-  }
-  function normalizeLocale(locale, messages) {
-    if (!locale) {
-      return;
-    }
-    locale = locale.trim().replace(/_/g, "-");
-    if (messages && messages[locale]) {
-      return locale;
-    }
-    locale = locale.toLowerCase();
-    if (locale === "chinese") {
-      return LOCALE_ZH_HANS;
-    }
-    if (locale.indexOf("zh") === 0) {
-      if (locale.indexOf("-hans") > -1) {
-        return LOCALE_ZH_HANS;
-      }
-      if (locale.indexOf("-hant") > -1) {
-        return LOCALE_ZH_HANT;
-      }
-      if (include(locale, ["-tw", "-hk", "-mo", "-cht"])) {
-        return LOCALE_ZH_HANT;
-      }
-      return LOCALE_ZH_HANS;
-    }
-    let locales = [LOCALE_EN, LOCALE_FR, LOCALE_ES];
-    if (messages && Object.keys(messages).length > 0) {
-      locales = Object.keys(messages);
-    }
-    const lang = startsWith(locale, locales);
-    if (lang) {
-      return lang;
-    }
-  }
-  class I18n {
-    constructor({ locale, fallbackLocale, messages, watcher, formater: formater2 }) {
-      this.locale = LOCALE_EN;
-      this.fallbackLocale = LOCALE_EN;
-      this.message = {};
-      this.messages = {};
-      this.watchers = [];
-      if (fallbackLocale) {
-        this.fallbackLocale = fallbackLocale;
-      }
-      this.formater = formater2 || defaultFormatter;
-      this.messages = messages || {};
-      this.setLocale(locale || LOCALE_EN);
-      if (watcher) {
-        this.watchLocale(watcher);
-      }
-    }
-    setLocale(locale) {
-      const oldLocale = this.locale;
-      this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
-      if (!this.messages[this.locale]) {
-        this.messages[this.locale] = {};
-      }
-      this.message = this.messages[this.locale];
-      if (oldLocale !== this.locale) {
-        this.watchers.forEach((watcher) => {
-          watcher(this.locale, oldLocale);
-        });
-      }
-    }
-    getLocale() {
-      return this.locale;
-    }
-    watchLocale(fn) {
-      const index = this.watchers.push(fn) - 1;
-      return () => {
-        this.watchers.splice(index, 1);
-      };
-    }
-    add(locale, message, override = true) {
-      const curMessages = this.messages[locale];
-      if (curMessages) {
-        if (override) {
-          Object.assign(curMessages, message);
-        } else {
-          Object.keys(message).forEach((key) => {
-            if (!hasOwn(curMessages, key)) {
-              curMessages[key] = message[key];
-            }
-          });
-        }
-      } else {
-        this.messages[locale] = message;
-      }
-    }
-    f(message, values, delimiters) {
-      return this.formater.interpolate(message, values, delimiters).join("");
-    }
-    t(key, locale, values) {
-      let message = this.message;
-      if (typeof locale === "string") {
-        locale = normalizeLocale(locale, this.messages);
-        locale && (message = this.messages[locale]);
-      } else {
-        values = locale;
-      }
-      if (!hasOwn(message, key)) {
-        console.warn(`Cannot translate the value of keypath ${key}. Use the value of keypath as default.`);
-        return key;
-      }
-      return this.formater.interpolate(message[key], values).join("");
-    }
-  }
-  function watchAppLocale(appVm, i18n) {
-    if (appVm.$watchLocale) {
-      appVm.$watchLocale((newLocale) => {
-        i18n.setLocale(newLocale);
-      });
-    } else {
-      appVm.$watch(() => appVm.$locale, (newLocale) => {
-        i18n.setLocale(newLocale);
-      });
-    }
-  }
-  function getDefaultLocale() {
-    if (typeof uni !== "undefined" && uni.getLocale) {
-      return uni.getLocale();
-    }
-    if (typeof global !== "undefined" && global.getLocale) {
-      return global.getLocale();
-    }
-    return LOCALE_EN;
-  }
-  function initVueI18n(locale, messages = {}, fallbackLocale, watcher) {
-    if (typeof locale !== "string") {
-      const options = [
-        messages,
-        locale
-      ];
-      locale = options[0];
-      messages = options[1];
-    }
-    if (typeof locale !== "string") {
-      locale = getDefaultLocale();
-    }
-    if (typeof fallbackLocale !== "string") {
-      fallbackLocale = typeof __uniConfig !== "undefined" && __uniConfig.fallbackLocale || LOCALE_EN;
-    }
-    const i18n = new I18n({
-      locale,
-      fallbackLocale,
-      messages,
-      watcher
-    });
-    let t2 = (key, values) => {
-      if (typeof getApp !== "function") {
-        t2 = function(key2, values2) {
-          return i18n.t(key2, values2);
-        };
-      } else {
-        let isWatchedAppLocale = false;
-        t2 = function(key2, values2) {
-          const appVm = getApp().$vm;
-          if (appVm) {
-            appVm.$locale;
-            if (!isWatchedAppLocale) {
-              isWatchedAppLocale = true;
-              watchAppLocale(appVm, i18n);
-            }
-          }
-          return i18n.t(key2, values2);
-        };
-      }
-      return t2(key, values);
-    };
-    return {
-      i18n,
-      f(message, values, delimiters) {
-        return i18n.f(message, values, delimiters);
-      },
-      t(key, values) {
-        return t2(key, values);
-      },
-      add(locale2, message, override = true) {
-        return i18n.add(locale2, message, override);
-      },
-      watch(fn) {
-        return i18n.watchLocale(fn);
-      },
-      getLocale() {
-        return i18n.getLocale();
-      },
-      setLocale(newLocale) {
-        return i18n.setLocale(newLocale);
-      }
-    };
-  }
-  const en$1 = {
-    "uni-calender.ok": "ok",
-    "uni-calender.cancel": "cancel",
-    "uni-calender.today": "today",
-    "uni-calender.MON": "MON",
-    "uni-calender.TUE": "TUE",
-    "uni-calender.WED": "WED",
-    "uni-calender.THU": "THU",
-    "uni-calender.FRI": "FRI",
-    "uni-calender.SAT": "SAT",
-    "uni-calender.SUN": "SUN"
-  };
-  const zhHans$1 = {
-    "uni-calender.ok": "确定",
-    "uni-calender.cancel": "取消",
-    "uni-calender.today": "今日",
-    "uni-calender.SUN": "日",
-    "uni-calender.MON": "一",
-    "uni-calender.TUE": "二",
-    "uni-calender.WED": "三",
-    "uni-calender.THU": "四",
-    "uni-calender.FRI": "五",
-    "uni-calender.SAT": "六"
-  };
-  const zhHant$1 = {
-    "uni-calender.ok": "確定",
-    "uni-calender.cancel": "取消",
-    "uni-calender.today": "今日",
-    "uni-calender.SUN": "日",
-    "uni-calender.MON": "一",
-    "uni-calender.TUE": "二",
-    "uni-calender.WED": "三",
-    "uni-calender.THU": "四",
-    "uni-calender.FRI": "五",
-    "uni-calender.SAT": "六"
-  };
-  const i18nMessages$1 = {
-    en: en$1,
-    "zh-Hans": zhHans$1,
-    "zh-Hant": zhHant$1
-  };
-  const { t: t$3 } = initVueI18n(i18nMessages$1);
-  const _sfc_main$F = {
-    emits: ["change"],
-    props: {
-      weeks: {
-        type: Object,
-        default() {
-          return {};
-        }
-      },
-      calendar: {
-        type: Object,
-        default: () => {
-          return {};
-        }
-      },
-      selected: {
-        type: Array,
-        default: () => {
-          return [];
-        }
-      },
-      lunar: {
-        type: Boolean,
-        default: false
-      }
-    },
-    computed: {
-      todayText() {
-        return t$3("uni-calender.today");
-      }
-    },
-    methods: {
-      choiceDate(weeks) {
-        this.$emit("change", weeks);
-      }
-    }
-  };
-  function _sfc_render$E(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock(
-      "view",
-      {
-        class: vue.normalizeClass(["uni-calendar-item__weeks-box", {
-          "uni-calendar-item--disable": $props.weeks.disable,
-          "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-          "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-          "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-          "uni-calendar-item--multiple": $props.weeks.multiple,
-          "uni-calendar-item--after-checked": $props.weeks.afterMultiple
-        }]),
-        onClick: _cache[0] || (_cache[0] = ($event) => $options.choiceDate($props.weeks))
-      },
-      [
-        vue.createElementVNode("view", { class: "uni-calendar-item__weeks-box-item" }, [
-          $props.selected && $props.weeks.extraInfo ? (vue.openBlock(), vue.createElementBlock("text", {
-            key: 0,
-            class: "uni-calendar-item__weeks-box-circle"
-          })) : vue.createCommentVNode("v-if", true),
-          vue.createElementVNode(
-            "text",
-            {
-              class: vue.normalizeClass(["uni-calendar-item__weeks-box-text", {
-                "uni-calendar-item--isDay-text": $props.weeks.isDay,
-                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-                "uni-calendar-item--multiple": $props.weeks.multiple,
-                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
-                "uni-calendar-item--disable": $props.weeks.disable
-              }])
-            },
-            vue.toDisplayString($props.weeks.date),
-            3
-            /* TEXT, CLASS */
-          ),
-          !$props.lunar && !$props.weeks.extraInfo && $props.weeks.isDay ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 1,
-              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
-                "uni-calendar-item--isDay-text": $props.weeks.isDay,
-                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-                "uni-calendar-item--multiple": $props.weeks.multiple,
-                "uni-calendar-item--after-checked": $props.weeks.afterMultiple
-              }])
-            },
-            vue.toDisplayString($options.todayText),
-            3
-            /* TEXT, CLASS */
-          )) : vue.createCommentVNode("v-if", true),
-          $props.lunar && !$props.weeks.extraInfo ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 2,
-              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
-                "uni-calendar-item--isDay-text": $props.weeks.isDay,
-                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-                "uni-calendar-item--multiple": $props.weeks.multiple,
-                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
-                "uni-calendar-item--disable": $props.weeks.disable
-              }])
-            },
-            vue.toDisplayString($props.weeks.isDay ? $options.todayText : $props.weeks.lunar.IDayCn === "初一" ? $props.weeks.lunar.IMonthCn : $props.weeks.lunar.IDayCn),
-            3
-            /* TEXT, CLASS */
-          )) : vue.createCommentVNode("v-if", true),
-          $props.weeks.extraInfo && $props.weeks.extraInfo.info ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 3,
-              class: vue.normalizeClass(["uni-calendar-item__weeks-lunar-text", {
-                "uni-calendar-item--extra": $props.weeks.extraInfo.info,
-                "uni-calendar-item--isDay-text": $props.weeks.isDay,
-                "uni-calendar-item--isDay": $props.calendar.fullDate === $props.weeks.fullDate && $props.weeks.isDay,
-                "uni-calendar-item--checked": $props.calendar.fullDate === $props.weeks.fullDate && !$props.weeks.isDay,
-                "uni-calendar-item--before-checked": $props.weeks.beforeMultiple,
-                "uni-calendar-item--multiple": $props.weeks.multiple,
-                "uni-calendar-item--after-checked": $props.weeks.afterMultiple,
-                "uni-calendar-item--disable": $props.weeks.disable
-              }])
-            },
-            vue.toDisplayString($props.weeks.extraInfo.info),
-            3
-            /* TEXT, CLASS */
-          )) : vue.createCommentVNode("v-if", true)
-        ])
-      ],
-      2
-      /* CLASS */
-    );
-  }
-  const CalendarItem = /* @__PURE__ */ _export_sfc(_sfc_main$F, [["render", _sfc_render$E], ["__scopeId", "data-v-65626c58"], ["__file", "D:/HB/UOApp/uni_modules/uni-calendar/components/uni-calendar/uni-calendar-item.vue"]]);
-  const { t: t$2 } = initVueI18n(i18nMessages$1);
-  const _sfc_main$E = {
-    components: {
-      CalendarItem
-    },
-    emits: ["close", "confirm", "change", "monthSwitch"],
-    props: {
-      date: {
-        type: String,
-        default: ""
-      },
-      selected: {
-        type: Array,
-        default() {
-          return [];
-        }
-      },
-      lunar: {
-        type: Boolean,
-        default: false
-      },
-      startDate: {
-        type: String,
-        default: ""
-      },
-      endDate: {
-        type: String,
-        default: ""
-      },
-      range: {
-        type: Boolean,
-        default: false
-      },
-      insert: {
-        type: Boolean,
-        default: true
-      },
-      showMonth: {
-        type: Boolean,
-        default: true
-      },
-      clearDate: {
-        type: Boolean,
-        default: true
-      }
-    },
-    data() {
-      return {
-        show: false,
-        weeks: [],
-        calendar: {},
-        nowDate: "",
-        aniMaskShow: false
-      };
-    },
-    computed: {
-      /**
-       * for i18n
-       */
-      okText() {
-        return t$2("uni-calender.ok");
-      },
-      cancelText() {
-        return t$2("uni-calender.cancel");
-      },
-      todayText() {
-        return t$2("uni-calender.today");
-      },
-      monText() {
-        return t$2("uni-calender.MON");
-      },
-      TUEText() {
-        return t$2("uni-calender.TUE");
-      },
-      WEDText() {
-        return t$2("uni-calender.WED");
-      },
-      THUText() {
-        return t$2("uni-calender.THU");
-      },
-      FRIText() {
-        return t$2("uni-calender.FRI");
-      },
-      SATText() {
-        return t$2("uni-calender.SAT");
-      },
-      SUNText() {
-        return t$2("uni-calender.SUN");
-      }
-    },
-    watch: {
-      date(newVal) {
-        this.init(newVal);
-      },
-      startDate(val) {
-        this.cale.resetSatrtDate(val);
-        this.cale.setDate(this.nowDate.fullDate);
-        this.weeks = this.cale.weeks;
-      },
-      endDate(val) {
-        this.cale.resetEndDate(val);
-        this.cale.setDate(this.nowDate.fullDate);
-        this.weeks = this.cale.weeks;
-      },
-      selected(newVal) {
-        this.cale.setSelectInfo(this.nowDate.fullDate, newVal);
-        this.weeks = this.cale.weeks;
-      }
-    },
-    created() {
-      this.cale = new Calendar$2({
-        selected: this.selected,
-        startDate: this.startDate,
-        endDate: this.endDate,
-        range: this.range
-      });
-      this.init(this.date);
-    },
-    methods: {
-      // 取消穿透
-      clean() {
-      },
-      bindDateChange(e2) {
-        const value = e2.detail.value + "-1";
-        this.setDate(value);
-        const { year, month } = this.cale.getDate(value);
-        this.$emit("monthSwitch", {
-          year,
-          month
-        });
-      },
-      /**
-       * 初始化日期显示
-       * @param {Object} date
-       */
-      init(date) {
-        this.cale.setDate(date);
-        this.weeks = this.cale.weeks;
-        this.nowDate = this.calendar = this.cale.getInfo(date);
-      },
-      /**
-       * 打开日历弹窗
-       */
-      open() {
-        if (this.clearDate && !this.insert) {
-          this.cale.cleanMultipleStatus();
-          this.init(this.date);
-        }
-        this.show = true;
-        this.$nextTick(() => {
-          setTimeout(() => {
-            this.aniMaskShow = true;
-          }, 50);
-        });
-      },
-      /**
-       * 关闭日历弹窗
-       */
-      close() {
-        this.aniMaskShow = false;
-        this.$nextTick(() => {
-          setTimeout(() => {
-            this.show = false;
-            this.$emit("close");
-          }, 300);
-        });
-      },
-      /**
-       * 确认按钮
-       */
-      confirm() {
-        this.setEmit("confirm");
-        this.close();
-      },
-      /**
-       * 变化触发
-       */
-      change() {
-        if (!this.insert)
-          return;
-        this.setEmit("change");
-      },
-      /**
-       * 选择月份触发
-       */
-      monthSwitch() {
-        let {
-          year,
-          month
-        } = this.nowDate;
-        this.$emit("monthSwitch", {
-          year,
-          month: Number(month)
-        });
-      },
-      /**
-       * 派发事件
-       * @param {Object} name
-       */
-      setEmit(name) {
-        let {
-          year,
-          month,
-          date,
-          fullDate,
-          lunar,
-          extraInfo
-        } = this.calendar;
-        this.$emit(name, {
-          range: this.cale.multipleStatus,
-          year,
-          month,
-          date,
-          fulldate: fullDate,
-          lunar,
-          extraInfo: extraInfo || {}
-        });
-      },
-      /**
-       * 选择天触发
-       * @param {Object} weeks
-       */
-      choiceDate(weeks) {
-        if (weeks.disable)
-          return;
-        this.calendar = weeks;
-        this.cale.setMultiple(this.calendar.fullDate);
-        this.weeks = this.cale.weeks;
-        this.change();
-      },
-      /**
-       * 回到今天
-       */
-      backToday() {
-        const nowYearMonth = `${this.nowDate.year}-${this.nowDate.month}`;
-        const date = this.cale.getDate(/* @__PURE__ */ new Date());
-        const todayYearMonth = `${date.year}-${date.month}`;
-        this.init(date.fullDate);
-        if (nowYearMonth !== todayYearMonth) {
-          this.monthSwitch();
-        }
-        this.change();
-      },
-      /**
-       * 上个月
-       */
-      pre() {
-        const preDate = this.cale.getDate(this.nowDate.fullDate, -1, "month").fullDate;
-        this.setDate(preDate);
-        this.monthSwitch();
-      },
-      /**
-       * 下个月
-       */
-      next() {
-        const nextDate = this.cale.getDate(this.nowDate.fullDate, 1, "month").fullDate;
-        this.setDate(nextDate);
-        this.monthSwitch();
-      },
-      /**
-       * 设置日期
-       * @param {Object} date
-       */
-      setDate(date) {
-        this.cale.setDate(date);
-        this.weeks = this.cale.weeks;
-        this.nowDate = this.cale.getInfo(date);
-      }
-    }
-  };
-  function _sfc_render$D(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_calendar_item = vue.resolveComponent("calendar-item");
-    return vue.openBlock(), vue.createElementBlock("view", { class: "uni-calendar" }, [
-      !$props.insert && $data.show ? (vue.openBlock(), vue.createElementBlock(
-        "view",
-        {
-          key: 0,
-          class: vue.normalizeClass(["uni-calendar__mask", { "uni-calendar--mask-show": $data.aniMaskShow }]),
-          onClick: _cache[0] || (_cache[0] = (...args) => $options.clean && $options.clean(...args))
-        },
-        null,
-        2
-        /* CLASS */
-      )) : vue.createCommentVNode("v-if", true),
-      $props.insert || $data.show ? (vue.openBlock(), vue.createElementBlock(
-        "view",
-        {
-          key: 1,
-          class: vue.normalizeClass(["uni-calendar__content", { "uni-calendar--fixed": !$props.insert, "uni-calendar--ani-show": $data.aniMaskShow }])
-        },
-        [
-          !$props.insert ? (vue.openBlock(), vue.createElementBlock("view", {
-            key: 0,
-            class: "uni-calendar__header uni-calendar--fixed-top"
-          }, [
-            vue.createElementVNode("view", {
-              class: "uni-calendar__header-btn-box",
-              onClick: _cache[1] || (_cache[1] = (...args) => $options.close && $options.close(...args))
-            }, [
-              vue.createElementVNode(
-                "text",
-                { class: "uni-calendar__header-text uni-calendar--fixed-width" },
-                vue.toDisplayString($options.cancelText),
-                1
-                /* TEXT */
-              )
-            ]),
-            vue.createElementVNode("view", {
-              class: "uni-calendar__header-btn-box",
-              onClick: _cache[2] || (_cache[2] = (...args) => $options.confirm && $options.confirm(...args))
-            }, [
-              vue.createElementVNode(
-                "text",
-                { class: "uni-calendar__header-text uni-calendar--fixed-width" },
-                vue.toDisplayString($options.okText),
-                1
-                /* TEXT */
-              )
-            ])
-          ])) : vue.createCommentVNode("v-if", true),
-          vue.createElementVNode("view", { class: "uni-calendar__header" }, [
-            vue.createElementVNode("view", {
-              class: "uni-calendar__header-btn-box",
-              onClick: _cache[3] || (_cache[3] = vue.withModifiers((...args) => $options.pre && $options.pre(...args), ["stop"]))
-            }, [
-              vue.createElementVNode("view", { class: "uni-calendar__header-btn uni-calendar--left" })
-            ]),
-            vue.createElementVNode("picker", {
-              mode: "date",
-              value: $props.date,
-              fields: "month",
-              onChange: _cache[4] || (_cache[4] = (...args) => $options.bindDateChange && $options.bindDateChange(...args))
-            }, [
-              vue.createElementVNode(
-                "text",
-                { class: "uni-calendar__header-text" },
-                vue.toDisplayString(($data.nowDate.year || "") + " / " + ($data.nowDate.month || "")),
-                1
-                /* TEXT */
-              )
-            ], 40, ["value"]),
-            vue.createElementVNode("view", {
-              class: "uni-calendar__header-btn-box",
-              onClick: _cache[5] || (_cache[5] = vue.withModifiers((...args) => $options.next && $options.next(...args), ["stop"]))
-            }, [
-              vue.createElementVNode("view", { class: "uni-calendar__header-btn uni-calendar--right" })
-            ]),
-            vue.createElementVNode(
-              "text",
-              {
-                class: "uni-calendar__backtoday",
-                onClick: _cache[6] || (_cache[6] = (...args) => $options.backToday && $options.backToday(...args))
-              },
-              vue.toDisplayString($options.todayText),
-              1
-              /* TEXT */
-            )
-          ]),
-          vue.createElementVNode("view", { class: "uni-calendar__box" }, [
-            $props.showMonth ? (vue.openBlock(), vue.createElementBlock("view", {
-              key: 0,
-              class: "uni-calendar__box-bg"
-            }, [
-              vue.createElementVNode(
-                "text",
-                { class: "uni-calendar__box-bg-text" },
-                vue.toDisplayString($data.nowDate.month),
-                1
-                /* TEXT */
-              )
-            ])) : vue.createCommentVNode("v-if", true),
-            vue.createElementVNode("view", { class: "uni-calendar__weeks" }, [
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.SUNText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.monText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.TUEText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.WEDText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.THUText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.FRIText),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              vue.createElementVNode("view", { class: "uni-calendar__weeks-day" }, [
-                vue.createElementVNode(
-                  "text",
-                  { class: "uni-calendar__weeks-day-text" },
-                  vue.toDisplayString($options.SATText),
-                  1
-                  /* TEXT */
-                )
-              ])
-            ]),
-            (vue.openBlock(true), vue.createElementBlock(
-              vue.Fragment,
-              null,
-              vue.renderList($data.weeks, (item, weekIndex) => {
-                return vue.openBlock(), vue.createElementBlock("view", {
-                  class: "uni-calendar__weeks",
-                  key: weekIndex
-                }, [
-                  (vue.openBlock(true), vue.createElementBlock(
-                    vue.Fragment,
-                    null,
-                    vue.renderList(item, (weeks, weeksIndex) => {
-                      return vue.openBlock(), vue.createElementBlock("view", {
-                        class: "uni-calendar__weeks-item",
-                        key: weeksIndex
-                      }, [
-                        vue.createVNode(_component_calendar_item, {
-                          class: "uni-calendar-item--hook",
-                          weeks,
-                          calendar: $data.calendar,
-                          selected: $props.selected,
-                          lunar: $props.lunar,
-                          onChange: $options.choiceDate
-                        }, null, 8, ["weeks", "calendar", "selected", "lunar", "onChange"])
-                      ]);
-                    }),
-                    128
-                    /* KEYED_FRAGMENT */
-                  ))
-                ]);
-              }),
-              128
-              /* KEYED_FRAGMENT */
-            ))
-          ])
-        ],
-        2
-        /* CLASS */
-      )) : vue.createCommentVNode("v-if", true)
-    ]);
-  }
-  const __easycom_1$4 = /* @__PURE__ */ _export_sfc(_sfc_main$E, [["render", _sfc_render$D], ["__scopeId", "data-v-b6ab2cfb"], ["__file", "D:/HB/UOApp/uni_modules/uni-calendar/components/uni-calendar/uni-calendar.vue"]]);
-  function compareTimeWithSpecificTime(startTime, endTime) {
-    const currentDateTime = new Date(startTime);
-    const specificDateTime = new Date(endTime);
-    const morningTime = new Date(new Date(startTime).setHours(9, 0, 0, 0));
-    const eveningTime = new Date(new Date(startTime).setHours(17, 30, 0, 0));
-    if (currentDateTime <= morningTime && specificDateTime >= eveningTime) {
-      return "正常";
-    } else if (currentDateTime <= morningTime && specificDateTime < eveningTime) {
-      return "早退";
-    } else if (currentDateTime > morningTime && specificDateTime >= eveningTime) {
-      return "迟到";
-    } else if (currentDateTime > morningTime && specificDateTime < eveningTime) {
-      return "迟到又早退";
-    }
-  }
-  const _sfc_main$D = {
-    components: {},
-    data() {
-      return {
-        data: {
-          pageNum: 1,
-          pageSize: 200,
-          data: {
-            status: null,
-            type: null,
-            date: null
-          }
-        },
-        showCalendar: false,
-        info: {
-          selected: [],
-          message: [],
-          fullDate: ""
-        },
-        timeNow: "",
-        timeSelectNow: "",
-        finalResult: null
-      };
-    },
-    created() {
-      setInterval(this.getTime, 1e3);
-    },
-    onReady() {
-    },
-    onShow() {
-      this.getData();
-    },
-    methods: {
-      isToday(dateString) {
-        const date = new Date(dateString);
-        const today = /* @__PURE__ */ new Date();
-        return date.toDateString() === today.toDateString();
-      },
-      isTomorrow(date) {
-        const today = /* @__PURE__ */ new Date();
-        today.setHours(0, 0, 0, 0);
-        today.setDate(today.getDate() + 1);
-        const inputDate = new Date(date);
-        return inputDate > today;
-      },
-      changePage() {
-        uni.switchTab({
-          url: "/pages/review/review",
-          success() {
-            uni.showToast({
-              mask: true,
-              title: "成功跳转",
-              icon: "success",
-              duration: 1e3
-            });
-          }
-        });
-      },
-      getTime() {
-        const date = /* @__PURE__ */ new Date();
-        this.timeNow = date;
-      },
-      changePage2() {
-        uni.switchTab({
-          url: "/pages/punchIn/punchIn",
-          success() {
-            uni.showToast({
-              mask: true,
-              title: "请打卡",
-              icon: "success",
-              duration: 1e3
-            });
-          }
-        });
-      },
-      change(e2) {
-        this.info.message = [];
-        this.data.data.date = e2.fulldate;
-        this.timeSelectNow = e2.fulldate;
-        this.finalResult = null;
-        uni.request({
-          url: "http://192.168.0.196:8088/attendance/getSelfAttendance",
-          data: this.data,
-          method: "POST",
-          header: {
-            "satoken": uni.getStorageSync("satoken")
-          },
-          success: (res) => {
-            if (res.data.data) {
-              this.info.message = res.data.data.records.map((record) => {
-                if (record && record.timeIn && record.timeOut) {
-                  const timeI = new Date(record.timeIn);
-                  const timeO = new Date(record.timeOut);
-                  const timeIn = timeI.getHours() + ":" + timeI.getMinutes() + ":" + timeI.getSeconds();
-                  const timeOut = timeO.getHours() + ":" + timeO.getMinutes() + ":" + timeO.getSeconds();
-                  const address = record.address;
-                  this.finalResult = compareTimeWithSpecificTime(record.timeIn, record.timeOut);
-                  return {
-                    "address": address,
-                    "timeIn": timeIn,
-                    "timeOut": timeOut
-                  };
-                } else if (record && !record.timeIn && record.timeOut) {
-                  const timeO = new Date(record.timeOut);
-                  const timeIn = "上班未打卡";
-                  const timeOut = timeO.getHours() + ":" + timeO.getMinutes() + ":" + timeO.getSeconds();
-                  const address = record.address;
-                  this.finalResult = "上班未打卡";
-                  return {
-                    "address": address,
-                    "timeIn": timeIn,
-                    "timeOut": timeOut
-                  };
-                } else if (record && record.timeIn && !record.timeOut) {
-                  const timeI = new Date(record.timeIn);
-                  const timeIn = timeI.getHours() + ":" + timeI.getMinutes() + ":" + timeI.getSeconds();
-                  const timeOut = "下班未打卡";
-                  const address = record.address;
-                  this.finalResult = "下班未打卡";
-                  return {
-                    "address": address,
-                    "timeIn": timeIn,
-                    "timeOut": timeOut
-                  };
-                }
-              });
-            }
-          },
-          fail: (error) => {
-            formatAppLog("log", "at pages/selfMessage/punchMessage.vue:245", error);
-          }
-        });
-      },
-      getData() {
-        uni.request({
-          url: "http://192.168.0.196:8088/attendance/getSelfAttendance",
-          data: this.data,
-          method: "POST",
-          header: {
-            "satoken": uni.getStorageSync("satoken")
-          },
-          success: (res) => {
-            if (res.data.data.records !== void 0) {
-              this.info.selected = res.data.data.records;
-              this.info.selected = this.info.selected.map((record) => {
-                return {
-                  "address": record.address,
-                  "date": record.date,
-                  "info": record.status
-                };
-              });
-            }
-          },
-          fail: (error) => {
-            formatAppLog("log", "at pages/selfMessage/punchMessage.vue:270", error);
-          }
-        });
-      }
-    }
-  };
-  function _sfc_render$C(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
-    const _component_uni_calendar = resolveEasycom(vue.resolveDynamicComponent("uni-calendar"), __easycom_1$4);
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
-    return vue.openBlock(), vue.createElementBlock(
-      vue.Fragment,
-      null,
-      [
-        vue.createVNode(_component_uni_section, {
-          title: "打卡情况",
-          "sub-title": "个人的打卡信息",
-          "title-font-size": "50rpx",
-          type: "line",
-          "sub-title-color": "#757575",
-          style: { "background-color": "#98d6ff" }
-        }),
-        vue.createElementVNode("view", null, [
-          vue.createCommentVNode(" 插入模式 "),
-          vue.createVNode(_component_uni_calendar, {
-            class: "date",
-            selected: $data.info.selected,
-            showMonth: true,
-            lunar: true,
-            onChange: $options.change
-          }, null, 8, ["selected", "onChange"])
-        ]),
-        vue.createVNode(_component_uni_section, {
-          title: "详细信息",
-          type: "line",
-          style: { "background-color": "#d0d0d0" }
-        }),
-        vue.createElementVNode("view", { class: "layout" }, [
-          vue.createElementVNode(
-            "text",
-            {
-              class: "day",
-              style: { "font-weight": "700" }
-            },
-            vue.toDisplayString($data.timeSelectNow),
-            1
-            /* TEXT */
-          ),
-          $data.info.message.length !== 0 && $data.info.message[0] !== void 0 ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 0,
-              class: "layText"
-            },
-            "上班 " + vue.toDisplayString($data.info.message[0].timeIn),
-            1
-            /* TEXT */
-          )) : vue.createCommentVNode("v-if", true),
-          $data.info.message.length !== 0 && $data.info.message[0] !== void 0 ? (vue.openBlock(), vue.createElementBlock("view", {
-            key: 1,
-            class: "address"
-          }, [
-            vue.createVNode(_component_uni_icons, {
-              type: "location",
-              size: "16px",
-              style: { "margin-right": "16rpx" }
-            }),
-            vue.createElementVNode(
-              "text",
-              {
-                class: "Text",
-                style: { "font-size": "16px", "color": "#909090" }
-              },
-              vue.toDisplayString($data.info.message[0].address),
-              1
-              /* TEXT */
-            )
-          ])) : vue.createCommentVNode("v-if", true),
-          $data.info.message.length !== 0 && $data.info.message[0] !== void 0 ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 2,
-              class: "layText"
-            },
-            "下班 " + vue.toDisplayString($data.info.message[0].timeOut),
-            1
-            /* TEXT */
-          )) : vue.createCommentVNode("v-if", true),
-          $data.info.message.length !== 0 && $data.info.message[0] !== void 0 ? (vue.openBlock(), vue.createElementBlock("view", {
-            key: 3,
-            class: "address"
-          }, [
-            vue.createVNode(_component_uni_icons, {
-              type: "location",
-              size: "16px",
-              style: { "margin-right": "16rpx" }
-            }),
-            vue.createElementVNode(
-              "text",
-              {
-                class: "Text",
-                style: { "font-size": "16px", "color": "#909090" }
-              },
-              vue.toDisplayString($data.info.message[0].address),
-              1
-              /* TEXT */
-            )
-          ])) : vue.createCommentVNode("v-if", true),
-          $data.info.message.length === 0 && $options.isToday($data.data.data.date) === false && $options.isTomorrow($data.data.data.date) === false ? (vue.openBlock(), vue.createElementBlock("text", {
-            key: 4,
-            class: "layText",
-            style: { "color": "#ff0000" }
-          }, "该日未打卡，请点击下方补签按钮，提交补签审批!")) : vue.createCommentVNode("v-if", true),
-          $options.isToday($data.data.data.date) ? (vue.openBlock(), vue.createElementBlock(
-            "text",
-            {
-              key: 5,
-              class: "timeNow",
-              style: { "display": "block", "font-weight": "bold" }
-            },
-            "当前时间:" + vue.toDisplayString($data.timeNow),
-            1
-            /* TEXT */
-          )) : vue.createCommentVNode("v-if", true),
-          $options.isTomorrow($data.data.data.date) ? (vue.openBlock(), vue.createElementBlock("text", {
-            key: 6,
-            class: "layText"
-          }, "还未到打卡时间，请改日再来")) : vue.createCommentVNode("v-if", true),
-          $data.info.message.length === 0 && $options.isToday($data.data.data.date) === false && $options.isTomorrow($data.data.data.date) === false ? (vue.openBlock(), vue.createElementBlock("button", {
-            key: 7,
-            onClick: _cache[0] || (_cache[0] = (...args) => $options.changePage && $options.changePage(...args))
-          }, "补签")) : vue.createCommentVNode("v-if", true),
-          $options.isToday($data.data.data.date) ? (vue.openBlock(), vue.createElementBlock("button", {
-            key: 8,
-            onClick: _cache[1] || (_cache[1] = (...args) => $options.changePage2 && $options.changePage2(...args)),
-            style: { "background-color": "#00aaff" }
-          }, "打卡")) : vue.createCommentVNode("v-if", true),
-          $data.finalResult !== null && $data.finalResult === "正常" ? (vue.openBlock(), vue.createElementBlock("view", {
-            key: 9,
-            class: "finalValue",
-            style: { "margin": "30rpx", "font-size": "42rpx", "font-weight": "600" }
-          }, [
-            vue.createTextVNode("您当天的打卡结果为："),
-            vue.createElementVNode(
-              "text",
-              { style: { "color": "#00aa00", "border": "#00aa00 1px dashed" } },
-              vue.toDisplayString($data.finalResult),
-              1
-              /* TEXT */
-            )
-          ])) : vue.createCommentVNode("v-if", true),
-          $data.finalResult !== null && $data.finalResult !== "正常" ? (vue.openBlock(), vue.createElementBlock("view", {
-            key: 10,
-            class: "finalValue",
-            style: { "margin": "30rpx", "font-size": "42rpx", "font-weight": "600" }
-          }, [
-            vue.createTextVNode("您当天的打卡结果为："),
-            vue.createElementVNode(
-              "text",
-              { style: { "color": "#ff0000", "border": "#ff0000 1px dashed" } },
-              vue.toDisplayString($data.finalResult),
-              1
-              /* TEXT */
-            )
-          ])) : vue.createCommentVNode("v-if", true),
-          vue.createElementVNode("navigator", { url: "" }, [
-            vue.createTextVNode(" 异常汇报"),
-            vue.createVNode(_component_uni_icons, {
-              type: "link",
-              size: "26rpx",
-              style: { "color": "#00aa00" }
-            })
-          ])
-        ])
-      ],
-      64
-      /* STABLE_FRAGMENT */
-    );
-  }
-  const PagesSelfMessagePunchMessage = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["render", _sfc_render$C], ["__file", "D:/HB/UOApp/pages/selfMessage/punchMessage.vue"]]);
+  const PagesReviewReviewDetail = /* @__PURE__ */ _export_sfc(_sfc_main$D, [["render", _sfc_render$C], ["__file", "D:/HB/UOApp/pages/review/reviewDetail.vue"]]);
   const _imports_0$1 = "/static/selfImage/self.png";
   const _sfc_main$C = {
     data() {
@@ -8395,7 +8748,7 @@ ${i3}
           url: "/pages/selfMessage/updateSelf/updateSelf"
         });
       },
-      changePage1() {
+      back() {
         uni.navigateBack({
           delta: 1
         });
@@ -8409,6 +8762,7 @@ ${i3}
               "satoken": uni.getStorageSync("satoken")
             },
             success: (res) => {
+              formatAppLog("log", "at pages/selfMessage/self.vue:233", res);
               if (res.data.code === "200") {
                 this.userMessage.userName = res.data.data.userName;
                 this.userMessage.departmentName = res.data.data.departmentName;
@@ -8424,6 +8778,7 @@ ${i3}
                 this.userMessage.sex = res.data.data.sex === "1" ? "男" : "女";
                 this.userMessage.birth = res.data.data.birth;
                 this.userMessage.userImage = res.data.data.userImage;
+                formatAppLog("log", "at pages/selfMessage/self.vue:249", this.userMessage);
               } else {
                 uni.showToast({
                   title: res.data.msg,
@@ -8457,36 +8812,35 @@ ${i3}
     }
   };
   function _sfc_render$B(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_nav_bar = resolveEasycom(vue.resolveDynamicComponent("uni-nav-bar"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
       [
-        vue.createElementVNode("view", { class: "on" }, [
-          vue.createElementVNode("view", {
-            class: "left",
-            onClick: _cache[0] || (_cache[0] = (...args) => $options.changePage1 && $options.changePage1(...args))
-          }, [
-            vue.createVNode(_component_uni_icons, {
-              type: "arrow-left",
-              size: "36"
-            })
-          ]),
-          vue.createElementVNode("view", { class: "center" }, " 个人资料 "),
-          vue.createElementVNode("view", { class: "right" }, [
-            vue.createElementVNode("text", {
-              onClick: _cache[1] || (_cache[1] = (...args) => $options.showDrawer && $options.showDrawer(...args)),
-              type: "primary"
-            }, "编辑")
-          ])
-        ]),
+        vue.createVNode(_component_uni_nav_bar, {
+          dark: "",
+          fixed: true,
+          shadow: "",
+          "background-color": "#ffffff",
+          border: false,
+          "status-bar": "",
+          color: "#00000",
+          "right-text": "编辑",
+          onClickRight: $options.showDrawer,
+          title: "个人资料",
+          "left-icon": "left",
+          onClickLeft: $options.back
+        }, null, 8, ["onClickRight", "onClickLeft"]),
         vue.createElementVNode("scroll-view", {
           "scroll-y": "true",
           direction: "vertical",
           style: { "height": "100vh" }
         }, [
-          vue.createElementVNode("view", { class: "back" }),
-          vue.createElementVNode("view", { class: "row2" }, [
+          vue.createElementVNode("view", {
+            class: "row2",
+            style: { "margin-top": "120rpx" }
+          }, [
             vue.createElementVNode("view", { class: "item" }, [
               vue.createElementVNode("view", { class: "left" }, [
                 vue.createElementVNode("text", null, "头像")
@@ -8495,7 +8849,7 @@ ${i3}
                 $data.userMessage.userImage !== null ? (vue.openBlock(), vue.createElementBlock("image", {
                   key: 0,
                   src: $data.userMessage.userImage,
-                  onClick: _cache[2] || (_cache[2] = ($event) => $options.imagePreview($data.userMessage.userImage))
+                  onClick: _cache[0] || (_cache[0] = ($event) => $options.imagePreview($data.userMessage.userImage))
                 }, null, 8, ["src"])) : vue.createCommentVNode("v-if", true),
                 $data.userMessage.userImage === null ? (vue.openBlock(), vue.createElementBlock("image", {
                   key: 1,
@@ -8641,8 +8995,7 @@ ${i3}
   }
   const PagesSelfMessageSelf = /* @__PURE__ */ _export_sfc(_sfc_main$C, [["render", _sfc_render$B], ["__file", "D:/HB/UOApp/pages/selfMessage/self.vue"]]);
   const _imports_1 = "/static/selfImage/grsj.png";
-  const _imports_2 = "/static/selfImage/gly.png";
-  const _imports_3 = "/static/selfImage/sz.png";
+  const _imports_2 = "/static/selfImage/sz.png";
   const _sfc_main$B = {
     data() {
       return {
@@ -8657,8 +9010,8 @@ ${i3}
         position: null,
         admin: null,
         userMessage: {
-          userName: "",
-          departmentName: "",
+          userName: null,
+          departmentName: null,
           userName: null,
           departmentName: null,
           empNum: null,
@@ -8753,7 +9106,7 @@ ${i3}
             this.admin = res.data.data;
           },
           fail: (error) => {
-            formatAppLog("log", "at pages/selfMessage/selfMessage.vue:380", error);
+            formatAppLog("log", "at pages/selfMessage/selfMessage.vue:389", error);
           }
         });
       },
@@ -8809,85 +9162,98 @@ ${i3}
     }
   };
   function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_nav_bar = resolveEasycom(vue.resolveDynamicComponent("uni-nav-bar"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
       [
-        vue.createElementVNode("view", { class: "card" }, [
-          vue.createElementVNode("view", { class: "userLayout" }, [
-            vue.createElementVNode("view", { class: "avatar" }, [
-              $data.userMessage.avatar !== null ? (vue.openBlock(), vue.createElementBlock("image", {
-                key: 0,
-                class: "image",
-                src: $data.userMessage.avatar,
-                onClick: _cache[0] || (_cache[0] = ($event) => $options.imagePreview($data.userMessage.avatar))
-              }, null, 8, ["src"])) : (vue.openBlock(), vue.createElementBlock("image", {
-                key: 1,
-                class: "image",
-                src: _imports_0$1,
-                onClick: _cache[1] || (_cache[1] = ($event) => $options.imagePreview($data.userMessage.avatar))
-              }))
+        vue.createElementVNode("view", { class: "layout" }, [
+          vue.createVNode(_component_uni_nav_bar, {
+            dark: "",
+            fixed: true,
+            shadow: "",
+            "background-color": "#ffffff",
+            border: false,
+            "status-bar": "",
+            color: "#00000",
+            title: "个人资料"
+          }),
+          vue.createElementVNode("view", { class: "card" }, [
+            vue.createElementVNode("view", { class: "userLayout" }, [
+              vue.createElementVNode("view", { class: "avatar" }, [
+                $data.userMessage.avatar !== null ? (vue.openBlock(), vue.createElementBlock("image", {
+                  key: 0,
+                  class: "image",
+                  src: $data.userMessage.avatar,
+                  onClick: _cache[0] || (_cache[0] = ($event) => $options.imagePreview($data.userMessage.avatar))
+                }, null, 8, ["src"])) : (vue.openBlock(), vue.createElementBlock("image", {
+                  key: 1,
+                  class: "image",
+                  src: _imports_0$1,
+                  onClick: _cache[1] || (_cache[1] = ($event) => $options.imagePreview($data.userMessage.avatar))
+                }))
+              ]),
+              vue.createElementVNode("view", { class: "userInfo" }, [
+                vue.createElementVNode(
+                  "view",
+                  { class: "userName" },
+                  vue.toDisplayString($data.userMessage.userName),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "updateButton" }, [
+                vue.createVNode(_component_uni_icons, {
+                  type: "compose",
+                  size: "15px",
+                  onClick: $options.changeSelfUpdatePage,
+                  style: { "color": "#959595", "border-radius": "10rpx" }
+                }, {
+                  default: vue.withCtx(() => [
+                    vue.createTextVNode("编辑资料")
+                  ]),
+                  _: 1
+                  /* STABLE */
+                }, 8, ["onClick"])
+              ])
             ]),
-            vue.createElementVNode("view", { class: "userInfo" }, [
-              vue.createElementVNode(
-                "view",
-                { class: "userName" },
-                vue.toDisplayString($data.userMessage.userName),
-                1
-                /* TEXT */
-              )
-            ]),
-            vue.createElementVNode("view", { class: "updateButton" }, [
+            vue.createCommentVNode(" position元素在userLayout下方，单独占据一行 "),
+            vue.createElementVNode("view", { class: "position" }, [
+              vue.createElementVNode("text", { style: { "font-size": "22rpx", "color": "#000000", "font-weight": "bold", "margin-right": "20rpx" } }),
               vue.createVNode(_component_uni_icons, {
-                type: "compose",
-                size: "15px",
-                onClick: $options.changeSelfUpdatePage,
-                style: { "color": "#959595", "border-radius": "10rpx" }
+                type: "auth-filled",
+                size: "22rpx",
+                color: "#00aaff"
               }, {
                 default: vue.withCtx(() => [
-                  vue.createTextVNode("编辑资料")
+                  vue.createTextVNode(
+                    vue.toDisplayString($data.position),
+                    1
+                    /* TEXT */
+                  )
+                ]),
+                _: 1
+                /* STABLE */
+              })
+            ]),
+            vue.createElementVNode("view", {
+              class: "selfCard",
+              style: { "width": "78vw", "text-align": "right", "padding": "20rpx" }
+            }, [
+              vue.createVNode(_component_uni_icons, {
+                type: "staff",
+                size: "26rpx",
+                style: { "color": "#959595", "border": "#959595 solid 1rpx", "padding": "4px", "border-radius": "10rpx" },
+                onClick: $options.changeSelfPage
+              }, {
+                default: vue.withCtx(() => [
+                  vue.createTextVNode("个人名片")
                 ]),
                 _: 1
                 /* STABLE */
               }, 8, ["onClick"])
             ])
-          ]),
-          vue.createCommentVNode(" position元素在userLayout下方，单独占据一行 "),
-          vue.createElementVNode("view", { class: "position" }, [
-            vue.createElementVNode("text", { style: { "font-size": "22rpx", "color": "#000000", "font-weight": "bold", "margin-right": "20rpx" } }),
-            vue.createVNode(_component_uni_icons, {
-              type: "auth-filled",
-              size: "22rpx",
-              color: "#00aaff"
-            }, {
-              default: vue.withCtx(() => [
-                vue.createTextVNode(
-                  vue.toDisplayString($data.position),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              _: 1
-              /* STABLE */
-            })
-          ]),
-          vue.createElementVNode("view", {
-            class: "selfCard",
-            style: { "width": "78vw", "text-align": "right", "padding": "20rpx" }
-          }, [
-            vue.createVNode(_component_uni_icons, {
-              type: "staff",
-              size: "26rpx",
-              style: { "color": "#959595", "border": "#959595 solid 1rpx", "padding": "4px", "border-radius": "10rpx" },
-              onClick: $options.changeSelfPage
-            }, {
-              default: vue.withCtx(() => [
-                vue.createTextVNode("个人名片")
-              ]),
-              _: 1
-              /* STABLE */
-            }, 8, ["onClick"])
           ])
         ]),
         vue.createCommentVNode(' <view class="review">\r\n	  	  <view class="item">\r\n	  		  <text>待我处理</text>\r\n	  		  <text>0</text>\r\n	  	  </view>\r\n	  	  <view class="item">\r\n	  	  		  <text>我创建的</text>\r\n	  	  		  <text>0</text>\r\n	  	  </view>\r\n	  	  <view class="item">\r\n	  	  		  <text>我已处理</text>\r\n	  	  		  <text>0</text>\r\n	  	  </view>\r\n	  </view> '),
@@ -8908,33 +9274,14 @@ ${i3}
             ])
           ])
         ]),
-        $data.admin === true ? (vue.openBlock(), vue.createElementBlock("view", {
-          key: 0,
-          class: "row"
-        }, [
-          vue.createElementVNode("view", {
-            class: "item",
-            onClick: _cache[3] || (_cache[3] = (...args) => $options.changeAdmin && $options.changeAdmin(...args))
-          }, [
-            vue.createElementVNode("view", { class: "left" }, [
-              vue.createElementVNode("image", { src: _imports_2 }),
-              vue.createElementVNode("text", null, "管理员系统")
-            ]),
-            vue.createElementVNode("view", { class: "right" }, [
-              vue.createVNode(_component_uni_icons, {
-                type: "right",
-                size: "30rpx"
-              })
-            ])
-          ])
-        ])) : vue.createCommentVNode("v-if", true),
+        vue.createCommentVNode(' <view class="row" v-if="admin===true">\r\n  	  <view class="item" @click="changeAdmin">\r\n  	  		  <view class="left">\r\n  				  <image src="../../static/selfImage/gly.png"></image>\r\n  				  <text>管理员系统</text>\r\n  				  </view>\r\n  	  		  <view class="right">\r\n  				  <uni-icons type="right" size="30rpx"></uni-icons>\r\n  			  </view>\r\n  	  </view>\r\n  </view> '),
         vue.createElementVNode("view", { class: "row" }, [
           vue.createElementVNode("view", {
             class: "item",
-            onClick: _cache[4] || (_cache[4] = (...args) => $options.changeSetUp && $options.changeSetUp(...args))
+            onClick: _cache[3] || (_cache[3] = (...args) => $options.changeSetUp && $options.changeSetUp(...args))
           }, [
             vue.createElementVNode("view", { class: "left" }, [
-              vue.createElementVNode("image", { src: _imports_3 }),
+              vue.createElementVNode("image", { src: _imports_2 }),
               vue.createElementVNode("text", null, "设置")
             ]),
             vue.createElementVNode("view", { class: "right" }, [
@@ -9396,7 +9743,7 @@ ${i3}
     }
   };
   function _sfc_render$x(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return $data.show ? (vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -9494,24 +9841,122 @@ ${i3}
     )) : vue.createCommentVNode("v-if", true);
   }
   const __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$x], ["__scopeId", "data-v-c3453ea3"], ["__file", "D:/HB/UOApp/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue"]]);
+  function checkTime() {
+    const now = /* @__PURE__ */ new Date();
+    const hour = now.getHours();
+    if (hour < 9 || hour > 17.5) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function getFormattedDate() {
+    const today = /* @__PURE__ */ new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const formattedMonth = month < 10 ? "0" + month : month;
+    const formattedDay = day < 10 ? "0" + day : day;
+    return `${year}-${formattedMonth}-${formattedDay}`;
+  }
   const _sfc_main$x = {
     data() {
       return {
-        longitude: null,
-        latitude: null,
-        address: null,
+        userMessage: {
+          userName: null,
+          departmentName: null,
+          userName: null,
+          departmentName: null,
+          empNum: null,
+          telephone: null,
+          email: null,
+          status: null,
+          ctTime: null,
+          avatar: null
+        },
+        addance: {
+          longitude: null,
+          latitude: null,
+          address: "点击选择打卡位置",
+          date: null,
+          type: "上班打卡"
+        },
+        blueMessage: {
+          bluetoothName: null,
+          remark: null
+        },
         currentTimeDisplay: "",
         clockInButton: true,
-        clockOutButton: false,
+        clockOutButton: true,
         outCheckIn: true,
-        deviceIds: [
-          {
-            deviceId: "30:AE:A4:2C:5A:B5"
-          }
-        ]
+        deviceIds: []
       };
     },
     methods: {
+      getSelfMessage() {
+        if (uni.getStorageSync("satoken")) {
+          uni.request({
+            url: "http://192.168.0.196:8088/user/info",
+            method: "GET",
+            header: {
+              "satoken": uni.getStorageSync("satoken")
+            },
+            success: (res) => {
+              if (res.data.code === "200") {
+                this.userMessage.userName = res.data.data.userName;
+                this.userMessage.departmentName = res.data.data.departmentName;
+                this.userMessage.email = res.data.data.email;
+                this.userMessage.telephone = res.data.data.telephone;
+                this.userMessage.status = res.data.data.status;
+                this.userMessage.empNum = res.data.data.empNum;
+                var date = new Date(res.data.data.ctTime);
+                if (res.data.data.userImage !== null) {
+                  this.userMessage.avatar = res.data.data.userImage;
+                } else {
+                  this.userMessage.avatar = "../../static/tx/default.png";
+                }
+                this.userMessage.ctTime = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay();
+              } else {
+                uni.showToast({
+                  title: res.data.msg,
+                  icon: "fail",
+                  duration: 1e3,
+                  mask: true
+                });
+              }
+            },
+            fail: (error) => {
+              uni.showToast({
+                title: "页面错误!!!",
+                icon: "error",
+                duration: 5e3,
+                mask: true
+              }), uni.navigateTo({
+                url: "/pages/index/index"
+              });
+            }
+          });
+        } else {
+          uni.navigateTo({
+            url: "/pages/index/index"
+          });
+        }
+      },
+      getBlueTooth() {
+        uni.request({
+          url: "http://192.168.0.196:8088/bluetooth/getBluetooth",
+          method: "GET",
+          header: {
+            "satoken": uni.getStorageSync("satoken")
+          },
+          success: (res) => {
+            this.deviceIds = res.data.data;
+          },
+          fail: (err) => {
+            formatAppLog("log", "at pages/punchIn/punchIn.vue:213", err);
+          }
+        });
+      },
       getAddress() {
         uni.getLocation(
           {
@@ -9519,16 +9964,19 @@ ${i3}
             geocode: true,
             isHighAccuracy: true,
             success: (res1) => {
-              formatAppLog("log", "at pages/punchIn/punchIn.vue:67", res1);
-              this.longitude = res1.longitude;
-              this.latitude = res1.latitude;
+              this.addance.longitude = res1.longitude;
+              this.addance.latitude = res1.latitude;
               uni.chooseLocation({
                 success: (res2) => {
                   if (Math.abs(res1.longitude - res2.longitude) < 2e-4 && Math.abs(res1.latitude - res2.latitude) < 2e-4) {
-                    this.address = res2.name;
+                    this.addance.address = res2.name;
                     uni.showToast({
                       title: "定位成功",
-                      icon: "success"
+                      icon: "success",
+                      success: (res) => {
+                        this.clockInButton = false;
+                        this.clockOutButton = false;
+                      }
                     });
                   } else {
                     uni.showToast({
@@ -9544,24 +9992,52 @@ ${i3}
       },
       updateTime() {
         var now = /* @__PURE__ */ new Date();
-        var hours = now.getHours();
-        var minutes = now.getMinutes();
+        now.getHours();
+        now.getMinutes();
         this.currentTimeDisplay = `中国时间:${now.toLocaleTimeString()}`;
-        if (hours === 9 && minutes === 0 || hours < 9) {
-          this.clockInButton = false;
-        } else {
-          this.clockInButton = true;
-        }
-        if (hours >= 17 && minutes >= 30 || hours >= 18) {
-          this.clockOutButton = false;
-        } else {
-          this.clockOutButton = true;
-        }
       },
       show() {
+        this.addance.date = getFormattedDate();
+        if (checkTime()) {
+          this.punchIn();
+        } else {
+          uni.showModal({
+            title: "警告",
+            content: "还未到打卡时间，您确认打卡吗",
+            success: (res) => {
+              if (res.confirm) {
+                this.punchIn();
+              } else if (res.cancel)
+                ;
+            },
+            fail: (err) => {
+              formatAppLog("log", "at pages/punchIn/punchIn.vue:275", err);
+            }
+          });
+        }
         uni.showToast({
           icon: "success",
           title: "打卡成功"
+        });
+      },
+      punchIn() {
+        uni.request({
+          url: "http://192.168.0.196:8088/attendance/addAttendance",
+          method: "POST",
+          data: this.addance,
+          header: {
+            "satoken": uni.getStorageSync("satoken")
+          },
+          success: (res) => {
+            uni.showModal({
+              title: "提示",
+              content: res.data.data,
+              showCancel: false
+            });
+          },
+          fail: (err) => {
+            formatAppLog("log", "at pages/punchIn/punchIn.vue:300", err);
+          }
         });
       },
       scanBluetooth() {
@@ -9580,11 +10056,13 @@ ${i3}
                             duration: 1e3,
                             success: () => {
                               this.outCheckIn = false;
+                              this.blueMessage.bluetoothName = deviceId.bluetoothName;
+                              this.blueMessage.remark = deviceId.remark;
                             }
                           });
                         },
                         fail: () => {
-                          formatAppLog("error", "at pages/punchIn/punchIn.vue:139", "停止扫描失败");
+                          formatAppLog("error", "at pages/punchIn/punchIn.vue:331", "停止扫描失败");
                           uni.showToast({
                             title: "无法连接蓝牙",
                             icon: "error"
@@ -9596,13 +10074,13 @@ ${i3}
                 });
               },
               fail: (err) => {
-                formatAppLog("error", "at pages/punchIn/punchIn.vue:151", "开始扫描失败", err);
+                formatAppLog("error", "at pages/punchIn/punchIn.vue:343", "开始扫描失败", err);
                 uni.closeBluetoothAdapter();
               }
             });
           },
           fail: (err) => {
-            formatAppLog("error", "at pages/punchIn/punchIn.vue:157", "开启蓝牙适配器失败", err);
+            formatAppLog("error", "at pages/punchIn/punchIn.vue:349", "开启蓝牙适配器失败", err);
           }
         });
       }
@@ -9612,6 +10090,8 @@ ${i3}
       setInterval(this.updateTime, 1e3);
     },
     onShow() {
+      this.getSelfMessage();
+      this.getBlueTooth();
       this.scanBluetooth();
     },
     updated() {
@@ -9621,15 +10101,11 @@ ${i3}
   function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_notice_bar = resolveEasycom(vue.resolveDynamicComponent("uni-notice-bar"), __easycom_0$3);
     const _component_uni_card = resolveEasycom(vue.resolveDynamicComponent("uni-card"), __easycom_3$2);
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
-    return vue.openBlock(), vue.createBlock(_component_uni_section, {
-      title: "个人打卡",
-      "title-font-size": "50rpx",
-      "title-color": "#00aaff",
-      "sub-title": "个人打卡界面,如无法打卡,请查看公告",
-      "sub-title-color": "#ff0000"
-    }, {
-      default: vue.withCtx(() => [
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
+    return vue.openBlock(), vue.createElementBlock(
+      vue.Fragment,
+      null,
+      [
         vue.createElementVNode("view", { class: "attendance-title" }, [
           vue.createVNode(_component_uni_notice_bar, {
             "show-icon": "",
@@ -9639,48 +10115,97 @@ ${i3}
         ]),
         vue.createVNode(_component_uni_card, null, {
           default: vue.withCtx(() => [
-            vue.createElementVNode("view", null, [
-              vue.createElementVNode("button", {
-                onClick: _cache[0] || (_cache[0] = (...args) => $options.getAddress && $options.getAddress(...args)),
-                class: "abutton",
-                disabled: $data.outCheckIn
-              }, "点击选择打卡位置" + vue.toDisplayString($data.address), 9, ["disabled"])
-            ]),
-            vue.createElementVNode("view", { class: "attendance-container" }, [
-              vue.createElementVNode("view", null, [
+            vue.createElementVNode("view", { class: "userLayout" }, [
+              vue.createElementVNode("view", { class: "avatar" }, [
+                $data.userMessage.avatar !== null ? (vue.openBlock(), vue.createElementBlock("image", {
+                  key: 0,
+                  class: "image",
+                  src: $data.userMessage.avatar,
+                  onClick: _cache[0] || (_cache[0] = ($event) => _ctx.imagePreview($data.userMessage.avatar))
+                }, null, 8, ["src"])) : (vue.openBlock(), vue.createElementBlock("image", {
+                  key: 1,
+                  class: "image",
+                  src: _imports_0$1,
+                  onClick: _cache[1] || (_cache[1] = ($event) => _ctx.imagePreview($data.userMessage.avatar))
+                }))
+              ]),
+              vue.createElementVNode("view", { class: "userInfo" }, [
                 vue.createElementVNode(
                   "view",
-                  {
-                    class: "current-time",
-                    id: "currentTimeDisplay",
-                    style: { "color": "#48c5bd" }
-                  },
-                  vue.toDisplayString($data.currentTimeDisplay),
+                  { class: "userName" },
+                  vue.toDisplayString($data.userMessage.userName),
                   1
                   /* TEXT */
                 )
-              ]),
-              vue.createElementVNode("view", { class: "attendance-clock-in-out" }, [
-                vue.createElementVNode("button", {
-                  class: "attendance-button",
-                  disabled: $data.clockInButton,
-                  onClick: _cache[1] || (_cache[1] = ($event) => $options.show())
-                }, "打卡上班", 8, ["disabled"]),
-                vue.createElementVNode("button", {
-                  class: "attendance-button",
-                  disabled: $data.clockOutButton,
-                  onClick: _cache[2] || (_cache[2] = ($event) => $options.show())
-                }, "打卡下班", 8, ["disabled"])
               ])
             ])
           ]),
           _: 1
           /* STABLE */
+        }),
+        vue.createVNode(_component_uni_card, null, {
+          default: vue.withCtx(() => [
+            vue.createElementVNode("view", null, [
+              vue.createVNode(_component_uni_section, {
+                title: "请选择地址",
+                type: "square"
+              }, {
+                default: vue.withCtx(() => [
+                  vue.createElementVNode("button", {
+                    onClick: _cache[2] || (_cache[2] = (...args) => $options.getAddress && $options.getAddress(...args)),
+                    class: "abutton",
+                    disabled: $data.outCheckIn
+                  }, vue.toDisplayString($data.addance.address), 9, ["disabled"])
+                ]),
+                _: 1
+                /* STABLE */
+              })
+            ]),
+            vue.createElementVNode("view", { class: "attendance-container" }, [
+              vue.createElementVNode("view", null, [
+                vue.createElementVNode("view", {
+                  class: "current-time",
+                  id: "currentTimeDisplay",
+                  style: { "color": "#48c5bd", "text-align": "center" }
+                }, [
+                  vue.createElementVNode(
+                    "text",
+                    { style: { "display": "block" } },
+                    vue.toDisplayString($data.currentTimeDisplay),
+                    1
+                    /* TEXT */
+                  ),
+                  vue.createElementVNode(
+                    "text",
+                    { style: { "display": "block" } },
+                    vue.toDisplayString($data.blueMessage.remark),
+                    1
+                    /* TEXT */
+                  )
+                ])
+              ]),
+              vue.createElementVNode("view", { class: "attendance-clock-in-out" }, [
+                vue.createElementVNode("button", {
+                  class: "attendance-button",
+                  disabled: $data.clockInButton,
+                  onClick: _cache[3] || (_cache[3] = ($event) => $options.show())
+                }, "打卡上班", 8, ["disabled"]),
+                vue.createElementVNode("button", {
+                  class: "attendance-button",
+                  disabled: $data.clockOutButton,
+                  onClick: _cache[4] || (_cache[4] = ($event) => $options.show())
+                }, "打卡下班", 8, ["disabled"])
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "bluetooth" })
+          ]),
+          _: 1
+          /* STABLE */
         })
-      ]),
-      _: 1
-      /* STABLE */
-    });
+      ],
+      64
+      /* STABLE_FRAGMENT */
+    );
   }
   const PagesPunchInPunchIn = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", _sfc_render$w], ["__file", "D:/HB/UOApp/pages/punchIn/punchIn.vue"]]);
   const _sfc_main$w = {
@@ -9827,7 +10352,7 @@ ${i3}
   };
   function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_notice_bar = resolveEasycom(vue.resolveDynamicComponent("uni-notice-bar"), __easycom_0$3);
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
       null,
@@ -10387,7 +10912,7 @@ ${i3}
     }
   };
   function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -12791,7 +13316,7 @@ ${i3}
   function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_calendar_item = vue.resolveComponent("calendar-item");
     const _component_time_picker = vue.resolveComponent("time-picker");
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return vue.openBlock(), vue.createElementBlock(
       "view",
       {
@@ -13739,7 +14264,7 @@ ${i3}
     }
   };
   function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     const _component_time_picker = vue.resolveComponent("time-picker");
     const _component_Calendar = vue.resolveComponent("Calendar");
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-date" }, [
@@ -15075,7 +15600,7 @@ ${i3}
     const _component_uni_datetime_picker = resolveEasycom(vue.resolveDynamicComponent("uni-datetime-picker"), __easycom_2);
     const _component_uni_forms = resolveEasycom(vue.resolveDynamicComponent("uni-forms"), __easycom_3$1);
     const _component_uni_card = resolveEasycom(vue.resolveDynamicComponent("uni-card"), __easycom_3$2);
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
     return vue.openBlock(), vue.createBlock(_component_uni_section, {
       title: "请假审批",
       type: "line",
@@ -16578,7 +17103,7 @@ ${i3}
     const _component_uni_file_picker = resolveEasycom(vue.resolveDynamicComponent("uni-file-picker"), __easycom_3);
     const _component_uni_forms = resolveEasycom(vue.resolveDynamicComponent("uni-forms"), __easycom_3$1);
     const _component_uni_card = resolveEasycom(vue.resolveDynamicComponent("uni-card"), __easycom_3$2);
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
     return vue.openBlock(), vue.createBlock(_component_uni_section, {
       title: "出差审批",
       type: "line",
@@ -16745,7 +17270,7 @@ ${i3}
     }
   };
   function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return vue.openBlock(), vue.createElementBlock("view", null, [
       $props.loaded || $props.list.itemIndex < 15 ? (vue.openBlock(), vue.createElementBlock("view", {
         key: 0,
@@ -17330,7 +17855,7 @@ ${i3}
     }
   };
   function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     const _component_uni_card = resolveEasycom(vue.resolveDynamicComponent("uni-card"), __easycom_3$2);
     return vue.openBlock(), vue.createElementBlock("view", { class: "all" }, [
       (vue.openBlock(true), vue.createElementBlock(
@@ -17348,7 +17873,8 @@ ${i3}
               default: vue.withCtx(() => [
                 vue.createElementVNode("view", {
                   class: "select",
-                  onClick: ($event) => $options.changeSelectPage(item)
+                  onClick: ($event) => $options.changeSelectPage(item),
+                  style: { "margin": "20rpx" }
                 }, [
                   vue.createElementVNode("view", null, [
                     vue.createVNode(_component_uni_icons, {
@@ -17358,7 +17884,7 @@ ${i3}
                     }),
                     vue.createElementVNode(
                       "text",
-                      { style: { "color": "#0055ff", "font-size": "40rpx" } },
+                      { style: { "color": "#0055ff", "font-size": "40rpx", "margin": "20rpx" } },
                       "查看最近" + vue.toDisplayString(item.title),
                       1
                       /* TEXT */
@@ -17374,6 +17900,12 @@ ${i3}
                       color: "#ff0000",
                       type: "plusempty",
                       size: "40rpx"
+                    }, {
+                      default: vue.withCtx(() => [
+                        vue.createTextVNode("写一篇")
+                      ]),
+                      _: 1
+                      /* STABLE */
                     })
                   ])
                 ], 8, ["onClick"])
@@ -17486,7 +18018,7 @@ ${i3}
           type: "日报",
           content: null,
           filePath: [],
-          userIDS: [1, 3]
+          userIDS: []
         },
         userList: []
       };
@@ -17494,11 +18026,8 @@ ${i3}
     onLoad(options) {
       if (options.users) {
         const users = JSON.parse(options.users);
-        formatAppLog("log", "at pages/logDay/InsertReport.vue:161", users);
         this.userList = users;
-        formatAppLog("log", "at pages/logDay/InsertReport.vue:163", this.userList);
         this.baseFormData.userIDS = users.map((item) => item.userId);
-        formatAppLog("log", "at pages/logDay/InsertReport.vue:165", this.baseFormData.userIDS);
       }
     },
     onShow() {
@@ -17538,12 +18067,12 @@ ${i3}
               const final = JSON.parse(end.data);
               if (final.code === "200") {
                 const uuid = final.data;
-                formatAppLog("log", "at pages/logDay/InsertReport.vue:211", uuid);
+                formatAppLog("log", "at pages/logDay/InsertReport.vue:208", uuid);
                 this.baseFormData.filePath.push(uuid);
               }
             },
             fail: (err) => {
-              formatAppLog("log", "at pages/logDay/InsertReport.vue:216", err);
+              formatAppLog("log", "at pages/logDay/InsertReport.vue:213", err);
             }
           });
         });
@@ -17559,7 +18088,7 @@ ${i3}
         });
       },
       async selectVideo(e2) {
-        formatAppLog("log", "at pages/logDay/InsertReport.vue:232", e2);
+        formatAppLog("log", "at pages/logDay/InsertReport.vue:229", e2);
         await uni.chooseVideo({
           success: (res) => {
             this.uploadFile(res);
@@ -17595,7 +18124,7 @@ ${i3}
               });
             },
             fail: (fail) => {
-              formatAppLog("log", "at pages/logDay/InsertReport.vue:270", fail);
+              formatAppLog("log", "at pages/logDay/InsertReport.vue:267", fail);
             }
           });
         } else {
@@ -17609,13 +18138,13 @@ ${i3}
     }
   };
   function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_segmented_control = resolveEasycom(vue.resolveDynamicComponent("uni-segmented-control"), __easycom_0$5);
+    const _component_uni_segmented_control = resolveEasycom(vue.resolveDynamicComponent("uni-segmented-control"), __easycom_0$4);
     const _component_uni_easyinput = resolveEasycom(vue.resolveDynamicComponent("uni-easyinput"), __easycom_1$3);
     const _component_uni_forms_item = resolveEasycom(vue.resolveDynamicComponent("uni-forms-item"), __easycom_2$1);
     const _component_uni_forms = resolveEasycom(vue.resolveDynamicComponent("uni-forms"), __easycom_3$1);
     const _component_uni_tooltip = resolveEasycom(vue.resolveDynamicComponent("uni-tooltip"), __easycom_4);
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
     const _component_uni_card = resolveEasycom(vue.resolveDynamicComponent("uni-card"), __easycom_3$2);
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
@@ -17865,6 +18394,7 @@ ${i3}
           pageSize: 10,
           data: {
             reportId: null,
+            reportDate: null,
             type: "日报",
             share: null
           }
@@ -17907,7 +18437,7 @@ ${i3}
         }
       },
       change(res) {
-        formatAppLog("log", "at pages/logDay/SelectReport.vue:96", res.currentIndex);
+        formatAppLog("log", "at pages/logDay/SelectReport.vue:97", res.currentIndex);
         this.index = res.currentIndex;
         this.init();
       },
@@ -17921,12 +18451,12 @@ ${i3}
           },
           data: this.data,
           success: (res) => {
-            formatAppLog("log", "at pages/logDay/SelectReport.vue:110", res);
+            formatAppLog("log", "at pages/logDay/SelectReport.vue:111", res);
             this.allData = res.data.data.records;
             this.total = res.data.data.total;
           },
           fail: (error) => {
-            formatAppLog("log", "at pages/logDay/SelectReport.vue:115", error);
+            formatAppLog("log", "at pages/logDay/SelectReport.vue:116", error);
           }
         });
       },
@@ -17955,7 +18485,7 @@ ${i3}
             this.total = res.data.data.total;
           },
           fail: (fail) => {
-            formatAppLog("log", "at pages/logDay/SelectReport.vue:144", fail);
+            formatAppLog("log", "at pages/logDay/SelectReport.vue:145", fail);
           }
         });
       },
@@ -17974,7 +18504,7 @@ ${i3}
             this.total = res.data.data.total;
           },
           fail: (fail) => {
-            formatAppLog("log", "at pages/logDay/SelectReport.vue:163", fail);
+            formatAppLog("log", "at pages/logDay/SelectReport.vue:164", fail);
           }
         });
       },
@@ -17996,7 +18526,7 @@ ${i3}
           },
           fail: (fail) => {
             uni.hideLoading();
-            formatAppLog("log", "at pages/logDay/SelectReport.vue:185", fail);
+            formatAppLog("log", "at pages/logDay/SelectReport.vue:186", fail);
           }
         });
       }
@@ -18029,16 +18559,16 @@ ${i3}
       this.allData = [];
       this.data.pageNum = 1;
       this.data.data.reportId = null;
-      this.getData();
+      this.init();
       setTimeout(() => {
         uni.stopPullDownRefresh();
       }, 1e3);
     }
   };
   function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_segmented_control = resolveEasycom(vue.resolveDynamicComponent("uni-segmented-control"), __easycom_0$5);
-    const _component_uni_data_select = resolveEasycom(vue.resolveDynamicComponent("uni-data-select"), __easycom_1$5);
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
+    const _component_uni_segmented_control = resolveEasycom(vue.resolveDynamicComponent("uni-segmented-control"), __easycom_0$4);
+    const _component_uni_data_select = resolveEasycom(vue.resolveDynamicComponent("uni-data-select"), __easycom_1$4);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
     const _component_uni_card = resolveEasycom(vue.resolveDynamicComponent("uni-card"), __easycom_3$2);
     const _component_mine_empty = vue.resolveComponent("mine-empty");
     return vue.openBlock(), vue.createElementBlock(
@@ -18289,7 +18819,7 @@ ${i3}
     }
   };
   function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return vue.openBlock(), vue.createElementBlock("view", { class: "uni-collapse-item" }, [
       vue.createCommentVNode(" onClick(!isOpen) "),
       vue.createElementVNode(
@@ -18727,10 +19257,7 @@ ${i3}
                 userId = userId.replace(/\[/g, "");
                 userId = userId.replace(/\]/g, "");
                 this.userIds = userId.split(",");
-              } else {
-                formatAppLog("error", "at pages/logDay/reportDetail.vue:370", "userId is null or not a string");
               }
-              formatAppLog("log", "at pages/logDay/reportDetail.vue:372", this.userIds);
               uni.request({
                 url: "http://192.168.0.196:8088/report/shareReportToUser",
                 data: this.userIds,
@@ -18741,24 +19268,24 @@ ${i3}
                 success: (res2) => {
                   if (res2.data.code === "200") {
                     this.userOnVos = res2.data.data;
-                    formatAppLog("log", "at pages/logDay/reportDetail.vue:383", this.userOnVos);
+                    formatAppLog("log", "at pages/logDay/reportDetail.vue:382", this.userOnVos);
                   } else {
-                    formatAppLog("log", "at pages/logDay/reportDetail.vue:385", res2);
+                    formatAppLog("log", "at pages/logDay/reportDetail.vue:384", res2);
                   }
                 },
                 fail: (err) => {
-                  formatAppLog("log", "at pages/logDay/reportDetail.vue:389", err);
+                  formatAppLog("log", "at pages/logDay/reportDetail.vue:388", err);
                 }
               });
               this.allData = records;
             } else {
               uni.hideLoading();
-              formatAppLog("log", "at pages/logDay/reportDetail.vue:395", res);
+              formatAppLog("log", "at pages/logDay/reportDetail.vue:394", res);
             }
           },
           fail: (fail) => {
             uni.hideLoading();
-            formatAppLog("log", "at pages/logDay/reportDetail.vue:400", fail);
+            formatAppLog("log", "at pages/logDay/reportDetail.vue:399", fail);
           }
         });
         uni.hideLoading();
@@ -18768,7 +19295,7 @@ ${i3}
   function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_uni_collapse_item = resolveEasycom(vue.resolveDynamicComponent("uni-collapse-item"), __easycom_0$1);
     const _component_uni_collapse = resolveEasycom(vue.resolveDynamicComponent("uni-collapse"), __easycom_1$2);
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     const _component_uni_card = resolveEasycom(vue.resolveDynamicComponent("uni-card"), __easycom_3$2);
     return vue.openBlock(), vue.createElementBlock(
       vue.Fragment,
@@ -18791,7 +19318,7 @@ ${i3}
                       nodes: item.content
                     }, null, 8, ["nodes"])
                   ]),
-                  $data.index === "1" ? (vue.openBlock(), vue.createElementBlock("view", {
+                  $data.index === "1" && $data.userOnVos !== null && $data.userOnVos.length !== 0 ? (vue.openBlock(), vue.createElementBlock("view", {
                     key: 0,
                     class: "userOnVos"
                   }, [
@@ -19072,7 +19599,7 @@ ${i3}
     }
   };
   function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     return vue.openBlock(), vue.createElementBlock("view", null, [
       vue.createElementVNode("view", { class: "section" }, [
         vue.createElementVNode("view", { class: "list" }, [
@@ -19493,7 +20020,7 @@ ${i3}
     }
   };
   function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$7);
+    const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$8);
     const _component_uni_badge = resolveEasycom(vue.resolveDynamicComponent("uni-badge"), __easycom_1$1);
     return vue.openBlock(), vue.createElementBlock("view", {
       class: vue.normalizeClass([{ "uni-list-item--disabled": $props.disabled }, "uni-list-item"]),
@@ -19890,7 +20417,7 @@ ${i3}
     }
   };
   function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
     return vue.openBlock(), vue.createElementBlock("view", { class: "page" }, [
       vue.createVNode(_component_uni_section, {
         title: "请选择",
@@ -19972,7 +20499,7 @@ ${i3}
     }
   };
   function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$4);
+    const _component_uni_section = resolveEasycom(vue.resolveDynamicComponent("uni-section"), __easycom_0$6);
     return vue.openBlock(true), vue.createElementBlock(
       vue.Fragment,
       null,

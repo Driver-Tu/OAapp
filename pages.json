@@ -5,15 +5,13 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "工作台",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
+				"navigationStyle": "custom"
 			}
 		},{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
+				"navigationStyle": "custom"
 			}
 		},{
 			"path": "pages/review/reviewDetail",
@@ -125,8 +123,7 @@
 	{
 		"navigationBarTitleText" : "看日志",
 		"enablePullDownRefresh": true,
-		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "#ffffff"
+		"navigationStyle": "custom"
 	}
 },{
 	"path" : "pages/logDay/reportDetail",
@@ -158,8 +155,8 @@
 	"style" : 
 	{
 		"navigationBarTitleText" : "个人数据",
-		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "#ffffff"
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#00aaff"
 	}
 },
 {
@@ -167,8 +164,8 @@
 	"style" : 
 	{
 		"navigationBarTitleText" : "账号设置",
-		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "#b5b5b5"
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#00aaff"
 	}
 },
 {
@@ -193,7 +190,7 @@
 	"tabBar": {
 			"color": "black",
 			"selectedColor": "#00aaff",
-			"backgroundColor": "#dcdcdc",// 底部 tabBar 背景色
+			"backgroundColor": "#ffffff",// 底部 tabBar 背景色
 			"borderStyle": "black",
 			"list": [{
 					"pagePath": "pages/main/main",

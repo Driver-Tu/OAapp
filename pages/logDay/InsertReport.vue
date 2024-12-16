@@ -150,7 +150,7 @@
 					type: "日报",
 					content: null,
 					filePath: [],
-					userIDS:[1,3]
+					userIDS:[]
 				},
 				userList:[]
 			}
@@ -158,11 +158,8 @@
 		onLoad(options) {
 			if(options.users){
 				const users=JSON.parse(options.users)
-				console.log(users)
 				this.userList=users
-				console.log(this.userList)
 				this.baseFormData.userIDS=users.map(item=>item.userId)
-				console.log(this.baseFormData.userIDS)
 			}
 		},
 		onShow() {

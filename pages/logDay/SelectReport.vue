@@ -2,17 +2,23 @@
 	.search-box{
 		margin: 20rpx;
 	}
+	body{
+		background-color: #f4f4f4;
+	}
 </style>
 <template>
+	<uni-nav-bar dark :fixed="true" shadow background-color="#ffffff" :border="false" left-text="日志查看" left-icon="search" 
+	left-width="45vw"  status-bar color="#00aaff" right-icon="plusempty" @click-right="insertReportPage()"/>
 	<view class="row">
-		<uni-segmented-control :current="num" :values="items" style-type="text" active-color="#00b100"
+		<uni-segmented-control :current="num" :values="items" style-type="text" active-color="#00aaff"
 			@clickItem="change" />
 	</view>
 	<uni-section title="请选择日报类型" type="line" class="search-box">
 		<uni-data-select :localdata="range"  @change="chengeType" :clear="false"></uni-data-select>
 	</uni-section>
 	<view v-for="item in allData">
-		<uni-card :title="item.reportName" :sub-title="item.reportDate" :extra="item.userName+'的'+item.type" 
+		<view style="margin: 0rpx 30rpx;color: #b1b1b1;">{{formatDate(item.reportDate)}}</view>
+		<uni-card :title="'主题:'+item.reportName" :sub-title="item.reportDate" :extra="item.userName+'的'+item.type" 
 			@click="selectDetail(item.reportId)" thumbnail="../../static/tx/default.png">
 			<view>
 				<view>
@@ -51,6 +57,7 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 					pageSize: 10,
 					data: {
 						reportId: null,
+						reportDate:null,
 						type: "日报",
 						share:null
 					}
@@ -85,6 +92,42 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 			this.init()
 		},
 		methods: {
+			insertReportPage(){
+				uni.showModal({
+					content:"准备前往写一篇日志...",
+					success: (res) => {
+						if(res.confirm){
+							uni.navigateTo({
+								url:"/pages/logDay/InsertReport"
+							})
+						}else if(res.cancel){
+							
+						}
+					}
+				})
+			},
+			 formatDate(dateString) {
+			  // 创建一个新的Date对象
+			  var date = new Date(dateString);
+			
+			  // 获取年、月、日
+			  var year = date.getFullYear();
+			  var month = date.getMonth() + 1; // getMonth() 返回的月份是从0开始的，所以需要+1
+			  var day = date.getDate();
+			
+			  // 获取星期几
+			  var days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+			  var weekDay = days[date.getDay()];
+			
+			  // 将月和日转换为两位数格式
+			  month = month < 10 ? '0' + month : month;
+			  day = day < 10 ? '0' + day : day;
+			
+			  // 格式化日期
+			  var formattedDate = year + "年" + month + "月" + day + "日 " + weekDay;
+			
+			  return formattedDate;
+			},
 			init(){
 				if(this.index===0){
 					this.getMyShareData()
@@ -107,7 +150,6 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 					},
 					data:this.data,
 					success: (res) => {
-						console.log(res)
 						this.allData=res.data.data.records
 						this.total = res.data.data.total
 					},
@@ -217,7 +259,7 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 			this.data.pageNum = 1
 			this.data.data.reportId = null
 			//调用获取数据方法
-			this.getData()
+			this.init()
 			setTimeout(() => {
 				//结束下拉刷新
 				uni.stopPullDownRefresh();
