@@ -757,10 +757,7 @@ body {
   transform: scale(0.95);
 }
 .position {
-  border-bottom: #e6e6e6 solid 0.03125rem;
-  margin-top: 0.3125rem;
-  text-align: left;
-  padding: 0.3125rem;
+  margin-top: 0.3125rem 0;
   color: #959595;
 }
 .selfCard .uni-icons:active {

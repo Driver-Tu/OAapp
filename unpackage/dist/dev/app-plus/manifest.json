@@ -23,7 +23,6 @@
     "Bluetooth": {},
     "Camera": {},
     "VideoPlayer": {},
-    "Push": {},
     "Barcode": {},
     "UniNView": {
       "description": "UniNView原生渲染"
@@ -155,7 +154,7 @@
     },
     "allowsInlineMediaPlayback": true,
     "safearea": {
-      "background": "#dcdcdc",
+      "background": "#ffffff",
       "bottom": {
         "offset": "auto"
       }
@@ -184,7 +183,7 @@
       "iconWidth": "24px",
       "spacing": "3px",
       "height": "50px",
-      "backgroundColor": "#dcdcdc",
+      "backgroundColor": "#ffffff",
       "list": [
         {
           "pagePath": "pages/main/main",

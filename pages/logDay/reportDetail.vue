@@ -34,8 +34,7 @@
 		text-align: right;
 		.gongNen{
 			display: inline-block;
-			color: #ffe30f;
-			padding: 10rpx;
+			color: #00aaff;
 		}
 	}
 </style>
@@ -45,6 +44,7 @@
 		<uni-card :title="item.reportName" :sub-title="item.reportDate" :extra="item.userName+'的'+item.type" 
 			thumbnail="../../static/tx/default.png">
 			<view class="content">
+				<text style="font-size: 40rpx;font-weight: bold;">主要内容:</text>
 				<rich-text :nodes="item.content"></rich-text>
 			</view>
 			<view class="userOnVos" v-if="index==='1'&&userOnVos!==null&&userOnVos.length!==0">

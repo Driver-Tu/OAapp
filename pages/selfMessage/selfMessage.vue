@@ -77,11 +77,8 @@ margin-top: 80rpx;
 }
 
 .position {
-	 border-bottom: #e6e6e6 solid 1rpx;
 	 // 与userLayout的间距
-	 margin-top: 10rpx;
-     text-align: left; // 如果需要的话，可以居中显示position
-     padding: 10rpx;
+	 margin-top: 10rpx 0rpx; // 如果需要的话，可以居中显示position
 	 color: #959595;
 }
 .selfCard{
@@ -211,18 +208,16 @@ margin-top: 80rpx;
 	      <view class="userName">
 			{{ userMessage.userName }}
 			</view>
+			<view class="position">
+						<text style="font-size: 30rpx;color: #000000;font-weight: bold;"></text><uni-icons type="auth-filled" size="30rpx" color="#00aaff">{{ position }}</uni-icons>
+					</view>
 	    </view>
 	    <view class="updateButton">
 	      <uni-icons type="compose" size="15px" @click="changeSelfPage" style="color:#959595;border-radius: 10rpx;">编辑资料</uni-icons>
 	    </view>
 	  </view>
 	  <!-- position元素在userLayout下方，单独占据一行 -->
-	  <view class="position">
-			<text style="font-size: 22rpx;color: #000000;font-weight: bold;margin-right: 20rpx;"></text><uni-icons type="auth-filled" size="22rpx" color="#00aaff">{{ position }}</uni-icons>
-		</view>
-		<view class="selfCard" style="width: 78vw; text-align: right;padding: 20rpx;">
-			<uni-icons type="staff" size="26rpx" style="color:#959595;border: #959595 solid 1rpx;padding: 4px;border-radius: 10rpx;" @click="changeSelfPage">个人名片</uni-icons>
-		</view>
+	  
 	</view>
 </view>
 	  <!-- <view class="review">

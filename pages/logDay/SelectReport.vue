@@ -1,6 +1,6 @@
 <style>
 	.search-box{
-		margin: 20rpx;
+		margin: 10rpx;
 	}
 	body{
 		background-color: #f4f4f4;
@@ -18,8 +18,8 @@
 	</uni-section>
 	<view v-for="item in allData">
 		<view style="margin: 0rpx 30rpx;color: #b1b1b1;">{{formatDate(item.reportDate)}}</view>
-		<uni-card :title="'主题:'+item.reportName" :sub-title="item.reportDate" :extra="item.userName+'的'+item.type" 
-			@click="selectDetail(item.reportId)" thumbnail="../../static/tx/default.png">
+		<uni-card :title="'日报标题：'" :sub-title="item.reportName" :extra="item.userName+'的'+item.type" 
+			@click="selectDetail(item.reportId)">
 			<view>
 				<view>
 					<text style="font-weight: 700;">报告内容:</text>
@@ -43,13 +43,13 @@
 <script>
 import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 	export default {
-		props: ['item'],
+		props: ['item','nums'],
 		components:{
 			mineEmpty
 		},
 		data() {
 			return {
-				num:1,
+				num:0,
 				items: ["我收到的", "我发出的"],
 				total: 0,
 				data: {
@@ -77,7 +77,6 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 					}
 				],
 				allData: [],
-				index:0
 			}
 		},
 		onLoad(options) {
@@ -86,6 +85,10 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 				 const parsedItem = JSON.parse(decodedItem);
 				 this.data.data.type=parsedItem.title
 				 this.num=parsedItem.num
+			}
+			if(options.nums){
+				this.num=parseInt(options.nums)
+				console.log(this.num)
 			}
 		},
 		onShow() {
@@ -129,15 +132,14 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 			  return formattedDate;
 			},
 			init(){
-				if(this.index===0){
+				if(this.num===0){
 					this.getMyShareData()
 				}else{
 					this.getData()
 				}
 			},
 			change(res){
-				console.log(res.currentIndex)
-				this.index=res.currentIndex
+				this.num=res.currentIndex
 				this.init()
 			},
 			//获取分享给自己的日志
@@ -160,7 +162,7 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 			},
 			selectDetail(id) {
 					uni.navigateTo({
-						url: "/pages/logDay/reportDetail?reportId=" + encodeURIComponent(JSON.stringify(id+","+this.index))
+						url: "/pages/logDay/reportDetail?reportId=" + encodeURIComponent(JSON.stringify(id+","+this.num))
 					})
 			},
 			chengeType(e) {

@@ -40,11 +40,12 @@
 		data() {
 			return {
 				list3:[
+					// {
+					// 	type:"close",
+					// 	text:"切换账号",
+					// 	url:""
+					// },
 					{
-						type:"close",
-						text:"切换账号",
-						url:""
-					},{
 						type:"home",
 						text:"退出登录",
 						url:"/pages/index/index"

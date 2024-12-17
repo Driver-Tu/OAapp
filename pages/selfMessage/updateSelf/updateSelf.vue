@@ -3,6 +3,7 @@
 .layout{
 	width: 100vw;
 	height: 100vh;
+	margin: 10rpx;
 	text{
 		padding: 10rpx;
 		margin: 5rpx;
@@ -35,14 +36,12 @@
 </style>
 <template>
 	<view class="layout">
-		<uni-card>
-			<text>修改姓名</text>
-			<input placeholder="请输入" v-model="userInfo.userName" ></input>
-			<text style="margin: 5rpx;padding: 5rpx;">修改手机号</text>
-			<input placeholder="请输入" v-model="userInfo.telephone" ></input>
-			<text style="margin: 5rpx;padding: 5rpx;">修改邮箱</text>
-			<input placeholder="请输入" v-model="userInfo.email"></input>
-		</uni-card>
+				<text>修改姓名</text>
+				<input placeholder="请输入" v-model="userInfo.userName" ></input>
+				<text style="margin: 5rpx;padding: 5rpx;">修改手机号</text>
+				<input placeholder="请输入" v-model="userInfo.telephone" ></input>
+				<text style="margin: 5rpx;padding: 5rpx;">修改邮箱</text>
+				<input placeholder="请输入" v-model="userInfo.email"></input>
 		<view class="button-controller">
 			<button class="okUpdate" @click="updateSelfMessage" type="primary">提交修改</button>
 			<button class="offUpdate" @click="offUpdate" type="primary">取消修改</button>
@@ -101,7 +100,7 @@
 			updateSelfMessage(){
 				if(validateInput(this.userInfo)==="数据正确"){
 					uni.request({
-						url:"http://192.168.0.196:8088/user/updateUserInfo",
+						url:"http://192.168.0.196:8088/user/updateSelfUserInfo",
 						method:'POST',
 						header:{
 							"satoken":uni.getStorageSync("satoken")

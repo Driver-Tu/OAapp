@@ -62,7 +62,7 @@
 								  <image v-if="userMessage.userImage===null" src="../../static/selfImage/self.png"></image>
 							  </view>
 			</view>
-			<view class="item">
+			<view class="item" @click="upName()">
 							  <view class="left">
 								  <text>昵称</text>
 								  </view>
@@ -87,7 +87,7 @@
 								  {{userMessage.sex}}
 							  </view>
 			</view>
-			<view class="item">
+			<view class="item" @click="upEmail()">
 							  <view class="left">
 								  <text>电子邮箱</text>
 								  </view>
@@ -96,7 +96,7 @@
 								  <uni-icons type="right"></uni-icons>
 							  </view>
 			</view>
-			<view class="item">
+			<view class="item" @click="upTelephone()">
 							  <view class="left">
 								  <text>联系方式</text>
 								  </view>
@@ -160,13 +160,18 @@
 	    const phoneRegex = /^1[3-9]\d{9}$/;
 	    // QQ邮箱正则表达式
 	    const qqEmailRegex = /^[1-9]\d{4,11}@qq\.com$/;
-	
-	    // 判断是否为手机号
-	    if (phoneRegex.test(inputValue.telephone)&&qqEmailRegex.test(inputValue.email)) {
-	        return true;
-	    }
-		    // 如果都不是，则返回错误信息
-	    return "输入的格式不正确，请输入正确的手机号或QQ邮箱";
+		if(inputValue.telephone===null&&inputValue.email===null&&inputValue.userName===null){
+			return "请输入要修改的数据s"
+		}
+			// 判断是否为手机号
+		if(!phoneRegex.test(inputValue.telephone)&&inputValue.telephone!==null){
+			return "手机号格式错误"
+		}
+		if (!qqEmailRegex.test(inputValue.email)&&inputValue.email!==null) {
+			return "QQ邮箱格式不正确"
+		}
+		// 如果都不是，则返回正确信息
+	    return "数据正确";
 	}
 	export default{
 		data(){
@@ -185,6 +190,11 @@
 					ctTime:null,
 					sex:null,
 					birth:null
+				},
+				userInfo:{
+					telephone:null,
+					email:null,
+					userName:null
 				}
 			}
 		},
@@ -201,6 +211,74 @@
 						this.position=res.data.data.name
 			},
 			})
+			},
+			upName(){
+				uni.showModal({
+					editable:true,
+					title:"请输入新呢称",
+					success: (res) => {
+						if(res.confirm){
+							this.userInfo.userName=res.content
+							this.updateSelfMessage()
+						}
+					}
+				})
+			},
+			upEmail(){
+				uni.showModal({
+					editable:true,
+					title:"请输入新的邮箱号码",
+					success: (res) => {
+						if(res.confirm){
+							this.userInfo.email=res.content
+							this.updateSelfMessage()
+						}
+					}
+				})
+			},
+			upTelephone(){
+				uni.showModal({
+					editable:true,
+					title:"请输入新的电话号码",
+					success: (res) => {
+						if(res.confirm){
+							this.userInfo.telephone=res.content
+							this.updateSelfMessage()
+						}
+					}
+				})
+			},
+			updateSelfMessage(){
+				if(validateInput(this.userInfo)==="数据正确"){
+					uni.request({
+						url:"http://192.168.0.196:8088/user/updateSelfUserInfo",
+						method:'POST',
+						header:{
+							"satoken":uni.getStorageSync("satoken")
+						},
+						data:this.userInfo,
+						success:(res)=> {
+							uni.showModal({
+								title:"提示",
+								content:res.data.msg,
+								showCancel:false,
+								success:(res)=>{
+									if(res.confirm){
+										this.getSelfMessage()
+									}
+								}
+							})
+						},
+						fail: (error) => {
+							console.log(error)
+						}
+					})
+				}else{
+					uni.showModal({
+						title:"警告",
+						content:validateInput(this.userInfo)
+					})
+				}
 			},
 			updateImage(){
 				
@@ -219,8 +297,7 @@
 				uni.navigateBack({
 					delta:1
 				})
-			}
-			,
+			},
 			getSelfMessage(){
 				if(uni.getStorageSync("satoken")){
 					uni.request({ 
@@ -230,7 +307,6 @@
 							"satoken":uni.getStorageSync("satoken")
 						},
 						success:(res)=>{
-							console.log(res)
 						if(res.data.code==="200"){
 						this.userMessage.userName=res.data.data.userName
 						this.userMessage.departmentName=res.data.data.departmentName

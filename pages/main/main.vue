@@ -183,23 +183,27 @@
   </view>
   <uni-section title="本月数据" sub-title="本月打卡总数,日报,周报和月报的篇数统计" type="circle" style="background-color: #dfdfdf; padding: 20rpx 0rpx; ">
 	  <uni-section class="char-count" title="本月打卡次数" type="square" style="margin: 20rpx;border-radius: 10rpx;">
-		  <view class="Text">
-			  <view class="left">上班打卡统计</view>
-			  <view class="right">2天</view>
+		  <view class="Text" @click="punchMessagePage()">
+			  <view class="left">本月打卡成功</view>
+			  <view class="right">{{countData.attendanceSuccess}}天</view>
+		  </view>
+		  <view class="Text" @click="punchMessagePage()">
+		  			  <view class="left">本月打卡失败</view>
+		  			  <view class="right">{{countData.attendanceFail}}天</view>
 		  </view>
 	  </uni-section>
 	  <uni-section class="char-count2" title="本月报告次数" type="square" style="margin: 20rpx;border-radius: 10rpx;">
-		  <view class="Text">
+		  <view class="Text" @click="logDayPage()">
 		  			  <view class="left">日报次数</view>
-		  			  <view class="right">6篇</view>
+		  			  <view class="right">{{countData.reportDay}}篇</view>
 		  </view>
-		  <view class="Text">
+		  <view class="Text" @click="logDayPage()">
 		  			  <view class="left">周报次数</view>
-		  			  <view class="right">1篇</view>
+		  			  <view class="right">{{countData.reportWeek}}篇</view>
 		  </view>
-		  <view class="Text">
+		  <view class="Text" @click="logDayPage()">
 		  			  <view class="left">月报次数</view>
-		  			  <view class="right">0篇</view>
+		  			  <view class="right">{{countData.reportMonth}}篇</view>
 		  </view>
 	  </uni-section>
   </uni-section>
@@ -261,14 +265,58 @@
 					}
 				],
 				//后续用作审批流程
-				spList: []
+				spList: [],
+				countData:{
+					attendanceSuccess:0,
+					attendanceFail:0,
+					reportDay:0,
+					reportMonth:0,
+					reportWeek:0
+				}
 			}
 		},
 		onShow() {
 			this.isLogin()
 			this.getSelfMessage()
+			this.getAttendanceCount()
+			this.getReportCount()
 		},
 		methods: {
+			getReportCount(){
+				uni.request({
+					url:"http://192.168.0.196:8088/report/getSelfReportCount?year="+new Date().getFullYear()+"&month="+(new Date().getMonth()+1),
+					header:{
+						"satoken":uni.getStorageSync("satoken")
+					},
+					method:"GET",
+					success: (res) => {
+						let rs=res.data.data
+						this.countData.reportDay=rs.daily
+						this.countData.reportWeek=rs.weekly
+						this.countData.reportMonth=rs.monthly
+					},
+					fail: (err) => {
+						console.log(err)
+					}
+				})
+			},
+			getAttendanceCount(){
+				uni.request({
+					url:"http://192.168.0.196:8088/attendance/getCountByMonth?year="+new Date().getFullYear()+"&month="+(new Date().getMonth()+1),
+					header:{
+						"satoken":uni.getStorageSync("satoken")
+					},
+					method:"GET",
+					success: (res) => {
+						let rs=res.data.data
+						this.countData.attendanceSuccess=rs.success
+						this.countData.attendanceFail=rs.fail
+					},
+					fail: (err) => {
+						console.log(err)
+					}
+				})
+			},
 			changeMenuPage(urls){
 				uni.navigateTo({
 					url:urls
@@ -281,12 +329,17 @@
 						},
 			logDayPage(){
 				uni.navigateTo({
-					url:"/pages/logDay/SelectReport"
+					url:"/pages/logDay/SelectReport?nums=1"
 				})
 			},
 			punchPage(){
 				uni.navigateTo({
 					url:"/pages/punchIn/punchIn"
+				})
+			},
+			punchMessagePage(){
+				uni.navigateTo({
+					url:"/pages/selfMessage/punchMessage"
 				})
 			},
 			reviewPage(){

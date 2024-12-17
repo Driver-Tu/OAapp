@@ -1198,3 +1198,65 @@ body {
   border-bottom: none;
   /* 最后一个菜单项不显示分割线 */
 }
+.char-count .Text {
+  display: inline-block;
+  margin: 0.625rem;
+  width: 43.5%;
+  background-color: #0055ff;
+  color: #fff;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 0;
+}
+.char-count .Text .left {
+  margin-bottom: 0.625rem;
+  width: 100%;
+  text-align: center;
+}
+.char-count .Text .right {
+  width: 100%;
+  text-align: center;
+}
+.char-count .Text:first-child {
+  background-color: #55ff00;
+}
+.char-count .Text:first-child:active {
+  background-color: #ff0000;
+}
+.char-count2 .Text {
+  display: inline-block;
+  margin: 0.625rem;
+  width: 27.7%;
+  color: #fff;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 0;
+}
+.char-count2 .Text .left {
+  margin-bottom: 0.625rem;
+  width: 100%;
+  text-align: center;
+}
+.char-count2 .Text .right {
+  width: 100%;
+  text-align: center;
+}
+.char-count2 .Text:active {
+  background-color: #ff0000;
+}
+.char-count2 .Text:first-child {
+  background-color: #0055ff;
+}
+.char-count2 .Text:first-child:active {
+  background-color: #ff0000;
+}
+.char-count2 .Text:nth-child(2) {
+  background-color: #62c500;
+}
+.char-count2 .Text:nth-child(2):active {
+  background-color: #cbcb00;
+}
+.char-count2 .Text:nth-child(3) {
+  background-color: #ffaa00;
+}
+.char-count2 .Text:nth-child(3):active {
+  background-color: #aa00ff;
+}
