@@ -130,7 +130,7 @@
 		</uni-card>
 	</uni-section>
 	<view class="submit">
-		<button type="primary" class="save-btn">保存{{baseFormData.type}}</button>
+		<button type="primary" class="save-btn" @click="saveData()">保存{{baseFormData.type}}</button>
 		<button type="primary" class="submit-btn" @click="allData()">提交{{baseFormData.type}}</button>
 	</view>
 </template>
@@ -160,13 +160,44 @@
 				const users=JSON.parse(options.users)
 				this.userList=users
 				this.baseFormData.userIDS=users.map(item=>item.userId)
+				this.baseFormData=JSON.parse(uni.getStorageSync("baseFormData"))
+				uni.removeStorageSync("baseFormData")
 			}
 		},
 		onShow() {
-			
+			if(uni.getStorageSync("baseData")){
+				this.baseFormData=JSON.parse(uni.getStorageSync("baseData"))
+			}
+			if(uni.getStorageSync("tempFilePaths")){
+				this.tempFilePaths=JSON.parse(uni.getStorageSync("tempFilePaths"))
+			}
+			if(uni.getStorageSync("userList")){
+				this.userList=JSON.parse(uni.getStorageSync("userList"))
+			}
 		},
 		methods: {
+			saveData(){
+				uni.showModal({
+					title:"提示",
+					content:"您确认保存吗？",
+					success: (res) => {
+						if(res.confirm){
+							uni.setStorageSync("baseData",JSON.stringify(this.baseFormData))
+							uni.setStorageSync("tempFilePaths",JSON.stringify(this.tempFilePaths))
+							uni.setStorageSync("userList",JSON.stringify(this.userList))
+							uni.showToast({
+								duration:1000,
+								title:"保存成功",
+								icon:"success"
+							})
+						}else if(res.cancel){
+							
+						}
+					}
+				})
+			},
 			changeSelectUserPage(){
+				uni.setStorageSync("baseFormData",JSON.stringify(this.baseFormData))
 				uni.navigateTo({
 					url:"SelectUser/SelectUser"
 				})
@@ -235,6 +266,15 @@
 			},
 			allData() {
 				if((this.baseFormData.reportName!==null&&this.baseFormData.reportName!=="")&&(this.baseFormData.content!==null&&this.baseFormData.content!=="")){
+					if(uni.getStorageSync("baseData")){
+						uni.removeStorageSync("baseData")
+					}
+					if(uni.getStorageSync("tempFilePaths")){
+						uni.removeStorageSync("tempFilePaths")
+					}
+					if(uni.getStorageSync("userList")){
+					uni.removeStorageSync("userList")
+					}
 					uni.request({
 						url:"http://192.168.0.196:8088/report/addReport",
 						method:'POST',

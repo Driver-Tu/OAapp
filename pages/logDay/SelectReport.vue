@@ -18,7 +18,7 @@
 	</uni-section>
 	<view v-for="item in allData">
 		<view style="margin: 0rpx 30rpx;color: #b1b1b1;">{{formatDate(item.reportDate)}}</view>
-		<uni-card :title="'日报标题：'" :sub-title="item.reportName" :extra="item.userName+'的'+item.type" 
+		<uni-card :title="'报告标题：'" :sub-title="item.reportName" :extra="item.userName+'的'+item.type" 
 			@click="selectDetail(item.reportId)">
 			<view>
 				<view>

@@ -196,7 +196,7 @@ margin-top: 80rpx;
 <template>
 <view class="layout">
 	<uni-nav-bar dark :fixed="true" shadow background-color="#ffffff" :border="false"
-	 status-bar color="#000" title="个人资料"/>
+	 status-bar color="#000" title="个人中心"/>
 	 
 	<view class="card">
 	  <view class="userLayout">

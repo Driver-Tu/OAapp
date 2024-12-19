@@ -49,7 +49,10 @@
             },
             /* ios打包配置 */
             "ios" : {
-                "dSYMs" : false
+                "dSYMs" : false,
+                "NSAppTransportSecurity" : {
+                    "NSAllowsArbitraryLoads" : true
+                }
             },
             /* SDK配置 */
             "sdkConfigs" : {
@@ -67,9 +70,9 @@
                         "offline" : false,
                         "icons" : {
                             "small" : {
-                                "ldpi" : "static/logo.png",
-                                "mdpi" : "static/logo.png",
                                 "hdpi" : "static/logo.png",
+                                "mdpi" : "static/logo.png",
+                                "ldpi" : "static/logo.png",
                                 "xhdpi" : "static/logo.png",
                                 "xxhdpi" : "static/logo.png"
                             }
@@ -85,7 +88,10 @@
                     "xhdpi" : "static/main/jm.png"
                 },
                 "useOriginalMsgbox" : false,
-                "iosStyle" : "common"
+                "iosStyle" : "common",
+                "ios" : {
+                    "storyboard" : "static/main/jm.png"
+                }
             },
             "icons" : {
                 "android" : {
@@ -157,3 +163,5 @@
     },
     "locale" : "auto"
 }
+/* SDK配置 */
+

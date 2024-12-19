@@ -128,9 +128,9 @@
             "offline": false,
             "icons": {
               "small": {
-                "ldpi": "static/logo.png",
-                "mdpi": "static/logo.png",
                 "hdpi": "static/logo.png",
+                "mdpi": "static/logo.png",
+                "ldpi": "static/logo.png",
                 "xhdpi": "static/logo.png",
                 "xxhdpi": "static/logo.png"
               }
