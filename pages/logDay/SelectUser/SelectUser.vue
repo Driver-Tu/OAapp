@@ -49,7 +49,7 @@ export default {
 	  },
 	  getApproval(){
 	  	uni.request({
-	  		url:"http://192.168.0.196:8088/user/shareUserList",
+	  		url:"http://8.129.26.229:8088/user/shareUserList",
 	  		method:"GET",
 	  		header:{
 	  			"satoken":uni.getStorageSync("satoken")

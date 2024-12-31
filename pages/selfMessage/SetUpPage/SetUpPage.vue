@@ -40,11 +40,11 @@
 		data() {
 			return {
 				list3:[
-					// {
-					// 	type:"close",
-					// 	text:"切换账号",
-					// 	url:""
-					// },
+					{
+						type:"close",
+						text:"更改密码",
+						url:"/pages/selfMessage/SetUpPage/updatePassword/updatePassword"
+					},
 					{
 						type:"home",
 						text:"退出登录",
@@ -60,7 +60,7 @@
 					success() {
 						if(str2==="退出登录"){
 							uni.request({
-								url:"http://192.168.0.196:8088/user/logout",
+								url:"http://8.129.26.229:8088/user/logout",
 								header:{
 									"satoken":uni.getStorageSync("satoken")
 								},

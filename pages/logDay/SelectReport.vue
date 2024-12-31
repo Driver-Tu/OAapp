@@ -145,7 +145,7 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 			//获取分享给自己的日志
 			getMyShareData(){
 				uni.request({
-					url:"http://192.168.0.196:8088/report/shareReport",
+					url:"http://8.129.26.229:8088/report/shareReport",
 					method:"POST",
 					header:{
 						"satoken":uni.getStorageSync("satoken")
@@ -172,7 +172,7 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 			},
 			getDataNext() {
 				uni.request({
-					url: "http://192.168.0.196:8088/report/list-self",
+					url: "http://8.129.26.229:8088/report/list-self",
 					header: {
 						"satoken": uni.getStorageSync("satoken")
 					},
@@ -191,7 +191,7 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 			},
 			getShareDataNext() {
 				uni.request({
-					url: "http://192.168.0.196:8088/report/shareReport",
+					url: "http://8.129.26.229:8088/report/shareReport",
 					header: {
 						"satoken": uni.getStorageSync("satoken")
 					},
@@ -213,7 +213,7 @@ import mineEmpty from "../../component/mineList/mine-empty/mine-empty.vue"
 					title:"数据加载中..."
 				})
 				uni.request({
-					url: "http://192.168.0.196:8088/report/list-self",
+					url: "http://8.129.26.229:8088/report/list-self",
 					header: {
 						"satoken": uni.getStorageSync("satoken")
 					},

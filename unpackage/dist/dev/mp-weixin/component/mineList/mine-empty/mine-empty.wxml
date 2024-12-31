@@ -1,0 +1,1 @@
+<view class="mine-empty"><view class="mine-empty__image"><image src="{{a}}" mode="aspectFit"></image></view><view class="mine-empty__text">{{b}}</view><slot></slot></view>

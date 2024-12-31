@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "新增报告",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "uni-segmented-control": "../../uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control",
+    "uni-easyinput": "../../uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput",
+    "uni-forms-item": "../../uni_modules/uni-forms/components/uni-forms-item/uni-forms-item",
+    "uni-forms": "../../uni_modules/uni-forms/components/uni-forms/uni-forms",
+    "uni-tooltip": "../../uni_modules/uni-tooltip/components/uni-tooltip/uni-tooltip",
+    "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "uni-section": "../../uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-card": "../../uni_modules/uni-card/components/uni-card/uni-card"
+  }
+}

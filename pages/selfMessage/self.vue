@@ -53,13 +53,14 @@
 	 status-bar color="#00000" right-text="编辑" @click-right="showDrawer" title="个人资料" left-icon="left" @clickLeft="back"/>
 	<scroll-view scroll-y="true" direction="vertical" style="height: 100vh;">
 		<view class="row2" style="margin-top: 120rpx;">
-			<view class="item">
+			<view class="item" @click="upUserImage()">
 							  <view class="left">
 								  <text>头像</text>
 								  </view>
 							  <view class="right">
 								  <image v-if="userMessage.userImage!==null" :src="userMessage.userImage" @click="imagePreview(userMessage.userImage)"></image>
 								  <image v-if="userMessage.userImage===null" src="../../static/selfImage/self.png"></image>
+							      <uni-icons type="right"></uni-icons>
 							  </view>
 			</view>
 			<view class="item" @click="upName()">
@@ -202,7 +203,7 @@
 			//获取岗位信息
 			getSelfPosition(){
 				uni.request({
-					url:"http://192.168.0.196:8088/position/getSelfPosition",
+					url:"http://8.129.26.229:8088/position/getSelfPosition",
 					method:"GET",
 					header:{
 						"satoken":uni.getStorageSync("satoken")
@@ -236,6 +237,56 @@
 					}
 				})
 			},
+		upUserImage(){
+			  uni.chooseImage({
+					count:1,
+					success: (res) => {
+					console.log(res.tempFilePaths[0])
+					uni.showLoading({
+						title:"等待图片上传成功...",
+					})
+				   setTimeout(function () {uni.hideLoading()},3000)
+				   uni.uploadFile({
+							url:"http://8.129.26.229:8088/user/updateAvatar",
+							filePath:res.tempFilePaths[0],
+							name:"file",
+							header: {
+								"satoken": uni.getStorageSync("satoken")
+							},
+							success: (end) => {
+								res=JSON.parse(end.data)
+								if(res.code==="200"){
+									uni.showModal({
+										content:"更换成功",
+										title:"恭喜",
+										showCancel:false,
+										success: (res) => {
+											if(res.confirm){
+												this.getSelfMessage()
+												uni.hideLoading()
+											}
+										}
+									})
+								}else{
+									uni.showModal({
+										content:res.msg,
+										title:"提示",
+										showCancel:false
+									})
+									uni.hideLoading()
+								}
+							},
+							fail: (err) => {
+								console.log(err)
+								uni.hideLoading()
+							}
+						})
+					},
+					fail: (err) => {
+						console.log(err)
+					}
+				})
+			},
 			upTelephone(){
 				uni.showModal({
 					editable:true,
@@ -251,7 +302,7 @@
 			updateSelfMessage(){
 				if(validateInput(this.userInfo)==="数据正确"){
 					uni.request({
-						url:"http://192.168.0.196:8088/user/updateSelfUserInfo",
+						url:"http://8.129.26.229:8088/user/updateSelfUserInfo",
 						method:'POST',
 						header:{
 							"satoken":uni.getStorageSync("satoken")
@@ -301,7 +352,7 @@
 			getSelfMessage(){
 				if(uni.getStorageSync("satoken")){
 					uni.request({ 
-						url:"http://192.168.0.196:8088/user/info",
+						url:"http://8.129.26.229:8088/user/info",
 						method:'GET',
 						header:{
 							"satoken":uni.getStorageSync("satoken")
@@ -322,7 +373,6 @@
 						this.userMessage.sex=res.data.data.sex==="1"?"男":"女"
 						this.userMessage.birth=res.data.data.birth
 						this.userMessage.userImage=res.data.data.userImage
-						console.log(this.userMessage)
 						}else{
 							uni.showToast({
 								title:res.data.msg,

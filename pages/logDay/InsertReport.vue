@@ -157,10 +157,10 @@
 		},
 		onLoad(options) {
 			if(options.users){
+				this.baseFormData=JSON.parse(uni.getStorageSync("baseFormData"))
 				const users=JSON.parse(options.users)
 				this.userList=users
 				this.baseFormData.userIDS=users.map(item=>item.userId)
-				this.baseFormData=JSON.parse(uni.getStorageSync("baseFormData"))
 				uni.removeStorageSync("baseFormData")
 			}
 		},
@@ -225,7 +225,7 @@
 				//第二步:把选择的文件上传到服务器
 				this.filePaths.forEach(item => {
 					uni.uploadFile({
-						url: 'http://192.168.0.196:8088/report/file/upload',
+						url: 'http://8.129.26.229:8088/report/file/upload',
 						filePath: item.url,
 						name: 'files',
 						header: {
@@ -276,7 +276,7 @@
 					uni.removeStorageSync("userList")
 					}
 					uni.request({
-						url:"http://192.168.0.196:8088/report/addReport",
+						url:"http://8.129.26.229:8088/report/addReport",
 						method:'POST',
 						header:{
 							"satoken":uni.getStorageSync("satoken")
@@ -285,7 +285,7 @@
 						success: (res) => {
 						
 								uni.redirectTo({
-									url:"/pages/logDay/logDay",
+									url:"/pages/logDay/SelectReport",
 									success() {
 										uni.showToast({
 											duration:1000,

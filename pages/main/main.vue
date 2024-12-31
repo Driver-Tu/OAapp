@@ -284,7 +284,7 @@
 		methods: {
 			getReportCount(){
 				uni.request({
-					url:"http://192.168.0.196:8088/report/getSelfReportCount?year="+new Date().getFullYear()+"&month="+(new Date().getMonth()+1),
+					url:"http://8.129.26.229:8088/report/getSelfReportCount?year="+new Date().getFullYear()+"&month="+(new Date().getMonth()+1),
 					header:{
 						"satoken":uni.getStorageSync("satoken")
 					},
@@ -302,7 +302,7 @@
 			},
 			getAttendanceCount(){
 				uni.request({
-					url:"http://192.168.0.196:8088/attendance/getCountByMonth?year="+new Date().getFullYear()+"&month="+(new Date().getMonth()+1),
+					url:"http://8.129.26.229:8088/attendance/getCountByMonth?year="+new Date().getFullYear()+"&month="+(new Date().getMonth()+1),
 					header:{
 						"satoken":uni.getStorageSync("satoken")
 					},
@@ -349,7 +349,7 @@
 			},
 			isLogin(){
 				uni.request({
-					url:"http://192.168.0.196:8088/user/isLogin",
+					url:"http://8.129.26.229:8088/user/isLogin",
 					header:{
 						'satoken':uni.getStorageSync("satoken")
 					},
@@ -406,7 +406,7 @@
 			getSelfMessage(){
 				if(uni.getStorageSync("satoken")){
 					uni.request({
-						url:"http://192.168.0.196:8088/user/info",
+						url:"http://8.129.26.229:8088/user/info",
 						method:'GET',
 						header:{
 							"satoken":uni.getStorageSync("satoken")

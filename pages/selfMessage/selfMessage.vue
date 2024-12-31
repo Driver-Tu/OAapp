@@ -336,7 +336,7 @@ export default{
 		//获取岗位信息
 		getSelfPosition(){
 			uni.request({
-				url:"http://192.168.0.196:8088/position/getSelfPosition",
+				url:"http://8.129.26.229:8088/position/getSelfPosition",
 				method:"GET",
 				header:{
 					"satoken":uni.getStorageSync("satoken")
@@ -348,7 +348,7 @@ export default{
 		},
 		isLogin(){
 			uni.request({
-				url:"http://192.168.0.196:8088/user/isLogin",
+				url:"http://8.129.26.229:8088/user/isLogin",
 				header:{
 					'satoken':uni.getStorageSync("satoken")
 				},
@@ -372,7 +372,7 @@ export default{
 		},
 		getIsAdmin(){
 			uni.request({
-				url:"http://192.168.0.196:8088/user/isAdmin",
+				url:"http://8.129.26.229:8088/user/isAdmin",
 				method:"GET",
 				header:{
 					"satoken":uni.getStorageSync("satoken")
@@ -388,7 +388,7 @@ export default{
 		getSelfMessage(){
 			if(uni.getStorageSync("satoken")){
 				uni.request({
-					url:"http://192.168.0.196:8088/user/info",
+					url:"http://8.129.26.229:8088/user/info",
 					method:'GET',
 					header:{
 						"satoken":uni.getStorageSync("satoken")

@@ -24,6 +24,7 @@
     "Camera": {},
     "VideoPlayer": {},
     "Barcode": {},
+    "Push": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -56,7 +57,10 @@
           "xhdpi": "static/main/jm.png"
         },
         "useOriginalMsgbox": false,
-        "iosStyle": "common"
+        "iosStyle": "common",
+        "ios": {
+          "storyboard": "static/main/jm.png"
+        }
       },
       "icons": {
         "android": {
@@ -111,14 +115,17 @@
         ]
       },
       "apple": {
-        "dSYMs": false
+        "dSYMs": false,
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
       },
       "plugins": {
         "ad": {},
         "maps": {
           "amap": {
             "name": "amapfIPT4TQa",
-            "appkey_ios": "5aacf71ef02689821a51b9866e2151c2",
+            "appkey_ios": "a0afb967052947987bc98169b1117668",
             "appkey_android": "9f6337687d2bd4364b96a8353592b4cb"
           }
         },
@@ -128,13 +135,20 @@
             "offline": false,
             "icons": {
               "small": {
-                "ldpi": "static/logo.png",
-                "mdpi": "static/logo.png",
-                "hdpi": "static/logo.png",
-                "xhdpi": "static/logo.png",
-                "xxhdpi": "static/logo.png"
+                "hdpi": "static/logo.png"
               }
             }
+          }
+        },
+        "geolocation": {
+          "amap": {
+            "name": "amapfIPT4TQa",
+            "__platform__": [
+              "ios",
+              "android"
+            ],
+            "appkey_ios": "5aacf71ef02689821a51b9866e2151c2",
+            "appkey_android": "9f6337687d2bd4364b96a8353592b4cb"
           }
         },
         "audio": {

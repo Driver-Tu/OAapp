@@ -185,6 +185,15 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarBackgroundColor": "#ffff7f"
 	}
+},
+{
+	"path" : "pages/selfMessage/SetUpPage/updatePassword/updatePassword",
+	"style" : 
+	{
+		"navigationBarTitleText" : "更换密码",
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#00aaff"
+	}
 }
 ],
 	"tabBar": {

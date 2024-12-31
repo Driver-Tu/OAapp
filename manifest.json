@@ -22,7 +22,8 @@
             "Bluetooth" : {},
             "Camera" : {},
             "VideoPlayer" : {},
-            "Barcode" : {}
+            "Barcode" : {},
+            "Push" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -60,7 +61,7 @@
                 "maps" : {
                     "amap" : {
                         "name" : "amapfIPT4TQa",
-                        "appkey_ios" : "5aacf71ef02689821a51b9866e2151c2",
+                        "appkey_ios" : "a0afb967052947987bc98169b1117668",
                         "appkey_android" : "9f6337687d2bd4364b96a8353592b4cb"
                     }
                 },
@@ -70,13 +71,17 @@
                         "offline" : false,
                         "icons" : {
                             "small" : {
-                                "hdpi" : "static/logo.png",
-                                "mdpi" : "static/logo.png",
-                                "ldpi" : "static/logo.png",
-                                "xhdpi" : "static/logo.png",
-                                "xxhdpi" : "static/logo.png"
+                                "hdpi" : "static/logo.png"
                             }
                         }
+                    }
+                },
+                "geolocation" : {
+                    "amap" : {
+                        "name" : "amapfIPT4TQa",
+                        "__platform__" : [ "ios", "android" ],
+                        "appkey_ios" : "5aacf71ef02689821a51b9866e2151c2",
+                        "appkey_android" : "9f6337687d2bd4364b96a8353592b4cb"
                     }
                 }
             },
@@ -131,11 +136,15 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wxa35cbdd386ae18a9",
         "setting" : {
             "urlCheck" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "unipush" : {
+            "enable" : false
+        },
+        "lazyCodeLoading" : "requiredComponents"
     },
     "mp-alipay" : {
         "usingComponents" : true

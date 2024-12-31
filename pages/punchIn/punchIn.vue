@@ -4,13 +4,21 @@
 		margin: 30rpx;
 		font-size: 30rpx;
 	}
-	.attendance-button{
-		padding: 60rpx 36rpx;
-		margin: 30rpx;
-		display: inline-block;
-		border-radius: 50%;
-		background-color: #00d165;
-		color: #fff;
+	.attendance-clock-in-out{
+		  display: flex; /* 使用Flexbox布局 */
+		  flex-direction: column; /* 子元素垂直排列 */
+		  justify-content: center; /* 垂直居中 */
+		  align-items: center; /* 水平居中 */
+		  text-align: center; /* 文本居中 */
+		text-align: center;
+		.attendance-button{
+			padding: 60rpx 0rpx;
+			margin: 20rpx;
+			width: 31vw;
+			border-radius: 50%;
+			background-color: #00aaff;
+			color: #fff;
+		}
 	}
 	.userLayout {
 	  display: flex;
@@ -48,6 +56,15 @@
 	    margin-bottom: 5px;
 	  }
 	}
+	.attendance_time{
+		display: inline-block;
+		text-align: center;
+		background-color: #00aaff;
+		width: 27vw;
+		margin:20rpx;
+		padding:20rpx 20rpx;
+		color: #fff;
+	}
 </style>
 <template>
 		<view class="attendance-title">
@@ -66,6 +83,18 @@
 			  </view>
 			</view>
 		</uni-card>
+		<uni-section title="今日打卡情况" type="circle">
+			<uni-card>
+				<view class="attendance_time">
+					<view>上班打卡时间</view>
+					<view class="time">{{todayPunchInTime.timeIn}}</view>
+				</view>
+				<view class="attendance_time">
+					<view>下班打卡时间</view>
+					<view class="time">{{todayPunchInTime.timeOut}}</view>
+				</view>
+			</uni-card>
+		</uni-section>
 		<uni-card>
 			<view>
 				<uni-section title="请选择地址" type="square">
@@ -80,8 +109,8 @@
 					  </view>
 				  </view>
 				  <view class="attendance-clock-in-out">
-				    <button class="attendance-button"  :disabled="clockInButton" @click="show()" >打卡上班</button>
-				    <button class="attendance-button"  :disabled="clockOutButton" @click="show()">打卡下班</button>
+				    <button class="attendance-button" v-if="todayPunchInTime.timeOut==='未打卡'&&todayPunchInTime.timeIn==='未打卡'"  :disabled="clockInButton" @click="show()" >打卡上班</button>
+				    <button class="attendance-button" v-else  :disabled="clockOutButton" @click="show()">打卡下班</button>
 				  </view>
 				</view>
 				<view class="bluetooth"></view>
@@ -92,9 +121,10 @@
 	  // 获取当前时间
 	  const now = new Date();
 	  const hour = now.getHours(); // 获取小时数
-	
+	  const minute = now.getMinutes(); // 获取分钟数
+	  const second = now.getSeconds();
 	  // 判断当前时间是否小于早上9点或者大于下午5点半
-	  if (hour < 9 || hour > 17.5) {
+	  if ((hour <9||(hour===9&&(minute===0&&second===0))) || (hour === 17 && (minute > 30 || (minute === 30 && second > 0))) || hour > 17) {
 	    // 如果是，则不做任何操作（或者可以在这里添加一些代码）
 		return true;
 	  } else {
@@ -114,6 +144,16 @@
 	
 	  // 组合成YYYY-MM-DD格式
 	  return `${year}-${formattedMonth}-${formattedDay}`;
+	}
+	function convertIsoToHms(isoString) {
+		if(isoString===null){
+			return "未打卡";
+		}
+	  const date = new Date(isoString);
+	  const hours = date.getHours().toString().padStart(2, '0');
+	  const minutes = date.getMinutes().toString().padStart(2, '0');
+	  const seconds = date.getSeconds().toString().padStart(2, '0');
+	  return `${hours}:${minutes}:${seconds}`;
 	}
 export default{
 	data(){
@@ -141,6 +181,10 @@ export default{
 				bluetoothName:null,
 				remark:null
 			},
+			todayPunchInTime:{
+				timeIn:"未打卡",
+				timeOut:"未打卡"
+			},
 			currentTimeDisplay:"",
 			clockInButton:true,
 			clockOutButton:true,
@@ -149,10 +193,31 @@ export default{
 		}
 	},
 	methods:{
+		getTodayTime(){
+			uni.request({
+				url:"http://8.129.26.229:8088/attendance/getTodayAttendance",
+				method:'GET',
+				header:{
+					"satoken":uni.getStorageSync("satoken")
+				},
+				success: (res) => {
+					if(res.data.code==="200"){
+						this.todayPunchInTime.timeIn=convertIsoToHms(res.data.data.timeIn)
+						this.todayPunchInTime.timeOut=convertIsoToHms(res.data.data.timeOut)
+					}else{
+						uni.showModal({
+							title:"提示",
+							content:"获取失败，请退出app查看是否登录",
+							showCancel:false
+						})
+					}
+				}
+			})
+		},
 		getSelfMessage(){
 			if(uni.getStorageSync("satoken")){
 				uni.request({
-					url:"http://192.168.0.196:8088/user/info",
+					url:"http://8.129.26.229:8088/user/info",
 					method:'GET',
 					header:{
 						"satoken":uni.getStorageSync("satoken")
@@ -201,7 +266,7 @@ export default{
 		},
 		getBlueTooth(){
 			uni.request({
-				url:"http://192.168.0.196:8088/bluetooth/getBluetooth",
+				url:"http://8.129.26.229:8088/bluetooth/getBluetooth",
 				method:"GET",
 				header:{
 					"satoken":uni.getStorageSync("satoken")
@@ -276,14 +341,10 @@ export default{
 					}
 				})
 			}
-			uni.showToast({
-				icon:'success',
-				title:"打卡成功"
-			})
 		},
 		punchIn(){
 			uni.request({
-				url:"http://192.168.0.196:8088/attendance/addAttendance",
+				url:"http://8.129.26.229:8088/attendance/addAttendance",
 				method:'POST',
 				data:this.addance,
 				header:{
@@ -293,7 +354,12 @@ export default{
 					uni.showModal({
 						title:"提示",
 						content:res.data.data,
-						showCancel:false
+						showCancel:false,
+						success: (res) => {
+							if(res.confirm){
+								this.getTodayTime()
+							}
+						}
 					})
 				},
 				fail: (err) => {
@@ -357,6 +423,7 @@ export default{
 	},
 	onShow() {
 		this.getSelfMessage()
+		this.getTodayTime()
 		this.getBlueTooth()
 		this.scanBluetooth();
 	},

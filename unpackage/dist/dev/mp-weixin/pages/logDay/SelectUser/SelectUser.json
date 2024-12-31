@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "指定查看人",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#b5b5b5",
+  "usingComponents": {
+    "uni-section": "../../../uni_modules/uni-section/components/uni-section/uni-section"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/main/main",
+    "pages/index/index",
+    "pages/review/reviewDetail",
+    "pages/selfMessage/punchMessage",
+    "pages/selfMessage/self",
+    "pages/selfMessage/selfMessage",
+    "pages/selfMessage/updateSelf/updateSelf",
+    "pages/punchIn/punchIn",
+    "pages/review/review",
+    "pages/review/askForLeave",
+    "pages/review/businessReview",
+    "uni_modules/unicloud-city-select/pages/uni-city-list/uni-city-list",
+    "pages/logDay/logDay",
+    "component/mineList/mine-empty/mine-empty",
+    "pages/logDay/InsertReport",
+    "pages/logDay/SelectReport",
+    "pages/logDay/reportDetail",
+    "pages/mailToUserByQQ/mailToUserByQQ",
+    "pages/selfMessage/adminPageController/adminPageController",
+    "pages/selfMessage/selfDataPage/selfDataPage",
+    "pages/selfMessage/SetUpPage/SetUpPage",
+    "pages/logDay/SelectUser/SelectUser",
+    "pages/VideoShow/VideoShow"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "#00aaff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "工作台",
+        "iconPath": "static/house.png",
+        "selectedIconPath": "static/house.png"
+      },
+      {
+        "pagePath": "pages/selfMessage/selfMessage",
+        "text": "个人中心",
+        "iconPath": "static/grzx.png",
+        "selectedIconPath": "static/grzx.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

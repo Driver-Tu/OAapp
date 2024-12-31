@@ -861,12 +861,25 @@
   margin: 0.9375rem;
   font-size: 0.9375rem;
 }
-.attendance-button {
-  padding: 1.875rem 1.125rem;
-  margin: 0.9375rem;
-  display: inline-block;
+.attendance-clock-in-out {
+  display: flex;
+  /* 使用Flexbox布局 */
+  flex-direction: column;
+  /* 子元素垂直排列 */
+  justify-content: center;
+  /* 垂直居中 */
+  align-items: center;
+  /* 水平居中 */
+  text-align: center;
+  /* 文本居中 */
+  text-align: center;
+}
+.attendance-clock-in-out .attendance-button {
+  padding: 1.875rem 0;
+  margin: 0.625rem;
+  width: 31vw;
   border-radius: 50%;
-  background-color: #00d165;
+  background-color: #00aaff;
   color: #fff;
 }
 .userLayout {
@@ -900,4 +913,13 @@
   color: #333;
   font-weight: bold;
   margin-bottom: 5px;
+}
+.attendance_time {
+  display: inline-block;
+  text-align: center;
+  background-color: #00aaff;
+  width: 27vw;
+  margin: 0.625rem;
+  padding: 0.625rem 0.625rem;
+  color: #fff;
 }

@@ -1,0 +1,1 @@
+<view wx:for="{{a}}" wx:for-item="i" class="video" style="display:inline-block"><uni-section wx:if="{{i.d}}" u-s="{{['d']}}" u-i="{{i.c}}" bind:__l="__l" u-p="{{i.d}}"><video src="{{i.a}}" muted bindtap="{{i.b}}" style="margin:20rpx 5vw;width:90vw;height:500rpx"></video></uni-section></view>

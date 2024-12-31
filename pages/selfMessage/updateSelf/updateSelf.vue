@@ -100,7 +100,7 @@
 			updateSelfMessage(){
 				if(validateInput(this.userInfo)==="数据正确"){
 					uni.request({
-						url:"http://192.168.0.196:8088/user/updateSelfUserInfo",
+						url:"http://8.129.26.229:8088/user/updateSelfUserInfo",
 						method:'POST',
 						header:{
 							"satoken":uni.getStorageSync("satoken")

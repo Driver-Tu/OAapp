@@ -1,0 +1,1 @@
+<view class="row"><view wx:for="{{a}}" wx:for-item="item" wx:key="b" class="item" bindtap="{{item.c}}"><view class="center">{{item.a}}</view></view></view>

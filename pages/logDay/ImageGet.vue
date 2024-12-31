@@ -10,7 +10,7 @@ const tempUrl = ref(null);
 
 onBeforeMount(async () => {
  tempUrl.value = await uni.request({
-  	url:"http://localhost:8088/report/file/getData?objectName="+props.src,
+  	url:"http://8.129.26.229:8088/report/file/getData?objectName="+props.src,
 	method:"GET",
 	headers: {
 	  satoken: props.token,

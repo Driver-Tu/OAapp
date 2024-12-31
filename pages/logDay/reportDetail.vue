@@ -191,7 +191,7 @@
 					title: "正在获取当天数据..."
 				})
 				uni.request({
-					url: "http://192.168.0.196:8088/report/shareReport",
+					url: "http://8.129.26.229:8088/report/shareReport",
 					header: {
 						"satoken": uni.getStorageSync("satoken")
 					},
@@ -239,7 +239,7 @@
 					success: (res) => {
 						if(res.confirm){
 							uni.request({
-								url:"http://192.168.0.196:8088/report/deleteReports",
+								url:"http://8.129.26.229:8088/report/deleteReports",
 								data:[this.data.data.reportId],
 								method:'DELETE',
 								header:{
@@ -337,7 +337,7 @@
 					title: "正在获取当天数据..."
 				})
 				uni.request({
-					url: "http://192.168.0.196:8088/report/list-self",
+					url: "http://8.129.26.229:8088/report/list-self",
 					header: {
 						"satoken": uni.getStorageSync("satoken")
 					},
@@ -369,14 +369,16 @@
 							} else {
 							  
 							}
+							console.log(2)
 							uni.request({
-								url:"http://192.168.0.196:8088/report/shareReportToUser",
+								url:"http://8.129.26.229:8088/report/shareReportToUser",
 								data:this.userIds,
 								header:{
 									"satoken":uni.getStorageSync("satoken")
 								},
 								method:"POST",
 								success: (res) => {
+									console.log(res)
 									if(res.data.code==="200"){
 										this.userOnVos=res.data.data
 										console.log(this.userOnVos)

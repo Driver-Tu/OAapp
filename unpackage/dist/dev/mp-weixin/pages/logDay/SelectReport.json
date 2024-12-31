@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "看日志",
+  "enablePullDownRefresh": true,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "mine-empty": "../../component/mineList/mine-empty/mine-empty",
+    "uni-nav-bar": "../../uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar",
+    "uni-segmented-control": "../../uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control",
+    "uni-data-select": "../../uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
+    "uni-section": "../../uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-card": "../../uni_modules/uni-card/components/uni-card/uni-card"
+  }
+}

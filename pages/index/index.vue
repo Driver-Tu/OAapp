@@ -41,7 +41,7 @@ const loginAll=reactive({
 const data=ref("");
 const login=()=>{
 	uni.request({
-		url:"http://192.168.0.196:8088/user/login?empNum="+loginAll.empNum+"&password="+loginAll.password+"&device=app",
+		url:"http://8.129.26.229:8088/user/login?empNum="+loginAll.empNum+"&password="+loginAll.password+"&device=app",
 		method:'POST',
 		success: (res) => {
 			if(res.data.code==="200"){

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "审批模块",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "uni-notice-bar": "../../uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar",
+    "uni-section": "../../uni_modules/uni-section/components/uni-section/uni-section"
+  }
+}
